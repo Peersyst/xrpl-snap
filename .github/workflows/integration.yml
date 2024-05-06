@@ -1,0 +1,30 @@
+name: "Integration"
+
+on:
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    check:
+        strategy:
+            matrix:
+                package: ["web"]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: docker/setup-qemu-action@v2
+            - uses: docker/setup-buildx-action@v2
+            - uses: actions/cache@v3
+              with:
+                  path: /tmp/.buildx-cache
+                  key: ${{ matrix.package }}-${{ github.job }}-${{ runner.os }}-buildx
+                  restore-keys: |
+                      ${{ matrix.package }}-${{ github.job }}-${{ runner.os }}-buildx
+            # Build docker image
+            - name: Build docker image
+              uses: docker/build-push-action@v4
+              with:
+                  file: docker/${{ matrix.package }}.Dockerfile
+                  target: integration
+                  push: false
+                  cache-from: type=local,src=/tmp/.buildx-cache
