@@ -11,7 +11,8 @@
   "devDependencies": {
     "@nx/js": "18.3.3",
     "@nx/workspace": "18.3.3",
-    "nx": "18.3.3"
+    "nx": "18.3.3",
+    "prettier": "^2.8.3"
   },
   "workspaces": [
     "packages/*"
