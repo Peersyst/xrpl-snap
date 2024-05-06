@@ -1,0 +1,23 @@
+{
+    "targets": {
+        "bootstrap": {
+            "dependsOn": ["^build"]
+        },
+        "start": {
+            "dependsOn": ["bootstrap"],
+            "cache": true
+        },
+        "build": {
+            "dependsOn": ["bootstrap"],
+            "cache": true
+        },
+        "test": {
+            "dependsOn": ["^build"],
+            "cache": true
+        },
+        "lint": {
+            "dependsOn": ["^lint"],
+            "cache": true
+        }
+    }
+}
