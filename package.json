@@ -1,0 +1,19 @@
+{
+  "name": "xrpl-snap",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "bootstrap": "nx run-many --target=bootstrap --projects",
+    "build": "nx run-many --target=build --projects",
+    "build:packages": "nx run-many --target=build --exclude apps/*",
+    "lint": "nx run-many --target=lint --projects"
+  },
+  "devDependencies": {
+    "@nx/js": "18.3.3",
+    "@nx/workspace": "18.3.3",
+    "nx": "18.3.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
