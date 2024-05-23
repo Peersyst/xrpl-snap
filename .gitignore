@@ -4,6 +4,8 @@ build/
 coverage/
 .cache/
 public/
+.idea/
+.vscode/
 
 # Logs
 logs

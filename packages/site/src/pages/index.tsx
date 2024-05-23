@@ -110,8 +110,62 @@ const Index = () => {
     ? isFlask
     : snapsDetected;
 
-  const handleSendHelloClick = async () => {
-    await invokeSnap({ method: 'hello' });
+  const handleGetAccount = async () => {
+    const res = await invokeSnap({ method: 'xrpl_getAccount' });
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(res, undefined, 4));
+  };
+  const handleGetActiveNetwork = async () => {
+    const res = await invokeSnap({ method: 'xrpl_getActiveNetwork' });
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(res, undefined, 4));
+  };
+  const handleGetStoredNetworks = async () => {
+    const res = await invokeSnap({ method: 'xrpl_getStoredNetworks' });
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(res, undefined, 4));
+  };
+  const handleChangeNetwork = async () => {
+    const res = await invokeSnap({
+      method: 'xrpl_changeNetwork',
+      params: { chainId: 2 },
+    });
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(res, undefined, 4));
+  };
+  const handleSignMessage = async () => {
+    const res = await invokeSnap({
+      method: 'xrpl_signMessage',
+      params: { message: 'Hello world!' },
+    });
+    // eslint-disable-next-line no-alert
+    alert(res);
+  };
+  const handleSignTransaction = async () => {
+    const res = await invokeSnap({
+      method: 'xrpl_sign',
+      params: {
+        TransactionType: 'Payment',
+        Account: 'rPsqhWc6GHWfWA99mXzY3tqw7gbBF3APab',
+        Destination: 'rPsqhWc6GHWfWA99mXzY3tqw7gbBF3APab',
+        Amount: '1',
+      },
+    });
+    // eslint-disable-next-line no-alert
+    alert(res);
+  };
+  const handleSignAndSubmitTransaction = async () => {
+    const res = await invokeSnap({
+      method: 'xrpl_signAndSubmit',
+      params: {
+        TransactionType: 'Payment',
+        Account: 'rPsqhWc6GHWfWA99mXzY3tqw7gbBF3APab',
+        Destination: 'rrnrZNu1RdJBWyQnqmZczhMQGXZ7YzG6HB',
+        Amount: '1000000',
+      },
+    });
+    // eslint-disable-next-line no-alert
+    alert(res);
   };
 
   return (
@@ -173,14 +227,53 @@ const Index = () => {
         )}
         <Card
           content={{
-            title: 'Send Hello message',
-            description:
-              'Display a custom message within a confirmation screen in MetaMask.',
+            title: 'Snap methods',
+            description: '',
             button: (
-              <SendHelloButton
-                onClick={handleSendHelloClick}
-                disabled={!installedSnap}
-              />
+              <>
+                <SendHelloButton
+                  onClick={handleGetAccount}
+                  disabled={!installedSnap}
+                  text="xrpl_getAccount"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleGetActiveNetwork}
+                  disabled={!installedSnap}
+                  text="xrpl_getActiveNetwork"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleGetStoredNetworks}
+                  disabled={!installedSnap}
+                  text="xrpl_getStoredNetworks"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleChangeNetwork}
+                  disabled={!installedSnap}
+                  text="xrpl_changeNetwork"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleSignMessage}
+                  disabled={!installedSnap}
+                  text="xrpl_signMessage"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleSignTransaction}
+                  disabled={!installedSnap}
+                  text="xrpl_sign"
+                  css="margin: 5px"
+                />
+                <SendHelloButton
+                  onClick={handleSignAndSubmitTransaction}
+                  disabled={!installedSnap}
+                  text="xrpl_signAndSubmit"
+                  css="margin: 5px"
+                />
+              </>
             ),
           }}
           disabled={!installedSnap}

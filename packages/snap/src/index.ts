@@ -1,5 +1,8 @@
 import type { OnRpcRequestHandler } from '@metamask/snaps-sdk';
-import { panel, text } from '@metamask/snaps-sdk';
+
+import { Context } from './core/Context';
+import type { HandlerMethod, HandlerParams } from './handler/HandlerFactory';
+import { HandlerFactory } from './handler/HandlerFactory';
 
 /**
  * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
@@ -15,22 +18,16 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
   origin,
   request,
 }) => {
-  switch (request.method) {
-    case 'hello':
-      return snap.request({
-        method: 'snap_dialog',
-        params: {
-          type: 'confirmation',
-          content: panel([
-            text(`Hello, **${origin}**!`),
-            text('This custom confirmation is just for display purposes.'),
-            text(
-              'But you can edit the snap source code to make it do something, if you want to!',
-            ),
-          ]),
-        },
-      });
-    default:
-      throw new Error('Method not found.');
+  const handlers = HandlerFactory(await Context.init());
+  // eslint-disable-next-line no-prototype-builtins
+  if (!handlers.hasOwnProperty(request.method)) {
+    throw new Error(`handler method ${request.method} not found`);
   }
+  return handlers[request.method as HandlerMethod].handle(
+    origin,
+    // Todo handle this type properly
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    request.params as HandlerParams,
+  );
 };

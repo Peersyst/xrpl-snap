@@ -16,6 +16,11 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       extends: ['@metamask/eslint-config-typescript'],
+      rules: {
+        '@typescript-eslint/no-parameter-properties': 0,
+        'jsdoc/require-jsdoc': 0,
+        'import/no-anonymous-default-export': 0,
+      },
     },
 
     {
