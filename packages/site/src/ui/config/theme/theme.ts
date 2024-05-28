@@ -1,6 +1,11 @@
 import { createTheme, ThemePalette } from '@peersyst/react-components';
 import typography from './typography';
-import { ErrorIcon, InfoIcon, SuccessIcon, WarningIcon } from '../../icons';
+import {
+  ErrorIcon,
+  InfoIcon,
+  SuccessIcon,
+  WarningIcon,
+} from '../../common/icons';
 import { spacingProxy as spacing } from '../spacing';
 
 const grey: ThemePalette['grey'] = {
