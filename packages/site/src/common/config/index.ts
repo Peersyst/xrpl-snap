@@ -1,2 +1,2 @@
-export { default as config } from "./config";
-export type { Config } from "./config.types";
+export { default as config } from './config';
+export type { Config } from './config.types';

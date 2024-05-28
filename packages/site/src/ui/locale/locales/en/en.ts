@@ -1,7 +1,7 @@
-import common from "./common.json";
-import errors from "./errors.json";
+import common from './common.json';
+import errors from './errors.json';
 
 export const en = {
-    translation: common,
-    error: errors,
+  translation: common,
+  error: errors,
 };

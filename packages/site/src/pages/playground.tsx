@@ -1,6 +1,8 @@
-import { Col, Row, Typography } from '@peersyst/react-components';
-import { ReactNode } from 'react';
+import { Col, Row, TextField, Typography } from '@peersyst/react-components';
+import type { ReactNode } from 'react';
+
 import Button from '../ui/common/components/input/Button/Button';
+import NumericField from '../ui/common/components/input/NumericField/NumericField';
 
 function PlaygroundComponent({
   label,
@@ -30,6 +32,12 @@ function Playground() {
       </Row>
       <PlaygroundComponent label="Button">
         <Button>Click me</Button>
+      </PlaygroundComponent>
+      <PlaygroundComponent label="NumericField">
+        <NumericField style={{ width: 150 }} />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="TextField">
+        <TextField style={{ width: 150 }} />
       </PlaygroundComponent>
     </Col>
   );
