@@ -7,7 +7,7 @@ export const ChipStyles = css(({ theme }) => ({
       fontWeight: 700,
     },
     '&.Filled': {
-      backgroundColor: theme.palette.grey[800],
+      backgroundColor: theme.palette.background,
     },
     '&.Outlined': {
       color: theme.palette.grey[400],

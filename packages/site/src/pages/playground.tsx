@@ -17,6 +17,7 @@ import Button from '../ui/common/components/input/Button/Button';
 import NumericField from '../ui/common/components/input/NumericField/NumericField';
 import Card from '../ui/common/components/surface/Card/Card';
 import Balance from '../ui/common/components/display/Balance/Balance';
+import AccountChip from 'ui/wallet/components/display/AccountChip';
 
 function PlaygroundComponent({
   label,
@@ -110,6 +111,10 @@ function Playground() {
       </PlaygroundComponent>
       <PlaygroundComponent label="Chip">
         <Chip label="RU3x07...da52" />
+        <Chip label="RU3x07...da52" variant="filled" />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Account Chip">
+        <AccountChip address="rnGUZ6FzJyazXqkqBheSQdw7c5JfohZafv" />
       </PlaygroundComponent>
       <PlaygroundComponent label="Balance">
         <Balance balance="10" currency="XRP" variant="body2" />
