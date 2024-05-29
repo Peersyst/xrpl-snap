@@ -11,6 +11,7 @@ const components: CreateConfig['components'] = {
     defaultProps: {
       variant: 'outlined',
       rounded: true,
+      size: 'md',
     },
   },
   Popover: {

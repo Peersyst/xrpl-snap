@@ -1,14 +1,13 @@
-import "@peersyst/react-components";
+import '@peersyst/react-components';
 
-declare module "@peersyst/react-components" {
-    export interface ButtonVariantOverrides {
-        filled: false;
-        outlined: false;
-        text: true;
-        primary: true;
-        secondary: true;
-        tertiary: true;
-    }
+declare module '@peersyst/react-components' {
+  export interface ButtonVariantOverrides {
+    filled: false;
+    outlined: false;
+    text: true;
+    primary: true;
+    secondary: true;
+  }
 
-    export interface ButtonSizeOverrides {}
+  export interface ButtonSizeOverrides {}
 }

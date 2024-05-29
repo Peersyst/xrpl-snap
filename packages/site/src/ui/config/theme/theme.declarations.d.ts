@@ -1,8 +1,15 @@
-import type { Theme, TypographyVariant } from '@peersyst/react-components';
+import 'styled-components';
+import type {
+  Theme,
+  TypographyVariant,
+  Theme,
+  TypographyVariant,
+} from '@peersyst/react-components';
 import type { CSSProp } from 'styled-components';
 
+import type { ThemeSpacing, ThemeSpacing } from '../spacing';
+
 import 'styled-components/cssprop';
-import type { ThemeSpacing } from '../spacing';
 
 // Custom components theme
 declare module '@peersyst/react-components' {
@@ -81,7 +88,7 @@ declare module '@peersyst/react-components' {
     borderRadiusSm: string;
     borderRadiusXl: string;
     spacing: ThemeSpacing;
-    borderRadiusSm: string;
+    roundedBorder: string;
   };
 
   export type CreateTheme = {
@@ -92,7 +99,7 @@ declare module '@peersyst/react-components' {
     borderRadiusSm: string;
     borderRadiusXl: string;
     spacing: ThemeSpacing;
-    borderRadiusSm: string;
+    roundedBorder: string;
   };
 }
 

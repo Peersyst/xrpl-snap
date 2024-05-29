@@ -26,7 +26,7 @@ const mdSize = css(
 const lgSize = css(
   () => css`
     height: 2.5rem;
-    padding: 0 0.5rem;
+    padding: 0 1.5rem;
   `,
 );
 
@@ -55,22 +55,8 @@ const primaryStyles = css(({ theme }) => ({
 }));
 
 const secondaryStyles = css(({ theme }) => ({
-  color: theme.palette.accent,
-  border: '2px solid currentColor',
-  backgroundColor: 'transparent',
-  ['&:hover']: {
-    backgroundColor: theme.palette.purple[80],
-  },
-  ['&:active']: {
-    backgroundColor: theme.palette.purple[90],
-  },
-  ['&:disabled']: {
-    opacity: 0.4,
-  },
-}));
-
-const tertiaryStyles = css(({ theme }) => ({
-  color: theme.palette.accent,
+  color: theme.palette.primary,
+  border: '1px solid currentColor',
   backgroundColor: 'transparent',
   ['&:hover']: {
     backgroundColor: theme.palette.purple[80],
@@ -100,7 +86,6 @@ const textStyles = css(({ theme }) => ({
 const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
   primary: primaryStyles,
   secondary: secondaryStyles,
-  tertiary: tertiaryStyles,
   text: textStyles,
 };
 
@@ -109,7 +94,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(
     return css`
       font-size: 0.875rem;
       ${buttonSizes[size]};
-      border-radius: ${theme.borderRadiusSm};
+      border-radius: ${theme.roundedBorder};
       border: 0;
       font-weight: 600;
       text-transform: none;

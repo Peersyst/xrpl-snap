@@ -68,6 +68,7 @@ const theme = createTheme({
   borderRadiusSm: '4px',
   borderRadiusXl: '0.75rem',
   borderRadius: '8px',
+  roundedBorder: '1000px',
   palette: {
     mode: 'dark',
     primary: purple[50],
