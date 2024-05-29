@@ -17,6 +17,7 @@ import { TextInputStyles } from './component/TextInput.styles';
 import { SwitchStyles } from './component/Switch.styles';
 import { TabsStyles } from './component/Tabs.styles';
 import { Expandablestyles } from './component/Expandable.styles';
+import { TypographyStyles } from './component/Typography.styles';
 
 export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
         html,
@@ -171,4 +172,5 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
         ${SwitchStyles};
         ${TabsStyles};
         ${Expandablestyles};
+        ${TypographyStyles}
     `;

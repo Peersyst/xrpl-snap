@@ -70,6 +70,11 @@ function Playground() {
             <Typography variant={variant}>{variant}</Typography>
           </Label>
         ))}
+        <Label label={'Light'}>
+          <Typography variant="body1" fontWeight="500" light>
+            Light
+          </Typography>
+        </Label>
       </PlaygroundComponent>
       <PlaygroundComponent label="Button">
         <Button>Click me</Button>

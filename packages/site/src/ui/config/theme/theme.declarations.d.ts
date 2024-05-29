@@ -60,6 +60,7 @@ declare module '@peersyst/react-components' {
       '200': string;
     };
     placeholder: string;
+    light: string;
   }
 
   export type CreateThemeTypography = {};
