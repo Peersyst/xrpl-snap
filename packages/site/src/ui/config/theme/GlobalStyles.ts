@@ -4,7 +4,6 @@ import './fonts.css';
 import { ChipStyles } from './component/Chip.styles';
 import { aStyles } from './component/a.styles';
 import { AlertStyles } from './component/Alert.styles';
-import { BlockchainAddressStyles } from './component/BlockchainAddress.styles';
 import { PopoverStyles } from './component/Popover.styles';
 import { DividerStyles } from './component/Divider.styles';
 import { ToolbarStyles } from './component/Toolbar.styles';
@@ -159,7 +158,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
         ${rootStyles};
         ${aStyles};
         ${ChipStyles};
-        ${BlockchainAddressStyles};
         ${AlertStyles};
         ${PopoverStyles};
         ${DividerStyles};

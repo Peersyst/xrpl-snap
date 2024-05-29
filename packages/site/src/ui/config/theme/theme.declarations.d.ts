@@ -32,6 +32,7 @@ declare module '@peersyst/react-components' {
     orange: string;
     grey: {
       '100': string;
+      '150': string;
       '200': string;
       '400': string;
       '500': string;

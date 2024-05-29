@@ -1,8 +1,10 @@
 import type { ThemePalette } from '@peersyst/react-components';
 import basePalette from './basePalette';
+import { alpha } from '@peersyst/react-utils';
 
 const grey = {
   '100': '#FFFFFF',
+  '150': '#DDDDE6',
   '200': '#E9ECF0',
   '300': '#F0F2F5',
   '400': '#7F7F87',
@@ -22,8 +24,8 @@ const lightPalette: ThemePalette = {
   text: grey[600],
   light: grey[400],
   placeholder: grey[400],
-  disabled: grey[500],
-  backdrop: '#EDEDED99',
+  disabled: grey[150],
+  backdrop: alpha(grey[600], 0.12),
 };
 
 export default lightPalette;

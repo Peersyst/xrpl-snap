@@ -13,7 +13,7 @@ function App() {
         flex: 1,
       }}
     >
-      <Typography variant="heading">Welcome to XRP Snap</Typography>
+      <Typography variant="h3">Welcome to XRP Snap</Typography>
       <a href="/playground">
         <Button>Go to metamask playground</Button>
       </a>

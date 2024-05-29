@@ -7,5 +7,6 @@ export const CardRoot = styled(Paper)<CardRootProps>(
   ({ color, theme }) => css`
     border-radius: ${theme.borderRadiusXl};
     background-color: ${color};
+    padding: ${theme.spacing[6]};
   `,
 );

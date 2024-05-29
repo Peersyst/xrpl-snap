@@ -67,7 +67,9 @@ function Playground() {
           ] as const
         ).map((variant) => (
           <Label label={variant}>
-            <Typography variant={variant}>{variant}</Typography>
+            <Typography key={variant} variant={variant}>
+              {variant}
+            </Typography>
           </Label>
         ))}
         <Label label={'Light'}>
@@ -87,36 +89,54 @@ function Playground() {
         </Button>
       </PlaygroundComponent>
       <PlaygroundComponent label="TextField">
-        <TextField style={{ width: 200 }} label="Write something here" />
+        <TextField
+          style={{ width: 300 }}
+          label="To"
+          placeholder="Paste the recipient address here"
+        />
+        <TextField
+          style={{ width: 300 }}
+          label="To"
+          validators={{ email: true }}
+          placeholder="Paste the recipient address here"
+        />
         <TextField
           label={'Disabled input'}
-          style={{ width: 200 }}
+          style={{ width: 300 }}
           disabled
           placeholder="Disabled placeholder"
         />
       </PlaygroundComponent>
       <PlaygroundComponent label="NumericField">
-        <NumericField style={{ width: 200 }} />
+        <NumericField
+          label="Enter the amount"
+          validators={{ lte: 409000 }}
+          style={{ width: 300 }}
+        />
       </PlaygroundComponent>
       <PlaygroundComponent label="AmountField">
         <AmountField
+          label="Enter the amount"
           balance={new Amount('1000000000001', 6, 'XRP')}
-          style={{ width: 200 }}
+          style={{ width: 300 }}
         />
       </PlaygroundComponent>
       <PlaygroundComponent label="AlertCallout">
         <AlertCallout
           type="info"
-          content={'This is an info alert'}
-          style={{ flex: 1 }}
+          content={
+            'This account was generated with your MetaMask Secret Recovery Phrase.'
+          }
         />
       </PlaygroundComponent>
       <PlaygroundComponent label="Popover">
-        <Popover showOn="click">
+        <Popover arrow={false}>
           <Popover.Content>Hover me</Popover.Content>
           <Popover.Popper>
             <Col>
-              <Row>Connect to XRP Snap</Row>
+              <Typography variant="body1" color="white">
+                Connect to XRP Snap
+              </Typography>
             </Col>
           </Popover.Popper>
         </Popover>
@@ -125,11 +145,27 @@ function Playground() {
         <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
         <Modal
           closable={true}
-          title={'Modal'}
+          title={'Connect to XRP Snap'}
           open={modalOpen}
           onClose={() => setModalOpen(false)}
         >
-          <Typography variant="body1">Content</Typography>
+          <Col gap="1.5rem">
+            <Typography variant="body1" light>
+              If you don’t have the XRP Snap installed you will be prompted to
+              install it.
+            </Typography>
+            <AlertCallout
+              type="info"
+              content={
+                <Typography variant="body1" light>
+                  Snaps extend the capabilities of MetaMask by adding new
+                  functionalities. This Snap allows MetaMask to be compatible
+                  with XRP and manage your keys.
+                </Typography>
+              }
+            />
+            <Button fullWidth>Connect with metamask</Button>
+          </Col>
         </Modal>
       </PlaygroundComponent>
       <PlaygroundComponent label="Card">
@@ -139,7 +175,9 @@ function Playground() {
       </PlaygroundComponent>
       <PlaygroundComponent label="Chip">
         <Chip label="RU3x07...da52" />
-        <Chip label="RU3x07...da52" variant="filled" />
+        <Card style={{ padding: 20 }}>
+          <Chip label="RU3x07...da52" variant="filled" />
+        </Card>
       </PlaygroundComponent>
       <PlaygroundComponent label="Account Chip">
         <AccountChip address="rnGUZ6FzJyazXqkqBheSQdw7c5JfohZafv" />

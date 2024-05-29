@@ -5,13 +5,14 @@ export const ChipStyles = css(({ theme }) => ({
   '.Chip': {
     '.ChipLabel': {
       fontWeight: 700,
+      ...theme.typography.body2.style,
     },
     '&.Filled': {
       backgroundColor: theme.palette.background,
     },
     '&.Outlined': {
       color: theme.palette.grey[400],
-      border: `1px solid currentColor`,
+      border: `1px solid ${theme.palette.grey[200]}`,
     },
     '&.Success': {
       color: alpha(theme.palette.green, 0.24),

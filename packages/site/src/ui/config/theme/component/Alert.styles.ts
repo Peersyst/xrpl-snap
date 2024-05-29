@@ -5,20 +5,20 @@ export const AlertStyles = css(({ theme }) => ({
   '.Alert': {
     padding: '1.5rem',
     '&.Info': {
-      color: theme.palette.status.info,
-      backgroundColor: alpha(theme.palette.status.info, 0.4),
+      color: theme.palette.text,
+      backgroundColor: alpha(theme.palette.primary, 0.08),
+      '.Icon': {
+        color: theme.palette.primary,
+      },
     },
     '&.Success': {
-      color: theme.palette.status.success,
-      backgroundColor: alpha(theme.palette.status.success, 0.4),
+      backgroundColor: alpha(theme.palette.status.success, 0.08),
     },
     '&.Warning': {
-      backgroundColor: theme.palette.orange,
-      color: theme.palette.orange,
+      backgroundColor: alpha(theme.palette.status.warning, 0.08),
     },
     '&.Error': {
-      backgroundColor: theme.palette.magenta[90],
-      color: theme.palette.error,
+      backgroundColor: alpha(theme.palette.status.error, 0.08),
     },
   },
 }));

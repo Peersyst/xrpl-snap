@@ -2,7 +2,6 @@ import { Col, Typography } from '@peersyst/react-components';
 import { useControlled } from '@peersyst/react-hooks';
 import {
   CloseModalButton,
-  ModalHeader,
   ModalRoot,
 } from 'ui/common/components/feedback/Modal/Modal.styles';
 import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
@@ -32,18 +31,16 @@ const Modal = ({
       closable={closable}
       {...rest}
     >
-      <Col css={{ height: '100%' }} gap="2rem" className="ModalContainer">
+      <Col css={{ height: '100%' }} gap="1rem" className="ModalContainer">
         {title && (
-          <ModalHeader>
-            <Typography variant="h4" fontWeight={700}>
-              {title}
-            </Typography>
+          <Col>
+            <Typography variant="h3">{title}</Typography>
             {subtitle && (
               <Typography variant="body1" fontWeight={400} color="grey.200">
                 {subtitle}
               </Typography>
             )}
-          </ModalHeader>
+          </Col>
         )}
         {closable && <CloseModalButton onClick={handleClose} />}
         {children}
