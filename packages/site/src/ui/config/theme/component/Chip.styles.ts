@@ -14,8 +14,8 @@ export const ChipStyles = css(({ theme }) => ({
       border: `1px solid currentColor`,
     },
     '&.Success': {
-      color: theme.palette.green[30],
-      backgroundColor: theme.palette.green[100],
+      color: alpha(theme.palette.green, 0.24),
+      backgroundColor: theme.palette.green,
     },
     '&.Primary': {
       color: theme.palette.purple[30],
@@ -23,15 +23,15 @@ export const ChipStyles = css(({ theme }) => ({
     },
     '&.Accent': {
       color: theme.palette.purple[30],
-      backgroundColor: theme.palette.purple[80],
+      backgroundColor: theme.palette.purple[90],
     },
     '&.Blue': {
-      color: theme.palette.blue[30],
-      backgroundColor: alpha(theme.palette.blue[30], 0.24),
+      color: theme.palette.blue,
+      backgroundColor: alpha(theme.palette.blue, 0.24),
     },
     '&.Orange': {
-      color: theme.palette.orange[30],
-      backgroundColor: alpha(theme.palette.orange[30], 0.24),
+      color: theme.palette.orange,
+      backgroundColor: alpha(theme.palette.orange, 0.24),
     },
 
     borderRadius: theme.roundedBorder,

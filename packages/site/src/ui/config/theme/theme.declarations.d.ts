@@ -20,31 +20,16 @@ declare module '@peersyst/react-components' {
     disabledColor: string;
     purple: {
       '30': string;
-      '40': string;
       '50': string;
       '70': string;
-      '80': string;
       '90': string;
     };
-    blue: {
-      '30': string;
-      '40': string;
-      '90': string;
-    };
-    green: {
-      '40': string;
-      '30': string;
-      '100': string;
-    };
+    blue: string;
+    green: string;
     magenta: {
       '90': string;
     };
-    orange: {
-      '20': string;
-      '30': string;
-      '90': string;
-      '100': string;
-    };
+    orange: string;
     grey: {
       '100': string;
       '200': string;
@@ -55,10 +40,7 @@ declare module '@peersyst/react-components' {
       '800': string;
       '900': string;
     };
-    error: {
-      '100': string;
-      '200': string;
-    };
+    error: string;
     placeholder: string;
     light: string;
   }

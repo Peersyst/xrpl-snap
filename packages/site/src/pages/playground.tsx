@@ -76,12 +76,14 @@ function Playground() {
           </Typography>
         </Label>
       </PlaygroundComponent>
-      <PlaygroundComponent label="Button">
-        <Button>Click me</Button>
-        <Button disabled>Go home</Button>
-        <Button variant="secondary">Go home</Button>
+      <PlaygroundComponent label="Primary Button">
+        <Button>Primary</Button>
+        <Button disabled>Primary</Button>
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Secondary Button">
+        <Button variant="secondary">Secondary</Button>
         <Button variant="secondary" disabled>
-          Go home
+          Secondary
         </Button>
       </PlaygroundComponent>
       <PlaygroundComponent label="TextField">

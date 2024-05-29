@@ -19228,6 +19228,7 @@ __metadata:
     "@peersyst/react-components": ^3.9.32
     "@peersyst/react-hooks": ^2.2.15
     "@peersyst/react-types": ^1.6.2
+    "@peersyst/react-utils": ^2.5.0
     "@svgr/webpack": ^6.4.0
     "@testing-library/dom": ^8.17.1
     "@testing-library/jest-dom": ^5.16.4

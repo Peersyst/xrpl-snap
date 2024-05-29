@@ -5,23 +5,8 @@ import styled, {
   ThemeProps,
 } from 'styled-components';
 import { Button, ButtonSize, ButtonVariant } from '@peersyst/react-components';
-
-import { lighten } from '@peersyst/react-utils';
+import { darken, lighten } from '@peersyst/react-utils';
 import { ButtonProps } from './Button.types';
-
-const smSize = css(
-  () => css`
-    height: 1.5rem;
-    padding: 0 0.25rem;
-  `,
-);
-
-const mdSize = css(
-  () => css`
-    height: 2rem;
-    padding: 0 0.375rem;
-  `,
-);
 
 const lgSize = css(
   () => css`
@@ -34,19 +19,17 @@ const buttonSizes: Record<
   ButtonSize,
   FlattenInterpolation<ThemeProps<DefaultTheme>>
 > = {
-  sm: smSize,
-  md: mdSize,
   lg: lgSize,
 };
 
 const primaryStyles = css(({ theme }) => ({
   backgroundColor: theme.palette.primary,
-  color: theme.palette.grey[100],
+  color: theme.palette.white,
   ['&:hover']: {
-    backgroundColor: theme.palette.purple[70],
+    filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))',
   },
   ['&:active']: {
-    backgroundColor: theme.palette.purple[90],
+    backgroundColor: darken(theme.palette.primary, 0.2),
   },
   ['&:disabled']: {
     backgroundColor: theme.palette.disabled,
@@ -59,15 +42,19 @@ const secondaryStyles = css(({ theme }) => ({
   border: '1px solid currentColor',
   backgroundColor: 'transparent',
   ['&:hover']: {
-    backgroundColor: theme.palette.purple[80],
+    color: theme.palette.white,
+    borderColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary,
   },
   ['&:active']: {
-    backgroundColor: theme.palette.purple[90],
+    color: theme.palette.white,
+    borderColor: theme.palette.primary,
+    backgroundColor: darken(theme.palette.primary, 0.2),
   },
   ['&:disabled']: {
     opacity: 0.4,
     borderColor: theme.palette.disabled,
-    color: theme.palette.disabledColor,
+    color: theme.palette.disabled,
   },
 }));
 
@@ -75,10 +62,10 @@ const textStyles = css(({ theme }) => ({
   color: theme.palette.accent,
   backgroundColor: 'transparent',
   ['&:hover']: {
-    color: lighten(theme.palette.purple[30], 0.2),
+    color: lighten(theme.palette.primary, 0.2),
   },
   ['&:active']: {
-    color: lighten(theme.palette.purple[30], 0.4),
+    color: lighten(theme.palette.primary, 0.4),
   },
   ['&:disabled']: {
     opacity: 0.4,
@@ -100,6 +87,7 @@ export const ButtonRoot = styled(Button)<ButtonProps>(
       border: 0;
       font-weight: 600;
       text-transform: none;
+      transition: all 0.3s;
 
       &.Loading {
         opacity: 1;
