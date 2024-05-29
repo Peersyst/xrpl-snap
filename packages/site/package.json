@@ -39,7 +39,8 @@
     "react-i18next": "^14.1.2",
     "react-is": "^18.2.0",
     "react-query": "^3.39.3",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^12.2.0",
