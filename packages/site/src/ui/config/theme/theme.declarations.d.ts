@@ -1,13 +1,19 @@
 import 'styled-components';
-import '@peersyst/react-components';
-import { Theme, TypographyVariant } from '@peersyst/react-components';
+import type {
+  Theme,
+  TypographyVariant,
+  Theme,
+  TypographyVariant,
+} from '@peersyst/react-components';
+import type { CSSProp } from 'styled-components';
+
+import type { ThemeSpacing, ThemeSpacing } from '../spacing';
+
 import 'styled-components/cssprop';
-import { CSSProp } from 'styled-components';
-import { ThemeSpacing } from '../spacing';
 
 // Custom components theme
 declare module '@peersyst/react-components' {
-  export interface ThemePalette {
+  export type ThemePalette = {
     accent: string;
     white: string;
     black: string;
@@ -53,14 +59,14 @@ declare module '@peersyst/react-components' {
       '200': string;
     };
     placeholder: string;
-  }
+  };
 
-  export interface CreateThemeTypography {
+  export type CreateThemeTypography = {
     heading: TypographyVariant;
     caption1: TypographyVariant;
     caption2: TypographyVariant;
-  }
-  export interface TypographyVariantsOverrides {
+  };
+  export type TypographyVariantsOverrides = {
     h1: false;
     h2: false;
     h3: false;
@@ -72,37 +78,39 @@ declare module '@peersyst/react-components' {
     caption2: true;
     caption3: true;
     caption: false;
-  }
+  };
 
-  export interface Theme {
+  export type Theme = {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
     };
     borderRadiusSm: string;
+    borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  }
+  };
 
-  export interface CreateTheme {
+  export type CreateTheme = {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
     };
     borderRadiusSm: string;
+    borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  }
+  };
 }
 
 // Type styled components theme with our components theme
 declare module 'styled-components' {
-  export interface DefaultTheme extends Theme {}
+  export type DefaultTheme = {} & Theme;
 }
 
 // Use css prop in components
 declare module 'react' {
-  export interface Attributes {
+  export type Attributes = {
     css?: CSSProp<Theme>;
-  }
+  };
 }

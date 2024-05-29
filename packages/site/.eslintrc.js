@@ -19,6 +19,8 @@ module.exports = {
         'jsdoc/require-returns': 0,
         'jsdoc/match-description': 0,
         'import/no-unassigned-import': 0,
+        'import/extensions': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
       },
     },
   ],
