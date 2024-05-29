@@ -1,6 +1,8 @@
 import { Col, Row, TextField, Typography } from '@peersyst/react-components';
 import type { ReactNode } from 'react';
 
+import Amount from '../common/utils/Amount';
+import AmountField from '../ui/common/components/input/AmountField/AmountField';
 import Button from '../ui/common/components/input/Button/Button';
 import NumericField from '../ui/common/components/input/NumericField/NumericField';
 
@@ -34,10 +36,16 @@ function Playground() {
         <Button>Click me</Button>
       </PlaygroundComponent>
       <PlaygroundComponent label="NumericField">
-        <NumericField style={{ width: 150 }} />
+        <NumericField style={{ width: 200 }} />
       </PlaygroundComponent>
       <PlaygroundComponent label="TextField">
-        <TextField style={{ width: 150 }} />
+        <TextField style={{ width: 200 }} />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="AmountField">
+        <AmountField
+          balance={new Amount('10000001', 6, 'XRP')}
+          style={{ width: 200 }}
+        />
       </PlaygroundComponent>
     </Col>
   );

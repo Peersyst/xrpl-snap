@@ -1,7 +1,7 @@
-import { config } from 'src/common/config';
-import type Amount from 'src/common/utils/Amount';
-import { formatCurrency } from 'src/common/utils/token';
-import { useTranslate } from 'src/ui/locale';
+import { config } from 'common/config';
+import type Amount from 'common/utils/Amount';
+import { formatCurrency } from 'common/utils/token';
+import { useTranslate } from 'ui/locale';
 
 export type UseFormatAmountParams<ToParts extends boolean = false> = {
   maxDecimals?: number;

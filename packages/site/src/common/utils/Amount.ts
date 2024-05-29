@@ -1,5 +1,4 @@
-import type { Token } from 'src/common/models/wallet/Token';
-
+import type { Token } from '../models/token';
 import { decimalToInt, intToDecimal } from './number/numberConversion';
 
 export default class Amount {
@@ -24,6 +23,7 @@ export default class Amount {
     this.currency = currency;
   }
 
+  // eslint-disable-next-line no-restricted-syntax
   private toAmountFormat(amount: string | number): string {
     return decimalToInt(amount, this.decimals);
   }

@@ -7,11 +7,12 @@ const config: GatsbyConfig = {
   plugins: [
     'gatsby-plugin-svgr',
     'gatsby-plugin-styled-components',
+    `gatsby-plugin-tsconfig-paths`,
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Template Snap',
-        icon: 'src/assets/logo.svg',
+        icon: 'assets/logo.svg',
         /* eslint-disable @typescript-eslint/naming-convention */
         theme_color: '#6F4CFF',
         background_color: '#FFFFFF',

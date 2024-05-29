@@ -1,4 +1,5 @@
 {
   "nativeToken": "nativeToken",
-  "projectName": "XRP Snap"
+  "projectName": "XRP Snap",
+  "maxNumberDecimals": 15
 }

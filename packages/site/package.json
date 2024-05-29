@@ -71,6 +71,7 @@
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-styled-components": "^6.13.1",
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "gatsby-plugin-tsconfig-paths": "^1.0.6",
     "prettier": "^2.7.1",
     "prettier-plugin-packagejson": "^2.2.18",
     "rimraf": "^3.0.2",
