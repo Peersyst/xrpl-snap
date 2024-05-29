@@ -1,5 +1,6 @@
-import { createTheme, ThemePalette } from '@peersyst/react-components';
-import typography from './typography';
+import type { ThemePalette } from '@peersyst/react-components';
+import { createTheme } from '@peersyst/react-components';
+
 import {
   ErrorIcon,
   InfoIcon,
@@ -7,6 +8,7 @@ import {
   WarningIcon,
 } from '../../common/icons';
 import { spacingProxy as spacing } from '../spacing';
+import typography from './typography';
 
 const grey: ThemePalette['grey'] = {
   '100': '#F5F5F7',
@@ -64,6 +66,7 @@ const theme = createTheme({
     error: ErrorIcon,
   },
   borderRadiusSm: '4px',
+  borderRadiusXl: '0.75rem',
   borderRadius: '8px',
   palette: {
     mode: 'dark',
@@ -89,7 +92,7 @@ const theme = createTheme({
       error: error[200],
     },
   },
-  typography: typography,
+  typography,
   fromControl: {
     horizontalPadding: '0.75rem',
     inputHeight: '2.5rem',

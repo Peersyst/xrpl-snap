@@ -14,6 +14,7 @@ import Modal from '../ui/common/components/feedback/Modal/Modal';
 import AmountField from '../ui/common/components/input/AmountField/AmountField';
 import Button from '../ui/common/components/input/Button/Button';
 import NumericField from '../ui/common/components/input/NumericField/NumericField';
+import Card from '../ui/common/components/surface/Card/Card';
 
 function PlaygroundComponent({
   label,
@@ -54,7 +55,7 @@ function Playground() {
       </PlaygroundComponent>
       <PlaygroundComponent label="AmountField">
         <AmountField
-          balance={new Amount('10000001', 6, 'XRP')}
+          balance={new Amount('1000000000001', 6, 'XRP')}
           style={{ width: 200 }}
         />
       </PlaygroundComponent>
@@ -87,6 +88,11 @@ function Playground() {
         >
           <Typography variant="body1">Content</Typography>
         </Modal>
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Card">
+        <Card style={{ padding: 20 }}>
+          <Typography variant={'body1'}>Card content</Typography>
+        </Card>
       </PlaygroundComponent>
     </Col>
   );
