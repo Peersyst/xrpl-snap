@@ -32,6 +32,7 @@
     "@metamask/providers": "^16.0.0",
     "@peersyst/react-components": "^3.9.32",
     "@peersyst/react-hooks": "^2.2.15",
+    "bignumber.js": "^9.1.2",
     "clsx": "^2.1.1",
     "i18next": "^23.11.5",
     "react": "^18.2.0",
@@ -40,6 +41,7 @@
     "react-is": "^18.2.0",
     "react-query": "^3.39.3",
     "styled-components": "5.3.3",
+    "text-encoding": "^0.7.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

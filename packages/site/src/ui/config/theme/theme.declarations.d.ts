@@ -66,7 +66,7 @@ declare module '@peersyst/react-components' {
     caption1: TypographyVariant;
     caption2: TypographyVariant;
   };
-  export type TypographyVariantsOverrides = {
+  export interface TypographyVariantsOverrides {
     h1: false;
     h2: false;
     h3: false;
@@ -78,7 +78,7 @@ declare module '@peersyst/react-components' {
     caption2: true;
     caption3: true;
     caption: false;
-  };
+  }
 
   export type Theme = {
     fromControl: {

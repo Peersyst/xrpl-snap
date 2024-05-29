@@ -19239,6 +19239,7 @@ __metadata:
     "@types/styled-components": ^5.1.25
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
+    bignumber.js: ^9.1.2
     clsx: ^2.1.1
     eslint: ^8.45.0
     eslint-config-prettier: ^8.5.0
@@ -19263,6 +19264,7 @@ __metadata:
     react-query: ^3.39.3
     rimraf: ^3.0.2
     styled-components: 5.3.3
+    text-encoding: ^0.7.0
     typescript: ^4.7.4
     zustand: ^4.5.2
   languageName: unknown
@@ -19327,7 +19329,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
     "@xrpl-snap/ripple-binary-codec": ^1.9.0
-    bignumber.js: ^9.1.2
     buffer: ^6.0.3
     eslint: ^8.45.0
     eslint-config-prettier: ^8.5.0
@@ -19342,7 +19343,6 @@ __metadata:
     prettier-plugin-packagejson: ^2.2.11
     rimraf: ^3.0.2
     ripple-keypairs: 1.3.1
-    text-encoding: ^0.7.0
     ts-jest: ^29.1.0
     typescript: ^4.7.4
     xrpl: ^3.0.0

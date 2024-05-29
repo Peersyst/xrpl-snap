@@ -1,5 +1,6 @@
 import {
- Chip, Col,
+  Chip,
+  Col,
   Popover,
   Row,
   TextField,
@@ -15,6 +16,7 @@ import AmountField from '../ui/common/components/input/AmountField/AmountField';
 import Button from '../ui/common/components/input/Button/Button';
 import NumericField from '../ui/common/components/input/NumericField/NumericField';
 import Card from '../ui/common/components/surface/Card/Card';
+import Balance from '../ui/common/components/display/Balance/Balance';
 
 function PlaygroundComponent({
   label,
@@ -35,7 +37,10 @@ function Playground() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <Col gap={'3rem'} style={{ marginTop: '4rem', padding: '0 10rem' }}>
+    <Col
+      gap={'3rem'}
+      style={{ marginTop: '4rem', padding: '0 10rem 10rem 10rem' }}
+    >
       <Row justifyContent="center" alignItems="center" gap="1rem">
         <Typography variant="heading" textAlign="center">
           Welcome to XRP Snap components playground 🎉
@@ -97,6 +102,10 @@ function Playground() {
       </PlaygroundComponent>
       <PlaygroundComponent label="Chip">
         <Chip label="RU3x07...da52" />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Balance">
+        <Balance balance="10" currency="XRP" variant="body2" />
+        <Balance balance="10" currency="XRP" variant="body2" hidden />
       </PlaygroundComponent>
     </Col>
   );
