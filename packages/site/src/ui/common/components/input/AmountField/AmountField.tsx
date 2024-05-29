@@ -1,9 +1,9 @@
 import { Col } from '@peersyst/react-components';
 import { useControlled } from '@peersyst/react-hooks';
 import clsx from 'clsx';
-import Amount from 'src/common/utils/Amount';
-import useFormatAmount from 'src/ui/common/hooks/useFormatAmount';
-import { useTranslate } from 'src/ui/locale';
+import Amount from 'common/utils/Amount';
+import useFormatAmount from 'ui/common/hooks/useFormatAmount';
+import { useTranslate } from 'ui/locale';
 
 import NumericField from '../NumericField/NumericField';
 import { MaxAmountTypography } from './AmountField.styles';

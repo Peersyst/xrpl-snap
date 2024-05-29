@@ -1,6 +1,7 @@
 import type { GatsbyBrowser } from 'gatsby';
 import { StrictMode } from 'react';
 
+import 'common/polyfills';
 import { App } from './src/App';
 import { Root } from './src/Root';
 
