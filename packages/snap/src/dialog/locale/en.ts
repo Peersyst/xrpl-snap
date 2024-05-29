@@ -27,4 +27,12 @@ export default {
   ChangeNetworkSubHeader: 'Got a request from %origin% to change the network',
   ChangeNetworkChainId: '**Chain ID:** %chainId%',
   ChangeNetworkNode: '**Node:** %node%',
+  /**
+   * Account dialogs
+   */
+  ExtractPrivateKeyHeader: 'XRPL Account Private Key',
+
+  ExtractPrivateKeyRequestHeader: 'Do you want to export your Private Key ?',
+  ExtractPrivateKeyRequestBody:
+    '⚠️ Warning: Never disclose this key. Anyone with your private keys can steal any assets held in your account.',
 };

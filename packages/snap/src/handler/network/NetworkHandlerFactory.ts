@@ -20,18 +20,24 @@ import {
   GetStoredNetworks,
   GetStoredNetworksHandler,
 } from './GetStoredNetworksHandler';
+import type { RequestMethod, RequestParams } from './RequestHandler';
+import { RequestName, RequestHandler } from './RequestHandler';
 
 export type NetworkMethod =
   | ChangeNetworkMethod
   | GetActiveNetworkMethod
-  | GetStoredNetworkMethod;
+  | GetStoredNetworkMethod
+  | RequestMethod;
+
 export type NetworkParams =
   | ChangeNetworkParams
   | GetActiveNetworkParams
-  | GetStoredNetworkParams;
+  | GetStoredNetworkParams
+  | RequestParams;
 
 export const NetworkHandlerFactory = (context: Context) => ({
   [ChangeNetwork]: new ChangeNetworkHandler(context),
   [GetActiveNetwork]: new GetActiveNetworkHandler(context),
   [GetStoredNetworks]: new GetStoredNetworksHandler(context),
+  [RequestName]: new RequestHandler(context),
 });
