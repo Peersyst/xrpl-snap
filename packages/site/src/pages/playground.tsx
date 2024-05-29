@@ -14,7 +14,7 @@ function PlaygroundComponent({
   return (
     <Col gap="1rem">
       <Typography variant="heading">{label}</Typography>
-      <Row>{children}</Row>
+      <Row gap="2rem">{children}</Row>
     </Col>
   );
 }
@@ -27,11 +27,12 @@ function Playground() {
           Welcome to XRP Snap components playground 🎉
         </Typography>
         <a href="/">
-          <Button>Go home</Button>
+          <Button size="lg">Go home</Button>
         </a>
       </Row>
       <PlaygroundComponent label="Button">
         <Button>Click me</Button>
+        <Button variant="secondary">Go home</Button>
       </PlaygroundComponent>
       <PlaygroundComponent label="NumericField">
         <NumericField style={{ width: 150 }} />
