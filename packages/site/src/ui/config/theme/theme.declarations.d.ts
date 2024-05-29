@@ -81,7 +81,6 @@ declare module '@peersyst/react-components' {
     };
     borderRadiusSm: string;
     spacing: ThemeSpacing;
-    borderRadiusSm: string;
     roundedBorder: string;
   }
 
@@ -92,7 +91,6 @@ declare module '@peersyst/react-components' {
     };
     borderRadiusSm: string;
     spacing: ThemeSpacing;
-    borderRadiusSm: string;
     roundedBorder: string;
   }
 }

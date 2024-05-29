@@ -1,4 +1,10 @@
-import { Col, Row, TextField, Typography } from '@peersyst/react-components';
+import {
+  Chip,
+  Col,
+  Row,
+  TextField,
+  Typography,
+} from '@peersyst/react-components';
 import type { ReactNode } from 'react';
 
 import Amount from '../common/utils/Amount';
@@ -47,6 +53,9 @@ function Playground() {
           balance={new Amount('10000001', 6, 'XRP')}
           style={{ width: 200 }}
         />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Chip">
+        <Chip label="RU3x07...da52" />
       </PlaygroundComponent>
     </Col>
   );
