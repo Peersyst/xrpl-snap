@@ -13,7 +13,7 @@ function AccountChip({ className, address, ...rest }: AccountChipProps) {
       label={
         <BlockchainAddress
           address={address}
-          variant="caption2"
+          variant="caption"
           type="account"
           action="copy"
           showCopyIcon

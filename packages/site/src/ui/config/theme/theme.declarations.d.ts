@@ -62,24 +62,11 @@ declare module '@peersyst/react-components' {
     placeholder: string;
   }
 
-  export type CreateThemeTypography = {
-    heading: TypographyVariant;
-    caption1: TypographyVariant;
-    caption2: TypographyVariant;
-  };
+  export type CreateThemeTypography = {};
 
   export interface TypographyVariantsOverrides {
-    h1: false;
-    h2: false;
-    h3: false;
-    h5: false;
-    heading: true;
     subtitle1: false;
     subtitle2: false;
-    caption1: true;
-    caption2: true;
-    caption3: true;
-    caption: false;
   }
 
   export interface Theme {

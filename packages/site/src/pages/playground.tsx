@@ -1,6 +1,7 @@
 import {
   Chip,
   Col,
+  Label,
   Popover,
   Row,
   TextField,
@@ -28,7 +29,7 @@ function PlaygroundComponent({
 }) {
   return (
     <Col gap="1rem">
-      <Typography variant="heading">{label}</Typography>
+      <Typography variant="h5">{label}</Typography>
       <Row gap="2rem">{children}</Row>
     </Col>
   );
@@ -42,14 +43,34 @@ function Playground() {
       gap={'3rem'}
       style={{ marginTop: '4rem', padding: '0 10rem 10rem 10rem' }}
     >
-      <Row justifyContent="center" alignItems="center" gap="1rem">
-        <Typography variant="heading" textAlign="center">
+      <Col justifyContent="center" alignItems="center" gap="1rem">
+        <Typography variant="h1" textAlign="center">
           Welcome to XRP Snap components playground 🎉
         </Typography>
         <a href="/">
           <Button size="lg">Go home</Button>
         </a>
-      </Row>
+      </Col>
+      <PlaygroundComponent label="Typography">
+        {(
+          [
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6',
+            'body1',
+            'body2',
+            'caption',
+            'button',
+          ] as const
+        ).map((variant) => (
+          <Label label={variant}>
+            <Typography variant={variant}>{variant}</Typography>
+          </Label>
+        ))}
+      </PlaygroundComponent>
       <PlaygroundComponent label="Button">
         <Button>Click me</Button>
         <Button disabled>Go home</Button>
