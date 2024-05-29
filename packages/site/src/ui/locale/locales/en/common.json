@@ -1,5 +1,5 @@
 {
   "xrpSnap": "XRP Snap",
-  "sendMax": "",
-  "formatNumber": "",
+  "sendMax": "Send max",
+  "formatNumber": "{{val, number}}"
 }

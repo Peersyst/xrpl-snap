@@ -1,4 +1,4 @@
-import type Amount from 'src/common/utils/Amount';
+import type Amount from 'common/utils/Amount';
 
 import type { NumericFieldProps } from '../NumericField/NumericField.types';
 
