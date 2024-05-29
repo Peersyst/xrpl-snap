@@ -51,13 +51,23 @@ function Playground() {
       </Row>
       <PlaygroundComponent label="Button">
         <Button>Click me</Button>
+        <Button disabled>Go home</Button>
         <Button variant="secondary">Go home</Button>
+        <Button variant="secondary" disabled>
+          Go home
+        </Button>
+      </PlaygroundComponent>
+      <PlaygroundComponent label="TextField">
+        <TextField style={{ width: 200 }} label="Write something here" />
+        <TextField
+          label={'Disabled input'}
+          style={{ width: 200 }}
+          disabled
+          placeholder="Disabled placeholder"
+        />
       </PlaygroundComponent>
       <PlaygroundComponent label="NumericField">
         <NumericField style={{ width: 200 }} />
-      </PlaygroundComponent>
-      <PlaygroundComponent label="TextField">
-        <TextField style={{ width: 200 }} />
       </PlaygroundComponent>
       <PlaygroundComponent label="AmountField">
         <AmountField
@@ -73,14 +83,12 @@ function Playground() {
         />
       </PlaygroundComponent>
       <PlaygroundComponent label="Popover">
-        <Popover>
+        <Popover showOn="click">
           <Popover.Content>Hover me</Popover.Content>
           <Popover.Popper>
-            <AlertCallout
-              type="info"
-              content={'This is an info alert'}
-              style={{ flex: 1 }}
-            />
+            <Col>
+              <Row>Connect to XRP Snap</Row>
+            </Col>
           </Popover.Popper>
         </Popover>
       </PlaygroundComponent>

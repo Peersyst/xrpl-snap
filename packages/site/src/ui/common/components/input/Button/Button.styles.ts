@@ -49,7 +49,7 @@ const primaryStyles = css(({ theme }) => ({
     backgroundColor: theme.palette.purple[90],
   },
   ['&:disabled']: {
-    backgroundColor: theme.palette.purple[50],
+    backgroundColor: theme.palette.disabled,
     opacity: 0.4,
   },
 }));
@@ -66,6 +66,8 @@ const secondaryStyles = css(({ theme }) => ({
   },
   ['&:disabled']: {
     opacity: 0.4,
+    borderColor: theme.palette.disabled,
+    color: theme.palette.disabledColor,
   },
 }));
 

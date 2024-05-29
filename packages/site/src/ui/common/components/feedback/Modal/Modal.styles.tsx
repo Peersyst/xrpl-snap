@@ -11,6 +11,7 @@ export const ModalRoot = styled(Modal)(
     position: relative;
     padding: var(--modal-padding);
     max-width: calc(100% - 4rem);
+    width: 27.75rem;
     background-color: ${theme.palette.grey[800]};
     border-radius: ${theme.borderRadius};
 

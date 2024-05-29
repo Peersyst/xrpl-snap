@@ -13,10 +13,11 @@ import 'styled-components/cssprop';
 
 // Custom components theme
 declare module '@peersyst/react-components' {
-  export type ThemePalette = {
+  export interface ThemePalette {
     accent: string;
     white: string;
     black: string;
+    disabledColor: string;
     purple: {
       '30': string;
       '40': string;
@@ -59,13 +60,14 @@ declare module '@peersyst/react-components' {
       '200': string;
     };
     placeholder: string;
-  };
+  }
 
   export type CreateThemeTypography = {
     heading: TypographyVariant;
     caption1: TypographyVariant;
     caption2: TypographyVariant;
   };
+
   export interface TypographyVariantsOverrides {
     h1: false;
     h2: false;
@@ -80,7 +82,7 @@ declare module '@peersyst/react-components' {
     caption: false;
   }
 
-  export type Theme = {
+  export interface Theme {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
@@ -89,9 +91,9 @@ declare module '@peersyst/react-components' {
     borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  };
+  }
 
-  export type CreateTheme = {
+  export interface CreateTheme {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
@@ -100,7 +102,7 @@ declare module '@peersyst/react-components' {
     borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  };
+  }
 }
 
 // Type styled components theme with our components theme
