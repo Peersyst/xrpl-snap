@@ -1,12 +1,12 @@
 import { Col, Row, useTheme } from '@peersyst/react-components';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
-import { useTranslate } from '../../../locale';
 import {
   balance_card_left_border,
   balance_card_right_border,
 } from '../../../assets/images';
 import Balance from '../../../common/components/display/Balance/Balance';
-import Button from '../../../common/components/input/Button/Button';
+import ReceiveModalButton from './ReceiveModalButton';
+import SendModalButton from './SendModalButton';
 
 export interface BalanceCardProps {
   className?: string;
@@ -15,7 +15,6 @@ export interface BalanceCardProps {
 
 function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
-  const translate = useTranslate();
 
   return (
     <BalanceCardRoot {...rest}>
@@ -42,8 +41,8 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
           />
         </Col>
         <Row gap={spacing[3]} alignItems="center">
-          <Button variant="secondary">{translate('receive')}</Button>
-          <Button variant="secondary">{translate('send')}</Button>
+          <SendModalButton />
+          <ReceiveModalButton />
         </Row>
       </Col>
       <BalanceCardImageBorder src={balance_card_right_border} />

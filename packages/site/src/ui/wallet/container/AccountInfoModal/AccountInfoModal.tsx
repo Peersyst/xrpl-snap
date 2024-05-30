@@ -1,10 +1,10 @@
 import { Col, useTheme } from '@peersyst/react-components';
-import Modal from '../../components/feedback/Modal/Modal';
-import { ModalProps } from '../../components/feedback/Modal/Modal.types';
-import AlertCallout from '../../components/feedback/AlertCallout/AlertCallout';
-import Button from '../../components/input/Button/Button';
+import Modal from '../../../common/components/feedback/Modal/Modal';
+import { ModalProps } from '../../../common/components/feedback/Modal/Modal.types';
+import AlertCallout from '../../../common/components/feedback/AlertCallout/AlertCallout';
+import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
-import InfoDisplay from '../../components/display/InfoDisplay/InfoDisplay';
+import InfoDisplay from '../../../common/components/display/InfoDisplay/InfoDisplay';
 
 function AccountInfoModal({ ...rest }: ModalProps) {
   const { spacing } = useTheme();

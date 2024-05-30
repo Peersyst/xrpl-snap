@@ -1,9 +1,9 @@
 import { Col, useTheme } from '@peersyst/react-components';
 import { BaseAccountModalProps } from './BaseAccountModal.types';
-import Modal from '../../components/feedback/Modal/Modal';
-import Card from '../../components/surface/Card/Card';
-import AccountChip from '../../../wallet/components/display/AccountChip';
-import QrCode from '../../components/display/QrCode/QrCode';
+import Modal from '../../../common/components/feedback/Modal/Modal';
+import Card from '../../../common/components/surface/Card/Card';
+import AccountChip from '../../components/display/AccountChip';
+import QrCode from '../../../common/components/display/QrCode/QrCode';
 
 function BaseAccountModal({ address, footer, ...rest }: BaseAccountModalProps) {
   const { spacing } = useTheme();
