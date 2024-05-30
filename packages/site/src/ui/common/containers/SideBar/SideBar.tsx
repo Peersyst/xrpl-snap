@@ -1,5 +1,8 @@
-import { Col } from '@peersyst/react-components';
-import clsx from 'clsx';
+import { Chip, Col, Popover, Row, Typography, useTheme } from '@peersyst/react-components';
+import { SideBarAccountRoot, SideBarRoot } from './SideBar.styes';
+import { useTranslate } from '../../../locale';
+import AccountChip from '../../../wallet/components/display/AccountChip';
+import Token from '../../components/display/Token/Token';
 
 export interface SideBarProps {
   className?: string;
@@ -8,10 +11,32 @@ export interface SideBarProps {
 }
 
 function SideBar({ className, children, ...rest }: SideBarProps) {
+  const { spacing } = useTheme();
+  const translate = useTranslate();
   return (
-    <Col className={clsx('', className)} {...rest}>
-      SideBar
-    </Col>
+    <SideBarRoot>
+      <SideBarAccountRoot gap={spacing[3]} >
+        <Typography variant="h3">{translate('account')}</Typography>
+        <Row gap={spacing[2]}>
+          <Popover position="bottom">
+            <Popover.Popper>
+              Content
+            </Popover.Popper>
+            <Popover.Content>
+              <Chip label="i" />
+            </Popover.Content>
+          </Popover>
+          <AccountChip address="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA" />
+        </Row>
+        {/* TokenList */}
+      </SideBarAccountRoot>
+      <Col>
+        <Token balance="0" token={{ currency: "XRP", issuer: "", decimals: 0 }} />
+        <Token balance="0" token={{ currency: "USD", issuer: "", decimals: 0 }} />
+        <Token balance="0" token={{ currency: "XRPL Coins", issuer: "", decimals: 0 }} />
+        <Token balance="0" token={{ currency: "RIBBITS", issuer: "", decimals: 0 }} />
+      </Col>
+    </SideBarRoot>
   );
 }
 

@@ -4,5 +4,6 @@
   "formatNumber": "{{val, number}}",
   "footerText": "Proudly developed by",
   "sentTo": "Sent to",
-  "receivedFrom": "Received from"
+  "receivedFrom": "Received from",
+  "account": "XRPL Account"
 }
