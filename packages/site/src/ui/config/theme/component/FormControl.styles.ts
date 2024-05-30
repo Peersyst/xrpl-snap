@@ -16,8 +16,8 @@ export const FormControlStyles = css(({ theme }) => ({
         paddingTop: '0.5rem',
         paddingLeft: 0,
         paddingBottom: '0.5rem',
-        fontSize: '0.75rem',
-        fontWeight: 500,
+        fontWeight: 400,
+        fontSize: theme.typography.caption.style.fontSize,
       },
 
       '.LabelChildren': {
