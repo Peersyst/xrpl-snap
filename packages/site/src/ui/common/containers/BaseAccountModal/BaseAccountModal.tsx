@@ -1,4 +1,4 @@
-import { Col, Row, useTheme } from '@peersyst/react-components';
+import { Col, useTheme } from '@peersyst/react-components';
 import { BaseAccountModalProps } from './BaseAccountModal.types';
 import Modal from '../../components/feedback/Modal/Modal';
 import Card from '../../components/surface/Card/Card';
@@ -6,7 +6,7 @@ import AccountChip from '../../../wallet/components/display/AccountChip';
 import QrCode from '../../components/display/QrCode/QrCode';
 
 function BaseAccountModal({ address, footer, ...rest }: BaseAccountModalProps) {
-  const { spacing, palette } = useTheme();
+  const { spacing } = useTheme();
   return (
     <Modal {...rest}>
       <Col gap={spacing[6]}>
