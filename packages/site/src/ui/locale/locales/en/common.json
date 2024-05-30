@@ -10,6 +10,7 @@
   "receive": "Receive",
   "nothingToShow": "Nothing to show",
   "nothingToShow_token": "You don't have any token yet",
+  "nothingToShow_tx": "You don't have any transaction yet",
   "accountDetails": "My account details",
   "viewOnExplorer": "View on explorer",
   "exportPrivateKey": "Export private key",

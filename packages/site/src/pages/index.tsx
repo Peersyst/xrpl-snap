@@ -1,12 +1,7 @@
-import { Col } from '@peersyst/react-components';
-import BalanceCard from '../ui/wallet/container/BalanceCard/BalanceCard';
+import HomePage from 'ui/common/pages/HomePage/HomePage';
 
 function App() {
-  return (
-    <Col flex={1}>
-      <BalanceCard />
-    </Col>
-  );
+  return <HomePage />;
 }
 
 export default App;
