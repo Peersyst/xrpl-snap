@@ -1,13 +1,16 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
-export const BASE_PAGE_PADDING = "2.5rem";
-export const BASE_PAGE_PADDING_SM = "1.75rem";
+export const BASE_PAGE_PADDING = '2.5rem';
+export const BASE_PAGE_PADDING_SM = '1.75rem';
 
 export const rootStyles = css(({ theme }) => ({
-    ":root": {
-        "--base-page-padding": BASE_PAGE_PADDING,
-        [theme.breakpoints.down("md")]: {
-            "--base-page-padding": BASE_PAGE_PADDING_SM,
-        },
+  ':root': {
+    '--base-page-padding': BASE_PAGE_PADDING,
+    [theme.breakpoints.down('md')]: {
+      '--base-page-padding': BASE_PAGE_PADDING_SM,
     },
+  },
+  '#gatsby-focus-wrapper, #___gatsby, html, body': {
+    height: '100%',
+  },
 }));

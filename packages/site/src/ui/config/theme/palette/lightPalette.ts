@@ -25,6 +25,7 @@ const lightPalette: ThemePalette = {
   light: grey[400],
   placeholder: grey[400],
   disabled: grey[150],
+  appBackground: grey[300],
   backdrop: alpha(grey[600], 0.12),
 };
 

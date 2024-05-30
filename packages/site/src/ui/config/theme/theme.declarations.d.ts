@@ -44,6 +44,7 @@ declare module '@peersyst/react-components' {
     error: string;
     placeholder: string;
     light: string;
+    appBackground: string;
   }
 
   export type CreateThemeTypography = {};
