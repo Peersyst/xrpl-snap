@@ -8,7 +8,7 @@ import QrCode from '../../components/display/QrCode/QrCode';
 function BaseAccountModal({ address, footer, ...rest }: BaseAccountModalProps) {
   const { spacing, palette } = useTheme();
   return (
-    <Modal {...rest}>
+    <Modal alignTitle="center" {...rest}>
       <Col gap={spacing[6]}>
         <Card css={{ width: '100%' }}>
           <Col gap={spacing[4]} alignItems="center">
