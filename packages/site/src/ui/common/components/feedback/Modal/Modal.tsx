@@ -33,7 +33,7 @@ const Modal = ({
     >
       <Col css={{ height: '100%' }} gap="1rem" className="ModalContainer">
         {title && (
-          <Col>
+          <Col alignItems="center">
             <Typography variant="h3">{title}</Typography>
             {subtitle && (
               <Typography variant="body1" fontWeight={400} color="grey.200">

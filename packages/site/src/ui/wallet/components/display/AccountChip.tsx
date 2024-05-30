@@ -7,7 +7,7 @@ export interface AccountChipProps extends Omit<ChipProps, 'label'> {
   address: string;
 }
 
-function AccountChip({ className, address, ...rest }: AccountChipProps) {
+function AccountChip({ className, address, variant = "outlined", ...rest }: AccountChipProps) {
   return (
     <Chip
       label={
@@ -18,9 +18,11 @@ function AccountChip({ className, address, ...rest }: AccountChipProps) {
           action="copy"
           showCopyIcon
           length={5}
+          light={variant === "filled"}
         />
       }
       className={clsx('', className)}
+      variant={variant}
       {...rest}
     />
   );
