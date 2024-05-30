@@ -11,9 +11,14 @@ export interface InfoDisplayProps {
 
 function InfoDisplay({ className, title, content, ...rest }: InfoDisplayProps) {
   return (
-    <Row gap="1rem" className={clsx('InfoDisplay', className)} {...rest}>
+    <Row
+      gap="1rem"
+      css={{ height: '2.75rem' }}
+      className={clsx('InfoDisplay', className)}
+      {...rest}
+    >
       <VerticalLine />
-      <Col gap="0.5">
+      <Col gap="0.5rem" justifyContent="center">
         <Typography variant="body1" light>
           {title}
         </Typography>
