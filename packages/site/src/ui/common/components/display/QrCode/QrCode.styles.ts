@@ -6,7 +6,7 @@ export const QrCodeRoot = styled(Col)<QrCodeRootProps>(({ theme, size }) => ({
     borderRadius: theme.borderRadius,
     height: size,
     width: size,
-    backgroundColor: theme.palette.gray.light,
+    backgroundColor: theme.palette.white,
     justifyContent: "center",
     alignItems: "center",
 }));
