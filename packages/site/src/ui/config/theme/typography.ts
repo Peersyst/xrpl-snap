@@ -36,7 +36,7 @@ const typography: Partial<Theme['typography']> = {
   h5: {
     component: 'h5',
     style: {
-      fontSize: '1.25rem', // 20px
+      fontSize: '1.125rem', // 18px
       lineHeight: '1.5rem', // 24px
       fontWeight: 600,
     },

@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const LabelStyles = css(({ theme }) => ({
-    ".Label": {
-        color: theme.palette.grey[400],
-    },
+  '.Label': {
+    color: theme.palette.grey[400],
+  },
 }));
