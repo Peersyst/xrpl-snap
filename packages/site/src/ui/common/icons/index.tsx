@@ -26,3 +26,5 @@ export { default as VerifiedIcon } from './VerifiedIcon';
 export { default as WarningIcon } from './WarningIcon';
 export { default as XLogoIcon } from './XLogoIcon';
 export { default as XrplLogoIcon } from './XrplLogoIcon';
+export { default as DefaultTokenIcon } from './DefaultTokenIcon';
+export { default as XRPLogoIcon } from './XRPLogoIcon';

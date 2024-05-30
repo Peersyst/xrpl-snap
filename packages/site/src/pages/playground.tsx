@@ -19,6 +19,7 @@ import NumericField from '../ui/common/components/input/NumericField/NumericFiel
 import Card from '../ui/common/components/surface/Card/Card';
 import Balance from '../ui/common/components/display/Balance/Balance';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
+import Token from '../ui/common/components/display/Token/Token';
 
 function PlaygroundComponent({
   label,
@@ -185,6 +186,9 @@ function Playground() {
       <PlaygroundComponent label="Balance">
         <Balance balance="10" currency="XRP" variant="body2" />
         <Balance balance="10" currency="XRP" variant="body2" hidden />
+      </PlaygroundComponent>
+      <PlaygroundComponent label="Token">
+        <Token balance="0" token={{ currency: "XRPL Coins", issuer: "", decimals: 0 }} />
       </PlaygroundComponent>
     </Col>
   );
