@@ -8,3 +8,5 @@ export { default as processing } from './processing.gif';
 export { default as token_default_logo } from './token-default-logo.png';
 export { default as xrp_loader } from './xrp_loader.gif';
 export { default as xrpl } from './xrpl.png';
+export { default as sent } from './sent.png';
+export { default as received } from './received.png';
