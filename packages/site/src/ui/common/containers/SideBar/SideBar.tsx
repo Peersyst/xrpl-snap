@@ -1,5 +1,15 @@
-import { Chip, Col, Popover, Row, Typography, useTheme } from '@peersyst/react-components';
-import { SideBarAccountRoot, SideBarRoot } from './SideBar.styes';
+import {
+  Chip,
+  Popover,
+  Row,
+  Typography,
+  useTheme,
+} from '@peersyst/react-components';
+import {
+  SideBarAccountContent,
+  SideBarAccountRoot,
+  SideBarRoot,
+} from './SideBar.styes';
 import { useTranslate } from '../../../locale';
 import AccountChip from '../../../wallet/components/display/AccountChip';
 import Token from '../../components/display/Token/Token';
@@ -15,13 +25,11 @@ function SideBar({ className, children, ...rest }: SideBarProps) {
   const translate = useTranslate();
   return (
     <SideBarRoot>
-      <SideBarAccountRoot gap={spacing[3]} >
+      <SideBarAccountRoot gap={spacing[3]}>
         <Typography variant="h3">{translate('account')}</Typography>
         <Row gap={spacing[2]}>
           <Popover position="bottom">
-            <Popover.Popper>
-              Content
-            </Popover.Popper>
+            <Popover.Popper>Content</Popover.Popper>
             <Popover.Content>
               <Chip label="i" />
             </Popover.Content>
@@ -30,12 +38,24 @@ function SideBar({ className, children, ...rest }: SideBarProps) {
         </Row>
         {/* TokenList */}
       </SideBarAccountRoot>
-      <Col>
-        <Token balance="0" token={{ currency: "XRP", issuer: "", decimals: 0 }} />
-        <Token balance="0" token={{ currency: "USD", issuer: "", decimals: 0 }} />
-        <Token balance="0" token={{ currency: "XRPL Coins", issuer: "", decimals: 0 }} />
-        <Token balance="0" token={{ currency: "RIBBITS", issuer: "", decimals: 0 }} />
-      </Col>
+      <SideBarAccountContent>
+        <Token
+          balance="0"
+          token={{ currency: 'XRP', issuer: '', decimals: 0 }}
+        />
+        <Token
+          balance="0"
+          token={{ currency: 'USD', issuer: '', decimals: 0 }}
+        />
+        <Token
+          balance="0"
+          token={{ currency: 'XRPL Coins', issuer: '', decimals: 0 }}
+        />
+        <Token
+          balance="0"
+          token={{ currency: 'RIBBITS', issuer: '', decimals: 0 }}
+        />
+      </SideBarAccountContent>
     </SideBarRoot>
   );
 }
