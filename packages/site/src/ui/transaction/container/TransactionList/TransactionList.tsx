@@ -60,7 +60,6 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
       data={data}
       nothingToShow={
         <NothingToShow
-          css={{ paddingTop: '2rem' }}
           message={translate('nothingToShow', { context: 'tx' })}
         />
       }
