@@ -16,10 +16,10 @@ const CardPageContentWrapper = styled(Col)(({ theme }) => ({
   maxWidth: 'min(56.25rem, 90vw)',
   width: '100%',
   justifyContent: 'center',
+  paddingTop: '3rem',
 }));
 
 const CardPageRoot = styled(BasePage)(() => ({
-  justifyContent: 'center',
   alignItems: 'center',
 }));
 
@@ -28,7 +28,7 @@ function CardPage({ className, children, ...rest }: CardPageProps) {
     <CardPageRoot className={clsx('CardPage', className)} {...rest}>
       <CardPageContentWrapper>
         <MainHeader />
-        <MainCard>{children}</MainCard>
+        <MainCard style={{ zIndex: 2 }}>{children}</MainCard>
         <Footer />
       </CardPageContentWrapper>
     </CardPageRoot>

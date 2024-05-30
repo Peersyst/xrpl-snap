@@ -1,6 +1,6 @@
-import { Row } from '@peersyst/react-components';
+import { Row, Typography, useConfig } from '@peersyst/react-components';
 import clsx from 'clsx';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SnapLogo from 'ui/common/components/display/SnapLogo/SnapLogo';
 
 export interface MainHeaderProps {
@@ -10,16 +10,33 @@ export interface MainHeaderProps {
 
 const MainHeaderRoot = styled(Row)(() => ({
   height: '2.5rem',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'space-between',
   position: 'relative',
-  padding: '1.5rem',
+  padding: '2rem',
 }));
 
+const HeaderLogo = styled(SnapLogo)(
+  () => css`
+    position: absolute;
+    left: 1.5rem;
+    transform: translateY(-0.5rem);
+    transition: transform 0.2s ease-in-out;
+    z-index: 1;
+    &:hover {
+      transform: translateY(-1.75rem);
+    }
+  `,
+);
+
 function MainHeader({ className, ...rest }: MainHeaderProps) {
+  const projectName = useConfig('projectName');
   return (
     <MainHeaderRoot className={clsx('MainHeader', className)} {...rest}>
-      <SnapLogo />
+      <HeaderLogo />
+      <Typography variant="h5" style={{ paddingLeft: '4rem' }}>
+        {projectName}
+      </Typography>
     </MainHeaderRoot>
   );
 }
