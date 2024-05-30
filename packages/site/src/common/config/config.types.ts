@@ -3,4 +3,5 @@ export type Config = {
   projectName: string;
   nativeToken: string;
   decimals: number;
+  peersystUrl: string;
 };

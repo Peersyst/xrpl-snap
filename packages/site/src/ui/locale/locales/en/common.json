@@ -1,5 +1,6 @@
 {
   "xrpSnap": "XRP Snap",
   "sendMax": "Send max",
-  "formatNumber": "{{val, number}}"
+  "formatNumber": "{{val, number}}",
+  "footerText": "Proudly developed by"
 }

@@ -2,5 +2,6 @@
   "nativeToken": "nativeToken",
   "projectName": "XRP Snap",
   "maxNumberDecimals": 15,
-  "decimals": 7
+  "decimals": 7,
+  "peersystUrl": "https://peersyst.com"
 }

@@ -7,4 +7,5 @@ export const BasePageRoot = styled(Col)(({ theme }) => ({
   height: '100%',
   maxWidth: '100vw',
   overflowX: 'hidden',
+  paddingTop: theme.spacing[12],
 }));
