@@ -1,11 +1,11 @@
 import { Token } from 'common/models/token';
-import Amount from '../../../../../common/utils/Amount';
+import Amount from 'common/utils/Amount';
 
-export type TransactionProps = {
+export type TransactionCardProps = {
   account: string;
   timestamp: number;
   amount: Amount;
   token: Token;
-  direction: "out" | "in";
+  direction: 'out' | 'in';
   loading?: boolean;
 };

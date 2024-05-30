@@ -44,6 +44,7 @@
     "react-query": "^3.39.3",
     "styled-components": "5.3.3",
     "text-encoding": "^0.7.0",
+    "xrpl": "^3.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

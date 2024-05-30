@@ -45,7 +45,10 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
           <ReceiveModalButton />
         </Row>
       </Col>
-      <BalanceCardImageBorder src={balance_card_right_border} />
+      <BalanceCardImageBorder
+        css={{ borderTopRightRadius: '1rem' }}
+        src={balance_card_right_border}
+      />
     </BalanceCardRoot>
   );
 }

@@ -9,7 +9,6 @@ import {
 } from '@peersyst/react-components';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-
 import Amount from '../common/utils/Amount';
 import AlertCallout from '../ui/common/components/feedback/AlertCallout/AlertCallout';
 import Modal from '../ui/common/components/feedback/Modal/Modal';
@@ -20,7 +19,6 @@ import Card from '../ui/common/components/surface/Card/Card';
 import Balance from '../ui/common/components/display/Balance/Balance';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
 import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
-import Transaction from '../ui/common/components/display/Transaction/Transaction';
 import DateDisplay from '../ui/common/components/display/DateDisplay/DateDisplay';
 import { DateFormat } from '../ui/common/components/display/DateDisplay/hooks/formatDate.types';
 import QRCode from 'react-qr-code';
@@ -200,22 +198,7 @@ function Playground() {
         <PlaygroundComponent label="InfoDisplay">
           <InfoDisplay title="Network" content="Peersyst Testnet" />
         </PlaygroundComponent>
-        <PlaygroundComponent label="Transaction">
-          <Transaction
-            direction="in"
-            timestamp={new Date().getTime()}
-            account="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"
-            amount={new Amount('46791', 2, 'USD')}
-            token={{ currency: 'USD', issuer: '', decimals: 0 }}
-          />
-          <Transaction
-            direction="out"
-            timestamp={new Date().getTime()}
-            account="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"
-            amount={new Amount('46791', 2, 'USD')}
-            token={{ currency: 'USD', issuer: '', decimals: 0 }}
-          />
-        </PlaygroundComponent>
+
         <PlaygroundComponent label="DateDisplay">
           <DateDisplay
             date={new Date().getTime()}
