@@ -5,5 +5,7 @@
   "footerText": "Proudly developed by",
   "sentTo": "Sent to",
   "receivedFrom": "Received from",
-  "account": "XRPL Account"
+  "account": "XRPL Account",
+  "send": "Send",
+  "receive": "Receive"
 }

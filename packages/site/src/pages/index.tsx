@@ -1,17 +1,11 @@
-import { Typography } from '@peersyst/react-components';
-import Button from '../ui/common/components/input/Button/Button';
+import { Col } from '@peersyst/react-components';
+import BalanceCard from '../ui/common/containers/BalanceCard/BalanceCard';
 
 function App() {
   return (
-    <div>
-      <Typography variant="h3">Welcome to XRP Snap</Typography>
-      <a href="/playground">
-        <Button>Go to metamask playground</Button>
-      </a>
-      <a href="/snap">
-        <Button>Go to snap playground</Button>
-      </a>
-    </div>
+    <Col flex={1}>
+      <BalanceCard />
+    </Col>
   );
 }
 
