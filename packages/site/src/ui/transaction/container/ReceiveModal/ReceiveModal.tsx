@@ -1,6 +1,6 @@
-import BaseAccountModal from '../../../wallet/container/BaseAccountModal/BaseAccountModal';
+import BaseAccountModal from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal';
 import { useTranslate } from '../../../locale';
-import { BaseAccountModalProps } from 'ui/wallet/container/BaseAccountModal/BaseAccountModal.types';
+import { BaseAccountModalProps } from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal.types';
 
 interface AccountDetailsModalProps extends BaseAccountModalProps {
   address: string;

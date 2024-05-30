@@ -4,4 +4,5 @@ export type Config = {
   nativeToken: string;
   decimals: number;
   peersystUrl: string;
+  snapOrigin: string;
 };

@@ -1,0 +1,3 @@
+export enum MetamaskErrorCodes {
+  PROVIDER_NOT_INITIALIZED = 'PROVIDER_NOT_INITIALIZED',
+}

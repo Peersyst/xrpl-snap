@@ -14,6 +14,8 @@ import { useTranslate } from '../../../locale';
 import AccountChip from '../../../wallet/components/display/AccountChip';
 import TokenList from 'ui/token/containers/TokenList/TokenList';
 import clsx from 'clsx';
+import { useStore } from 'zustand';
+import walletState from '../../../../domain/wallet/state/walletState';
 
 export interface SideBarProps {
   className?: string;
@@ -23,6 +25,8 @@ export interface SideBarProps {
 function SideBar({ className, ...rest }: SideBarProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
+  const useWalletState = useStore(walletState);
+
 
   return (
     <SideBarRoot className={clsx('Sidebar', className)} {...rest}>
@@ -35,7 +39,7 @@ function SideBar({ className, ...rest }: SideBarProps) {
               <Chip label="i" />
             </Popover.Content>
           </Popover>
-          <AccountChip address="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA" />
+          <AccountChip address={useWalletState.address || "rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"} />
         </Row>
       </SideBarAccountRoot>
       <SideBarAccountContent>

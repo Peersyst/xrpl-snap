@@ -1,11 +1,15 @@
 import { createStore } from 'zustand';
 
 export interface ISnapState {
-  isInitialized: boolean;
+  // If metamask or flask (if needed) is installed
+  isMetamaskInstall: boolean;
+  // If snap is installed
+  isSnapInstalled: boolean;
 }
 
 const snapState = createStore<ISnapState>(() => ({
-  isInitialized: false,
+  isMetamaskInstalled: false,
+  isSnapInstalled: false,
 }));
 
 export default snapState;

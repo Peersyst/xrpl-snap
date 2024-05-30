@@ -1,5 +1,5 @@
 import { Col } from '@peersyst/react-components';
-import BalanceCard from '../ui/wallet/container/BalanceCard/BalanceCard';
+import BalanceCard from 'ui/wallet/containers/BalanceCard/BalanceCard';
 
 function App() {
   return (
