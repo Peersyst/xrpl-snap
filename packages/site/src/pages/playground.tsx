@@ -1,12 +1,4 @@
-import {
-  Chip,
-  Col,
-  Label,
-  Popover,
-  Row,
-  TextField,
-  Typography,
-} from '@peersyst/react-components';
+import { Chip, Col, Label, Popover, Row, TextField, Typography } from '@peersyst/react-components';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
@@ -21,6 +13,9 @@ import Balance from '../ui/common/components/display/Balance/Balance';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
 import Token from '../ui/common/components/display/Token/Token';
 import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
+import Transaction from '../ui/common/components/display/Transaction/Transaction';
+import DateDisplay from '../ui/common/components/display/DateDisplay/DateDisplay';
+import { DateFormat } from '../ui/common/components/display/DateDisplay/hooks/formatDate.types';
 
 function PlaygroundComponent({
   label,
@@ -199,6 +194,13 @@ function Playground() {
         </PlaygroundComponent>
         <PlaygroundComponent label="Token">
           <Token balance="0" token={{ currency: "XRPL Coins", issuer: "", decimals: 0 }} />
+        </PlaygroundComponent>
+        <PlaygroundComponent label="Transaction">
+          <Transaction direction="in" timestamp={new Date().getTime()} account="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA" amount={new Amount('46791', 2, 'USD')} token={{ currency: "USD", issuer: "", decimals: 0 }} />
+          <Transaction direction="out" timestamp={new Date().getTime()} account="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA" amount={new Amount('46791', 2, 'USD')} token={{ currency: "USD", issuer: "", decimals: 0 }} />
+        </PlaygroundComponent>
+        <PlaygroundComponent label="DateDisplay">
+          <DateDisplay date={new Date().getTime()} variant="body1" format={DateFormat.DATE_TIME}/>
         </PlaygroundComponent>
       </Col>
     </Col>
