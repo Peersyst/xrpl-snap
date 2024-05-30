@@ -7,5 +7,5 @@ const TOKEN_LOGO_MAPPING: Record<string, typeof DefaultTokenIcon> = {
 
 export const useGetTokenIcon = (token: Token) => {
   const Logo = TOKEN_LOGO_MAPPING[token.currency] ?? DefaultTokenIcon;
-  return <Logo fontSize={40} />;
+  return <Logo fontSize={'2.5rem'} />;
 };

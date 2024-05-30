@@ -1,6 +1,6 @@
 import { Token } from 'common/models/token';
 
-export type TokenProps = {
+export type TokenCardProps = {
   token: Token;
   balance: string;
   loading?: boolean;

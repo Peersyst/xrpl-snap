@@ -7,5 +7,7 @@
   "receivedFrom": "Received from",
   "account": "XRPL Account",
   "send": "Send",
-  "receive": "Receive"
+  "receive": "Receive",
+  "nothingToShow": "Nothing to show",
+  "nothingToShow_token": "You don't have any token yet"
 }

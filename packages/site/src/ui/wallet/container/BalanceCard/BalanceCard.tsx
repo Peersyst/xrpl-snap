@@ -5,20 +5,20 @@ import {
   balance_card_left_border,
   balance_card_right_border,
 } from '../../../assets/images';
-import Balance from '../../components/display/Balance/Balance';
-import Button from '../../components/input/Button/Button';
+import Balance from '../../../common/components/display/Balance/Balance';
+import Button from '../../../common/components/input/Button/Button';
 
-export interface SideBarProps {
+export interface BalanceCardProps {
   className?: string;
   style?: React.CSSProperties;
-  children?: React.ReactNode;
 }
 
-function BalanceCard({ className, children, ...rest }: SideBarProps) {
+function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
+
   return (
-    <BalanceCardRoot>
+    <BalanceCardRoot {...rest}>
       <BalanceCardImageBorder src={balance_card_left_border} />
       <Col
         flex={1}
