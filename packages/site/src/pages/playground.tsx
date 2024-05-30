@@ -16,6 +16,7 @@ import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import Transaction from '../ui/common/components/display/Transaction/Transaction';
 import DateDisplay from '../ui/common/components/display/DateDisplay/DateDisplay';
 import { DateFormat } from '../ui/common/components/display/DateDisplay/hooks/formatDate.types';
+import QRCode from 'react-qr-code';
 
 function PlaygroundComponent({
   label,
@@ -201,6 +202,9 @@ function Playground() {
         </PlaygroundComponent>
         <PlaygroundComponent label="DateDisplay">
           <DateDisplay date={new Date().getTime()} variant="body1" format={DateFormat.DATE_TIME}/>
+        </PlaygroundComponent>
+        <PlaygroundComponent label="QRCode">
+          <QRCode value="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA" />
         </PlaygroundComponent>
       </Col>
     </Col>
