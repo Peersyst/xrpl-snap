@@ -18,6 +18,7 @@ const purple: ThemePalette['purple'] = {
 const error = '#FB5C79';
 
 const basePalette = {
+  lemon: '#61D605',
   mode: 'dark',
   primary: purple[50],
   accent: purple[30],

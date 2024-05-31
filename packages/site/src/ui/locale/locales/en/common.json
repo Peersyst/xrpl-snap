@@ -26,5 +26,8 @@
   "okGotIt": "Okay, got it!",
   "loading": "Loading...",
   "selectYourNetwork": "Select your network",
-  "accountDetails": "Account details"
+  "accountDetails": "Account details",
+  "connectedToXrpSnap": "Connected to XRP Snap",
+  "aboutThisSnap": "About this snap",
+  "disconnect": "Disconnect"
 }

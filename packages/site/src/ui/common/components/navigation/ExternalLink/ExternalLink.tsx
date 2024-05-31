@@ -7,7 +7,12 @@ function ExternalLink({
   ...typographyProps
 }: ExternalLinkProps): JSX.Element {
   return (
-    <ExternalLinkRoot as={'a' as any} href={to} {...typographyProps}>
+    <ExternalLinkRoot
+      as={'a' as any}
+      href={to}
+      target="_blank"
+      {...typographyProps}
+    >
       {children}
     </ExternalLinkRoot>
   );

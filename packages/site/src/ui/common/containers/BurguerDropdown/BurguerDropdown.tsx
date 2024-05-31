@@ -1,11 +1,12 @@
-import { Col, Popover } from '@peersyst/react-components';
+import { Col, Divider, Popover } from '@peersyst/react-components';
 import clsx from 'clsx';
+import { config } from 'common/config';
 import useSnapState from 'ui/adapter/state/useSnapState';
 import Dot from 'ui/common/components/display/Dot/Dot';
 import PopoverListItem from 'ui/common/components/display/Popover/PopoverListItem/PopoverListItem';
-import { BurguerIcon, QrIcon } from 'ui/common/icons';
+import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
+import { BurguerIcon, DoorIcon, InfoIcon, QrIcon } from 'ui/common/icons';
 import { useTranslate } from 'ui/locale';
-import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 
 export interface BurguerDropdownProps {
   className?: string;
@@ -31,9 +32,24 @@ function BurguerDropdown({
     >
       <Popover.Popper>
         <Col>
-          <PopoverListItem Icon={QrIcon} text={translate('accountDetails')} />
-          <PopoverListItem Icon={QrIcon} text={translate('accountDetails')} />
-          <PopoverListItem Icon={QrIcon} text={translate('accountDetails')} />
+          <PopoverListItem
+            prefix={
+              <Dot
+                size="0.75rem"
+                color={isSnapInstalled ? 'lemon' : 'status.error'}
+              />
+            }
+            text={translate('connectedToXrpSnap')}
+          />
+          <Divider />
+          <ExternalLink to={config.snapAboutUrl} css={{ color: 'unset' }}>
+            <PopoverListItem
+              Icon={InfoIcon}
+              text={translate('aboutThisSnap')}
+            />
+          </ExternalLink>
+
+          <PopoverListItem Icon={DoorIcon} text={translate('disconnect')} />
         </Col>
       </Popover.Popper>
       <Popover.Content>
@@ -41,10 +57,12 @@ function BurguerDropdown({
           <BurguerIcon />
           {isSnapInstalled && (
             <Dot
+              color="lemon"
+              size="0.5rem"
               css={{
                 position: 'absolute',
-                top: '-0.2rem',
-                right: '-0.25rem',
+                top: '-0.4rem',
+                right: '-0.4rem',
                 zIndex: 2,
               }}
             />

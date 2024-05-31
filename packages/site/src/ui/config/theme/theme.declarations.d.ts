@@ -47,6 +47,7 @@ declare module '@peersyst/react-components' {
     appBackground: string;
     inverted: string;
     invertedContrast: string;
+    lemon: string;
   }
 
   export type CreateThemeTypography = {};

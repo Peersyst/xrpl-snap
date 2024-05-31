@@ -9,6 +9,7 @@ export { default as ClockIcon } from './ClockIcon';
 export { default as CloseIcon } from './CloseIcon';
 export { default as CpuIcon } from './CpuIcon';
 export { default as DiscordLogoIcon } from './DiscordLogoIcon';
+export { default as DoorIcon } from './DoorIcon';
 export { default as EnvelopeIcon } from './EnvelopeIcon';
 export { default as ErrorIcon } from './ErrorIcon';
 export { default as ExchangeIcon } from './ExchangeIcon';

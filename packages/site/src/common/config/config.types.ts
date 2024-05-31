@@ -5,4 +5,5 @@ export type Config = {
   decimals: number;
   peersystUrl: string;
   snapOrigin: string;
+  snapAboutUrl: string;
 };

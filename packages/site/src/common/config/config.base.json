@@ -4,5 +4,6 @@
   "maxNumberDecimals": 15,
   "decimals": 7,
   "peersystUrl": "https://peersyst.com",
-  "snapOrigin": "local:http://localhost:8080"
+  "snapOrigin": "local:http://localhost:8080",
+  "snapAboutUrl": "https://peersyst.com"
 }
