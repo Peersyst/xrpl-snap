@@ -15,7 +15,7 @@ function AccountDetailsModal({ address, ...rest }: BaseAccountModalProps) {
 
   return (
     <BaseAccountModal
-      title={translate('accountDetails')}
+      title={translate('myAccountDetails')}
       address={address}
       footer={
         <Row gap={spacing[4]}>

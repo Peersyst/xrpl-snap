@@ -11,7 +11,7 @@
   "nothingToShow": "Nothing to show",
   "nothingToShow_token": "You don't have any token yet",
   "nothingToShow_tx": "You don't have any transaction yet",
-  "accountDetails": "My account details",
+  "myAccountDetails": "My account details",
   "viewOnExplorer": "View on explorer",
   "exportPrivateKey": "Export private key",
   "connectSnapTitle": "Connect to XRP Snap",
@@ -25,5 +25,6 @@
   "accountInfoCallout": "This account was generated with your MetaMask Secret Recovery Phrase.",
   "okGotIt": "Okay, got it!",
   "loading": "Loading...",
-  "selectYourNetwork": "Select your network"
+  "selectYourNetwork": "Select your network",
+  "accountDetails": "Account details"
 }

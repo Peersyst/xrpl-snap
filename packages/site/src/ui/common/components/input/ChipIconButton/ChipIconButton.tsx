@@ -24,14 +24,18 @@ const ChipIconButtonRoot = styled(Chip)(
       .ChipLabel {
         display: flex;
       }
-    }
-    &:hover {
-      border-color: ${theme.palette.grey[400]};
-      .Icon {
-        color: ${theme.palette.grey[400]};
+      &:hover {
+        border-color: ${theme.palette.grey[400]};
+        .Icon {
+          color: ${theme.palette.grey[400]};
+        }
       }
-    }
-    &:active {
+      &:active {
+        background-color: ${theme.palette.grey[300]};
+        .Icon {
+          color: ${theme.palette.grey[400]};
+        }
+      }
     }
   `,
 );

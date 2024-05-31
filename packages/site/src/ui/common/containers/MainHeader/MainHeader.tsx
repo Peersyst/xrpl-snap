@@ -39,11 +39,7 @@ function MainHeader({ className, ...rest }: MainHeaderProps) {
           {projectName}
         </Typography>
         <Row justifyContent="space-between">
-          <NetworkSelect
-            css={{
-              ['.SelectMenu']: { transform: 'translateX(-6rem) !important' },
-            }}
-          />
+          <NetworkSelect />
         </Row>
       </Row>
     </MainHeaderRoot>
