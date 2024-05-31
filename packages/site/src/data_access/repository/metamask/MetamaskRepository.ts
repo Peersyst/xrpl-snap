@@ -3,20 +3,32 @@ import type {
   MetaMaskInpageProvider,
   RequestArguments,
 } from '@metamask/providers';
+import { config } from 'common/config';
+import type { Token, TokenWithBalance } from 'common/models/token';
+import type {
+  HandlerMethod,
+  HandlerParams,
+  HandlerReturns,
+} from 'common/models/xrpl-snap/src/handler/Handler.types';
+import type { AccountInfoResponse, AccountTxResponse, Transaction } from 'xrpl';
 
+import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
-import type { InvokeSnapParams } from '../../../ui/snap/hooks';
+import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import { MetamaskErrorCodes } from './MetamaskErrorCodes';
-import { Token } from 'common/models/token';
-import { config } from 'common/config';
-import { HandlerMethod, HandlerParams } from 'snap/types/handler/Handler.types';
 
 export type Snap = {
   permissionName: string;
   id: string;
   version: string;
   initialPermissions: Record<string, unknown>;
+};
+
+const XRP_TOKEN: Token = {
+  currency: 'XRP',
+  issuer: '',
+  decimals: 6,
 };
 
 export class MetamaskRepository {
@@ -41,28 +53,96 @@ export class MetamaskRepository {
     });
   }
 
-  public async getWallet(snapId: string): Promise<{ account: string }> {
-    return (await this.invokeSnap(snapId, { method: 'xrpl_getAccount' })) as Promise<{ account: string }>;
+  public async getWallet() {
+    return this.invokeSnap({
+      method: 'xrpl_getAccount',
+      params: undefined,
+    });
   }
 
-  public async getTokens(address: string): Promise<Token[]> {
-    const balance = await this.invokeSnap(config.snapOrigin, )
+  public async getTokens(account: string): Promise<TokenWithBalance[]> {
+    try {
+      const accountInfoResponse = (await this.invokeSnap({
+        method: 'xrpl_request',
+        params: { command: 'account_info', account },
+      })) as AccountInfoResponse;
+      const xrpBalance = accountInfoResponse.result.account_data.Balance;
+      return [
+        {
+          ...XRP_TOKEN,
+          balance: new Amount(
+            xrpBalance,
+            XRP_TOKEN.decimals,
+            XRP_TOKEN.currency,
+          ),
+        },
+      ];
+    } catch (_) {
+      return [
+        {
+          ...XRP_TOKEN,
+          balance: new Amount('0', XRP_TOKEN.decimals, XRP_TOKEN.currency),
+        },
+      ];
+    }
   }
 
-  private async invokeSnap<Method extends HandlerMethod>(
-    snapId: string,
-    { method, params }: { method: Method; params: HandlerParams},
-  ) {
+  public async getStoredNetworks(): Promise<Network[]> {
+    return this.invokeSnap({
+      method: 'xrpl_getStoredNetworks',
+      params: undefined,
+    });
+  }
+
+  public async getActiveNetwork(): Promise<Network> {
+    return this.invokeSnap({
+      method: 'xrpl_getActiveNetwork',
+      params: undefined,
+    });
+  }
+
+  public async changeNetwork(chainId: number): Promise<Network> {
+    return this.invokeSnap({
+      method: 'xrpl_changeNetwork',
+      params: { chainId },
+    });
+  }
+
+  public async getAccountTransactions(
+    account: string,
+    marker?: unknown,
+    limit = 100,
+  ): Promise<{ transactions: Transaction[]; marker: unknown }> {
+    const response = (await this.invokeSnap({
+      method: 'xrpl_request',
+      params: { command: 'account_tx', account, marker, limit },
+    })) as AccountTxResponse;
+
+    return {
+      transactions: response.result.transactions.map(
+        (accountTx) => accountTx.tx!,
+      ),
+      marker: response.result.marker,
+    };
+  }
+
+  private async invokeSnap<Method extends HandlerMethod>({
+    method,
+    params,
+  }: {
+    method: Method;
+    params: HandlerParams<Method>;
+  }): Promise<HandlerReturns<Method>> {
     return this.request({
       method: 'wallet_invokeSnap',
       params: {
-        snapId,
+        snapId: config.snapOrigin,
         request: {
           method,
           params,
         },
       },
-    });
+    }) as HandlerReturns<Method>;
   }
 
   private async getProvider() {

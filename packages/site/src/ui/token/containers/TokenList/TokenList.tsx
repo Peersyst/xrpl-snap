@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { Token } from 'common/models/token';
-import { useEffect, useState } from 'react';
+import { TokenWithBalance } from 'common/models/token';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/Token/TokenCard';
+import useGetTokens from '../../../wallet/query/useGetTokens';
 
 export interface TokenListProps {
   className?: string;
@@ -24,37 +24,19 @@ const TokenCardSkeleton = () => (
 );
 
 function TokenList({ className, ...rest }: TokenListProps) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Token[]>([]);
   const translate = useTranslate();
 
   function fetchNextPage() {}
 
-  useEffect(() => {
-    async function fetchData() {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const random = Math.random();
-      setData(
-        random > 0.5
-          ? []
-          : ['XRP', 'USDC', 'USDT'].map((currency) => ({
-              currency,
-              issuer: 'blabla',
-              decimals: 0,
-            })),
-      );
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
+  const { data, isLoading } = useGetTokens();
 
   return (
-    <InfiniteList<Token>
+    <InfiniteList<TokenWithBalance>
       className={clsx('TokenList', className)}
       renderItem={(token, i) => (
-        <TokenCard key={i} token={token} balance={'3.14'} />
+        <TokenCard key={i} token={token} balance={token.balance.amount} />
       )}
-      isLoading={loading}
+      isLoading={isLoading}
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}

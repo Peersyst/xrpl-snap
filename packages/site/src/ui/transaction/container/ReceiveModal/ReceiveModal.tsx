@@ -6,11 +6,11 @@ import useGetAddress from '../../../wallet/hooks/useGetAddress';
 
 function ReceiveModal({ ...rest }: Omit<BaseAccountModalProps, 'address'>) {
   const translate = useTranslate();
-  const getAddress = useGetAddress();
+  const address = useGetAddress();
   return (
     <BaseAccountModal
       title={translate('receive')}
-      address={getAddress()}
+      address={address}
       {...rest}
     />
   );

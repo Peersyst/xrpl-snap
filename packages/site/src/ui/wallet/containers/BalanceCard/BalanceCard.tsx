@@ -1,20 +1,24 @@
 import { Col, Row, useTheme } from '@peersyst/react-components';
-import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
+
 import {
   balance_card_left_border,
   balance_card_right_border,
 } from '../../../assets/images';
 import Balance from '../../../common/components/display/Balance/Balance';
+import useGetTokens from '../../query/useGetTokens';
+import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
 import ReceiveModalButton from './ReceiveModalButton';
 import SendModalButton from './SendModalButton';
 
-export interface BalanceCardProps {
+export type BalanceCardProps = {
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
+
+  const { data: tokens, isLoading } = useGetTokens();
 
   return (
     <BalanceCardRoot {...rest}>
@@ -27,12 +31,17 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
       >
         <Col gap={spacing[2]} alignItems="center">
           <Balance
+            loading={isLoading}
             fontWeight="600"
-            balance={'3298.09'}
+            balance={
+              tokens?.find((token) => token.currency === 'XRP')?.balance
+                ?.amount || '0'
+            }
             currency="XRP"
             variant="h2"
           />
           <Balance
+            loading={isLoading}
             balance={'3298.09'}
             currency="USD"
             fontWeight="500"

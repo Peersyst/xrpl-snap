@@ -1,10 +1,6 @@
 import type { Request as XrplRequest, Transaction } from 'xrpl';
 import type { RequestResponseMap } from 'xrpl/src/models/methods';
-export declare type XrplResponse<Request extends XrplRequest> = RequestResponseMap<Request> & {
-    result: {
-        error: string;
-    };
-};
+export declare type XrplResponse<Request extends XrplRequest> = RequestResponseMap<Request>;
 export declare class Provider {
     node: string;
     constructor(node: string);

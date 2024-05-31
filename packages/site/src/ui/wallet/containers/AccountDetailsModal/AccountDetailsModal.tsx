@@ -11,12 +11,12 @@ function AccountDetailsModal({ address, ...rest }: BaseAccountModalProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
   const url = useAccountExplorerLink(address);
-  const getAddress = useGetAddress();
+  const address = useGetAddress();
 
   return (
     <BaseAccountModal
       title={translate('accountDetails')}
-      address={getAddress()}
+      address={address}
       footer={
         <Row gap={spacing[4]}>
           <ExternalLink to={url} css={{ width: '100%' }}>

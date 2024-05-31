@@ -6,6 +6,8 @@ import { InfiniteList } from 'ui/common/components/display/InfiniteList/Infinite
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TransactionCard from 'ui/transaction/components/TransactionCard/TransactionCard';
+import useGetTransactions from '../../query/useGetTransactions';
+import useGetAddress from '../../../wallet/hooks/useGetAddress';
 
 export interface TransactionListProps {
   className?: string;
@@ -24,27 +26,15 @@ const TransactionCardSkeleton = () => (
 );
 
 function TransactionList({ className, ...rest }: TransactionListProps) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<any[]>([]);
   const translate = useTranslate();
   const { spacing } = useTheme();
-
-  function fetchNextPage() {}
-
-  useEffect(() => {
-    async function fetchData() {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const random = Math.random();
-      setData(random > 0.5 ? [] : Array.from({ length: 20 }, (_, i) => i));
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
+  const address = useGetAddress();
+  const { data, fetchNextPage, isLoading } = useGetTransactions(address);
 
   return (
     <InfiniteList<any>
       className={clsx('TransactionList', className)}
-      renderItem={(_, i) => (
+      renderItem={(t, i) => (
         <TransactionCard
           direction={i % 2 === 0 ? 'in' : 'out'}
           key={i}
@@ -54,10 +44,10 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
           token={{ currency: 'USD', issuer: '', decimals: 0 }}
         />
       )}
-      isLoading={loading}
+      isLoading={isLoading}
       Skeleton={TransactionCardSkeleton}
       numberOfSkeletons={5}
-      data={data}
+      data={data?.transactions}
       nothingToShow={
         <NothingToShow
           message={translate('nothingToShow', { context: 'tx' })}
