@@ -1,10 +1,4 @@
-import {
-  Chip,
-  Popover,
-  Row,
-  Typography,
-  useTheme,
-} from '@peersyst/react-components';
+import { Popover, Row, Typography, useTheme } from '@peersyst/react-components';
 import {
   SideBarAccountContent,
   SideBarAccountRoot,
@@ -16,6 +10,8 @@ import TokenList from 'ui/token/containers/TokenList/TokenList';
 import clsx from 'clsx';
 import { useStore } from 'zustand';
 import walletState from '../../../../domain/wallet/state/walletState';
+import ChipIconButton from 'ui/common/components/input/ChipIconButton/ChipIconButton';
+import { InfoIcon } from 'ui/common/icons';
 
 export interface SideBarProps {
   className?: string;
@@ -27,7 +23,6 @@ function SideBar({ className, ...rest }: SideBarProps) {
   const translate = useTranslate();
   const useWalletState = useStore(walletState);
 
-
   return (
     <SideBarRoot className={clsx('Sidebar', className)} {...rest}>
       <SideBarAccountRoot gap={spacing[3]}>
@@ -36,10 +31,14 @@ function SideBar({ className, ...rest }: SideBarProps) {
           <Popover position="bottom">
             <Popover.Popper>Content</Popover.Popper>
             <Popover.Content>
-              <Chip label="i" />
+              <ChipIconButton Icon={InfoIcon} />
             </Popover.Content>
           </Popover>
-          <AccountChip address={useWalletState.address || "rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"} />
+          <AccountChip
+            address={
+              useWalletState.address || 'rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            }
+          />
         </Row>
       </SideBarAccountRoot>
       <SideBarAccountContent>
