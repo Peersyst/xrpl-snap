@@ -5,20 +5,37 @@ import AlertCallout from '../../../common/components/feedback/AlertCallout/Alert
 import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
 import InfoDisplay from '../../../common/components/display/InfoDisplay/InfoDisplay';
+import { useControlled } from '@peersyst/react-hooks';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
+import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 
-function AccountInfoModal({ ...rest }: ModalProps) {
+function AccountInfoModal({
+  defaultOpen,
+  open: openProp,
+  onClose,
+  ...rest
+}: ModalProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
+  const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
+  const { data: activeNetwork } = useGetActiveNetwork();
+  const address = useGetAddress();
+
   return (
-    <Modal {...rest} title={translate('accountInfo')}>
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+      {...rest}
+      title={translate('accountInfo')}
+    >
       <Col gap={spacing[6]}>
-        <InfoDisplay title={translate('network')} content="Peersyst Testnet" />
         <InfoDisplay
-          title={translate('xrpAccount')}
-          content="0Lb00r7sAHTd9CgdQo0HTMTkV8LK4ZnX71"
+          title={translate('network')}
+          content={activeNetwork?.name!}
         />
+        <InfoDisplay title={translate('xrpAccount')} content={address} />
         <AlertCallout type="info" content={translate('accountInfoCallout')} />
-        <Button fullWidth variant="primary">
+        <Button fullWidth variant="primary" onClick={() => setOpen(false)}>
           {translate('okGotIt')}
         </Button>
       </Col>

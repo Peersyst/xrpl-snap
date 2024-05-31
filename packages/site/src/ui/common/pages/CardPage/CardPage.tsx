@@ -14,7 +14,7 @@ export interface CardPageProps {
 }
 
 const CardPageContentWrapper = styled(Col)(() => ({
-  maxWidth: 'min(56.25rem, 90vw)',
+  maxWidth: 'min(58rem, 90vw)',
   width: '100%',
   justifyContent: 'center',
   paddingTop: '3rem',

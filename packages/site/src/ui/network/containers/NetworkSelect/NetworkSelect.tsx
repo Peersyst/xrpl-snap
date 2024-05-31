@@ -17,8 +17,11 @@ function NetworkSelect({ className, children, ...rest }: NetworkSelectProps) {
 
   return (
     <Select
+      css={{ width: '9rem' }}
+      disabled={activeNetwork === undefined}
       defaultValue={activeNetwork?.chainId}
-      placeholder={translate('selectYourNetwork')}
+      key={activeNetwork?.chainId}
+      placeholder={translate(!activeNetwork ? 'loading' : 'selectYourNetwork')}
       options={options}
       className={clsx('NetworkSelect', className)}
       {...rest}

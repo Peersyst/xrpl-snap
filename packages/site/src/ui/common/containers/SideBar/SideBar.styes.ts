@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const SideBarRoot = styled(Col)(({ theme }) => ({
   height: '43rem',
   borderRight: `1px solid ${theme.palette.grey[200]}`,
+  width: '18.25rem',
 }));
 
 export const SideBarAccountRoot = styled(Col)(({ theme }) => ({

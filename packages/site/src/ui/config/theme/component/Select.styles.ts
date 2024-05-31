@@ -33,8 +33,8 @@ export const SelectStyles = css(({ theme }) => ({
         backgroundColor: theme.palette.inverted,
         borderRadius: theme.borderRadius,
         border: `1px solid ${theme.palette.grey[200]}`,
-
-        minWidth: '15rem',
+        padding: 0,
+        width: '14.5rem',
 
         '.SelectItem': {
           fontSize: '0.875rem',
@@ -45,12 +45,12 @@ export const SelectStyles = css(({ theme }) => ({
           alignItems: 'center',
 
           '&:hover': {
-            backgroundColor: alpha(theme.palette.accent, 0.25),
+            backgroundColor: alpha(theme.palette.grey[100], 0.08),
           },
 
           '&.Selected': {
-            backgroundColor: theme.palette.accent,
             fontWeight: 600,
+            backgroundColor: alpha(theme.palette.grey[100], 0.08),
           },
         },
       },
@@ -64,11 +64,12 @@ export const SelectStyles = css(({ theme }) => ({
       },
     },
     '&.Disabled': {
+      background: 'transparent !important',
       '.Select': {
         '.SelectDisplay': {
           '.DisplayContent': {
             '&.Placeholder': {
-              color: theme.palette.disabled,
+              color: theme.palette.text,
             },
           },
         },

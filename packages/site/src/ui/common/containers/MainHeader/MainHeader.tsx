@@ -41,7 +41,7 @@ function MainHeader({ className, ...rest }: MainHeaderProps) {
         <Row justifyContent="space-between">
           <NetworkSelect
             css={{
-              ['.SelectMenu']: { transform: 'translateX(-6rem) !important' },
+              ['.SelectMenu']: { transform: 'translateX(-5.5rem) !important' },
             }}
           />
         </Row>
