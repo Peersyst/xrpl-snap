@@ -1,5 +1,6 @@
 export { default as AngleDownIcon } from './AngleDownIcon';
 export { default as ArrowRightIcon } from './ArrowRightIcon';
+export { default as BurguerIcon } from './BurguerIcon';
 export { default as ChatsTeardropIcon } from './ChatsTeardropIcon';
 export { default as ChevronDownIcon } from './ChevronDownIcon';
 export { default as ChevronLeftIcon } from './ChevronLeftIcon';

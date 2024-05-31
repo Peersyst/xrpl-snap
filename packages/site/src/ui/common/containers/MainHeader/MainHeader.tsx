@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import styled, { css } from 'styled-components';
 import SnapLogo from 'ui/common/components/display/SnapLogo/SnapLogo';
 import NetworkSelect from 'ui/network/containers/NetworkSelect/NetworkSelect';
+import BurguerDropdown from '../BurguerDropdown/BurguerDropdown';
 
 export interface MainHeaderProps {
   className?: string;
@@ -14,6 +15,7 @@ const MainHeaderRoot = styled(Row)(() => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   position: 'relative',
+  paddingRight: '1.5rem',
 }));
 
 const HeaderLogo = styled(SnapLogo)(
@@ -38,12 +40,13 @@ function MainHeader({ className, ...rest }: MainHeaderProps) {
         <Typography variant="h5" style={{ paddingLeft: '7rem' }}>
           {projectName}
         </Typography>
-        <Row justifyContent="space-between">
+        <Row justifyContent="space-between" alignItems="center">
           <NetworkSelect
             css={{
               ['.SelectMenu']: { transform: 'translateX(-5.5rem) !important' },
             }}
           />
+          <BurguerDropdown />
         </Row>
       </Row>
     </MainHeaderRoot>

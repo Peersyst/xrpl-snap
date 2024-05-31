@@ -13,15 +13,15 @@ export interface NetworkSelectProps {
 function NetworkSelect({ className, children, ...rest }: NetworkSelectProps) {
   const translate = useTranslate();
   const options = useGetNetworkSelectOptions();
-  const { data: activeNetwork } = useGetActiveNetwork();
+  const { data: activeNetwork, isLoading } = useGetActiveNetwork();
 
   return (
     <Select
-      css={{ width: '9rem' }}
-      disabled={activeNetwork === undefined}
+      css={{ width: '8.5rem' }}
+      disabled={options.length === 0}
       defaultValue={activeNetwork?.chainId}
       key={activeNetwork?.chainId}
-      placeholder={translate(!activeNetwork ? 'loading' : 'selectYourNetwork')}
+      placeholder={translate(isLoading ? 'loading' : 'selectYourNetwork')}
       options={options}
       className={clsx('NetworkSelect', className)}
       {...rest}
