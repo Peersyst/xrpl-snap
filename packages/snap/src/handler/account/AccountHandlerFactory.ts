@@ -1,19 +1,15 @@
 import type { Context } from '../../core/Context';
-import type {
-  ExtractPrivateKeyMethod,
-  ExtractPrivateKeyParams,
-} from './ExtractPrivateKeyHandler';
 import {
-  ExtractPrivateKey,
+  ExtractPrivateKeyMethod,
   ExtractPrivateKeyHandler,
 } from './ExtractPrivateKeyHandler';
-import type { GetAccountMethod, GetAccountParams } from './GetAccountHandler';
-import { GetAccount, GetAccountHandler } from './GetAccountHandler';
+import { GetAccountMethod, GetAccountHandler } from './GetAccountHandler';
 
-export type AccountMethod = GetAccountMethod | ExtractPrivateKeyMethod;
-export type AccountParams = GetAccountParams | ExtractPrivateKeyParams;
+export type AccountMethod =
+  | typeof GetAccountMethod
+  | typeof ExtractPrivateKeyMethod;
 
 export const AccountHandlerFactory = (context: Context) => ({
-  [GetAccount]: new GetAccountHandler(context),
-  [ExtractPrivateKey]: new ExtractPrivateKeyHandler(context),
+  [GetAccountMethod]: new GetAccountHandler(context),
+  [ExtractPrivateKeyMethod]: new ExtractPrivateKeyHandler(context),
 });

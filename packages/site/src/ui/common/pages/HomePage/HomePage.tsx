@@ -1,6 +1,6 @@
 import { Col } from '@peersyst/react-components';
 import clsx from 'clsx';
-import BalanceCard from 'ui/wallet/container/BalanceCard/BalanceCard';
+import BalanceCard from 'ui/wallet/containers/BalanceCard/BalanceCard';
 import TransactionList from 'ui/transaction/container/TransactionList/TransactionList';
 import styled from 'styled-components';
 

@@ -2,16 +2,14 @@ import type { Context } from '../../core/Context';
 import { MessageDialog } from '../../dialog/message/MessageDialog';
 import type { IHandler } from '../IHandler';
 
-export const SignMessage = 'xrpl_signMessage';
-export type SignMessageMethod = typeof SignMessage;
-export type SignMessageParams = { message: string };
+export const SignMessageMethod = 'xrpl_signMessage';
 
-export class SignMessageHandler implements IHandler<SignMessageParams> {
+export class SignMessageHandler implements IHandler<typeof SignMessageMethod> {
   constructor(protected readonly context: Context) {}
 
   async handle(
     origin: string,
-    params: SignMessageParams,
+    params: { message: string },
   ): Promise<{ signature: string }> {
     const success = await MessageDialog.prompt(origin, params.message);
     if (!success) {

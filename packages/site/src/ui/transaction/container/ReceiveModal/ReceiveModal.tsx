@@ -1,17 +1,16 @@
 import BaseAccountModal from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal';
+import type { BaseAccountModalProps } from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal.types';
+
 import { useTranslate } from '../../../locale';
-import { BaseAccountModalProps } from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal.types';
+import useGetAddress from '../../../wallet/hooks/useGetAddress';
 
-interface AccountDetailsModalProps extends BaseAccountModalProps {
-  address: string;
-}
-
-function ReceiveModal({ address, ...rest }: AccountDetailsModalProps) {
+function ReceiveModal({ ...rest }: Omit<BaseAccountModalProps, 'address'>) {
   const translate = useTranslate();
+  const getAddress = useGetAddress();
   return (
     <BaseAccountModal
       title={translate('receive')}
-      address={address}
+      address={getAddress()}
       {...rest}
     />
   );

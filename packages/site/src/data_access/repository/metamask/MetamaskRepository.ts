@@ -8,6 +8,9 @@ import type { GetSnapsResponse } from '../../../common/models/snap';
 import type { InvokeSnapParams } from '../../../ui/snap/hooks';
 import RepositoryError from '../error/RepositoryError';
 import { MetamaskErrorCodes } from './MetamaskErrorCodes';
+import { Token } from 'common/models/token';
+import { config } from 'common/config';
+import { HandlerMethod, HandlerParams } from 'snap/types/handler/Handler.types';
 
 export type Snap = {
   permissionName: string;
@@ -42,9 +45,13 @@ export class MetamaskRepository {
     return (await this.invokeSnap(snapId, { method: 'xrpl_getAccount' })) as Promise<{ account: string }>;
   }
 
-  private async invokeSnap(
+  public async getTokens(address: string): Promise<Token[]> {
+    const balance = await this.invokeSnap(config.snapOrigin, )
+  }
+
+  private async invokeSnap<Method extends HandlerMethod>(
     snapId: string,
-    { method, params }: InvokeSnapParams,
+    { method, params }: { method: Method; params: HandlerParams},
   ) {
     return this.request({
       method: 'wallet_invokeSnap',

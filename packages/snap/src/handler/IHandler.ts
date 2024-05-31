@@ -1,7 +1,9 @@
-import type { Json } from '@metamask/snaps-sdk';
+import type {
+  HandlerMethod,
+  HandlerParams,
+  HandlerReturns,
+} from './Handler.types';
 
-import type { HandlerParams } from './HandlerFactory';
-
-export type IHandler<Params extends HandlerParams> = {
-  handle(origin: string, params: Params): Promise<Json>;
+export type IHandler<Method extends HandlerMethod> = {
+  handle(origin: string, params: HandlerParams<Method>): HandlerReturns<Method>;
 };

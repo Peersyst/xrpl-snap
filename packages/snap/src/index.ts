@@ -1,7 +1,6 @@
-import type { OnRpcRequestHandler } from '@metamask/snaps-sdk';
+import type { Json, OnRpcRequestHandler } from '@metamask/snaps-sdk';
 
 import { Context } from './core/Context';
-import type { HandlerMethod, HandlerParams } from './handler/HandlerFactory';
 import { HandlerFactory } from './handler/HandlerFactory';
 
 /**
@@ -17,17 +16,11 @@ import { HandlerFactory } from './handler/HandlerFactory';
 export const onRpcRequest: OnRpcRequestHandler = async ({
   origin,
   request,
-}) => {
+}): Promise<Json> => {
   const handlers = HandlerFactory(await Context.init());
   // eslint-disable-next-line no-prototype-builtins
   if (!handlers.hasOwnProperty(request.method)) {
     throw new Error(`handler method ${request.method} not found`);
   }
-  return handlers[request.method as HandlerMethod].handle(
-    origin,
-    // Todo handle this type properly
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    request.params as HandlerParams,
-  );
+  return handlers[request.method].handle(origin, request.params as any) as any;
 };

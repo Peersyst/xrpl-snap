@@ -15,6 +15,7 @@
     "scripts": {
         "allow-scripts": "yarn workspace root allow-scripts",
         "build": "mm-snap build",
+        "build:types": "tsc --outDir ../site/src/common/models/xrpl-snap --emitDeclarationOnly --declaration --noEmit false",
         "build:clean": "yarn clean && yarn build",
         "clean": "rimraf dist",
         "lint": "yarn lint:eslint && yarn lint:misc --check",

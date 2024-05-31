@@ -1,19 +1,22 @@
-import type { Json } from '@metamask/snaps-sdk';
-import type { SubmittableTransaction } from 'xrpl';
+import type { SubmitRequest, SubmittableTransaction } from 'xrpl';
 
 import type { Context } from '../../core/Context';
+import type { XrplResponse } from '../../core/Provider';
 import type { IHandler } from '../IHandler';
 import { SignHandler } from './SignHandler';
 import { SubmitHandler } from './SubmitHandler';
 
-export const SignAndSubmit = 'xrpl_signAndSubmit';
-export type SignAndSubmitMethod = typeof SignAndSubmit;
-export type SignAndSubmitParams = SubmittableTransaction;
+export const SignAndSubmitMethod = 'xrpl_signAndSubmit';
 
-export class SignAndSubmitHandler implements IHandler<SignAndSubmitParams> {
+export class SignAndSubmitHandler
+  implements IHandler<typeof SignAndSubmitMethod>
+{
   constructor(protected readonly context: Context) {}
 
-  async handle(origin: string, params: SignAndSubmitParams): Promise<Json> {
+  async handle(
+    origin: string,
+    params: SubmittableTransaction,
+  ): Promise<XrplResponse<SubmitRequest>> {
     const signHandler = new SignHandler(this.context);
     const signedTransaction = await signHandler.handle(origin, params);
 

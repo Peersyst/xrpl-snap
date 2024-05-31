@@ -1,43 +1,27 @@
 import type { Context } from '../../core/Context';
-import type {
+import {
+  ChangeNetworkHandler,
   ChangeNetworkMethod,
-  ChangeNetworkParams,
 } from './ChangeNetworkHandler';
-import { ChangeNetwork, ChangeNetworkHandler } from './ChangeNetworkHandler';
-import type {
-  GetActiveNetworkMethod,
-  GetActiveNetworkParams,
-} from './GetActiveNetworkHandler';
 import {
-  GetActiveNetwork,
   GetActiveNetworkHandler,
+  GetActiveNetworkMethod,
 } from './GetActiveNetworkHandler';
-import type {
-  GetStoredNetworkMethod,
-  GetStoredNetworkParams,
-} from './GetStoredNetworksHandler';
 import {
-  GetStoredNetworks,
   GetStoredNetworksHandler,
+  GetStoredNetworksMethod,
 } from './GetStoredNetworksHandler';
-import type { RequestMethod, RequestParams } from './RequestHandler';
-import { RequestName, RequestHandler } from './RequestHandler';
+import { RequestHandler, RequestMethod } from './RequestHandler';
 
 export type NetworkMethod =
-  | ChangeNetworkMethod
-  | GetActiveNetworkMethod
-  | GetStoredNetworkMethod
-  | RequestMethod;
-
-export type NetworkParams =
-  | ChangeNetworkParams
-  | GetActiveNetworkParams
-  | GetStoredNetworkParams
-  | RequestParams;
+  | typeof ChangeNetworkMethod
+  | typeof GetActiveNetworkMethod
+  | typeof GetStoredNetworksMethod
+  | typeof RequestMethod;
 
 export const NetworkHandlerFactory = (context: Context) => ({
-  [ChangeNetwork]: new ChangeNetworkHandler(context),
-  [GetActiveNetwork]: new GetActiveNetworkHandler(context),
-  [GetStoredNetworks]: new GetStoredNetworksHandler(context),
-  [RequestName]: new RequestHandler(context),
+  [ChangeNetworkMethod]: new ChangeNetworkHandler(context),
+  [GetActiveNetworkMethod]: new GetActiveNetworkHandler(context),
+  [GetStoredNetworksMethod]: new GetStoredNetworksHandler(context),
+  [RequestMethod]: new RequestHandler(context),
 });

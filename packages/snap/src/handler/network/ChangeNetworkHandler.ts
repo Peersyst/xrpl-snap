@@ -3,14 +3,14 @@ import type { Network } from '../../core/StateManager';
 import { ChangeNetworkDialog } from '../../dialog/network/ChangeNetworkDialog';
 import type { IHandler } from '../IHandler';
 
-export const ChangeNetwork = 'xrpl_changeNetwork';
-export type ChangeNetworkMethod = typeof ChangeNetwork;
-export type ChangeNetworkParams = { chainId: number };
+export const ChangeNetworkMethod = 'xrpl_changeNetwork';
 
-export class ChangeNetworkHandler implements IHandler<ChangeNetworkParams> {
+export class ChangeNetworkHandler
+  implements IHandler<typeof ChangeNetworkMethod>
+{
   constructor(protected readonly context: Context) {}
 
-  async handle(origin: string, params: ChangeNetworkParams): Promise<Network> {
+  async handle(origin: string, params: { chainId: number }): Promise<Network> {
     const { networks } = await this.context.stateManager.get();
     const network = networks.find(({ chainId }) => chainId === params.chainId);
     if (!network) {

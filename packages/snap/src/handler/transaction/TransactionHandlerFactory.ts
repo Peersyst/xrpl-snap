@@ -1,33 +1,21 @@
 import type { Context } from '../../core/Context';
-import { SignAndSubmit, SignAndSubmitHandler } from './SignAndSubmitHandler';
-import type {
+import {
+  SignAndSubmitHandler,
   SignAndSubmitMethod,
-  SignAndSubmitParams,
 } from './SignAndSubmitHandler';
-import type { SignMethod, SignParams } from './SignHandler';
-import { Sign, SignHandler } from './SignHandler';
-import type {
-  SignMessageMethod,
-  SignMessageParams,
-} from './SignMessageHandler';
-import { SignMessage, SignMessageHandler } from './SignMessageHandler';
-import type { SubmitMethod, SubmitParams } from './SubmitHandler';
-import { Submit, SubmitHandler } from './SubmitHandler';
+import { SignHandler, SignMethod } from './SignHandler';
+import { SignMessageHandler, SignMessageMethod } from './SignMessageHandler';
+import { SubmitHandler, SubmitMethod } from './SubmitHandler';
 
 export type TransactionMethod =
-  | SignAndSubmitMethod
-  | SubmitMethod
-  | SignMethod
-  | SignMessageMethod;
-export type TransactionParams =
-  | SignAndSubmitParams
-  | SubmitParams
-  | SignParams
-  | SignMessageParams;
+  | typeof SignAndSubmitMethod
+  | typeof SubmitMethod
+  | typeof SignMethod
+  | typeof SignMessageMethod;
 
 export const TransactionHandlerFactory = (context: Context) => ({
-  [SignAndSubmit]: new SignAndSubmitHandler(context),
-  [Submit]: new SubmitHandler(context),
-  [Sign]: new SignHandler(context),
-  [SignMessage]: new SignMessageHandler(context),
+  [SignAndSubmitMethod]: new SignAndSubmitHandler(context),
+  [SubmitMethod]: new SubmitHandler(context),
+  [SignMethod]: new SignHandler(context),
+  [SignMessageMethod]: new SignMessageHandler(context),
 });

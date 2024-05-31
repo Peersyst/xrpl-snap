@@ -2,6 +2,7 @@ import { config } from '../../../common/config';
 import type { MetamaskRepository } from '../../../data_access/repository/metamask/MetamaskRepository';
 import type State from '../../common/State';
 import type { IWalletState } from '../state/walletState';
+import { Token } from '../../../common/models/token';
 
 export default class WalletController {
   constructor(
@@ -20,5 +21,9 @@ export default class WalletController {
     const wallet = await this.metamaskRepository.getWallet(config.snapOrigin);
     console.log(wallet);
     return this.walletState.setState({ address: wallet.account });
+  }
+
+  async getTokens(): Promise<Token[]> {
+    this.metamaskRepository.getTokens(address);
   }
 }

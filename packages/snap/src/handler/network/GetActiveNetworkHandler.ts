@@ -1,17 +1,14 @@
 import type { Context } from '../../core/Context';
-import type { Network } from '../../core/StateManager';
 import type { IHandler } from '../IHandler';
 
-export const GetActiveNetwork = 'xrpl_getActiveNetwork';
-export type GetActiveNetworkMethod = typeof GetActiveNetwork;
-export type GetActiveNetworkParams = void;
+export const GetActiveNetworkMethod = 'xrpl_getActiveNetwork';
 
 export class GetActiveNetworkHandler
-  implements IHandler<GetActiveNetworkParams>
+  implements IHandler<typeof GetActiveNetworkMethod>
 {
   constructor(protected readonly context: Context) {}
 
-  async handle(): Promise<Network> {
+  async handle() {
     const { activeNetwork } = await this.context.stateManager.get();
     return activeNetwork;
   }

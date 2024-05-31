@@ -5,20 +5,18 @@ import { useTranslate } from '../../../locale';
 import { BaseAccountModalProps } from '../BaseAccountModal/BaseAccountModal.types';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import useAccountExplorerLink from './hooks/useAccountExplorerLink';
+import useGetAddress from '../../hooks/useGetAddress';
 
-interface AccountDetailsModalProps extends BaseAccountModalProps {
-  address: string;
-}
-
-function AccountDetailsModal({ address, ...rest }: AccountDetailsModalProps) {
+function AccountDetailsModal({ address, ...rest }: BaseAccountModalProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
   const url = useAccountExplorerLink(address);
+  const getAddress = useGetAddress();
 
   return (
     <BaseAccountModal
       title={translate('accountDetails')}
-      address={address}
+      address={getAddress()}
       footer={
         <Row gap={spacing[4]}>
           <ExternalLink to={url} css={{ width: '100%' }}>

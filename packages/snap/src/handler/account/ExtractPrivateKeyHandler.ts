@@ -5,12 +5,10 @@ import { ExtractPrivateKeyDialog } from '../../dialog/account/ExtractPrivateKeyD
 import { ExtractPrivateKeyRequestDialog } from '../../dialog/account/ExtractPrivateKeyRequestDialog';
 import type { IHandler } from '../IHandler';
 
-export const ExtractPrivateKey = 'xrpl_extractPrivateKey';
-export type ExtractPrivateKeyMethod = typeof ExtractPrivateKey;
-export type ExtractPrivateKeyParams = void;
+export const ExtractPrivateKeyMethod = 'xrpl_extractPrivateKey';
 
 export class ExtractPrivateKeyHandler
-  implements IHandler<ExtractPrivateKeyParams>
+  implements IHandler<typeof ExtractPrivateKeyMethod>
 {
   constructor(protected readonly context: Context) {}
 
