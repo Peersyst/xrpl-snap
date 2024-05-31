@@ -27,6 +27,8 @@ const lightPalette: ThemePalette = {
   disabled: grey[150],
   appBackground: grey[300],
   backdrop: alpha(grey[600], 0.12),
+  inverted: grey[600],
+  invertedContrast: grey[100],
 };
 
 export default lightPalette;
