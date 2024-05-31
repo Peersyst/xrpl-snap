@@ -10,16 +10,30 @@ function ConnectSnapModal({ ...rest }: ModalProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
   const { mutate } = useInstallSnap();
+
   return (
-    <Modal {...rest} title={translate('connectSnapTitle')} subtitle={translate('connectSnapSubtitle')} >
+    <Modal
+      {...rest}
+      title={translate('connectSnapTitle')}
+      subtitle={translate('connectSnapSubtitle')}
+    >
       <Col gap={spacing[6]}>
-        <AlertCallout type="info" content={
-          <Col gap={spacing[2]}>
-            <Typography variant="body1">{translate('snapQuestion')}</Typography>
-            <Typography variant="body1" light>{translate('snapAnswer')}</Typography>
-          </Col>
-        } />
-        <Button fullWidth variant="primary" onClick={mutate}>{translate('connectWithMetamask')}</Button>
+        <AlertCallout
+          type="info"
+          content={
+            <Col gap={spacing[2]}>
+              <Typography variant="body1">
+                {translate('snapQuestion')}
+              </Typography>
+              <Typography variant="body1" light>
+                {translate('snapAnswer')}
+              </Typography>
+            </Col>
+          }
+        />
+        <Button fullWidth variant="primary" onClick={() => mutate()}>
+          {translate('connectWithMetamask')}
+        </Button>
       </Col>
     </Modal>
   );

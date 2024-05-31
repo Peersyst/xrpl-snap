@@ -23,5 +23,6 @@
   "network": "Network",
   "xrpAccount": "XRP Account",
   "accountInfoCallout": "This account was generated with your MetaMask Secret Recovery Phrase.",
-  "okGotIt": "Okay, got it!"
+  "okGotIt": "Okay, got it!",
+  "loading": "Loading..."
 }

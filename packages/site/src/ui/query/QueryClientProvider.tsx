@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import {
   QueryClient,
   QueryClientProvider as BaseQueryClientProvider,
-} from 'react-query';
+} from '@tanstack/react-query';
 import UIErrorEvent from '../error/UIErrorEvent';
 import isDomainError from '../adapter/utils/isDomainError';
 import { IDomainError } from '../adapter/IDomainError';
@@ -23,7 +23,6 @@ const queryClient = new QueryClient({
       retry: false,
       refetchOnWindowFocus: false,
       staleTime: 600000,
-      onError: handleQueryClientError,
     },
     mutations: {
       onError: handleQueryClientError,

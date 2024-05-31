@@ -2,7 +2,7 @@ import { createStore } from 'zustand';
 
 export interface ISnapState {
   // If metamask or flask (if needed) is installed
-  isMetamaskInstall: boolean;
+  isMetamaskInstalled: boolean;
   // If snap is installed
   isSnapInstalled: boolean;
 }
