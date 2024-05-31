@@ -64,11 +64,12 @@ export const SelectStyles = css(({ theme }) => ({
       },
     },
     '&.Disabled': {
+      background: 'transparent !important',
       '.Select': {
         '.SelectDisplay': {
           '.DisplayContent': {
             '&.Placeholder': {
-              color: theme.palette.disabled,
+              color: theme.palette.text,
             },
           },
         },
