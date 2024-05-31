@@ -1,33 +1,27 @@
-import type {
-  QueryOptions,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from '@tanstack/react-query';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import type { InfiniteData } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import ControllerFactory from 'ui/adapter/ControllerFactory';
 import { Queries } from 'ui/query/queries';
-import type { Transaction } from 'xrpl';
 
+import type { TransactionsWithMarker } from '../../../domain/transaction/controller/TransactionController';
 import useWalletState from '../../adapter/state/useWalletState';
 
-export default function useGetTransactions(
-  options?: any,
-): UseInfiniteQueryResult<
-  { transactions: Transaction[]; marker: unknown },
-  unknown
-> {
+export default function useGetTransactions() {
   const { address } = useWalletState();
-  return useInfiniteQuery({
+  return useInfiniteQuery<
+    TransactionsWithMarker,
+    unknown,
+    InfiniteData<TransactionsWithMarker>
+  >({
     // TODO: Add network chain id in query key
     queryKey: [Queries.GET_TRANSACTIONS, address],
     initialPageParam: undefined,
-    getNextPageParam: (lastPage) => (lastPage as any).marker,
+    getNextPageParam: (res) => res.marker,
     enabled: Boolean(address),
     queryFn: async ({ pageParam }) =>
       ControllerFactory.transactionController.getAccountTransactions(
         address!,
         pageParam,
       ),
-    ...options,
   });
 }

@@ -34,8 +34,9 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
             loading={isLoading}
             fontWeight="600"
             balance={
-              tokens?.find((token) => token.currency === 'XRP')?.balance
-                ?.amount || '0'
+              tokens
+                ?.find((token) => token.currency === 'XRP')
+                ?.balance?.formatAmount() || '0'
             }
             currency="XRP"
             variant="h2"

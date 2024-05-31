@@ -1,15 +1,16 @@
 import clsx from 'clsx';
-import { TokenWithBalance } from 'common/models/token';
+import type { TokenWithBalance } from 'common/models/token';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/Token/TokenCard';
+
 import useGetTokens from '../../../wallet/query/useGetTokens';
 
-export interface TokenListProps {
+export type TokenListProps = {
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 const TokenCardSkeleton = () => (
   <TokenCard
@@ -34,7 +35,11 @@ function TokenList({ className, ...rest }: TokenListProps) {
     <InfiniteList<TokenWithBalance>
       className={clsx('TokenList', className)}
       renderItem={(token, i) => (
-        <TokenCard key={i} token={token} balance={token.balance.amount} />
+        <TokenCard
+          key={i}
+          token={token}
+          balance={token.balance.formatAmount()}
+        />
       )}
       isLoading={isLoading}
       Skeleton={TokenCardSkeleton}

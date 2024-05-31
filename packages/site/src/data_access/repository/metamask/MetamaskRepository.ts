@@ -10,7 +10,12 @@ import type {
   HandlerParams,
   HandlerReturns,
 } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type { AccountInfoResponse, AccountTxResponse, Transaction } from 'xrpl';
+import type {
+  AccountInfoResponse,
+  AccountTxResponse,
+  AccountTxTransaction,
+  Transaction,
+} from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
@@ -54,6 +59,11 @@ export class MetamaskRepository {
   }
 
   public async getWallet() {
+    // TODO: This is hardcoded for testing pruposes
+    return {
+      account: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
+      publicKey: '',
+    };
     return this.invokeSnap({
       method: 'xrpl_getAccount',
       params: undefined,
@@ -111,19 +121,12 @@ export class MetamaskRepository {
   public async getAccountTransactions(
     account: string,
     marker?: unknown,
-    limit = 100,
-  ): Promise<{ transactions: Transaction[]; marker: unknown }> {
-    const response = (await this.invokeSnap({
+    limit = 25,
+  ): Promise<AccountTxResponse> {
+    return (await this.invokeSnap({
       method: 'xrpl_request',
       params: { command: 'account_tx', account, marker, limit },
     })) as AccountTxResponse;
-
-    return {
-      transactions: response.result.transactions.map(
-        (accountTx) => accountTx.tx!,
-      ),
-      marker: response.result.marker,
-    };
   }
 
   private async invokeSnap<Method extends HandlerMethod>({

@@ -60,13 +60,13 @@ export function TransactionCard({
         </Col>
         <Col gap={spacing[1]} alignItems="end">
           <Balance
-            balance={amount.amount}
+            balance={amount.formatAmount()}
             currency={token.currency}
             variant="body1"
             loading={loading}
           />
           <Balance
-            balance={amount.amount}
+            balance={amount.formatAmount()}
             currency={token.currency}
             variant="body2"
             light
