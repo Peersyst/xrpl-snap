@@ -29,5 +29,9 @@
   "accountDetails": "Account details",
   "connectedToXrpSnap": "Connected to XRP Snap",
   "aboutThisSnap": "About this snap",
-  "disconnect": "Disconnect"
+  "disconnect": "Disconnect",
+  "installMetamaskExtension": "Install MetaMask Extension",
+  "installMetamaskExtensionDescription": "If you don’t have the MetaMask extension installed, you will be prompted to install it.",
+  "installMetamaskExtensionExplanation": "MetaMask is a crypto wallet and gateway to blockchain apps. It allows you to manage your keys, access decentralized applications, and connect to various blockchains.",
+  "installMetamask": "Install MetaMask"
 }

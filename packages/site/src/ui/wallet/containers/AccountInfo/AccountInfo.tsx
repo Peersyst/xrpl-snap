@@ -1,10 +1,10 @@
-import { Col, Row, Typography } from '@peersyst/react-components';
+import { Col, Row, Skeleton, Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import styled, { css, useTheme } from 'styled-components';
 import { useTranslate } from 'ui/locale';
 import AccountInfoPopover from './AccountInfoPopover';
-import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
+import useWalletState from 'ui/adapter/state/useWalletState';
 
 export interface AccountInfoProps {
   className?: string;
@@ -22,14 +22,18 @@ const AccountInfoRoot = styled(Col)(
 function AccountInfo({ className, ...rest }: AccountInfoProps) {
   const translate = useTranslate();
   const { spacing } = useTheme();
-  const address = useGetAddress();
+  const { address } = useWalletState();
 
   return (
     <AccountInfoRoot className={clsx('AccountInfo', className)} {...rest}>
       <Typography variant="h3">{translate('account')}</Typography>
       <Row gap={spacing[2]}>
         <AccountInfoPopover />
-        <AccountChip address={address} />
+        <Skeleton loading={!address} css={{ borderRadius: '1rem' }}>
+          <AccountChip
+            address={address ?? 'rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'}
+          />
+        </Skeleton>
       </Row>
     </AccountInfoRoot>
   );

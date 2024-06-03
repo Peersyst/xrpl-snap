@@ -1,14 +1,16 @@
-import { Col, Row, useTheme } from '@peersyst/react-components';
+import { Col, Row, useConfig, useTheme } from '@peersyst/react-components';
 
 import {
   balance_card_left_border,
   balance_card_right_border,
 } from '../../../assets/images';
 import Balance from '../../../common/components/display/Balance/Balance';
-import useGetTokens from '../../query/useGetTokens';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
 import ReceiveModalButton from './ReceiveModalButton';
 import SendModalButton from './SendModalButton';
+import useGetBalance from 'ui/wallet/query/useGetBalance';
+import useGetXrpFiatPriceFromAmount from 'ui/wallet/hooks/useGetXrpFiatPriceFromAmount';
+import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type BalanceCardProps = {
   className?: string;
@@ -17,8 +19,16 @@ export type BalanceCardProps = {
 
 function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
+  const { getXrpFiatPriceFromAmount, isLoading: isPriceLoading } =
+    useGetXrpFiatPriceFromAmount();
+  const fiatCurrency = useConfig('fiatCurrency');
+  const { address } = useWalletState();
+  const { data: balance, isLoading } = useGetBalance();
 
-  const { data: tokens, isLoading } = useGetTokens();
+  const loading = isLoading || isPriceLoading || !address;
+
+  const formattedBalance = balance?.formatAmount() ?? '0';
+  const fiatBalance = getXrpFiatPriceFromAmount(Number(formattedBalance));
 
   return (
     <BalanceCardRoot {...rest}>
@@ -31,22 +41,21 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
       >
         <Col gap={spacing[2]} alignItems="center">
           <Balance
-            loading={isLoading}
+            loading={loading}
             fontWeight="600"
-            balance={
-              tokens
-                ?.find((token) => token.currency === 'XRP')
-                ?.balance?.formatAmount() || '0'
-            }
-            currency="XRP"
+            balance={formattedBalance}
+            currency={balance?.currency ?? 'XRP'}
             variant="h2"
           />
           <Balance
-            loading={isLoading}
-            balance={'3298.09'}
-            currency="USD"
+            loading={loading}
+            balance={fiatBalance}
+            currency={fiatCurrency}
             fontWeight="500"
             variant="body1"
+            options={{
+              maximumFractionDigits: 2,
+            }}
             light
           />
         </Col>

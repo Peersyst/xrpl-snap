@@ -8,8 +8,11 @@ function SnapModals() {
 
   return (
     <Fragment>
-      <InstallMetamaskModal open={!isMetamaskInstalled} />
-      <ConnectSnapModal open={isMetamaskInstalled && !isSnapInstalled} />
+      <InstallMetamaskModal closable={false} open={!isMetamaskInstalled} />
+      <ConnectSnapModal
+        closable={false}
+        open={isMetamaskInstalled && !isSnapInstalled}
+      />
     </Fragment>
   );
 }

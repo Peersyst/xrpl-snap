@@ -1,4 +1,4 @@
-import { Fragment, type FunctionComponent, type ReactNode, useEffect } from 'react';
+import { Fragment, type FunctionComponent, type ReactNode } from 'react';
 import CardPage from 'ui/common/pages/CardPage/CardPage';
 import { useLoad } from './ui/common/hooks/useLoad';
 import LoadingPage from 'ui/common/pages/LoadingPage/LoadingPage';

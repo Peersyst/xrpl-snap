@@ -9,9 +9,10 @@ import type { Payment, Amount as XrplAmount } from 'xrpl';
 import { rippleTimeToUnixTime } from 'xrpl';
 import type { ResponseOnlyTxInfo } from 'xrpl/src/models/common';
 import type { Token } from '../../../../common/models/token';
-import useGetAddress from '../../../wallet/hooks/useGetAddress';
 import useGetTransactions from '../../query/useGetTransactions';
 import { InfiniteScrollProps } from '@peersyst/react-components';
+import { useState } from 'react';
+import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type TransactionListProps = {
   className?: string;
@@ -22,17 +23,26 @@ export type TransactionListProps = {
 function TransactionList({ className, ...rest }: TransactionListProps) {
   const translate = useTranslate();
   const { spacing } = useTheme();
-  const address = useGetAddress();
-  const { data, fetchNextPage, isFetching, isLoading } = useGetTransactions();
+  const { address } = useWalletState();
+  const [shouldFetchNextPage, setShouldFetchNextPage] = useState(false);
+  const { data, fetchNextPage, isFetching } = useGetTransactions();
+
+  function handleEndReached() {
+    if (!shouldFetchNextPage) {
+      setShouldFetchNextPage(true); //Workaround to fix infinite scroll calling end reached on first render
+    } else {
+      fetchNextPage();
+    }
+  }
 
   return (
     <InfiniteList
       className={clsx('TransactionList', className)}
       renderItem={(tx, i) => {
-        const props = extractTransactionProps(tx, address);
+        const props = extractTransactionProps(tx, address || '');
         return <TransactionCard key={i} {...props} />;
       }}
-      isLoading={isFetching}
+      isLoading={isFetching || !address}
       Skeleton={TransactionCardSkeleton}
       numberOfSkeletons={5}
       data={data?.pages.flatMap((page) => page.transactions)}
@@ -42,7 +52,7 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
         />
       }
       gap={spacing[8]}
-      onEndReached={fetchNextPage}
+      onEndReached={handleEndReached}
       {...rest}
     />
   );

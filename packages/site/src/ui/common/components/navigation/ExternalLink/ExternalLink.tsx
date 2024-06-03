@@ -11,6 +11,7 @@ function ExternalLink({
       as={'a' as any}
       href={to}
       target="_blank"
+      rel="noopener noreferrer"
       {...typographyProps}
     >
       {children}

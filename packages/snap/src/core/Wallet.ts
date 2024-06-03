@@ -36,11 +36,13 @@ export class Wallet {
       hash: '', // TODO: hashSignedTx(serialized),
     };
   }
+
   // Todo: Implement
   public signMessage(message: string): string {
     throw new Error(`implement signMessage ${message}`);
   }
 
+  //@needs-audit
   public static async derive(index: number) {
     const xrplNode = await snap.request({
       method: 'snap_getBip44Entropy',

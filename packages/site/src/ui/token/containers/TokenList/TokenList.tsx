@@ -6,6 +6,7 @@ import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/Token/TokenCard';
 
 import useGetTokens from '../../../wallet/query/useGetTokens';
+import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type TokenListProps = {
   className?: string;
@@ -28,7 +29,7 @@ function TokenList({ className, ...rest }: TokenListProps) {
   const translate = useTranslate();
 
   function fetchNextPage() {}
-
+  const { address } = useWalletState();
   const { data, isLoading } = useGetTokens();
 
   return (
@@ -41,7 +42,7 @@ function TokenList({ className, ...rest }: TokenListProps) {
           balance={token.balance.formatAmount()}
         />
       )}
-      isLoading={isLoading}
+      isLoading={isLoading || !address}
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}

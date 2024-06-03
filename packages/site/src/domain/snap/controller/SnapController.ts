@@ -2,12 +2,11 @@ import { config } from '../../../common/config';
 import type { MetamaskRepository } from '../../../data_access/repository/metamask/MetamaskRepository';
 import type State from '../../common/State';
 import type { ISnapState } from '../state/snapState';
-import WalletController from '../../wallet/controller/WalletController';
+import { DomainEvents } from 'domain/events';
 
 export default class SnapController {
   constructor(
     public readonly snapState: State<ISnapState>,
-    private readonly walletController: WalletController,
     private readonly metamaskRepository: MetamaskRepository,
   ) {}
 
@@ -21,17 +20,16 @@ export default class SnapController {
 
   async recoverMetamaskState() {
     if (!this.metamaskRepository.provider) {
-      this.snapState.setState({
-        isMetamaskInstalled: false,
-        isSnapInstalled: false,
-      });
       return;
     }
     const installedSnaps = await this.metamaskRepository.getSnaps();
+    const isSnapInstalled = installedSnaps[config.snapOrigin] !== undefined;
     this.snapState.setState({
       isMetamaskInstalled: true,
-      isSnapInstalled: installedSnaps[config.snapOrigin] !== undefined,
+      isSnapInstalled,
     });
-    await this.walletController.loadWallet();
+    if (isSnapInstalled) {
+      DomainEvents.snap.emit('onSpanInitialized');
+    }
   }
 }

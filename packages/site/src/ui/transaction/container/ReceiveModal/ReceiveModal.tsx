@@ -10,7 +10,7 @@ function ReceiveModal({ ...rest }: Omit<BaseAccountModalProps, 'address'>) {
   return (
     <BaseAccountModal
       title={translate('receive')}
-      address={address}
+      address={address ?? 'rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'}
       {...rest}
     />
   );

@@ -54,11 +54,6 @@ export class MetamaskRepository {
   }
 
   public async getWallet() {
-    // TODO: This is hardcoded for testing pruposes
-    return {
-      account: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
-      publicKey: '',
-    };
     return this.invokeSnap({
       method: 'xrpl_getAccount',
       params: undefined,
