@@ -29,7 +29,7 @@
     ]
   },
   "dependencies": {
-    "@metamask/providers": "^16.0.0",
+    "@metamask/providers": "^17.0.0",
     "@peersyst/react-components": "^3.9.32",
     "@peersyst/react-hooks": "^2.2.15",
     "@peersyst/react-utils": "^2.5.0",
