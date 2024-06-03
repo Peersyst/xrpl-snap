@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import BalanceCard from 'ui/wallet/containers/BalanceCard/BalanceCard';
 import TransactionList from 'ui/transaction/container/TransactionList/TransactionList';
 import styled from 'styled-components';
+import { useRef } from 'react';
 
 export interface HomePageProps {
   className?: string;
@@ -14,17 +15,22 @@ export const HomePageRoot = styled(Col)(({ theme }) => ({
   height: '100%',
 }));
 
-export const HomePageTransactionList = styled(TransactionList)(({ theme }) => ({
+export const HomePageTransactionListWrapper = styled.div(({ theme }) => ({
   height: '29.75rem',
   overflowY: 'auto',
-  padding: theme.spacing[8],
+  padding: theme.spacing[4],
+  paddingBottom: 0,
 }));
 
 function HomePage({ className, ...rest }: HomePageProps) {
+  const refContainerRef = useRef<HTMLDivElement>(null);
+
   return (
     <Col className={clsx('HomePage', className)} flex={1} {...rest}>
       <BalanceCard />
-      <HomePageTransactionList />
+      <HomePageTransactionListWrapper ref={refContainerRef}>
+        <TransactionList container={refContainerRef} />
+      </HomePageTransactionListWrapper>
     </Col>
   );
 }

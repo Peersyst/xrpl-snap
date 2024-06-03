@@ -10,12 +10,7 @@ import type {
   HandlerParams,
   HandlerReturns,
 } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type {
-  AccountInfoResponse,
-  AccountTxResponse,
-  AccountTxTransaction,
-  Transaction,
-} from 'xrpl';
+import type { AccountInfoResponse, AccountTxResponse } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
