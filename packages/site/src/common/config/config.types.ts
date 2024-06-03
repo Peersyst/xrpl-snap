@@ -17,4 +17,6 @@ export type Config = {
     transactions: number;
     coinPrice: number;
   };
+  mockedAddress: string;
+  fiatDecimals: number;
 };

@@ -17,17 +17,20 @@ export function TokenCard({
 
   return (
     <TokenCardRoot className={clsx('Token', className)} gap={spacing[5]}>
-      <Skeleton
-        shape="circular"
-        loading={loading}
-        css={{ width: '2.5rem', height: '2.5rem' }}
-      >
-        {tokenIcon}
-      </Skeleton>
+      <Col>
+        <Skeleton
+          shape="circular"
+          loading={loading}
+          css={{ width: '2.5rem', height: '2.5rem' }}
+        >
+          {tokenIcon}
+        </Skeleton>
+      </Col>
+
       <Col gap={spacing[1]} justifyContent="center">
         <Skeleton loading={loading}>
-          <Typography variant={'body1'} fontWeight="500">
-            {token.currency}
+          <Typography variant={'body1'} fontWeight="500" numberOfLines={1}>
+            {token.currency.toUpperCase()}
           </Typography>
         </Skeleton>
         <Balance

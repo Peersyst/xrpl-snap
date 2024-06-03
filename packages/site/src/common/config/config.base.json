@@ -16,5 +16,7 @@
   "coinPrice": {
     "apiUrl": "https://api.coingecko.com/api/v3/coins/",
     "xrpId": "ripple"
-  }
+  },
+  "mockedAddress": "rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "fiatDecimals": 2
 }

@@ -16,6 +16,10 @@ export default class SnapController {
 
   async install() {
     await this.metamaskRepository.requestSnap(config.snapOrigin);
+    this.snapState.setState({
+      isSnapInstalled: true,
+      isMetamaskInstalled: true,
+    });
   }
 
   async recoverMetamaskState() {

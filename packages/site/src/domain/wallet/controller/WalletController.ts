@@ -39,8 +39,15 @@ export default class WalletController {
   }
 
   async getBalance(): Promise<Amount> {
-    const tokens = await this.getTokens();
-    const xrp = tokens.find((token) => token.currency === 'XRP');
+    const state = this.walletState.getState();
+    if (!state.address) {
+      throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
+    }
+    const xrp = await this.metamaskRepository.getXrpBalance(state.address);
     return xrp?.balance || new Amount('0', 6, 'XRP');
+  }
+
+  async exportPrivateKey(): Promise<string> {
+    return this.metamaskRepository.exportPrivateKey();
   }
 }

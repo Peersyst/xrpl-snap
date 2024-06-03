@@ -22,6 +22,7 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { getXrpFiatPriceFromAmount, isLoading: isPriceLoading } =
     useGetXrpFiatPriceFromAmount();
   const fiatCurrency = useConfig('fiatCurrency');
+  const fiatDecimals = useConfig('fiatDecimals');
   const { address } = useWalletState();
   const { data: balance, isLoading } = useGetBalance();
 
@@ -54,7 +55,7 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
             fontWeight="500"
             variant="body1"
             options={{
-              maximumFractionDigits: 2,
+              maximumFractionDigits: fiatDecimals,
             }}
             light
           />

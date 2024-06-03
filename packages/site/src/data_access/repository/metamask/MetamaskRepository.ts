@@ -10,13 +10,18 @@ import type {
   HandlerParams,
   HandlerReturns,
 } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type { AccountInfoResponse, AccountTxResponse } from 'xrpl';
+import type {
+  AccountInfoResponse,
+  AccountLinesResponse,
+  AccountTxResponse,
+} from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
 import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import { MetamaskErrorCodes } from './MetamaskErrorCodes';
+import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 
 export type Snap = {
   permissionName: string;
@@ -54,37 +59,74 @@ export class MetamaskRepository {
   }
 
   public async getWallet() {
+    // TODO: This is hardcoded for testing pruposes
+    return {
+      account: 'rHtjzcgCPm3qv3YgHJVrxxQejAzzYmx46r',
+      publicKey: '',
+    };
     return this.invokeSnap({
       method: 'xrpl_getAccount',
       params: undefined,
     });
   }
 
-  public async getTokens(account: string): Promise<TokenWithBalance[]> {
+  public async getXrpBalance(account: string): Promise<TokenWithBalance> {
+    let xrpBalance = '0';
     try {
       const accountInfoResponse = (await this.invokeSnap({
         method: 'xrpl_request',
         params: { command: 'account_info', account },
       })) as AccountInfoResponse;
-      const xrpBalance = accountInfoResponse.result.account_data.Balance;
-      return [
-        {
-          ...XRP_TOKEN,
-          balance: new Amount(
-            xrpBalance,
-            XRP_TOKEN.decimals,
-            XRP_TOKEN.currency,
-          ),
+      xrpBalance = accountInfoResponse.result.account_data.Balance;
+    } catch (_) {}
+    return {
+      ...XRP_TOKEN,
+      balance: new Amount(xrpBalance, XRP_TOKEN.decimals, XRP_TOKEN.currency),
+    };
+  }
+
+  /**
+   * Gets all tokens of an account
+   * @param account Address of the account
+   */
+  async getIOUTokens(account: string): Promise<TokenWithBalance[]> {
+    let res = (await this.invokeSnap({
+      method: 'xrpl_request',
+      params: { command: 'account_lines', account },
+    })) as AccountLinesResponse;
+
+    const lines = res.result.lines;
+
+    while (res.result.marker && res.result.lines.length > 0) {
+      (await this.invokeSnap({
+        method: 'xrpl_request',
+        params: {
+          command: 'account_lines',
+          account,
+          marker: res.result.marker,
         },
-      ];
-    } catch (_) {
-      return [
-        {
-          ...XRP_TOKEN,
-          balance: new Amount('0', XRP_TOKEN.decimals, XRP_TOKEN.currency),
-        },
-      ];
+      })) as AccountLinesResponse;
+      lines.push(...res.result.lines);
     }
+
+    return lines.map((line) => {
+      const token = {
+        currency: parseCurrencyCode(line.currency),
+        issuer: line.account,
+        decimals: 15,
+      };
+      return {
+        ...token,
+        balance: Amount.fromDecToken(line.balance, token),
+      };
+    });
+  }
+
+  async getTokens(account: string): Promise<TokenWithBalance[]> {
+    return await Promise.all([
+      this.getXrpBalance(account),
+      ...(await this.getIOUTokens(account)),
+    ]);
   }
 
   public async getStoredNetworks(): Promise<Network[]> {
@@ -117,6 +159,21 @@ export class MetamaskRepository {
       method: 'xrpl_request',
       params: { command: 'account_tx', account, marker, limit },
     })) as AccountTxResponse;
+  }
+
+  public async exportPrivateKey(): Promise<string> {
+    const privateKey = (await this.invokeSnap({
+      method: 'xrpl_extractPrivateKey',
+      params: undefined,
+    })) as string;
+    return privateKey;
+  }
+
+  public async disconnect() {
+    return await this.invokeSnap({
+      method: 'xrpl_disconnect',
+      params: undefined,
+    });
   }
 
   private async invokeSnap<Method extends HandlerMethod>({

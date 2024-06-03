@@ -8,6 +8,7 @@ import { useTranslate } from 'ui/locale';
 import AccountInfoModal from '../AccountInfoModal/AccountInfoModal';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import useGetExplorerAddressLink from 'ui/wallet/hooks/useGetExplorerAddressLink';
+import AccountDetailsModal from '../AccountDetailsModal/AccountDetailsModal';
 
 export interface AccountInfoPopoverProps {
   className?: string;
@@ -48,7 +49,7 @@ function AccountInfoPopover({ className, ...rest }: AccountInfoPopoverProps) {
           <ChipIconButton Icon={InfoIcon} />
         </Popover.Content>
       </Popover>
-      <AccountInfoModal
+      <AccountDetailsModal
         renderAtRoot
         open={openAccountDetails}
         onClose={() => setOpenAccountDetails(false)}

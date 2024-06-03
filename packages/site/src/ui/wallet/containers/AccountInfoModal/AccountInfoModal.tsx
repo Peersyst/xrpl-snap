@@ -33,7 +33,7 @@ function AccountInfoModal({
           title={translate('network')}
           content={activeNetwork?.name!}
         />
-        <InfoDisplay title={translate('xrpAccount')} content={address} />
+        <InfoDisplay title={translate('xrpAccount')} content={address || ''} />
         <AlertCallout type="info" content={translate('accountInfoCallout')} />
         <Button fullWidth variant="primary" onClick={() => setOpen(false)}>
           {translate('okGotIt')}

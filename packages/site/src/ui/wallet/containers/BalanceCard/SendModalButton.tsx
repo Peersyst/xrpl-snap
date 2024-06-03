@@ -1,16 +1,21 @@
 import { Fragment, useState } from 'react';
 import ReceiveModal from 'ui/transaction/container/ReceiveModal/ReceiveModal';
-
 import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
-import controllerFactory from '../../../adapter/ControllerFactory';
+import useWalletState from 'ui/adapter/state/useWalletState';
 
 export default function ReceiveModalButton() {
   const translate = useTranslate();
   const [modalOpen, setModalOpen] = useState(false);
+  const { address } = useWalletState();
+
   return (
     <Fragment>
-      <Button variant="secondary" onClick={() => controllerFactory.networkController.changeNetwork({ chainId: 1 })}>
+      <Button
+        disabled={!address}
+        variant="secondary"
+        onClick={() => setModalOpen(true)}
+      >
         {translate('send')}
       </Button>
       <ReceiveModal open={modalOpen} onClose={() => setModalOpen(false)} />

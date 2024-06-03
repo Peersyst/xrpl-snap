@@ -3,14 +3,18 @@ import type { BaseAccountModalProps } from 'ui/wallet/containers/BaseAccountModa
 
 import { useTranslate } from '../../../locale';
 import useGetAddress from '../../../wallet/hooks/useGetAddress';
+import { useConfig } from '@peersyst/react-components';
 
 function ReceiveModal({ ...rest }: Omit<BaseAccountModalProps, 'address'>) {
   const translate = useTranslate();
-  const address = useGetAddress();
+  const walletAddress = useGetAddress();
+  const mockedAddress = useConfig('mockedAddress');
+  const address = walletAddress ?? mockedAddress;
+
   return (
     <BaseAccountModal
       title={translate('receive')}
-      address={address ?? 'rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'}
+      address={address}
       {...rest}
     />
   );
