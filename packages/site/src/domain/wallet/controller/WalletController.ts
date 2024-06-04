@@ -6,6 +6,7 @@ import DomainError from '../../error/DomainError';
 import type { IWalletState } from '../state/walletState';
 import { WalletErrorCodes } from '../WalletErrorCodes';
 import { DomainEvents } from 'domain/events';
+import { withMetamaskRepositoryError } from 'domain/snap/errors/withMetamaskError';
 
 export default class WalletController {
   constructor(
@@ -43,11 +44,14 @@ export default class WalletController {
     if (!state.address) {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
     }
+
     const xrp = await this.metamaskRepository.getXrpBalance(state.address);
     return xrp?.balance || new Amount('0', 6, 'XRP');
   }
 
   async exportPrivateKey(): Promise<void> {
-    await this.metamaskRepository.exportPrivateKey();
+    await withMetamaskRepositoryError(async () => {
+      await this.metamaskRepository.exportPrivateKey();
+    });
   }
 }

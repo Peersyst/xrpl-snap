@@ -161,9 +161,11 @@ export class MetamaskRepository {
   }
 
   public async changeNetwork(chainId: number): Promise<Network> {
-    return this.invokeSnap({
-      method: 'xrpl_changeNetwork',
-      params: { chainId },
+    return await withMetamaskError(async () => {
+      return await this.invokeSnap({
+        method: 'xrpl_changeNetwork',
+        params: { chainId },
+      });
     });
   }
 

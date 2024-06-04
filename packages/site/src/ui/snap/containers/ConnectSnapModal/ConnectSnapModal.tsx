@@ -6,10 +6,13 @@ import Button from 'ui/common//components/input/Button/Button';
 import { useTranslate } from 'ui/locale';
 import useInstallSnap from '../../queries/useInstallSnap';
 
-function ConnectSnapModal({ ...rest }: ModalProps) {
+function ConnectSnapModal({
+  onSnapInstalled,
+  ...rest
+}: ModalProps & { onSnapInstalled: () => void }) {
   const { spacing } = useTheme();
   const translate = useTranslate();
-  const { mutate } = useInstallSnap();
+  const { mutate } = useInstallSnap({ onSuccess: onSnapInstalled });
 
   return (
     <Modal
