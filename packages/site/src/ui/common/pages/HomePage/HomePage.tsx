@@ -19,7 +19,6 @@ export const HomePageTransactionListWrapper = styled.div(({ theme }) => ({
   height: '29.75rem',
   overflowY: 'auto',
   padding: theme.spacing[4],
-  paddingBottom: 0,
 }));
 
 function HomePage({ className, ...rest }: HomePageProps) {

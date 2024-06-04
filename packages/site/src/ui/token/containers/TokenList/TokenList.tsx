@@ -28,7 +28,6 @@ const TokenCardSkeleton = () => (
 function TokenList({ className, ...rest }: TokenListProps) {
   const translate = useTranslate();
 
-  function fetchNextPage() {}
   const { address } = useWalletState();
   const { data, isLoading } = useGetTokens();
 
@@ -46,13 +45,14 @@ function TokenList({ className, ...rest }: TokenListProps) {
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}
+      end={false}
       nothingToShow={
         <NothingToShow
           css={{ paddingTop: '2rem' }}
           message={translate('nothingToShow', { context: 'token' })}
         />
       }
-      onEndReached={fetchNextPage}
+      onEndReached={() => ''}
       {...rest}
     />
   );

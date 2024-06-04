@@ -12,8 +12,24 @@ import AlertCallout from 'ui/common//components/feedback/AlertCallout/AlertCallo
 import Button from 'ui/common//components/input/Button/Button';
 import { useTranslate } from 'ui/locale';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
-import SnapLogo from 'ui/common/components/display/SnapLogo/SnapLogo';
 import { metamask } from 'ui/assets/images';
+import { css } from 'styled-components';
+
+const bounceAnimation = css`
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  &:hover img {
+    animation: bounce 0.5s ease-in-out 2;
+  }
+`;
 
 function InstallMetamaskModal({ ...rest }: ModalProps) {
   const { spacing } = useTheme();
@@ -30,25 +46,28 @@ function InstallMetamaskModal({ ...rest }: ModalProps) {
         <AlertCallout
           type="info"
           content={
-            <Col gap={spacing[2]}>
-              <Typography variant="body1">
-                {translate('installMetamaskExtensionExplanation')}
-              </Typography>
-            </Col>
+            <Typography variant="body1">
+              {translate('installMetamaskExtensionExplanation')}
+            </Typography>
           }
         />
-        <ExternalLink to={metamaskInstallationLink}>
-          <Button fullWidth>
-            <Row gap="0.5rem" alignItems="center">
-              <Image
-                css={{ width: '1.5rem' }}
-                src={metamask}
-                alt="MetaMask Logo"
-              />
-              {translate('installMetamask')}
-            </Row>
+        <Row gap="1rem">
+          <Button variant="secondary" onClick={() => window.location.reload()}>
+            {translate('reload')}
           </Button>
-        </ExternalLink>
+          <ExternalLink to={metamaskInstallationLink} css={{ flex: 1 }}>
+            <Button fullWidth css={bounceAnimation}>
+              <Row gap="0.5rem" alignItems="center">
+                <Image
+                  css={{ width: '1.5rem' }}
+                  src={metamask}
+                  alt="MetaMask Logo"
+                />
+                {translate('installMetamask')}
+              </Row>
+            </Button>
+          </ExternalLink>
+        </Row>
       </Col>
     </Modal>
   );

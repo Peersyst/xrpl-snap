@@ -1,6 +1,6 @@
+import { createErrorHandlerDecorator } from 'common/decorators/createErrorHandlerDecorator';
 import DomainError from '../DomainError';
 import DomainErrorCodes, { DomainErrorCode } from '../DomainErrorCodes';
-import createErrorHandlerDecorator from '../../../common/decorators/createErrorHandlerDecorator';
 
 function handleDefaultError(
   error: any,

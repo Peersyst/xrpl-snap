@@ -22,6 +22,9 @@ import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import { MetamaskErrorCodes } from './MetamaskErrorCodes';
 import { parseCurrencyCode } from 'common/utils/token/currencyCode';
+import { SendParams } from 'common/models/transaction/send.types';
+import RepositoryErrorCodes from '../error/RepositoryErrorCodes';
+import { withMetamaskError } from './utils/MetamaskError';
 
 export type Snap = {
   permissionName: string;
@@ -59,11 +62,6 @@ export class MetamaskRepository {
   }
 
   public async getWallet() {
-    // TODO: This is hardcoded for testing pruposes
-    return {
-      account: 'rHtjzcgCPm3qv3YgHJVrxxQejAzzYmx46r',
-      publicKey: '',
-    };
     return this.invokeSnap({
       method: 'xrpl_getAccount',
       params: undefined,
@@ -122,6 +120,25 @@ export class MetamaskRepository {
     });
   }
 
+  async send({ amount, destination }: SendParams): Promise<string> {
+    const { account } = await this.getWallet();
+    const submittedTx = await this.invokeSnap({
+      method: 'xrpl_signAndSubmit',
+      params: {
+        TransactionType: 'Payment',
+        Account: account,
+        Destination: destination,
+        Amount: amount,
+      },
+    });
+
+    if (submittedTx.result.engine_result === 'tesSUCCESS') {
+      return submittedTx.result.tx_json.hash!;
+    } else if (submittedTx.result.engine_result)
+      throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
+    else throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
+  }
+
   async getTokens(account: string): Promise<TokenWithBalance[]> {
     return await Promise.all([
       this.getXrpBalance(account),
@@ -161,19 +178,20 @@ export class MetamaskRepository {
     })) as AccountTxResponse;
   }
 
-  public async exportPrivateKey(): Promise<string> {
-    const privateKey = (await this.invokeSnap({
-      method: 'xrpl_extractPrivateKey',
-      params: undefined,
-    })) as string;
-    return privateKey;
+  public async getTransaction(hash: string) {
+    return this.invokeSnap({
+      method: 'xrpl_request',
+      params: { command: 'tx', transaction: hash },
+    });
   }
 
-  public async disconnect() {
-    return await this.invokeSnap({
-      method: 'xrpl_disconnect',
-      params: undefined,
-    });
+  async exportPrivateKey(): Promise<void> {
+    await withMetamaskError(() =>
+      this.invokeSnap({
+        method: 'xrpl_extractPrivateKey',
+        params: undefined,
+      }),
+    );
   }
 
   private async invokeSnap<Method extends HandlerMethod>({

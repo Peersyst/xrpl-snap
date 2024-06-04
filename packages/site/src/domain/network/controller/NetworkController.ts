@@ -14,6 +14,8 @@ export default class NetworkController {
   }
 
   async changeNetwork(network: Network): Promise<void> {
-    await this.metamaskRepository.changeNetwork(network.chainId);
+    try {
+      await this.metamaskRepository.changeNetwork(network.chainId);
+    } catch (e) {}
   }
 }

@@ -47,7 +47,7 @@ export default class WalletController {
     return xrp?.balance || new Amount('0', 6, 'XRP');
   }
 
-  async exportPrivateKey(): Promise<string> {
-    return this.metamaskRepository.exportPrivateKey();
+  async exportPrivateKey(): Promise<void> {
+    await this.metamaskRepository.exportPrivateKey();
   }
 }

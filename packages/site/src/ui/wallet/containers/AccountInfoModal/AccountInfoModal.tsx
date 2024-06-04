@@ -6,8 +6,8 @@ import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
 import InfoDisplay from '../../../common/components/display/InfoDisplay/InfoDisplay';
 import { useControlled } from '@peersyst/react-hooks';
-import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
+import NetworkInfoDisplay from 'ui/network/containers/NetworkInfoDisplay/NetworkInfoDisplay';
 
 function AccountInfoModal({
   defaultOpen,
@@ -18,7 +18,6 @@ function AccountInfoModal({
   const { spacing } = useTheme();
   const translate = useTranslate();
   const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
-  const { data: activeNetwork } = useGetActiveNetwork();
   const address = useGetAddress();
 
   return (
@@ -29,10 +28,7 @@ function AccountInfoModal({
       title={translate('accountInfo')}
     >
       <Col gap={spacing[6]}>
-        <InfoDisplay
-          title={translate('network')}
-          content={activeNetwork?.name!}
-        />
+        <NetworkInfoDisplay />
         <InfoDisplay title={translate('xrpAccount')} content={address || ''} />
         <AlertCallout type="info" content={translate('accountInfoCallout')} />
         <Button fullWidth variant="primary" onClick={() => setOpen(false)}>

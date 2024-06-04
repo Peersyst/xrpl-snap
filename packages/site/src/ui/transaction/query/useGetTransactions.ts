@@ -1,20 +1,24 @@
-import type { InfiniteData } from '@tanstack/react-query';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, type InfiniteData } from '@tanstack/react-query';
 import ControllerFactory from 'ui/adapter/ControllerFactory';
 import { Queries } from 'ui/query/queries';
-
 import type { TransactionsWithMarker } from '../../../domain/transaction/controller/TransactionController';
 import useWalletState from '../../adapter/state/useWalletState';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 
 export default function useGetTransactions() {
   const { address } = useWalletState();
+  const { data: activeNetwork } = useGetActiveNetwork();
+
   return useInfiniteQuery<
     TransactionsWithMarker,
     unknown,
     InfiniteData<TransactionsWithMarker>
   >({
-    // TODO: Add network chain id in query key
-    queryKey: [Queries.GET_TRANSACTIONS, address],
+    queryKey: [
+      Queries.GET_TRANSACTIONS,
+      address,
+      String(activeNetwork?.chainId),
+    ],
     initialPageParam: undefined,
     getNextPageParam: (res) => res.marker,
     enabled: Boolean(address),

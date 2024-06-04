@@ -18,6 +18,7 @@ export const AlertStyles = css(({ theme }) => ({
       backgroundColor: alpha(theme.palette.status.warning, 0.08),
     },
     '&.Error': {
+      color: theme.palette.error,
       backgroundColor: alpha(theme.palette.status.error, 0.08),
     },
   },

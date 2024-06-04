@@ -14,23 +14,25 @@ export interface NetworkSelectProps {
 
 function NetworkSelect({ className, children, ...rest }: NetworkSelectProps) {
   const translate = useTranslate();
-  const { data: networks = [] } = useGetStoredNetworks();
+  const { data: networks = [], isFetching } = useGetStoredNetworks();
   const options = useGetNetworkSelectOptions();
   const { data: activeNetwork, isLoading } = useGetActiveNetwork();
   const { mutate } = useChangeNetwork();
+
+  const loading = isFetching || isLoading;
 
   return (
     <Select
       css={{ width: '8,75rem' }}
       onChange={(chainId) => {
         const network = networks.find((option) => option.chainId === chainId);
-        if (network) mutate(network);
+        if (network && network.chainId !== activeNetwork?.chainId)
+          mutate(network);
       }}
       value={activeNetwork?.chainId}
       disabled={options.length === 0}
       defaultValue={activeNetwork?.chainId}
-      key={activeNetwork?.chainId}
-      placeholder={translate(isLoading ? 'loading' : 'selectYourNetwork')}
+      placeholder={translate(loading ? 'loading' : 'selectYourNetwork')}
       options={options}
       className={clsx('NetworkSelect', className)}
       {...rest}

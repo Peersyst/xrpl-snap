@@ -1,10 +1,8 @@
-import { XrplFaucetSeedsRepositoryErrorCodes } from "../wallet/xrplFaucet/XrplFaucetSeedsRepositoryErrorCodes";
-import { CustomTokensRepositoryErrorCodes } from "../bridge/custom-tokens/CustomTokensRepositoryErrorCodes";
+import { MetamaskErrorCodes } from '../metamask/MetamaskErrorCodes';
 
 // Merge all module error codes here
 const RepositoryErrorCodes = {
-    ...XrplFaucetSeedsRepositoryErrorCodes,
-    ...CustomTokensRepositoryErrorCodes,
+  ...MetamaskErrorCodes,
 };
 
 export type RepositoryErrorCode = keyof typeof RepositoryErrorCodes;

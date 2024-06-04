@@ -23,7 +23,7 @@ export function TokenCard({
           loading={loading}
           css={{ width: '2.5rem', height: '2.5rem' }}
         >
-          {tokenIcon}
+          {!loading && tokenIcon}
         </Skeleton>
       </Col>
 

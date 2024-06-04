@@ -5,6 +5,7 @@ import type { QueryOptions, QueryResult } from 'ui/query/react-query-overrides';
 import type { TokenWithBalance } from '../../../common/models/token';
 import useWalletState from '../../adapter/state/useWalletState';
 import useSnapState from 'ui/adapter/state/useSnapState';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 
 export default function useGetTokens({
   enabled = true,
@@ -13,14 +14,15 @@ export default function useGetTokens({
   TokenWithBalance[],
   unknown,
   TokenWithBalance[],
-  Queries[]
+  (Queries | boolean | number | undefined | string)[]
 > = {}): QueryResult<TokenWithBalance[]> {
   const { address } = useWalletState();
   const { isSnapInstalled } = useSnapState();
+  const { data: activeNetwork } = useGetActiveNetwork();
 
   return useQuery({
     enabled: enabled && isSnapInstalled && Boolean(address),
-    queryKey: [Queries.GET_TOKENS],
+    queryKey: [Queries.GET_TOKENS, address, activeNetwork?.chainId],
     queryFn: async () => ControllerFactory.walletController.getTokens(),
     ...options,
   });

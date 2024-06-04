@@ -11,7 +11,6 @@ import type { ResponseOnlyTxInfo } from 'xrpl/src/models/common';
 import type { Token } from '../../../../common/models/token';
 import useGetTransactions from '../../query/useGetTransactions';
 import { InfiniteScrollProps } from '@peersyst/react-components';
-import { useState } from 'react';
 import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type TransactionListProps = {
@@ -24,13 +23,18 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
   const translate = useTranslate();
   const { spacing } = useTheme();
   const { address } = useWalletState();
-  const [shouldFetchNextPage, setShouldFetchNextPage] = useState(false);
-  const { data, fetchNextPage, isFetching } = useGetTransactions();
+
+  const {
+    data,
+    fetchNextPage,
+    isLoading,
+    isRefetching,
+    isFetching,
+    hasNextPage,
+  } = useGetTransactions();
 
   function handleEndReached() {
-    if (!shouldFetchNextPage) {
-      setShouldFetchNextPage(true); //Workaround to fix infinite scroll calling end reached on first render
-    } else {
+    if (hasNextPage) {
       fetchNextPage();
     }
   }
@@ -42,12 +46,14 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
         const props = extractTransactionProps(tx, address || '');
         return <TransactionCard key={i} {...props} />;
       }}
-      isLoading={isFetching || !address}
+      end={!hasNextPage}
+      isLoading={(!address || isFetching) && !isRefetching}
       Skeleton={TransactionCardSkeleton}
-      numberOfSkeletons={5}
+      numberOfSkeletons={isLoading || !isFetching ? 5 : 3}
       data={data?.pages.flatMap((page) => page.transactions)}
       nothingToShow={
         <NothingToShow
+          css={{ marginTop: spacing[4] }}
           message={translate('nothingToShow', { context: 'tx' })}
         />
       }

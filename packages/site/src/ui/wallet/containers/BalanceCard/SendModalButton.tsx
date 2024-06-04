@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react';
-import ReceiveModal from 'ui/transaction/container/ReceiveModal/ReceiveModal';
 import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
 import useWalletState from 'ui/adapter/state/useWalletState';
+import SendModal from 'ui/transaction/container/SendModal/SendModal';
 
 export default function ReceiveModalButton() {
   const translate = useTranslate();
@@ -18,7 +18,7 @@ export default function ReceiveModalButton() {
       >
         {translate('send')}
       </Button>
-      <ReceiveModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      {modalOpen && <SendModal onClose={() => setModalOpen(false)} />}
     </Fragment>
   );
 }

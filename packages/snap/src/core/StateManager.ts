@@ -20,7 +20,7 @@ const DEFAULT_NETWORKS = [
   {
     chainId: 2,
     name: 'XRPL Testnet',
-    nodeUrl: 'https://s.altnet.rippletest.net:51234',
+    nodeUrl: 'https://testnet.xrpl-labs.com',
     explorerUrl: 'https://livenet.xrpl.org',
   },
 ];

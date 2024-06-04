@@ -5,9 +5,13 @@ export type MethodFactory<D extends (...args: any[]) => any> = (
   descriptor: PropertyDescriptor,
 ) => D;
 
-export default function createMethodDecorator<
-  D extends (...args: any[]) => any,
->(factory: MethodFactory<D>) {
+/**
+ * Creates a method decorator
+ * @param factory Factory that creates the decorator
+ */
+export function createMethodDecorator<D extends (...args: any[]) => any>(
+  factory: MethodFactory<D>,
+) {
   return function (...decoratorArgs: Parameters<D>) {
     return function (
       target: any,

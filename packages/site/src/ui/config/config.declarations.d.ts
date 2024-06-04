@@ -23,4 +23,8 @@ declare module '@peersyst/react-components' {
     account: string;
     transaction: string;
   }
+
+  export interface ExtraValidators {
+    xrplAddress: Validator<boolean>;
+  }
 }

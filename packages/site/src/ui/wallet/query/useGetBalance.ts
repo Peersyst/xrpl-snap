@@ -16,7 +16,7 @@ export default function useGetBalance({
   Amount,
   unknown,
   Amount,
-  (Queries | number | undefined)[]
+  (Queries | number | undefined | string | undefined)[]
 > = {}): QueryResult<Amount> {
   const { address } = useWalletState();
   const { data: network } = useGetActiveNetwork();
@@ -26,7 +26,7 @@ export default function useGetBalance({
   return useQuery({
     refetchInterval: refetchInterval ?? configRefetchIntervals.balance,
     enabled: enabled && Boolean(address) && isSnapInstalled,
-    queryKey: [Queries.GET_BALANCE, network?.chainId],
+    queryKey: [Queries.GET_BALANCE, address, network?.chainId],
     queryFn: async () => ControllerFactory.walletController.getBalance(),
     ...options,
   });
