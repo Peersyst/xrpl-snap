@@ -7,6 +7,7 @@ import PopoverListItem from 'ui/common/components/display/Popover/PopoverListIte
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import { BurguerIcon, DoorIcon, InfoIcon, QrIcon } from 'ui/common/icons';
 import { useTranslate } from 'ui/locale';
+import useDisconnect from 'ui/snap/queries/useDisconnect';
 
 export interface BurguerDropdownProps {
   className?: string;
@@ -21,6 +22,7 @@ function BurguerDropdown({
 }: BurguerDropdownProps) {
   const { isSnapInstalled } = useSnapState();
   const translate = useTranslate();
+  const { mutate } = useDisconnect();
   return (
     <Popover
       position="bottom-start"
@@ -49,7 +51,11 @@ function BurguerDropdown({
             />
           </ExternalLink>
 
-          <PopoverListItem Icon={DoorIcon} text={translate('disconnect')} />
+          <PopoverListItem
+            onClick={mutate}
+            Icon={DoorIcon}
+            text={translate('disconnect')}
+          />
         </Col>
       </Popover.Popper>
       <Popover.Content>

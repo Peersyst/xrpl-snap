@@ -10,7 +10,6 @@ import styled, { css, useTheme } from 'styled-components';
 import { useTranslate } from 'ui/locale';
 import AccountInfoPopover from './AccountInfoPopover';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
-import useWalletState from 'ui/adapter/state/useWalletState';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 
 export interface AccountInfoProps {

@@ -14,6 +14,8 @@ import type {
   AccountInfoResponse,
   AccountLinesResponse,
   AccountTxResponse,
+  SubmitResponse,
+  Amount as XrplAmount,
 } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
@@ -120,23 +122,38 @@ export class MetamaskRepository {
     });
   }
 
-  async send({ amount, destination }: SendParams): Promise<string> {
-    const { account } = await this.getWallet();
-    const submittedTx = await this.invokeSnap({
-      method: 'xrpl_signAndSubmit',
-      params: {
-        TransactionType: 'Payment',
-        Account: account,
-        Destination: destination,
-        Amount: amount,
-      },
-    });
-
+  private getTransactionHashFromTxResponse(
+    submittedTx: SubmitResponse,
+  ): string {
     if (submittedTx.result.engine_result === 'tesSUCCESS') {
       return submittedTx.result.tx_json.hash!;
     } else if (submittedTx.result.engine_result)
       throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
     else throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
+  }
+
+  async send({
+    amount,
+    destination,
+  }: {
+    destination: string;
+    amount: XrplAmount;
+  }): Promise<string> {
+    return await withMetamaskError(async () => {
+      const { account } = await this.getWallet();
+
+      const submittedTx = await this.invokeSnap({
+        method: 'xrpl_signAndSubmit',
+        params: {
+          TransactionType: 'Payment',
+          Account: account,
+          Destination: destination,
+          Amount: amount,
+        },
+      });
+
+      return this.getTransactionHashFromTxResponse(submittedTx);
+    });
   }
 
   async getTokens(account: string): Promise<TokenWithBalance[]> {
@@ -196,7 +213,7 @@ export class MetamaskRepository {
     );
   }
 
-  private async invokeSnap<Method extends HandlerMethod>({
+  public async invokeSnap<Method extends HandlerMethod>({
     method,
     params,
   }: {

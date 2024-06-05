@@ -35,4 +35,12 @@ export default class SnapController {
       DomainEvents.snap.emit('onSpanInitialized');
     }
   }
+
+  disconnect() {
+    this.snapState.setState({
+      isMetamaskInstalled: true,
+      isSnapInstalled: false,
+    });
+    DomainEvents.snap.emit('onSnapDisconnected');
+  }
 }

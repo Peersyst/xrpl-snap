@@ -7,9 +7,10 @@ const TOKEN_LOGO_MAPPING: Record<string, typeof XRPLogoIcon> = {
   XRP: XRPLogoIcon,
 };
 
-const DefaultToken = () => (
+const DefaultToken = ({ className, ...props }: any) => (
   <Image
     alt="images"
+    className={className}
     css={{
       width: '2.5rem',
       height: '2.5rem',
@@ -17,10 +18,14 @@ const DefaultToken = () => (
       filter: 'invert(100%)',
     }}
     src={token_default_logo}
+    {...props}
   />
 );
 
-export const useGetTokenIcon = (token: Token) => {
-  const Logo = TOKEN_LOGO_MAPPING[token.currency] ?? DefaultToken;
-  return <Logo fontSize={'2.5rem'} />;
+export const getTokenIcon = () => {
+  function getTokenIcon(token: Token) {
+    const Logo = TOKEN_LOGO_MAPPING[token.currency] ?? DefaultToken;
+    return Logo;
+  }
+  return getTokenIcon;
 };

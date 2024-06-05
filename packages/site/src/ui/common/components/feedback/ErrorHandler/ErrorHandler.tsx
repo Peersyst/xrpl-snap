@@ -9,6 +9,7 @@ const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
   const { showToast } = useToast();
 
   const handleUiError = (event: UIErrorEvent) => {
+    console.log(event.error);
     showToast(
       translateError([
         event.error.message as LocaleErrorResource,

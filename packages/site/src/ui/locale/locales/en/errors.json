@@ -12,5 +12,10 @@
   "invalid_number_eq": "The number must be equal to {{n}}",
   "invalid_number_lt": "The number must be lower than {{n}}",
   "invalid_number_lte": "The number must be lower or equal than {{n}}",
-  "invalidAddress": "Invalid address"
+  "invalidAddress": "Invalid address",
+  "insufficientBalance": "Insufficient balance",
+  "userDeclined": "User declined",
+  "actionAlreadyPending": "Action already pending",
+  "cantSendZero": "You can't send 0",
+  "metamaskTerminatedDuringExecution": "Metamask was terminated during execution"
 }

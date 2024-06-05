@@ -1,7 +1,7 @@
 import { TokenCardProps } from './TokenCard.types';
 import { TokenCardRoot } from './TokenCard.styles';
 import { Col, Skeleton, Typography } from '@peersyst/react-components';
-import { useGetTokenIcon } from './hooks/useGetTokenIcon';
+import { getTokenIcon } from './utils/getTokenIcon';
 import { useTheme } from 'styled-components';
 import clsx from 'clsx';
 import Balance from 'ui/common/components/display/Balance/Balance';
@@ -12,7 +12,8 @@ export function TokenCard({
   balance,
   loading = false,
 }: TokenCardProps): JSX.Element {
-  const tokenIcon = useGetTokenIcon(token);
+  const getIcon = getTokenIcon();
+  const TokenIcon = getIcon(token);
   const { spacing } = useTheme();
 
   return (
@@ -23,7 +24,7 @@ export function TokenCard({
           loading={loading}
           css={{ width: '2.5rem', height: '2.5rem' }}
         >
-          {!loading && tokenIcon}
+          {!loading && <TokenIcon style={{ fontSize: '2.5rem' }} />}
         </Skeleton>
       </Col>
 

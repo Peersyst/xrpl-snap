@@ -4,6 +4,9 @@ import type { MetamaskRepository } from '../../../data_access/repository/metamas
 import { SendParams } from 'common/models/transaction/send.types';
 import { polling } from '@peersyst/react-utils';
 import { DomainEvents } from 'domain/events';
+import Amount from 'common/utils/Amount';
+import DomainError from 'domain/error/DomainError';
+import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
 
 export type TransactionsWithMarker = {
   transactions: (Payment & ResponseOnlyTxInfo)[];
@@ -53,19 +56,57 @@ export default class TransactionController {
       () => this.isTransactionValidated(hash),
       (res) => !res,
       {
-        maxIterations: 10,
+        maxIterations: 15,
         delay: 2000,
       },
     );
   }
 
-  async sendTransaction(params: SendParams): Promise<string> {
-    const hash = await this.metamaskRepository.send({
+  async sendXrpTransaction(params: SendParams): Promise<string> {
+    const availableAmount: Amount = params.token.balance;
+
+    if (!availableAmount.canPay(params.amount)) {
+      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+    }
+
+    return await this.metamaskRepository.send({
       ...params,
       amount: xrpToDrops(params.amount),
     });
-    DomainEvents.transaction.emit('onTransactionSigned');
+  }
 
+  async sendIOUTransaction({
+    amount,
+    destination,
+    token,
+  }: SendParams): Promise<string> {
+    const availableAmount: Amount = token.balance;
+
+    if (!availableAmount.canPay(amount)) {
+      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+    }
+
+    return await this.metamaskRepository.send({
+      destination,
+      amount: {
+        currency: token.currency,
+        value: amount,
+        issuer: token.issuer,
+      },
+    });
+  }
+
+  async sendTransaction(params: SendParams): Promise<string> {
+    const token = params.token;
+    let hash = '';
+
+    if (token.currency === 'XRP') {
+      hash = await this.sendXrpTransaction(params);
+    } else {
+      hash = await this.sendIOUTransaction(params);
+    }
+
+    DomainEvents.transaction.emit('onTransactionSigned');
     await this.awaitTransactionValidation(hash);
 
     return hash;

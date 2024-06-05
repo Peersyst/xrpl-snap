@@ -7,6 +7,7 @@ import useAccountExplorerLink from './hooks/useAccountExplorerLink';
 import { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 import useExportPrivateKey from 'ui/wallet/query/useExportPrivateKey';
+import ExplorerButton from 'ui/network/containers/ExplorerButton/ExplorerButton';
 
 function AccountDetailsModal({ ...rest }: ModalProps) {
   const { spacing } = useTheme();
@@ -14,7 +15,6 @@ function AccountDetailsModal({ ...rest }: ModalProps) {
   const walletAddress = useGetAddress();
   const mockedAddress = useConfig('mockedAddress');
   const address = walletAddress ?? mockedAddress;
-  const url = useAccountExplorerLink(address);
 
   const { mutate: exportPrivateKey } = useExportPrivateKey();
 
@@ -24,11 +24,12 @@ function AccountDetailsModal({ ...rest }: ModalProps) {
       address={address}
       footer={
         <Row gap={spacing[4]}>
-          <ExternalLink to={url} css={{ width: '100%' }}>
-            <Button variant="secondary" fullWidth>
-              {translate('viewOnExplorer')}
-            </Button>
-          </ExternalLink>
+          <ExplorerButton
+            variant="secondary"
+            css={{ width: '100%' }}
+            address={address}
+            type={'address'}
+          />
           <Button
             onClick={() => exportPrivateKey()}
             variant="secondary"

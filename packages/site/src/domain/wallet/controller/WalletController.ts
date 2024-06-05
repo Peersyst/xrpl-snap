@@ -20,6 +20,12 @@ export default class WalletController {
         console.error(error);
       });
     });
+
+    DomainEvents.snap.on('onSnapDisconnected', () => {
+      this.walletState.setState({
+        address: undefined,
+      });
+    });
   }
 
   async loadWallet() {

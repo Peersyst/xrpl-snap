@@ -14,14 +14,22 @@ declare module '@peersyst/react-components' {
   export interface BlockchainLinksTypesOverrides {
     address: false;
     tx: false;
-    account: true;
-    transaction: true;
+    token: false;
+    nft: false;
+    mainnetAddress: true;
+    mainnetTx: true;
+    testnetAddress: true;
+    testnetTx: true;
   }
   export interface BlockchainLinks {
     address: undefined;
     tx: undefined;
-    account: string;
-    transaction: string;
+    token: undefined;
+    nft: undefined;
+    mainnetAddress: string;
+    mainnetTx: string;
+    testnetAddress: string;
+    testnetTx: string;
   }
 
   export interface ExtraValidators {

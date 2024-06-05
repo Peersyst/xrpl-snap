@@ -73,7 +73,7 @@ const extractTransactionProps = (
   const account =
     direction === 'out' ? transaction.Destination : transaction.Account;
   const token = getTransactionToken(transaction.Amount);
-  const amount = getTransactionAmount(transaction.Amount);
+  const amount = getTransactionAmount(transaction.Amount, token);
   return { direction, timestamp, account, token, amount };
 };
 
@@ -88,11 +88,11 @@ const TransactionCardSkeleton = () => (
   />
 );
 
-function getTransactionAmount(amount: XrplAmount): Amount {
+function getTransactionAmount(amount: XrplAmount, token: Token): Amount {
   if (typeof amount === 'string') {
     return new Amount(amount, 6, 'XRP');
   } else {
-    return new Amount(amount.value, 15, amount.currency);
+    return Amount.fromDecToken(amount.value, token);
   }
 }
 

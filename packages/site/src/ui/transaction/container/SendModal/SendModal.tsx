@@ -19,7 +19,14 @@ function SendModal({
 }: Omit<BaseAccountModalProps, 'address'>) {
   const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
 
-  const { mutate, isPending, isSuccess, isError } = useSend();
+  const {
+    mutate,
+    isPending,
+    isSuccess,
+    isError,
+    error,
+    data: txHash = '',
+  } = useSend();
 
   function closeModal() {
     setOpen(false);
@@ -43,8 +50,8 @@ function SendModal({
       {!isPending && !isSuccess && !isError && (
         <SendModalForm onSubmit={handleSubmit} onCancel={closeModal} />
       )}
-      {isSuccess && <SendModalSuccess onClose={closeModal} />}
-      {isError && <SendModalError onClose={closeModal} />}
+      {isSuccess && <SendModalSuccess txHash={txHash} onClose={closeModal} />}
+      {isError && <SendModalError error={error} onClose={closeModal} />}
     </Modal>
   );
 }

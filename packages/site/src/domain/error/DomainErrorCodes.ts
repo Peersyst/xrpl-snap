@@ -1,3 +1,4 @@
+import { TransactionErrorCodes } from 'domain/transaction/error/TransactionErrorCodes';
 import { WalletErrorCodes } from '../wallet/WalletErrorCodes';
 
 export enum GenericErrorCodes {
@@ -5,7 +6,11 @@ export enum GenericErrorCodes {
 }
 
 // Merge all module error codes here
-const DomainErrorCodes = { ...GenericErrorCodes, ...WalletErrorCodes };
+const DomainErrorCodes = {
+  ...GenericErrorCodes,
+  ...WalletErrorCodes,
+  ...TransactionErrorCodes,
+};
 
 export type DomainErrorCode = keyof typeof DomainErrorCodes;
 

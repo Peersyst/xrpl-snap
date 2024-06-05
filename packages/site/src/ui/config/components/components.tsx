@@ -35,6 +35,14 @@ const components: CreateConfig['components'] = {
       errorElement: false,
     },
   },
+  BlockchainAddress: {
+    blockchainLinks: {
+      mainnetAddress: 'https://livenet.xrpl.org/accounts/',
+      testnetAddress: 'https://testnet.xrpl.org/accounts/',
+      testnetTx: 'https://testnet.xrpl.org/transactions/transactions/',
+      mainnetTx: 'https://livenet.xrpl.org/transactions/transactions/',
+    },
+  },
 };
 
 export default components;

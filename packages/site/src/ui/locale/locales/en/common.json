@@ -46,7 +46,11 @@
   "transferCompletedText": "Your transfer was successful. You can view it on the explorer. It might take a few seconds to appear in your transaction history.",
   "transferFailed": "Transfer failed",
   "transferFailedText": "Your transfer failed. Please wait some time and try again. Before trying again, make sure that your previous transaction was not successful.",
+  "transferFailedText_Metamask": "Error signing the transaction with Metamask. You can safely try again.",
   "reload": "Reload",
   "transactionSigned": "Transaction signed",
-  "broadCastingTransaction": "Broadcasting transaction..."
+  "broadCastingTransaction": "Broadcasting transaction...",
+  "selectToken": "Select token",
+  "selectTokenToSend": "Select token to send",
+  "goToYourMetamaskToSignTheTx": "Go to your MetaMask to sign the transaction"
 }
