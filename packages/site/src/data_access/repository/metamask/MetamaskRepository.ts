@@ -55,11 +55,13 @@ export class MetamaskRepository {
   }
 
   public async requestSnap(snapId: string) {
-    await this.request({
-      method: 'wallet_requestSnaps',
-      params: {
-        [snapId]: {},
-      },
+    await withMetamaskError(async () => {
+      await this.request({
+        method: 'wallet_requestSnaps',
+        params: {
+          [snapId]: {},
+        },
+      });
     });
   }
 

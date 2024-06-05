@@ -39,8 +39,8 @@ const components: CreateConfig['components'] = {
     blockchainLinks: {
       mainnetAddress: 'https://livenet.xrpl.org/accounts/',
       testnetAddress: 'https://testnet.xrpl.org/accounts/',
-      testnetTx: 'https://testnet.xrpl.org/transactions/transactions/',
-      mainnetTx: 'https://livenet.xrpl.org/transactions/transactions/',
+      testnetTx: 'https://testnet.xrpl.org/transactions/',
+      mainnetTx: 'https://livenet.xrpl.org/transactions/',
     },
   },
 };
