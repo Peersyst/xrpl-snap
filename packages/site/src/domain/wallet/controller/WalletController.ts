@@ -26,6 +26,10 @@ export default class WalletController {
         address: undefined,
       });
     });
+
+    DomainEvents.network.on('onNetworkChanged', () => {
+      this.loadWallet();
+    });
   }
 
   async loadWallet() {
