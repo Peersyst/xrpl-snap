@@ -69,12 +69,14 @@ function SnapPlayground({ className, children, ...rest }: SnapPlaygroundProps) {
       },
     } as const;
 
-    const result = await RepositoryFactory.metamaskRepository.invokeSnap({
-      method: 'xrpl_signAndSubmit',
-      params: trustSetSnapWallet,
-    });
+    try {
+      const result = await RepositoryFactory.metamaskRepository.invokeSnap({
+        method: 'xrpl_signAndSubmit',
+        params: trustSetSnapWallet,
+      });
 
-    window.alert('TrustSet transaction created: ' + JSON.stringify(result));
+      window.alert('TrustSet transaction created: ' + JSON.stringify(result));
+    } catch (e) {}
   }
 
   async function claimBCNTokens() {
@@ -97,14 +99,15 @@ function SnapPlayground({ className, children, ...rest }: SnapPlaygroundProps) {
     console.log('Connecting to Testnet...');
 
     await client.connect();
-    const pay_prepared2 = await client.autofill(send_token_tx2);
-    const pay_signed2 = hotWallet.sign(pay_prepared2);
-    const pay_result2 = await client.submitAndWait(pay_signed2.tx_blob);
-
+    try {
+      const pay_prepared2 = await client.autofill(send_token_tx2);
+      const pay_signed2 = hotWallet.sign(pay_prepared2);
+      const pay_result2 = await client.submitAndWait(pay_signed2.tx_blob);
+      window.alert('BCN tokens claimed: ' + JSON.stringify(pay_result2));
+    } catch (e) {}
     await client.disconnect();
 
     setLoading(false);
-    window.alert('BCN tokens claimed: ' + JSON.stringify(pay_result2));
   }
 
   return (
