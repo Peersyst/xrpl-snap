@@ -24,9 +24,9 @@ import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import { MetamaskErrorCodes } from './MetamaskErrorCodes';
 import { parseCurrencyCode } from 'common/utils/token/currencyCode';
-import { SendParams } from 'common/models/transaction/send.types';
 import RepositoryErrorCodes from '../error/RepositoryErrorCodes';
 import { withMetamaskError } from './utils/MetamaskError';
+import { AccountRoot, SignerList } from 'xrpl/src/models/ledger';
 
 export type Snap = {
   permissionName: string;
@@ -72,19 +72,21 @@ export class MetamaskRepository {
     });
   }
 
-  public async getXrpBalance(account: string): Promise<TokenWithBalance> {
-    let xrpBalance = '0';
-    try {
-      const accountInfoResponse = (await this.invokeSnap({
+  public async getAccountInfo(
+    account: string,
+  ): Promise<AccountRoot & { signer_lists?: SignerList[] }> {
+    const result = (
+      await this.invokeSnap({
         method: 'xrpl_request',
         params: { command: 'account_info', account },
-      })) as AccountInfoResponse;
-      xrpBalance = accountInfoResponse.result.account_data.Balance;
-    } catch (_) {}
-    return {
-      ...XRP_TOKEN,
-      balance: new Amount(xrpBalance, XRP_TOKEN.decimals, XRP_TOKEN.currency),
-    };
+      })
+    ).result;
+
+    if ('account_data' in result) {
+      return result.account_data;
+    } else {
+      throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
+    }
   }
 
   /**
@@ -156,13 +158,6 @@ export class MetamaskRepository {
 
       return this.getTransactionHashFromTxResponse(submittedTx);
     });
-  }
-
-  async getTokens(account: string): Promise<TokenWithBalance[]> {
-    return await Promise.all([
-      this.getXrpBalance(account),
-      ...(await this.getIOUTokens(account)),
-    ]);
   }
 
   public async getStoredNetworks(): Promise<Network[]> {

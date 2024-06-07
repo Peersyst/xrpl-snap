@@ -15,7 +15,7 @@ function NetworkInfoDisplay({ className, ...rest }: NetworkInfoDisplayProps) {
   return (
     <InfoDisplay
       title={translate('network')}
-      content={network?.name ?? 'Unknown'}
+      content={network?.name}
       className={clsx('NetworkInfoDisplay', className)}
       {...rest}
     />

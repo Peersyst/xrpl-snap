@@ -9,6 +9,14 @@ export type Network = {
   explorerUrl?: string;
 };
 
+/**
+ * https://xrpl.org/docs/concepts/accounts/reserves
+ */
+export type NetworkReserve = {
+  baseReserveCostInXrp: string;
+  ownerReserveCostInXrpPerItem: string;
+};
+
 export enum NetworkChainId {
   MAINET = 1,
   TESTNET = 2,

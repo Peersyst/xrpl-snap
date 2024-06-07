@@ -24,7 +24,7 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const fiatCurrency = useConfig('fiatCurrency');
   const fiatDecimals = useConfig('fiatDecimals');
   const { address } = useWalletState();
-  console.log('address', address);
+
   const { data: balance, isLoading } = useGetBalance();
 
   const loading = isLoading || isPriceLoading || !address;

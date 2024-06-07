@@ -1,3 +1,5 @@
+import { NetworkReserve } from 'common/models/network/network.types';
+
 export type Config = {
   maxNumberDecimals: number;
   projectName: string;
@@ -19,4 +21,5 @@ export type Config = {
   };
   mockedAddress: string;
   fiatDecimals: number;
+  xrplNetwork: NetworkReserve;
 };

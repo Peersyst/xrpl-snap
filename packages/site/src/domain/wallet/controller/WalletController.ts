@@ -7,10 +7,13 @@ import type { IWalletState } from '../state/walletState';
 import { WalletErrorCodes } from '../WalletErrorCodes';
 import { DomainEvents } from 'domain/events';
 import { withMetamaskRepositoryError } from 'domain/snap/errors/withMetamaskError';
+import NetworkController from 'domain/network/controller/NetworkController';
+import { xrpToDrops } from 'xrpl';
 
 export default class WalletController {
   constructor(
     public readonly walletState: State<IWalletState>,
+    private readonly networkController: NetworkController,
     private readonly metamaskRepository: MetamaskRepository,
   ) {}
 
@@ -46,7 +49,25 @@ export default class WalletController {
     if (!state.address) {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
     }
-    return this.metamaskRepository.getTokens(state.address);
+    const iouTokensPromise = this.metamaskRepository.getIOUTokens(
+      state.address,
+    );
+
+    const xrpBalancePromise = this.getBalance().then(
+      ({ decimals, amount }) => ({
+        balance: new Amount(amount, decimals, 'XRP'),
+        currency: 'XRP',
+        decimals,
+        issuer: '',
+      }),
+    );
+
+    const [iouTokens, xrpBalance] = await Promise.all([
+      iouTokensPromise,
+      xrpBalancePromise,
+    ]);
+
+    return [xrpBalance, ...iouTokens];
   }
 
   async getBalance(): Promise<Amount> {
@@ -55,8 +76,29 @@ export default class WalletController {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
     }
 
-    const xrp = await this.metamaskRepository.getXrpBalance(state.address);
-    return xrp?.balance || new Amount('0', 6, 'XRP');
+    const networkResereve = this.networkController.getNetworkReserve();
+
+    let xrpBalance = new Amount('0', 6, 'XRP');
+    try {
+      const { Balance, OwnerCount } =
+        await this.metamaskRepository.getAccountInfo(state.address);
+
+      //Set the available balance
+      xrpBalance = xrpBalance.plus(Balance);
+
+      //Subtract the network reserve cost
+      xrpBalance = xrpBalance.minus(
+        xrpToDrops(networkResereve.baseReserveCostInXrp).toString(),
+      );
+
+      //For each OwnerCount, subtract the owner reserve cost
+      const ownerReserveCost = new BigNumber(
+        xrpToDrops(networkResereve.ownerReserveCostInXrpPerItem),
+      );
+      ownerReserveCost.times(Number(OwnerCount));
+      xrpBalance = xrpBalance.minus(ownerReserveCost.toString());
+    } catch (e) {}
+    return xrpBalance;
   }
 
   async exportPrivateKey(): Promise<void> {

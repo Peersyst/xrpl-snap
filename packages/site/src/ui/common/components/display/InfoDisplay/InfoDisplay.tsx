@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from '@peersyst/react-components';
+import { Col, Row, Skeleton, Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import VerticalLine from '../VerticalLine/VerticalLine';
 
@@ -6,7 +6,7 @@ export interface InfoDisplayProps {
   className?: string;
   style?: React.CSSProperties;
   title: string;
-  content: string;
+  content?: string;
 }
 
 function InfoDisplay({ className, title, content, ...rest }: InfoDisplayProps) {
@@ -22,9 +22,11 @@ function InfoDisplay({ className, title, content, ...rest }: InfoDisplayProps) {
         <Typography variant="body1" light>
           {title}
         </Typography>
-        <Typography variant="body1" fontWeight="500">
-          {content}
-        </Typography>
+        <Skeleton loading={!content}>
+          <Typography variant="body1" fontWeight="500">
+            {content ?? 'Unknown'}
+          </Typography>
+        </Skeleton>
       </Col>
     </Row>
   );
