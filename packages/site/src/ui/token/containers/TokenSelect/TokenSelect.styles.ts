@@ -12,6 +12,7 @@ export const TokenSelectRoot = styled(Select)(({ theme }) => ({
   },
   '.SelectMenu.SelectMenu.SelectMenu.SelectMenu.SelectMenu': {
     width: '100%',
+    maxHeight: '8.5rem',
     '.SelectItem': {
       height: '2.75rem',
     },
