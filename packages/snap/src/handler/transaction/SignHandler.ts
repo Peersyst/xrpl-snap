@@ -15,10 +15,7 @@ export class SignHandler implements IHandler<typeof SignMethod> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
   ): Promise<{ tx_blob: string; hash: string }> {
     const autofilledTransaction = await this.context.provider.autofill(params);
-    const success = await TransactionDialog.prompt(
-      origin,
-      autofilledTransaction,
-    );
+    const success = await TransactionDialog.prompt(origin, autofilledTransaction);
     if (!success) {
       throw Error('User declined operation');
     }

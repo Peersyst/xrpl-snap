@@ -1,8 +1,7 @@
 import type { Request as XrplRequest, Transaction } from 'xrpl';
 import type { RequestResponseMap } from 'xrpl/src/models/methods';
 
-export type XrplResponse<Request extends XrplRequest> =
-  RequestResponseMap<Request>;
+export type XrplResponse<Request extends XrplRequest> = RequestResponseMap<Request>;
 
 export class Provider {
   constructor(public node: string) {}
@@ -25,9 +24,7 @@ export class Provider {
     return transaction;
   }
 
-  public async request<Request extends XrplRequest>(
-    req: Request,
-  ): Promise<XrplResponse<Request>> {
+  public async request<Request extends XrplRequest>(req: Request): Promise<XrplResponse<Request>> {
     const res = await fetch(this.node, {
       method: 'POST',
       mode: 'cors',
@@ -40,8 +37,7 @@ export class Provider {
         params: [req],
       }),
     });
-    const resJson: XrplResponse<Request> & { result: { error: string } } =
-      await res.json();
+    const resJson: XrplResponse<Request> & { result: { error: string } } = await res.json();
     if (resJson.result.error) {
       throw new Error(`Error calling ${req.command} - ${resJson.result.error}`);
     }

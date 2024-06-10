@@ -17,11 +17,7 @@ export class ExtractPrivateKeyDialog {
       method: 'snap_dialog',
       params: {
         type: 'alert',
-        content: panel([
-          ...this.buildHeader(),
-          divider(),
-          ...this.buildBody(privateKey),
-        ]),
+        content: panel([...this.buildHeader(), divider(), ...this.buildBody(privateKey)]),
       },
     });
   }

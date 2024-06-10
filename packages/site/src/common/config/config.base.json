@@ -1,0 +1,27 @@
+{
+  "projectName": "XRP Snap",
+  "publicUrl": "/",
+  "maxNumberDecimals": 15,
+  "nativeToken": "nativeToken",
+  "decimals": 3,
+  "peersystUrl": "https://peersyst.com",
+  "snapOrigin": "local:http://localhost:8080",
+  "snapAboutUrl": "https://peersyst.com",
+  "fiatCurrency": "usd",
+  "refetchIntervals": {
+    "balance": 10000,
+    "transactions": 10000,
+    "coinPrice": 60000
+  },
+  "metamaskInstallationLink": "https://metamask.io/",
+  "coinPrice": {
+    "apiUrl": "https://api.coingecko.com/api/v3/coins/",
+    "xrpId": "ripple"
+  },
+  "mockedAddress": "rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "fiatDecimals": 2,
+  "xrplNetwork": {
+    "baseReserveCostInXrp": "10",
+    "ownerReserveCostInXrpPerItem": "2"
+  }
+}

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: XRPL-SNAP
+description: xrpl-snap
+version: 1.0.0+${TAG}

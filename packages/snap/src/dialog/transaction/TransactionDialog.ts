@@ -7,10 +7,7 @@ import TransactionFields from './TransactionFields';
 
 export class TransactionDialog {
   static buildHeader(origin: string): Component[] {
-    return [
-      heading(translate('TransactionHeader')),
-      text(translate('TransactionSubHeader', { origin })),
-    ];
+    return [heading(translate('TransactionHeader')), text(translate('TransactionSubHeader', { origin }))];
   }
 
   static buildFooter(): Component[] {
@@ -25,21 +22,12 @@ export class TransactionDialog {
     return body;
   }
 
-  static async prompt(
-    origin: string,
-    transaction: Transaction,
-  ): Promise<boolean> {
+  static async prompt(origin: string, transaction: Transaction): Promise<boolean> {
     const signPrompt = await snap.request({
       method: 'snap_dialog',
       params: {
         type: 'confirmation',
-        content: panel([
-          ...this.buildHeader(origin),
-          divider(),
-          ...this.buildBody(transaction),
-          divider(),
-          ...this.buildFooter(),
-        ]),
+        content: panel([...this.buildHeader(origin), divider(), ...this.buildBody(transaction), divider(), ...this.buildFooter()]),
       },
     });
     return Boolean(signPrompt);

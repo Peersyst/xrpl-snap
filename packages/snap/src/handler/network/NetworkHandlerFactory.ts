@@ -1,16 +1,7 @@
 import type { Context } from '../../core/Context';
-import {
-  ChangeNetworkHandler,
-  ChangeNetworkMethod,
-} from './ChangeNetworkHandler';
-import {
-  GetActiveNetworkHandler,
-  GetActiveNetworkMethod,
-} from './GetActiveNetworkHandler';
-import {
-  GetStoredNetworksHandler,
-  GetStoredNetworksMethod,
-} from './GetStoredNetworksHandler';
+import { ChangeNetworkHandler, ChangeNetworkMethod } from './ChangeNetworkHandler';
+import { GetActiveNetworkHandler, GetActiveNetworkMethod } from './GetActiveNetworkHandler';
+import { GetStoredNetworksHandler, GetStoredNetworksMethod } from './GetStoredNetworksHandler';
 import { RequestHandler, RequestMethod } from './RequestHandler';
 
 export type NetworkMethod =

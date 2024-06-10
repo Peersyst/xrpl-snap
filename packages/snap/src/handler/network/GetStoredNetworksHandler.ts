@@ -4,9 +4,7 @@ import type { IHandler } from '../IHandler';
 
 export const GetStoredNetworksMethod = 'xrpl_getStoredNetworks';
 
-export class GetStoredNetworksHandler
-  implements IHandler<typeof GetStoredNetworksMethod>
-{
+export class GetStoredNetworksHandler implements IHandler<typeof GetStoredNetworksMethod> {
   constructor(protected readonly context: Context) {}
 
   async handle(): Promise<Network[]> {

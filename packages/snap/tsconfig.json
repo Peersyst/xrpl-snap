@@ -1,8 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "module": "CommonJS",
     "baseUrl": "./",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "target": "es2020",
+    "noErrorTruncation": true,
+    "noUncheckedIndexedAccess": true
   },
   "include": ["**/*.ts"]
 }

@@ -5,9 +5,7 @@ import type { IHandler } from '../IHandler';
 
 export const ChangeNetworkMethod = 'xrpl_changeNetwork';
 
-export class ChangeNetworkHandler
-  implements IHandler<typeof ChangeNetworkMethod>
-{
+export class ChangeNetworkHandler implements IHandler<typeof ChangeNetworkMethod> {
   constructor(protected readonly context: Context) {}
 
   async handle(origin: string, params: { chainId: number }): Promise<Network> {
