@@ -5,7 +5,7 @@
   "nativeToken": "nativeToken",
   "decimals": 3,
   "peersystUrl": "https://peersyst.com",
-  "snapOrigin": "local:http://localhost:8080",
+  "snapOrigin": "npm:@peersyst/xrpl-snap",
   "snapAboutUrl": "https://peersyst.com",
   "fiatCurrency": "usd",
   "refetchIntervals": {

@@ -1,12 +1,12 @@
 {
-  "name": "snap",
+  "name": "@peersyst/xrpl-snap",
   "version": "0.1.0",
-  "description": "The 'Hello, world!' of MetaMask Snaps, now written in TypeScript.",
+  "description": "XRPL Metamask snap",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "https://github.com/Peersyst/xrpl-snap.git"
   },
-  "license": "(MIT-0 OR Apache-2.0)",
+  "license": "MIT-0",
   "main": "./dist/bundle.js",
   "files": [
     "dist/",
