@@ -1,26 +1,16 @@
 import { config } from 'common/config';
-import { PeersystLogoRoot } from './PeersystLogo.styles';
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 
-export interface PeersystLogoProps {
+import { PeersystLogoRoot } from './PeersystLogo.styles';
+
+export type PeersystLogoProps = {
   className?: string;
   style?: CSSProperties;
-}
+};
 
 const PeersystLogo = (props: PeersystLogoProps): JSX.Element => (
-  <PeersystLogoRoot
-    href={config.peersystUrl}
-    target="_blank"
-    rel="noreferrer"
-    {...props}
-  >
-    <svg
-      width="86"
-      height="18"
-      viewBox="0 0 86 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+  <PeersystLogoRoot href={config.peersystUrl} target="_blank" rel="noreferrer" {...props}>
+    <svg width="86" height="18" viewBox="0 0 86 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         opacity="0.32"
         fillRule="evenodd"

@@ -2,16 +2,17 @@ import { Row, Typography } from '@peersyst/react-components';
 import { alpha } from '@peersyst/react-utils';
 import clsx from 'clsx';
 import styled, { css } from 'styled-components';
-import { InfoIcon, QrIcon } from 'ui/common/icons';
+import type { QrIcon } from 'ui/common/icons';
+import { InfoIcon } from 'ui/common/icons';
 
-export interface PopoverListItemProps {
+export type PopoverListItemProps = {
   className?: string;
   style?: React.CSSProperties;
   text: string;
   Icon?: typeof QrIcon;
   onClick?: () => void;
   prefix?: React.ReactNode;
-}
+};
 
 const PopoverListItemRoot = styled(Row)(
   ({ theme }) => css`
@@ -32,20 +33,9 @@ const PopoverListItemIcon = styled.div(
   `,
 );
 
-function PopoverListItem({
-  className,
-  text,
-  prefix,
-  Icon = InfoIcon,
-  onClick,
-  ...rest
-}: PopoverListItemProps) {
+function PopoverListItem({ className, text, prefix, Icon = InfoIcon, onClick, ...rest }: PopoverListItemProps) {
   return (
-    <PopoverListItemRoot
-      onClick={onClick}
-      className={clsx('PopoverListItem', className)}
-      {...rest}
-    >
+    <PopoverListItemRoot onClick={onClick} className={clsx('PopoverListItem', className)} {...rest}>
       {prefix ?? <PopoverListItemIcon as={Icon} />}
       <Typography variant="body1">{text}</Typography>
     </PopoverListItemRoot>

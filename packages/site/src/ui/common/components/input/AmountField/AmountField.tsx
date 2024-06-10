@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Amount from 'common/utils/Amount';
 import useFormatAmount from 'ui/common/hooks/useFormatAmount';
 import { useTranslate } from 'ui/locale';
+
 import NumericField from '../NumericField/NumericField';
 import { MaxAmountTypography } from './AmountField.styles';
 import type { AmountFieldProps } from './AmountField.types';
@@ -22,11 +23,7 @@ function AmountField({
   const translate = useTranslate();
   const formatAmount = useFormatAmount();
 
-  const [value, setValue] = useControlled(
-    defaultValue,
-    valueProp,
-    onChangeProp,
-  );
+  const [value, setValue] = useControlled(defaultValue, valueProp, onChangeProp);
 
   const balance = balanceProp
     ? balanceProp.gt('0')
@@ -36,7 +33,7 @@ function AmountField({
   const isValidAmount = !value || !balance || balance.canPay(value);
 
   const handleLoadMax = () => {
-    //We can assert because balance is undefined the send max button is not rendered
+    // We can assert because balance is undefined the send max button is not rendered
     setValue(balance!.formatAmount());
   };
 
@@ -50,13 +47,9 @@ function AmountField({
         {...rest}
       />
       {balance !== undefined && (
-        <MaxAmountTypography
-          variant="caption"
-          isValidAmount={isValidAmount}
-          onClick={handleLoadMax}
-        >{`${translate('sendMax')}: ${formatAmount(
-          balance,
-        )}`}</MaxAmountTypography>
+        <MaxAmountTypography variant="caption" isValidAmount={isValidAmount} onClick={handleLoadMax}>{`${translate(
+          'sendMax',
+        )}: ${formatAmount(balance)}`}</MaxAmountTypography>
       )}
     </Col>
   );

@@ -1,23 +1,24 @@
-import { SkeletonProps } from "@peersyst/react-components";
-import { ReactElement, ReactNode } from "react";
-import { GroupProps } from "./Group/Group.types";
+import type { SkeletonProps } from '@peersyst/react-components';
+import type { ReactElement, ReactNode } from 'react';
 
-export interface SkeletonsProps extends Omit<SkeletonProps, "loading"> {
-    count: number;
-}
+import type { GroupProps } from './Group/Group.types';
+
+export type SkeletonsProps = {
+  count: number;
+} & Omit<SkeletonProps, 'loading'>;
 
 export type DataLoaderProps = {
-    nothingToShow?: ReactNode;
-    Skeleton?: GroupProps<SkeletonProps>["Component"];
-    isLoading?: boolean;
-    numberOfSkeletons?: number;
+  nothingToShow?: ReactNode;
+  Skeleton?: GroupProps<SkeletonProps>['Component'];
+  isLoading?: boolean;
+  numberOfSkeletons?: number;
 };
 
-export interface ListProps<T> extends DataLoaderProps {
-    gap?: number | string;
-    className?: string;
-    style?: React.CSSProperties;
-    renderItem?: (data: T, index: number) => ReactElement;
-    data?: T[];
-    header?: ReactNode;
-}
+export type ListProps<T> = {
+  gap?: number | string;
+  className?: string;
+  style?: React.CSSProperties;
+  renderItem?: (data: T, index: number) => ReactElement;
+  data?: T[];
+  header?: ReactNode;
+} & DataLoaderProps;

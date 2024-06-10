@@ -1,4 +1,5 @@
-import type { Token } from '../models/token';
+import type { Token } from 'common/models';
+
 import { decimalToInt, intToDecimal } from './number/numberConversion';
 
 export default class Amount {
@@ -50,11 +51,7 @@ export default class Amount {
    */
   plus(amount: string | Amount): Amount {
     const value = amount instanceof Amount ? amount.amount : amount;
-    return new Amount(
-      BigNumber(this.amount).plus(BigNumber(value)).toString(),
-      this.decimals,
-      this.currency,
-    );
+    return new Amount(BigNumber(this.amount).plus(BigNumber(value)).toString(), this.decimals, this.currency);
   }
 
   /**
@@ -64,11 +61,7 @@ export default class Amount {
    */
   minus(amount: string | Amount): Amount {
     const value = amount instanceof Amount ? amount.amount : amount;
-    return new Amount(
-      BigNumber(this.amount).minus(BigNumber(value)).toString(),
-      this.decimals,
-      this.currency,
-    );
+    return new Amount(BigNumber(this.amount).minus(BigNumber(value)).toString(), this.decimals, this.currency);
   }
 
   /**
@@ -138,10 +131,6 @@ export default class Amount {
    * @returns An Amount instance
    */
   static fromDecToken(amount: string, token: Token): Amount {
-    return new Amount(
-      decimalToInt(amount, token.decimals),
-      token.decimals,
-      token.currency,
-    );
+    return new Amount(decimalToInt(amount, token.decimals), token.decimals, token.currency);
   }
 }

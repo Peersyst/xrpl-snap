@@ -1,10 +1,6 @@
 import type { CreateTheme } from '@peersyst/react-components';
-import {
-  ErrorIcon,
-  InfoIcon,
-  SuccessIcon,
-  WarningIcon,
-} from '../../common/icons';
+
+import { ErrorIcon, InfoIcon, SuccessIcon, WarningIcon } from '../../common/icons';
 import { spacingProxy as spacing } from '../spacing';
 import typography from './typography';
 

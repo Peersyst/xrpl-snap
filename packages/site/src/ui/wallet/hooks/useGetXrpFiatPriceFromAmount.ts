@@ -4,7 +4,9 @@ export default function useGetXrpFiatPriceFromAmount() {
   const { data: price, isLoading } = useGetXrpPrice();
 
   function getXrpFiatPriceFromAmount(amount: number) {
-    if (!price || isLoading) return 0;
+    if (!price || isLoading) {
+      return 0;
+    }
     return amount * price;
   }
 

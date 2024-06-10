@@ -2,9 +2,7 @@ export type IFactory<T extends Record<string, any>> = T & {
   init: () => Promise<void>;
 };
 
-export default function Factory<T extends Record<string, any>>(
-  modules: Record<keyof T, (resolve: T) => T[keyof T]>,
-): IFactory<T> {
+export default function Factory<T extends Record<string, any>>(modules: Record<keyof T, (resolve: T) => T[keyof T]>): IFactory<T> {
   const resolutions = {} as T;
 
   const resolve = new Proxy(

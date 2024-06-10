@@ -1,7 +1,4 @@
-import {
-  WRAPPED_TOKEN_PREFIX,
-  WRAPPED_TOKEN_SEPARATOR,
-} from '../../constants/token.contants';
+import { WRAPPED_TOKEN_PREFIX, WRAPPED_TOKEN_SEPARATOR } from '../../constants/token.contants';
 
 /**
  * Given a non-formatted currency, returns a formatted token.

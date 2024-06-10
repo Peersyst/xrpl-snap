@@ -7,9 +7,7 @@ import type { IHandler } from '../IHandler';
 
 export const ExtractPrivateKeyMethod = 'xrpl_extractPrivateKey';
 
-export class ExtractPrivateKeyHandler
-  implements IHandler<typeof ExtractPrivateKeyMethod>
-{
+export class ExtractPrivateKeyHandler implements IHandler<typeof ExtractPrivateKeyMethod> {
   constructor(protected readonly context: Context) {}
 
   async handle(): Promise<Json> {

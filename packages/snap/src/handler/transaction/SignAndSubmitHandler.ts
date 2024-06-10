@@ -8,15 +8,10 @@ import { SubmitHandler } from './SubmitHandler';
 
 export const SignAndSubmitMethod = 'xrpl_signAndSubmit';
 
-export class SignAndSubmitHandler
-  implements IHandler<typeof SignAndSubmitMethod>
-{
+export class SignAndSubmitHandler implements IHandler<typeof SignAndSubmitMethod> {
   constructor(protected readonly context: Context) {}
 
-  async handle(
-    origin: string,
-    params: SubmittableTransaction,
-  ): Promise<XrplResponse<SubmitRequest>> {
+  async handle(origin: string, params: SubmittableTransaction): Promise<XrplResponse<SubmitRequest>> {
     const signHandler = new SignHandler(this.context);
     const signedTransaction = await signHandler.handle(origin, params);
 

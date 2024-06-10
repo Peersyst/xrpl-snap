@@ -1,16 +1,14 @@
 import { Col, Row, useConfig, useTheme } from '@peersyst/react-components';
+import clsx from 'clsx';
+import useWalletState from 'ui/adapter/state/useWalletState';
+import useGetXrpFiatPriceFromAmount from 'ui/wallet/hooks/useGetXrpFiatPriceFromAmount';
+import useGetBalance from 'ui/wallet/query/useGetBalance';
 
-import {
-  balance_card_left_border,
-  balance_card_right_border,
-} from '../../../assets/images';
+import { balance_card_left_border, balance_card_right_border } from '../../../assets/images';
 import Balance from '../../../common/components/display/Balance/Balance';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
 import ReceiveModalButton from './ReceiveModalButton';
 import SendModalButton from './SendModalButton';
-import useGetBalance from 'ui/wallet/query/useGetBalance';
-import useGetXrpFiatPriceFromAmount from 'ui/wallet/hooks/useGetXrpFiatPriceFromAmount';
-import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type BalanceCardProps = {
   className?: string;
@@ -19,8 +17,7 @@ export type BalanceCardProps = {
 
 function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
-  const { getXrpFiatPriceFromAmount, isLoading: isPriceLoading } =
-    useGetXrpFiatPriceFromAmount();
+  const { getXrpFiatPriceFromAmount, isLoading: isPriceLoading } = useGetXrpFiatPriceFromAmount();
   const fiatCurrency = useConfig('fiatCurrency');
   const fiatDecimals = useConfig('fiatDecimals');
   const { address } = useWalletState();
@@ -33,22 +30,11 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const fiatBalance = getXrpFiatPriceFromAmount(Number(formattedBalance));
 
   return (
-    <BalanceCardRoot {...rest}>
-      <BalanceCardImageBorder src={balance_card_left_border} />
-      <Col
-        flex={1}
-        alignItems="center"
-        justifyContent="center"
-        gap={spacing[8]}
-      >
+    <BalanceCardRoot className={clsx('BalanceCard', className)} {...rest}>
+      <BalanceCardImageBorder alt="bg-image" src={balance_card_left_border} />
+      <Col flex={1} alignItems="center" justifyContent="center" gap={spacing[8]}>
         <Col gap={spacing[2]} alignItems="center">
-          <Balance
-            loading={loading}
-            fontWeight="600"
-            balance={formattedBalance}
-            currency={balance?.currency ?? 'XRP'}
-            variant="h2"
-          />
+          <Balance loading={loading} fontWeight="600" balance={formattedBalance} currency={balance?.currency ?? 'XRP'} variant="h2" />
           <Balance
             loading={loading}
             balance={fiatBalance}
@@ -66,10 +52,7 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
           <ReceiveModalButton />
         </Row>
       </Col>
-      <BalanceCardImageBorder
-        css={{ borderTopRightRadius: '1rem' }}
-        src={balance_card_right_border}
-      />
+      <BalanceCardImageBorder alt="bg-image" css={{ borderTopRightRadius: '1rem' }} src={balance_card_right_border} />
     </BalanceCardRoot>
   );
 }

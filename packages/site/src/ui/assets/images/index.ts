@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 export { default as balance_card_left_border } from './balance-card-left-border.png';
 export { default as balance_card_right_border } from './balance-card-right-border.png';
 export { default as bg_bottom_mobile } from './bg-bottom-mobile.png';

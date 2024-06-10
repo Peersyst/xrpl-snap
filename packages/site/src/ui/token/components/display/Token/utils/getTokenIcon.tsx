@@ -1,5 +1,5 @@
 import { Image } from '@peersyst/react-components';
-import { Token } from 'common/models/token';
+import type { Token } from 'common/models/token';
 import { token_default_logo } from 'ui/assets/images';
 import { XRPLogoIcon } from 'ui/common/icons';
 

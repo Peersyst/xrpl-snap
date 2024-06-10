@@ -1,18 +1,18 @@
 import { Select } from '@peersyst/react-components';
 import clsx from 'clsx';
-import useGetNetworkSelectOptions from './hooks/useGetNetworkSelectOptions';
-import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import { useTranslate } from 'ui/locale';
 import useChangeNetwork from 'ui/network/query/useChangeNetwork';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import useGetStoredNetworks from 'ui/network/query/useGetStoredNetworks';
 
-export interface NetworkSelectProps {
+import useGetNetworkSelectOptions from './hooks/useGetNetworkSelectOptions';
+
+export type NetworkSelectProps = {
   className?: string;
   style?: React.CSSProperties;
-  children?: React.ReactNode;
-}
+};
 
-function NetworkSelect({ className, children, ...rest }: NetworkSelectProps) {
+function NetworkSelect({ className, ...rest }: NetworkSelectProps) {
   const translate = useTranslate();
   const { data: networks = [], isFetching } = useGetStoredNetworks();
   const options = useGetNetworkSelectOptions();
@@ -26,8 +26,9 @@ function NetworkSelect({ className, children, ...rest }: NetworkSelectProps) {
       css={{ width: '8,75rem' }}
       onChange={(chainId) => {
         const network = networks.find((option) => option.chainId === chainId);
-        if (network && network.chainId !== activeNetwork?.chainId)
+        if (network && network.chainId !== activeNetwork?.chainId) {
           mutate(network);
+        }
       }}
       value={activeNetwork?.chainId}
       disabled={options.length === 0}

@@ -1,12 +1,7 @@
 /**
  * toWords
  */
-const wordPattern = new RegExp(
-  ['[A-Z][a-z]+', '[A-Z]+(?=[A-Z][a-z])', '[A-Z]+', '[a-z]+', '[0-9]+'].join(
-    '|',
-  ),
-  'g',
-);
+const wordPattern = new RegExp(['[A-Z][a-z]+', '[A-Z]+(?=[A-Z][a-z])', '[A-Z]+', '[a-z]+', '[0-9]+'].join('|'), 'g');
 String.prototype.toWords = function (this: string, pattern?: RegExp | string) {
   if (pattern === undefined) {
     return this.match(wordPattern) || [];
@@ -33,9 +28,7 @@ String.prototype.capitalize = function (this: string) {
  */
 String.prototype.toCamelCase = function (this: string) {
   return this.toWords()
-    .map((word, index) =>
-      index === 0 ? word.toLowerCase() : word.toLowerCase().upperFirst(),
-    )
+    .map((word, index) => (index === 0 ? word.toLowerCase() : word.toLowerCase().upperFirst()))
     .join('');
 };
 

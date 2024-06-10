@@ -1,8 +1,9 @@
-import { TypographyProps } from "@peersyst/react-components";
-import { DateFormat } from "./hooks/formatDate.types";
+import type { TypographyProps } from '@peersyst/react-components';
+
+import type { DateFormat } from './hooks/formatDate.types';
 
 export type DateType = Date | string | number;
-export interface DateDisplayProps extends Omit<TypographyProps, "children" | "numberOfLines"> {
-    date: DateType;
-    format?: DateFormat;
-}
+export type DateDisplayProps = {
+  date: DateType;
+  format?: DateFormat;
+} & Omit<TypographyProps, 'children' | 'numberOfLines'>;

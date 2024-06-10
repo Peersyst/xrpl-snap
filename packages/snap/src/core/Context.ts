@@ -3,11 +3,7 @@ import { StateManager } from './StateManager';
 import { Wallet } from './Wallet';
 
 export class Context {
-  constructor(
-    public readonly stateManager: StateManager,
-    public readonly provider: Provider,
-    public readonly wallet: Wallet,
-  ) {}
+  constructor(public readonly stateManager: StateManager, public readonly provider: Provider, public readonly wallet: Wallet) {}
 
   static async init(): Promise<Context> {
     const stateManager = new StateManager();

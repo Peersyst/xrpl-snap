@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function XRPLogoIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function XRPLogoIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="XRPLogoIcon"
-      className={clsx('Filled', 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="XRPLogoIcon" className={clsx('Filled', 'Icon', className)} fill="none">
       <path
         d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
         fill="#23292F"

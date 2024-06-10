@@ -1,7 +1,8 @@
-import { BalanceProps } from './Balance.types';
-import { BalanceRoot } from './Balance.styles';
 import { Skeleton } from '@peersyst/react-components';
 import clsx from 'clsx';
+
+import { BalanceRoot } from './Balance.styles';
+import type { BalanceProps } from './Balance.types';
 import { useFormatBalance } from './hooks/useFormatBalance';
 
 export function Balance({
@@ -29,12 +30,7 @@ export function Balance({
 
   return (
     <Skeleton loading={loading}>
-      <BalanceRoot
-        className={clsx('Balance', className)}
-        action={action}
-        numberOfLines={1}
-        {...typographyProps}
-      >
+      <BalanceRoot className={clsx('Balance', className)} action={action} numberOfLines={1} {...typographyProps}>
         {formatBalance(balance)}
       </BalanceRoot>
     </Skeleton>

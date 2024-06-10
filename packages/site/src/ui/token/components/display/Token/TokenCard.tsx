@@ -1,17 +1,13 @@
-import { TokenCardProps } from './TokenCard.types';
-import { TokenCardRoot } from './TokenCard.styles';
 import { Col, Skeleton, Typography } from '@peersyst/react-components';
-import { getTokenIcon } from './utils/getTokenIcon';
-import { useTheme } from 'styled-components';
 import clsx from 'clsx';
+import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
 
-export function TokenCard({
-  className,
-  token,
-  balance,
-  loading = false,
-}: TokenCardProps): JSX.Element {
+import { TokenCardRoot } from './TokenCard.styles';
+import type { TokenCardProps } from './TokenCard.types';
+import { getTokenIcon } from './utils/getTokenIcon';
+
+export function TokenCard({ className, token, balance, loading = false }: TokenCardProps): JSX.Element {
   const getIcon = getTokenIcon();
   const TokenIcon = getIcon(token);
   const { spacing } = useTheme();
@@ -19,11 +15,7 @@ export function TokenCard({
   return (
     <TokenCardRoot className={clsx('Token', className)} gap={spacing[5]}>
       <Col>
-        <Skeleton
-          shape="circular"
-          loading={loading}
-          css={{ width: '2.5rem', height: '2.5rem' }}
-        >
+        <Skeleton shape="circular" loading={loading} css={{ width: '2.5rem', height: '2.5rem' }}>
           {!loading && <TokenIcon style={{ fontSize: '2.5rem' }} />}
         </Skeleton>
       </Col>
@@ -34,14 +26,7 @@ export function TokenCard({
             {token.currency.toUpperCase()}
           </Typography>
         </Skeleton>
-        <Balance
-          balance={balance}
-          currency={token.currency}
-          variant="body2"
-          fontWeight={400}
-          loading={loading}
-          light
-        />
+        <Balance balance={balance} currency={token.currency} variant="body2" fontWeight={400} loading={loading} light />
       </Col>
     </TokenCardRoot>
   );

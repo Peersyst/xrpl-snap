@@ -1,23 +1,19 @@
+import { useConfig } from '@peersyst/react-components';
 import { useQuery } from '@tanstack/react-query';
+import type Amount from 'common/utils/Amount';
 import ControllerFactory from 'ui/adapter/ControllerFactory';
+import useSnapState from 'ui/adapter/state/useSnapState';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import { Queries } from 'ui/query/queries';
 import type { QueryOptions, QueryResult } from 'ui/query/react-query-overrides';
+
 import useWalletState from '../../adapter/state/useWalletState';
-import Amount from 'common/utils/Amount';
-import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
-import { useConfig } from '@peersyst/react-components';
-import useSnapState from 'ui/adapter/state/useSnapState';
 
 export default function useGetBalance({
   enabled = true,
   refetchInterval,
   ...options
-}: QueryOptions<
-  Amount,
-  unknown,
-  Amount,
-  (Queries | number | undefined | string | undefined)[]
-> = {}): QueryResult<Amount> {
+}: QueryOptions<Amount, unknown, Amount, (Queries | number | undefined | string | undefined)[]> = {}): QueryResult<Amount> {
   const { address } = useWalletState();
   const { data: network } = useGetActiveNetwork();
   const { isSnapInstalled } = useSnapState();

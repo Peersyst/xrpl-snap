@@ -13,10 +13,7 @@ import { HandlerFactory } from './handler/HandlerFactory';
  * @returns The result of `snap_dialog`.
  * @throws If the request method is not valid for this snap.
  */
-export const onRpcRequest: OnRpcRequestHandler = async ({
-  origin,
-  request,
-}): Promise<Json> => {
+export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }): Promise<Json> => {
   const handlers = HandlerFactory(await Context.init());
   // eslint-disable-next-line no-prototype-builtins
   if (!handlers.hasOwnProperty(request.method)) {

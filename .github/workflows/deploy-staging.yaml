@@ -1,0 +1,227 @@
+name: deploy-staging
+
+on:
+  push:
+    branches:
+    - main
+
+concurrency:
+  # Cancel old runs if there is a new commit in the same branch
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  # Needed to configure aws credentials step
+  id-token: write
+  contents: read
+
+jobs:
+  initial:
+    name: 🎬 Initial
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      ENV: ${{ steps.env-vars.outputs.ENV }}
+      TAG: ${{ steps.env-vars.outputs.TAG }}
+      NOW: ${{ steps.env-vars.outputs.NOW }}
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+    steps:
+      # Define global vars that will be used through the pipeline
+      - name: Defining global vars
+        shell: bash
+        id: env-vars
+        run: |
+          echo "ENV=staging" >> $GITHUB_OUTPUT
+          echo "TAG=${GITHUB_SHA:0:8}" >> $GITHUB_OUTPUT
+          echo "NOW=$(TZ=':Europe/Madrid' date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
+
+      # Checkout repository under $GITHUB_WORKSPACE path
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      # Send initial Slack deployment message
+      - name: 📬 Initial Slack deployment message
+        shell: bash
+        env:
+          ENV: ${{ steps.env-vars.outputs.ENV }}
+          TAG: ${{ steps.env-vars.outputs.TAG }}
+          NOW: ${{ steps.env-vars.outputs.NOW }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send initial Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🎬 Starting *XRPL-SNAP* deployment in *${ENV}* environment - Commit: <https://github.com/Peersyst/xrpl-snap/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - web
+      fail-fast: false
+    timeout-minutes: 30
+    needs: initial
+
+    steps:
+      # Checkout repository under $GITHUB_WORKSPACE path
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ matrix.service }}-${{ github.job }}-${{ runner.os }}-buildx
+          restore-keys: |
+            ${{ matrix.service }}-${{ github.job }}-${{ runner.os }}-buildx
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PUSH_TOKEN }}
+
+      # Configure tag name
+      - name: Sets env vars for pull request
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-${{ matrix.service }}:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Sets env vars for staging
+        if: github.event_name != 'pull_request' && github.ref != 'refs/heads/prod'
+        env:
+          TAG: ${{ needs.initial.outputs.TAG }}
+        run: |
+          #echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-${{ matrix.service }}:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-${{ matrix.service }}:${{ env.TAG }}" >> $GITHUB_ENV
+
+      - name: Sets env vars for production
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/prod'
+        run: |
+          echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-${{ matrix.service }}:${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
+      # Build docker image
+      - name: Build docker image
+        uses: docker/build-push-action@v4
+        with:
+            file: docker/${{ matrix.service }}.Dockerfile
+            target: release
+            push: true
+            tags: ${{ env.DOCKER_IMAGE_NAME }}
+            cache-from: type=local,src=/tmp/.buildx-cache
+            cache-to: type=local,dest=/tmp/.buildx-cache-new
+      - name: Move cache
+        if: always()
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      # Send Slack message if any previous step has failed in this job
+      - name: 📬 Failure job notification
+        if: ${{ failure() }}
+        shell: sh
+        env:
+          ENV: ${{ needs.initial.outputs.ENV }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          NOW: ${{ needs.initial.outputs.NOW }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send error Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"❌ *CBDC-WALLET* ${GITHUB_JOB} job *FAILED* for *${{ matrix.service }}* in *${ENV}*. Check pipeline logs <https://github.com/Peersyst/xrpl-snap/actions/runs/${GITHUB_RUN_ID}|here> - Commit: <https://github.com/Peersyst/xrpl-snap/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        client:
+          - ripple
+          - palau
+      fail-fast: false
+    timeout-minutes: 10
+    needs: [initial, build]
+
+    steps:
+      # Checkout repository under $GITHUB_WORKSPACE path
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      # Assume gitHubdeploymentsRole AWS role
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::291847425310:role/gitHubDeploymentsRole
+          role-session-name: deploymentsRole
+          role-duration-seconds: 900
+          aws-region: us-east-1
+
+      # Kubectl and Helm install
+      - name: Kubectl and Helm install
+        shell: bash
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          KUBE_VERSION: v1.27.4
+          HELM_VERSION: v3.12.2
+        run: |
+          curl -Ls https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
+          curl -Ls https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz -o helm-linux-amd64.tar.gz && tar -xzf helm-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm
+          echo ${KUBECONFIG} | base64 --decode > kubeconfig.yaml
+          chmod 600 kubeconfig.yaml
+          echo ${GITHUB_WORKSPACE}
+          echo "KUBECONFIG=${GITHUB_WORKSPACE}/kubeconfig.yaml" >> $GITHUB_ENV
+
+      # Helm deployment
+      - name: Helm deployment
+        working-directory: ./infra/chart
+        shell: bash
+        env:
+          ENV: ${{ needs.initial.outputs.ENV }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          NOW: ${{ needs.initial.outputs.NOW }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          KUBECONFIG: ${{ env.KUBECONFIG }}
+        run: |
+          envsubst < Chart.yaml > Chart-${ENV}.yaml
+          mv Chart-${ENV}.yaml Chart.yaml
+          kubectl config use-context peersyst-privatenet
+          helm -n xrpl-snap upgrade ${{ matrix.client }}-${ENV} ./ --install --atomic --wait --timeout 301s --values values/${{ matrix.client }}-${ENV}.yaml --set-string timestamp=${NOW} --set-string tagIndexer=${TAG} --set-string tagApi=${TAG} --set-string tagWeb=${TAG} --debug
+
+      # Send Slack message if any previous step has failed in this job
+      - name: 📬 Failure job notification
+        if: ${{ failure() }}
+        shell: sh
+        env:
+          ENV: ${{ needs.initial.outputs.ENV }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          NOW: ${{ needs.initial.outputs.NOW }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send error Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"❌ *CBDC-WALLET* ${GITHUB_JOB} job *FAILED* in *${ENV}*. Check pipeline logs <https://github.com/Peersyst/xrpl-snap/actions/runs/${GITHUB_RUN_ID}|here> - Commit: <https://github.com/Peersyst/xrpl-snap/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+
+  final:
+    name: 🏁 Final
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    needs: [initial, build, deploy]
+    if: |
+      always() &&
+      !contains(join(needs.*.result, ','), 'failure')
+
+    steps:
+      # Send final Slack deployment message
+      - name: 📬 Final Slack deployment message
+        shell: bash
+        env:
+          ENV: ${{ needs.initial.outputs.ENV }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send final Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🏁 *XRPL-SNAP* deployment in *${ENV}* environment *SUCCESSFULLY* - Commit: <https://github.com/Peersyst/xrpl-snap/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}

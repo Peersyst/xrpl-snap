@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function DefaultTokenIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function DefaultTokenIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="DefaultTokenIcon"
-      className={clsx('Filled', 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="DefaultTokenIcon" className={clsx('Filled', 'Icon', className)} fill="none">
       <path
         d="M11.9862 23.0509C18.0969 23.0509 23.0506 18.0972 23.0506 11.9866C23.0506 5.87587 18.0969 0.92218 11.9862 0.92218C5.87556 0.92218 0.921875 5.87587 0.921875 11.9866C0.921875 18.0972 5.87556 23.0509 11.9862 23.0509Z"
         fill="#EFA500"

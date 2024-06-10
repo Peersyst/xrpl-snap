@@ -1,14 +1,14 @@
 import { Col } from '@peersyst/react-components';
 import clsx from 'clsx';
-import BalanceCard from 'ui/wallet/containers/BalanceCard/BalanceCard';
-import TransactionList from 'ui/transaction/container/TransactionList/TransactionList';
-import styled from 'styled-components';
 import { useRef } from 'react';
+import styled from 'styled-components';
+import TransactionList from 'ui/transaction/container/TransactionList/TransactionList';
+import BalanceCard from 'ui/wallet/containers/BalanceCard/BalanceCard';
 
-export interface HomePageProps {
+export type HomePageProps = {
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 export const HomePageRoot = styled(Col)(({ theme }) => ({
   padding: theme.spacing[4],

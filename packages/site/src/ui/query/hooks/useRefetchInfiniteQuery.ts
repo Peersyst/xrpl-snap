@@ -1,7 +1,8 @@
-import { RefetchOptions, useQueryClient, InfiniteData, QueryKey } from "@tanstack/react-query";
+import type { RefetchOptions, InfiniteData, QueryKey } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 export type RefetchInfiniteQueryOptions = RefetchOptions & {
-    exact?: boolean;
+  exact?: boolean;
 };
 
 /**
@@ -9,25 +10,26 @@ export type RefetchInfiniteQueryOptions = RefetchOptions & {
  * @returns A function to refetch an infinite query including only its first page.
  */
 export function useRefetchInfiniteQuery(): (queryKey: QueryKey, options?: RefetchInfiniteQueryOptions) => Promise<void> {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    return function refetchInfiniteQuery(
-        queryKey: QueryKey,
-        { exact = true, ...restOptions }: RefetchInfiniteQueryOptions = {},
-    ): Promise<void> {
-        // Set the query data to the first page of the query in order to avoid refetching all pages
-        queryClient.setQueryData(queryKey, (prev: InfiniteData<any>) => {
-            return {
-                pages: prev.pages?.slice(0, 1),
-                pageParams: prev.pageParams?.slice(0, 1),
-            };
-        });
-        return queryClient.refetchQueries(
-            {
-                queryKey,
-                exact,
-            },
-            restOptions,
-        );
-    };
+  return async function refetchInfiniteQuery(
+    queryKey: QueryKey,
+    { exact = true, ...restOptions }: RefetchInfiniteQueryOptions = {},
+  ): Promise<void> {
+    // Set the query data to the first page of the query in order to avoid refetching all pages
+    // @ts-ignore
+    queryClient.setQueryData(queryKey, (prev: InfiniteData<any>) => {
+      return {
+        pages: prev.pages?.slice(0, 1),
+        pageParams: prev.pageParams?.slice(0, 1),
+      };
+    });
+    return queryClient.refetchQueries(
+      {
+        queryKey,
+        exact,
+      },
+      restOptions,
+    );
+  };
 }

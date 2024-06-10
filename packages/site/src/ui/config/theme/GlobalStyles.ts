@@ -1,23 +1,24 @@
-import { Theme } from '@peersyst/react-components';
+import type { Theme } from '@peersyst/react-components';
 import { createGlobalStyle } from 'styled-components';
+
 import './fonts.css';
-import { ChipStyles } from './component/Chip.styles';
 import { aStyles } from './component/a.styles';
 import { AlertStyles } from './component/Alert.styles';
-import { PopoverStyles } from './component/Popover.styles';
-import { DividerStyles } from './component/Divider.styles';
-import { ToolbarStyles } from './component/Toolbar.styles';
-import { rootStyles } from './component/root.styles';
 import { CarouselStyles } from './component/Carousel.styles';
+import { ChipStyles } from './component/Chip.styles';
+import { DividerStyles } from './component/Divider.styles';
+import { Expandablestyles } from './component/Expandable.styles';
 import { FormControlStyles } from './component/FormControl.styles';
 import { LabelStyles } from './component/Label.styles';
+import { PopoverStyles } from './component/Popover.styles';
+import { rootStyles } from './component/root.styles';
 import { SelectStyles } from './component/Select.styles';
-import { TextInputStyles } from './component/TextInput.styles';
 import { SwitchStyles } from './component/Switch.styles';
 import { TabsStyles } from './component/Tabs.styles';
-import { Expandablestyles } from './component/Expandable.styles';
-import { TypographyStyles } from './component/Typography.styles';
+import { TextInputStyles } from './component/TextInput.styles';
 import { ToastStyles } from './component/Toast.styles';
+import { ToolbarStyles } from './component/Toolbar.styles';
+import { TypographyStyles } from './component/Typography.styles';
 
 export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
         html,

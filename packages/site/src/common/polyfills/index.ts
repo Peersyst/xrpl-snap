@@ -1,7 +1,9 @@
-import "./BigNumber";
-import "./Math";
-import "./String";
+import './BigNumber';
+import './Math';
+import './String';
 
-const TextEncodingPolyfill = require("text-encoding");
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
+const TextEncodingPolyfill = require('text-encoding');
+
 global.TextEncoder = TextEncodingPolyfill.TextEncoder;
 global.TextDecoder = TextEncodingPolyfill.TextDecoder;

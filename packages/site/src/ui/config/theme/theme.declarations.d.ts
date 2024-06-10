@@ -1,10 +1,5 @@
 import 'styled-components';
-import type {
-  Theme,
-  TypographyVariant,
-  Theme,
-  TypographyVariant,
-} from '@peersyst/react-components';
+import type { Theme } from '@peersyst/react-components';
 import type { CSSProp } from 'styled-components';
 
 import type { ThemeSpacing, ThemeSpacing } from '../spacing';
@@ -34,6 +29,7 @@ declare module '@peersyst/react-components' {
       '100': string;
       '150': string;
       '200': string;
+      '300': string;
       '400': string;
       '500': string;
       '600': string;
@@ -50,7 +46,7 @@ declare module '@peersyst/react-components' {
     lemon: string;
   }
 
-  export type CreateThemeTypography = {};
+  export interface CreateThemeTypography {}
 
   export interface TypographyVariantsOverrides {
     subtitle1: false;
@@ -82,12 +78,12 @@ declare module '@peersyst/react-components' {
 
 // Type styled components theme with our components theme
 declare module 'styled-components' {
-  export type DefaultTheme = {} & Theme;
+  export interface DefaultTheme extends Theme {}
 }
 
 // Use css prop in components
 declare module 'react' {
-  export type Attributes = {
+  export interface Attributes {
     css?: CSSProp<Theme>;
-  };
+  }
 }

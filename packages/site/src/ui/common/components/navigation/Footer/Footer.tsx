@@ -1,14 +1,14 @@
 import { Row, Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import styled from 'styled-components';
-import PeersystLogo from '../../display/PeersystLogo/PeersystLogo';
 import { useTranslate } from 'ui/locale';
 
-export interface FooterProps {
+import PeersystLogo from '../../display/PeersystLogo/PeersystLogo';
+
+export type FooterProps = {
   className?: string;
   style?: React.CSSProperties;
-  children?: React.ReactNode;
-}
+};
 
 const FooterRoot = styled(Row)(() => ({
   height: '3.625rem',
@@ -17,7 +17,7 @@ const FooterRoot = styled(Row)(() => ({
   gap: '0.6rem',
 }));
 
-function Footer({ className, children, ...rest }: FooterProps) {
+function Footer({ className, ...rest }: FooterProps) {
   const translate = useTranslate();
   return (
     <FooterRoot className={clsx('Footer', className)} {...rest}>

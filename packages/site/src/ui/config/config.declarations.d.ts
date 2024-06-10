@@ -1,6 +1,7 @@
 import '@peersyst/react-components';
-import { TFunction } from 'react-i18next';
-import { Config as CommonConfig } from '../../common/config/config.types';
+import type { TFunction } from 'react-i18next';
+
+import type { Config as CommonConfig } from '../../common/config/config.types';
 
 declare module '@peersyst/react-components' {
   export interface ConfigTypes {

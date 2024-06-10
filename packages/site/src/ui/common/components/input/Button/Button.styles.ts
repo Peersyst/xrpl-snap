@@ -1,12 +1,10 @@
-import styled, {
-  css,
-  DefaultTheme,
-  FlattenInterpolation,
-  ThemeProps,
-} from 'styled-components';
-import { Button, ButtonSize, ButtonVariant } from '@peersyst/react-components';
+import type { ButtonSize, ButtonVariant } from '@peersyst/react-components';
+import { Button } from '@peersyst/react-components';
 import { darken, lighten } from '@peersyst/react-utils';
-import { ButtonProps } from './Button.types';
+import styled, { css } from 'styled-components';
+import type { DefaultTheme, FlattenInterpolation, ThemeProps } from 'styled-components';
+
+import type { ButtonProps } from './Button.types';
 
 const lgSize = css(
   () => css`
@@ -15,23 +13,20 @@ const lgSize = css(
   `,
 );
 
-const buttonSizes: Record<
-  ButtonSize,
-  FlattenInterpolation<ThemeProps<DefaultTheme>>
-> = {
+const buttonSizes: Record<ButtonSize, FlattenInterpolation<ThemeProps<DefaultTheme>>> = {
   lg: lgSize,
 };
 
 const primaryStyles = css(({ theme }) => ({
   backgroundColor: theme.palette.primary,
   color: theme.palette.white,
-  ['&:hover']: {
+  '&:hover': {
     filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))',
   },
-  ['&:active']: {
+  '&:active': {
     backgroundColor: darken(theme.palette.primary, 0.2),
   },
-  ['&:disabled']: {
+  '&:disabled': {
     backgroundColor: theme.palette.disabled,
   },
 }));
@@ -40,17 +35,17 @@ const secondaryStyles = css(({ theme }) => ({
   color: theme.palette.primary,
   border: '1px solid currentColor',
   backgroundColor: 'transparent',
-  ['&:hover']: {
+  '&:hover': {
     color: theme.palette.white,
     borderColor: theme.palette.primary,
     backgroundColor: theme.palette.primary,
   },
-  ['&:active']: {
+  '&:active': {
     color: theme.palette.white,
     borderColor: theme.palette.primary,
     backgroundColor: darken(theme.palette.primary, 0.2),
   },
-  ['&:disabled']: {
+  '&:disabled': {
     borderColor: theme.palette.disabled,
     color: theme.palette.disabled,
   },
@@ -59,13 +54,13 @@ const secondaryStyles = css(({ theme }) => ({
 const textStyles = css(({ theme }) => ({
   color: theme.palette.accent,
   backgroundColor: 'transparent',
-  ['&:hover']: {
+  '&:hover': {
     color: lighten(theme.palette.primary, 0.2),
   },
-  ['&:active']: {
+  '&:active': {
     color: lighten(theme.palette.primary, 0.4),
   },
-  ['&:disabled']: {
+  '&:disabled': {
     opacity: 0.4,
   },
 }));
@@ -76,21 +71,19 @@ const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
   text: textStyles,
 };
 
-export const ButtonRoot = styled(Button)<ButtonProps>(
-  ({ size = 'lg', variant = 'primary', theme }) => {
-    return css`
-      font-size: 0.875rem;
-      ${buttonSizes[size]};
-      border-radius: ${theme.roundedBorder};
-      border: 0;
-      font-weight: 600;
-      text-transform: none;
-      transition: all 0.3s;
+export const ButtonRoot = styled(Button)<ButtonProps>(({ size = 'lg', variant = 'primary', theme }) => {
+  return css`
+    font-size: 0.875rem;
+    ${buttonSizes[size]};
+    border-radius: ${theme.roundedBorder};
+    border: 0;
+    font-weight: 600;
+    text-transform: none;
+    transition: all 0.3s;
 
-      &.Loading {
-        opacity: 1;
-      }
-      ${variantStyles[variant!]};
-    `;
-  },
-);
+    &.Loading {
+      opacity: 1;
+    }
+    ${variantStyles[variant]};
+  `;
+});

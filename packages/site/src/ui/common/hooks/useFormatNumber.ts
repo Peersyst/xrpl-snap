@@ -1,10 +1,11 @@
 import { useConfig } from '@peersyst/react-components';
-import { useTranslate } from '../../../ui/locale';
+
+import { useTranslate } from '../../locale';
 
 /**
  * Hook to format numbers
- * @param n Number to format
- * @param options Number format options
+ * @param n - Number to format
+ * @param options - Number format options
  */
 export function useFormatNumber(options: Intl.NumberFormatOptions = {}) {
   const decimals = useConfig('decimals');
@@ -16,7 +17,7 @@ export function useFormatNumber(options: Intl.NumberFormatOptions = {}) {
   return (n: number | string) => {
     return translate('formatNumber', {
       val: n,
-      maximumFractionDigits: maximumFractionDigits,
+      maximumFractionDigits,
       ...otherOptions,
     });
   };

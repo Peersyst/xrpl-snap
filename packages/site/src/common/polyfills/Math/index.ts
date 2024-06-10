@@ -1,1 +1,1 @@
-import "./Math";
+import './Math';

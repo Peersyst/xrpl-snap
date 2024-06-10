@@ -1,4 +1,4 @@
-import Amount from '../../utils/Amount';
+import type Amount from '../../utils/Amount';
 
 export type Token = {
   decimals: number;

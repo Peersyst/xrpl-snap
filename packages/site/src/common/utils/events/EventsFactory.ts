@@ -1,8 +1,8 @@
-import EventEmitter from "./EventEmitter";
+import type EventEmitter from './EventEmitter';
 
 export default function EventsFactory<
-    DEM extends Record<string, EventEmitter<any>>,
-    DE extends { [K in keyof DEM]: DEM[K] extends EventEmitter<infer T> ? EventEmitter<T> : never },
+  DEM extends Record<string, EventEmitter<any>>,
+  DE extends { [K in keyof DEM]: DEM[K] extends EventEmitter<infer T> ? EventEmitter<T> : never },
 >(domainEventEmitters: DEM): DE {
-    return domainEventEmitters as unknown as DE;
+  return domainEventEmitters as unknown as DE;
 }

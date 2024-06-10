@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function CpuIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function CpuIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="CpuIcon"
-      className={clsx(undefined, 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="CpuIcon" className={clsx(undefined, 'Icon', className)} fill="none">
       <path
         opacity="0.2"
         d="M18.75 4.5H5.25C5.05109 4.5 4.86032 4.57902 4.71967 4.71967C4.57902 4.86032 4.5 5.05109 4.5 5.25V18.75C4.5 18.9489 4.57902 19.1397 4.71967 19.2803C4.86032 19.421 5.05109 19.5 5.25 19.5H18.75C18.9489 19.5 19.1397 19.421 19.2803 19.2803C19.421 19.1397 19.5 18.9489 19.5 18.75V5.25C19.5 5.05109 19.421 4.86032 19.2803 4.71967C19.1397 4.57902 18.9489 4.5 18.75 4.5ZM14.625 14.625H9.375V9.375H14.625V14.625Z"

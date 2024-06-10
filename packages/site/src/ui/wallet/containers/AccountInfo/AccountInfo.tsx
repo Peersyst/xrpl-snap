@@ -1,21 +1,16 @@
-import {
-  Col,
-  Row,
-  Skeleton,
-  Typography,
-  useConfig,
-} from '@peersyst/react-components';
+import { Col, Row, Skeleton, Typography, useConfig } from '@peersyst/react-components';
 import clsx from 'clsx';
 import styled, { css, useTheme } from 'styled-components';
 import { useTranslate } from 'ui/locale';
-import AccountInfoPopover from './AccountInfoPopover';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 
-export interface AccountInfoProps {
+import AccountInfoPopover from './AccountInfoPopover';
+
+export type AccountInfoProps = {
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 const AccountInfoRoot = styled(Col)(
   ({ theme }) => css`

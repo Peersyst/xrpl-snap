@@ -2,11 +2,11 @@ import { Col } from '@peersyst/react-components';
 import clsx from 'clsx';
 import styled from 'styled-components';
 
-export interface MainCardProps {
+export type MainCardProps = {
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
-}
+};
 
 const MainCardRoot = styled(Col)(({ theme }) => ({
   backgroundColor: theme.palette.background,

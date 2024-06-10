@@ -1,4 +1,5 @@
 import { useStore } from 'zustand';
+
 import walletState from '../../../domain/wallet/state/walletState';
 
 export default function useGetAddress() {

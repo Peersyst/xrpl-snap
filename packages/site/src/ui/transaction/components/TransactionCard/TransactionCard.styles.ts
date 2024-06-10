@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Image, Row } from '@peersyst/react-components';
+import styled from 'styled-components';
 
 export const TransactionCardRoot = styled(Row)(({ theme }) => ({
   transition: 'all 0.3s',

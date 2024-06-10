@@ -1,7 +1,4 @@
-import type {
-  EIP6963AnnounceProviderEvent,
-  MetaMaskInpageProvider,
-} from '@metamask/providers';
+import type { EIP6963AnnounceProviderEvent, MetaMaskInpageProvider } from '@metamask/providers';
 
 /**
  * Check if the current provider supports snaps by calling `wallet_getSnaps`.
@@ -10,9 +7,7 @@ import type {
  * `window.ethereum`.
  * @returns True if the provider supports snaps, false otherwise.
  */
-export async function hasSnapsSupport(
-  provider: MetaMaskInpageProvider = window.ethereum,
-) {
+export async function hasSnapsSupport(provider: MetaMaskInpageProvider = window.ethereum) {
   try {
     await provider.request({
       method: 'wallet_getSnaps',
@@ -44,10 +39,7 @@ export async function getMetaMaskEIP6963Provider() {
      * @param provider - A MetaMask provider if found, otherwise null.
      */
     function resolve(provider: MetaMaskInpageProvider | null) {
-      window.removeEventListener(
-        'eip6963:announceProvider',
-        onAnnounceProvider,
-      );
+      window.removeEventListener('eip6963:announceProvider', onAnnounceProvider);
       clearTimeout(timeout);
       rawResolve(provider);
     }

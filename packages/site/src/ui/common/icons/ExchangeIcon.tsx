@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function ExchangeIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function ExchangeIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="ExchangeIcon"
-      className={clsx(undefined, 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="ExchangeIcon" className={clsx(undefined, 'Icon', className)} fill="none">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

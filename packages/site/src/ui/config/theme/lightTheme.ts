@@ -1,4 +1,5 @@
 import { createTheme } from '@peersyst/react-components';
+
 import baseTheme from './baseTheme';
 import lightPalette from './palette/lightPalette';
 

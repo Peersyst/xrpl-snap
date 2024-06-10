@@ -4,10 +4,8 @@ export default {
    * Transaction dialog
    */
   TransactionHeader: 'Sign XRPL Transaction',
-  TransactionSubHeader:
-    'Got a request from %origin% to sign the following transaction',
-  TransactionFooter:
-    '**Please check that all of the above fields are correct.**',
+  TransactionSubHeader: 'Got a request from %origin% to sign the following transaction',
+  TransactionFooter: '**Please check that all of the above fields are correct.**',
   // Transaction fields
   TransactionType: '`**TransctionType:** %0%',
   Account: '`**Account:** %0%',

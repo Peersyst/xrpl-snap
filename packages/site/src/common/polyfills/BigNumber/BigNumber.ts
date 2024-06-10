@@ -1,3 +1,3 @@
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 
 globalThis.BigNumber = BigNumber;

@@ -27,21 +27,10 @@ module.exports = {
       files: ['*.test.ts', '*.test.js'],
       extends: ['@metamask/eslint-config-jest'],
       rules: {
-        '@typescript-eslint/no-shadow': [
-          'error',
-          { allow: ['describe', 'expect', 'it'] },
-        ],
+        '@typescript-eslint/no-shadow': ['error', { allow: ['describe', 'expect', 'it'] }],
       },
     },
   ],
 
-  ignorePatterns: [
-    '!.prettierrc.js',
-    '**/!.eslintrc.js',
-    '**/dist*/',
-    '**/*__GENERATED__*',
-    '**/build',
-    '**/public',
-    '**/.cache',
-  ],
+  ignorePatterns: ['!.prettierrc.js', '**/!.eslintrc.js', '**/dist*/', '**/*__GENERATED__*', '**/build', '**/public', '**/.cache'],
 };

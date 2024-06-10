@@ -1,7 +1,8 @@
-import { InfiniteScrollDataProps } from "./InfiniteDataList.types";
-import { ListProps } from "../List/List.types";
-import { PaginatedData } from "ui/query/hooks/useInfiniteApiQuery";
+import type { PaginatedData } from 'ui/query/react-query-overrides';
 
-export type OmittedDataListProps<T> = Pick<ListProps<PaginatedData<T[]>>, "className" | "style" | "gap">;
+import type { ListProps } from '../List/List.types';
+import type { InfiniteScrollDataProps } from './InfiniteDataList.types';
 
-export interface InfiniteListProps<T> extends OmittedDataListProps<T>, InfiniteScrollDataProps<T> {}
+export type OmittedDataListProps<T> = Pick<ListProps<PaginatedData<T[]>>, 'className' | 'style' | 'gap'>;
+
+export type InfiniteListProps<T> = {} & OmittedDataListProps<T> & InfiniteScrollDataProps<T>;

@@ -1,5 +1,8 @@
-import { config } from '../../common/config';
-import UIError, { UIErrorMessage } from './UIError';
+import type { AnyObject } from '@swisstype/essential';
+import { config } from 'common/config';
+
+import type { UIErrorMessage } from './UIError';
+import UIError from './UIError';
 
 export type UIErrorEventSeverity = 'error' | 'warning';
 
@@ -21,13 +24,7 @@ export default class UIErrorEvent extends Event {
     window.removeEventListener(UIErrorEvent.type, callback as EventListener);
   }
 
-  static dispatch(
-    message: UIErrorMessage,
-    params?: Record<string, string>,
-    severity: UIErrorEventSeverity = 'error',
-  ): void {
-    window.dispatchEvent(
-      new UIErrorEvent(new UIError(message, params, severity)),
-    );
+  static dispatch(message: UIErrorMessage, severity: UIErrorEventSeverity = 'error', data?: AnyObject): void {
+    window.dispatchEvent(new UIErrorEvent(new UIError(message, severity, data)));
   }
 }

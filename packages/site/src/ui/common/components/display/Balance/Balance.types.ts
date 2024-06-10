@@ -1,6 +1,7 @@
-import { TypographyProps } from '@peersyst/react-components';
-import BigNumber from 'bignumber.js';
-import { BalanceAction, CurrencyPosition } from './utils';
+import type { TypographyProps } from '@peersyst/react-components';
+import type BigNumber from 'bignumber.js';
+
+import type { BalanceAction, CurrencyPosition } from './utils';
 
 export type BalanceRootProps = {
   action?: BalanceAction;

@@ -1,8 +1,9 @@
-import { NetworkReserve } from 'common/models/network/network.types';
+import type { NetworkReserve } from 'common/models';
 
 export type Config = {
-  maxNumberDecimals: number;
   projectName: string;
+  publicUrl: string;
+  maxNumberDecimals: number;
   nativeToken: string;
   decimals: number;
   peersystUrl: string;

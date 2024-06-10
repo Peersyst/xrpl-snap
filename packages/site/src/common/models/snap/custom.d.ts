@@ -1,8 +1,4 @@
-import type {
-  EIP6963AnnounceProviderEvent,
-  EIP6963RequestProviderEvent,
-  MetaMaskInpageProvider,
-} from '@metamask/providers';
+import type { EIP6963AnnounceProviderEvent, EIP6963RequestProviderEvent, MetaMaskInpageProvider } from '@metamask/providers';
 
 /*
  * Window type extension to support ethereum

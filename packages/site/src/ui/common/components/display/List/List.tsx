@@ -1,10 +1,11 @@
 import { Col, Divider, Skeleton } from '@peersyst/react-components';
 import clsx from 'clsx';
-import { ListProps } from './List.types';
-import { ListRoot } from './List.styles';
 import { Fragment } from 'react';
-import Group from './Group/Group';
+
 import NothingToShow from '../../feedback/NothingToShow/NothingToShow';
+import Group from './Group/Group';
+import { ListRoot } from './List.styles';
+import type { ListProps } from './List.types';
 
 export default function List<T>({
   className,
@@ -33,9 +34,7 @@ export default function List<T>({
           {data?.map((item, i) => (
             <Fragment key={i}>{renderItem?.(item, i)}</Fragment>
           ))}
-          {isLoading && (
-            <Group Component={SkeletonProp} count={numberOfSkeletons} />
-          )}
+          {isLoading && <Group Component={SkeletonProp} count={numberOfSkeletons} />}
         </>
       ) : (
         <>{nothingToShow ?? <NothingToShow />}</>

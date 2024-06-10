@@ -1,6 +1,7 @@
-import { TokenPriceRepository } from 'data_access/repository/token-price/TokenPriceRepository';
+import { TokenPriceRepository } from 'data-access/repository/token-price/TokenPriceRepository';
+
 import Factory from '../../common/utils/Factory';
-import { MetamaskRepository } from '../../data_access/repository/metamask/MetamaskRepository';
+import { MetamaskRepository } from '../../data-access/repository/metamask/MetamaskRepository';
 
 export type IRepositoryFactory = {
   metamaskRepository: MetamaskRepository;

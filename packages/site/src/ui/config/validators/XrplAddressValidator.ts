@@ -1,4 +1,4 @@
-import { TranslateFn } from '@peersyst/react-components';
+import type { TranslateFn } from '@peersyst/react-components';
 import { BaseValidator } from '@peersyst/react-components-core';
 import { isValidAddress } from 'xrpl';
 

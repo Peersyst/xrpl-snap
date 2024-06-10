@@ -1,6 +1,6 @@
 import { Row } from '@peersyst/react-components';
-import styled from 'styled-components';
 import { alpha } from '@peersyst/react-utils';
+import styled from 'styled-components';
 
 export const TokenCardRoot = styled(Row)(({ theme }) => ({
   padding: '1.5rem 2rem',

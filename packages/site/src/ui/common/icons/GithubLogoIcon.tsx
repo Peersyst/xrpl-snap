@@ -1,28 +1,16 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function GithubLogoIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function GithubLogoIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="GithubLogoIcon"
-      className={clsx(undefined, 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="GithubLogoIcon" className={clsx(undefined, 'Icon', className)} fill="none">
       <path
         opacity="0.2"
         d="M10.4813 6C10.0406 5.31048 9.43355 4.74295 8.71594 4.34974C7.99833 3.95653 7.19328 3.75028 6.375 3.75C6.01116 4.37979 5.79285 5.08301 5.73607 5.80813C5.67929 6.53325 5.78549 7.26188 6.04688 7.94062C5.53426 8.6963 5.25697 9.58689 5.25 10.5V11.25C5.25 12.4435 5.72411 13.5881 6.56802 14.432C7.41193 15.2759 8.55653 15.75 9.75 15.75H14.25C15.4435 15.75 16.5881 15.2759 17.432 14.432C18.2759 13.5881 18.75 12.4435 18.75 11.25V10.5C18.743 9.58689 18.4657 8.6963 17.9531 7.94062C18.2145 7.26188 18.3207 6.53325 18.2639 5.80813C18.2072 5.08301 17.9888 4.37979 17.625 3.75C16.8067 3.75028 16.0017 3.95653 15.2841 4.34974C14.5665 4.74295 13.9594 5.31048 13.5187 6H10.4813Z"
         fill="#394046"
       />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10.125 15C10.5392 15 10.875 15.3358 10.875 15.75V20.2485"
-        fill="#394046"
-      />
+      <path fillRule="evenodd" clipRule="evenodd" d="M10.125 15C10.5392 15 10.875 15.3358 10.875 15.75V20.2485" fill="#394046" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"

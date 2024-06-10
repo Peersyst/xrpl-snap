@@ -5,9 +5,7 @@ import type { MaxAmountTypographyProps } from './AmountField.types';
 
 export const MaxAmountTypography = styled(Typography)<MaxAmountTypographyProps>(
   ({ theme, isValidAmount }) => css`
-    color: ${isValidAmount
-      ? theme.palette.purple[30]
-      : theme.palette.status.error};
+    color: ${isValidAmount ? theme.palette.purple[30] : theme.palette.status.error};
     cursor: pointer;
     align-self: flex-end;
     font-weight: 600;

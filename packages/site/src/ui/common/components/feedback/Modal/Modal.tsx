@@ -1,9 +1,6 @@
 import { Col, Typography, useTheme } from '@peersyst/react-components';
 import { useControlled } from '@peersyst/react-hooks';
-import {
-  CloseModalButton,
-  ModalRoot,
-} from 'ui/common/components/feedback/Modal/Modal.styles';
+import { CloseModalButton, ModalRoot } from 'ui/common/components/feedback/Modal/Modal.styles';
 import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 
 const Modal = ({
@@ -18,7 +15,7 @@ const Modal = ({
   ...rest
 }: ModalProps): JSX.Element => {
   const [open, setOpen] = useControlled(true, openProp);
-  const { spacing} = useTheme();
+  const { spacing } = useTheme();
 
   const handleClose = () => {
     onClose?.();
@@ -26,13 +23,7 @@ const Modal = ({
   };
 
   return (
-    <ModalRoot
-      open={open}
-      elevation={elevation}
-      onClose={handleClose}
-      closable={closable}
-      {...rest}
-    >
+    <ModalRoot open={open} elevation={elevation} onClose={handleClose} closable={closable} {...rest}>
       <Col css={{ height: '100%' }} gap="1rem" className="ModalContainer">
         {title && (
           <Col alignItems={alignTitle} gap={spacing[2]}>

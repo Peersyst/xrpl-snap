@@ -2,11 +2,9 @@ import { createMethodDecorator } from './createMethodDecorator';
 
 /**
  * Creates a decorator that will handle errors thrown by the decorated method
- * @param handler Function that handles the error
+ * @param handler - Function that handles the error
  */
-export function createErrorHandlerDecorator<A extends any[]>(
-  handler: (error: any, ...decoratorArgs: A) => any,
-) {
+export function createErrorHandlerDecorator<A extends any[]>(handler: (error: any, ...decoratorArgs: A) => any) {
   return createMethodDecorator((method) => {
     return function (...decoratorArgs: A) {
       try {

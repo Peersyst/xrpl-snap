@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Locale } from '../../../common/models/locale/index.types';
-import { LanguageDetectorAsyncModule } from 'i18next';
+import type { LanguageDetectorAsyncModule } from 'i18next';
 
-export function getStoredLocale(): Promise<Locale> {
-  //TODO(jordi): implement detection of stored locale
-  //return ControllerFactory.settingsController.getLocale();
+import type { Locale } from '../../../common/models/locale/index.types';
+
+export async function getStoredLocale(): Promise<Locale> {
+  // TODO(jordi): implement detection of stored locale
+  // return ControllerFactory.settingsController.getLocale();
   return new Promise((resolve) => resolve('en'));
 }
 
 export function getDefaultLocale(): Locale {
-  //TODO(jordi): implement detection of browser language
+  // TODO(jordi): implement detection of browser language
   return 'en';
 }
 

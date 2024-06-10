@@ -1,6 +1,8 @@
+import type BigNumber from 'bignumber.js';
+
 import { useFormatNumber } from '../../../../hooks/useFormatNumber';
-import { FormatBalanceOptions, formatBalance } from '../utils/formatBalance';
-import BigNumber from 'bignumber.js';
+import type { FormatBalanceOptions } from '../utils/formatBalance';
+import { formatBalance } from '../utils/formatBalance';
 
 export const useFormatBalance = ({
   numberFormatOptions,
@@ -16,8 +18,7 @@ export const useFormatBalance = ({
   return (balance: BigNumber.Value) => {
     const stringBalance = balance.toString();
     const absoluteBalance = stringBalance.replace(/^-/, '');
-    const action =
-      actionProp || (stringBalance.startsWith('-') ? 'subtract' : 'display');
+    const action = actionProp || (stringBalance.startsWith('-') ? 'subtract' : 'display');
 
     const formattedBalance = formatNumber(absoluteBalance);
     return formatBalance(formattedBalance, {

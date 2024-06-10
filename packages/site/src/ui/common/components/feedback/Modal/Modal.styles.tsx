@@ -1,7 +1,6 @@
 import { IconButton, Modal } from '@peersyst/react-components';
 import styled, { css } from 'styled-components';
 import { CloseIcon } from 'ui/common/icons';
-import React from 'react';
 
 export const ModalRoot = styled(Modal)(
   ({ theme }) => css`

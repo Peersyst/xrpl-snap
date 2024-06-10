@@ -9,10 +9,7 @@ export const RequestMethod = 'xrpl_request';
 export class RequestHandler implements IHandler<typeof RequestMethod> {
   constructor(protected readonly context: Context) {}
 
-  async handle<Request extends XrplRequest>(
-    _: string,
-    params: Request,
-  ): Promise<XrplResponse<Request>> {
+  async handle<Request extends XrplRequest>(_: string, params: Request): Promise<XrplResponse<Request>> {
     return this.context.provider.request(params);
   }
 }

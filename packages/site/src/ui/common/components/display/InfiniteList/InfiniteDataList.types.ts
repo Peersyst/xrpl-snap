@@ -1,10 +1,10 @@
-import { InfiniteScrollProps as BaseInfiniteScrollProps } from "@peersyst/react-components";
-import { DataLoaderProps, ListProps } from "../List/List.types";
+import type { InfiniteScrollProps as BaseInfiniteScrollProps } from '@peersyst/react-components';
 
-export interface EnhancedInfiniteScrollProps
-    extends Omit<BaseInfiniteScrollProps, "callback" | "children" | "loading" | "end" | "loaderElement"> {
-    onEndReached: BaseInfiniteScrollProps["callback"];
-    end?: BaseInfiniteScrollProps["end"];
-}
+import type { DataLoaderProps, ListProps } from '../List/List.types';
 
-export interface InfiniteScrollDataProps<T> extends EnhancedInfiniteScrollProps, DataLoaderProps, ListProps<T> {}
+export type EnhancedInfiniteScrollProps = {
+  onEndReached: BaseInfiniteScrollProps['callback'];
+  end?: BaseInfiniteScrollProps['end'];
+} & Omit<BaseInfiniteScrollProps, 'callback' | 'children' | 'loading' | 'end' | 'loaderElement'>;
+
+export type InfiniteScrollDataProps<T> = {} & EnhancedInfiniteScrollProps & DataLoaderProps & ListProps<T>;

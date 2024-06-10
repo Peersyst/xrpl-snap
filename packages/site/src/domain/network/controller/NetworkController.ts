@@ -1,11 +1,9 @@
-import type {
-  Network,
-  NetworkReserve,
-} from 'common/models/network/network.types';
-import type { MetamaskRepository } from '../../../data_access/repository/metamask/MetamaskRepository';
-import { handleMetamaskError } from 'domain/snap/errors/withMetamaskError';
-import { DomainEvents } from 'domain/events';
 import { config } from 'common/config';
+import type { Network, NetworkReserve } from 'common/models/network/network.types';
+import { DomainEvents } from 'domain/events';
+import { handleMetamaskError } from 'domain/snap/errors/withMetamaskError';
+
+import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
 
 export default class NetworkController {
   constructor(private readonly metamaskRepository: MetamaskRepository) {}
@@ -13,8 +11,7 @@ export default class NetworkController {
   getNetworkReserve(): NetworkReserve {
     return {
       baseReserveCostInXrp: config.xrplNetwork.baseReserveCostInXrp,
-      ownerReserveCostInXrpPerItem:
-        config.xrplNetwork.ownerReserveCostInXrpPerItem,
+      ownerReserveCostInXrpPerItem: config.xrplNetwork.ownerReserveCostInXrpPerItem,
     } as const;
   }
 

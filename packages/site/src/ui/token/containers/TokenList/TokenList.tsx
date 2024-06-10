@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import type { TokenWithBalance } from 'common/models/token';
+import useWalletState from 'ui/adapter/state/useWalletState';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/Token/TokenCard';
 
 import useGetTokens from '../../../wallet/query/useGetTokens';
-import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type TokenListProps = {
   className?: string;
@@ -34,24 +34,13 @@ function TokenList({ className, ...rest }: TokenListProps) {
   return (
     <InfiniteList<TokenWithBalance>
       className={clsx('TokenList', className)}
-      renderItem={(token, i) => (
-        <TokenCard
-          key={i}
-          token={token}
-          balance={token.balance.formatAmount()}
-        />
-      )}
+      renderItem={(token, i) => <TokenCard key={i} token={token} balance={token.balance.formatAmount()} />}
       isLoading={isLoading || !address}
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}
       end={false}
-      nothingToShow={
-        <NothingToShow
-          css={{ paddingTop: '2rem' }}
-          message={translate('nothingToShow', { context: 'token' })}
-        />
-      }
+      nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
       onEndReached={() => ''}
       {...rest}
     />

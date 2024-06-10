@@ -1,4 +1,4 @@
-import { SelectOption } from '@peersyst/react-components';
+import type { SelectOption } from '@peersyst/react-components';
 import { useMemo } from 'react';
 import useGetStoredNetworks from 'ui/network/query/useGetStoredNetworks';
 

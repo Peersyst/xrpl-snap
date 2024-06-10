@@ -1,18 +1,17 @@
-import { Fragment, PropsWithChildren } from 'react';
 import { ToastProvider } from '@peersyst/react-components';
-import QueryClientProvider from './query/QueryClientProvider';
+import type { PropsWithChildren } from 'react';
+import { Fragment } from 'react';
+
 import ErrorHandler from './common/components/feedback/ErrorHandler/ErrorHandler';
 import { ConfigProvider } from './config';
-import { MetaMaskProvider } from './snap/MetamaskContext';
+import QueryClientProvider from './query/QueryClientProvider';
 
-const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
+const Providers = ({ children }: PropsWithChildren): JSX.Element => (
   <Fragment>
     <ConfigProvider>
       <ToastProvider>
         <ErrorHandler>
-          <QueryClientProvider>
-            <MetaMaskProvider>{children}</MetaMaskProvider>
-          </QueryClientProvider>
+          <QueryClientProvider>{children}</QueryClientProvider>
         </ErrorHandler>
       </ToastProvider>
     </ConfigProvider>

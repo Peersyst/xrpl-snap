@@ -1,4 +1,5 @@
 import { TransactionErrorCodes } from 'domain/transaction/error/TransactionErrorCodes';
+
 import { WalletErrorCodes } from '../wallet/WalletErrorCodes';
 
 export enum GenericErrorCodes {
@@ -6,7 +7,7 @@ export enum GenericErrorCodes {
 }
 
 // Merge all module error codes here
-const DomainErrorCodes = {
+export const DomainErrorCodes = {
   ...GenericErrorCodes,
   ...WalletErrorCodes,
   ...TransactionErrorCodes,

@@ -1,20 +1,20 @@
-import { PropsWithChildren } from 'react';
-import {
-  QueryClient,
-  QueryClientProvider as BaseQueryClientProvider,
-} from '@tanstack/react-query';
-import UIErrorEvent from '../error/UIErrorEvent';
+import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from '@tanstack/react-query';
+import type { PropsWithChildren } from 'react';
+
+import type { IDomainError } from '../adapter/IDomainError';
 import isDomainError from '../adapter/utils/isDomainError';
-import { IDomainError } from '../adapter/IDomainError';
+import UIErrorEvent from '../error/UIErrorEvent';
 
 /**
  * Receives an error and dispatches a UIErrorEvent
- * @param error The error to handle
+ * @param error - The error to handle
  */
 function handleQueryClientError(error: IDomainError | any): void {
-  if (isDomainError(error))
-    UIErrorEvent.dispatch(error.code, undefined, error.severity);
-  else UIErrorEvent.dispatch(error.message);
+  if (isDomainError(error)) {
+    UIErrorEvent.dispatch(error.code, error.severity);
+  } else {
+    UIErrorEvent.dispatch(error.message);
+  }
 }
 
 const queryClient = new QueryClient({
@@ -30,14 +30,8 @@ const queryClient = new QueryClient({
   },
 });
 
-const QueryClientProvider = ({
-  children,
-}: PropsWithChildren<{}>): JSX.Element => {
-  return (
-    <BaseQueryClientProvider client={queryClient}>
-      {children}
-    </BaseQueryClientProvider>
-  );
+const QueryClientProvider = ({ children }: PropsWithChildren<{}>): JSX.Element => {
+  return <BaseQueryClientProvider client={queryClient}>{children}</BaseQueryClientProvider>;
 };
 
 export default QueryClientProvider;

@@ -1,6 +1,7 @@
 import type { ThemePalette } from '@peersyst/react-components';
-import basePalette from './basePalette';
 import { alpha } from '@peersyst/react-utils';
+
+import basePalette from './basePalette';
 
 const grey = {
   '100': '#FFFFFF',

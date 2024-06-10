@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function PencilIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function PencilIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="PencilIcon"
-      className={clsx(undefined, 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="PencilIcon" className={clsx(undefined, 'Icon', className)} fill="none">
       c
       <path
         d="M21.3103 6.87843L17.1216 2.68874C16.9823 2.54942 16.8169 2.4389 16.6349 2.3635C16.4529 2.28809 16.2578 2.24928 16.0608 2.24928C15.8638 2.24928 15.6687 2.28809 15.4867 2.3635C15.3047 2.4389 15.1393 2.54942 15 2.68874L3.43969 14.25C3.2998 14.3888 3.18889 14.554 3.11341 14.736C3.03792 14.918 2.99938 15.1132 3.00001 15.3103V19.5C3.00001 19.8978 3.15804 20.2793 3.43935 20.5607C3.72065 20.842 4.10218 21 4.50001 21H8.6897C8.88675 21.0006 9.08197 20.9621 9.26399 20.8866C9.44602 20.8111 9.61122 20.7002 9.75001 20.5603L21.3103 8.99999C21.4496 8.8607 21.5602 8.69533 21.6356 8.51332C21.711 8.33131 21.7498 8.13622 21.7498 7.93921C21.7498 7.7422 21.711 7.54712 21.6356 7.36511C21.5602 7.1831 21.4496 7.01772 21.3103 6.87843ZM4.81032 15L12.75 7.06031L14.3147 8.62499L6.37501 16.5637L4.81032 15ZM4.50001 16.8103L7.1897 19.5H4.50001V16.8103ZM9.00001 19.1897L7.43532 17.625L15.375 9.68531L16.9397 11.25L9.00001 19.1897ZM18 10.1897L13.8103 5.99999L16.0603 3.74999L20.25 7.93874L18 10.1897Z"

@@ -1,8 +1,8 @@
 import { createStore } from 'zustand';
 
-export interface IWalletState {
+export type IWalletState = {
   address?: string;
-}
+};
 
 const walletState = createStore<IWalletState>(() => ({}));
 

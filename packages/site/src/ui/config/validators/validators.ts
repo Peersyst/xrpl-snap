@@ -1,4 +1,5 @@
-import { CreateConfig } from '@peersyst/react-components';
+import type { CreateConfig } from '@peersyst/react-components';
+
 import XrplAddressValidator from './XrplAddressValidator';
 
 const validators: CreateConfig['validators'] = {

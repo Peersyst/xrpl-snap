@@ -1,17 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
+import { SvgIcon } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export default function XrplLogoIcon({
-  className,
-  ...rest
-}: Omit<SvgIconProps, 'children'>): JSX.Element {
+export default function XrplLogoIcon({ className, ...rest }: Omit<SvgIconProps, 'children'>): JSX.Element {
   return (
-    <SvgIcon
-      {...rest}
-      data-testid="XrplLogoIcon"
-      className={clsx(undefined, 'Icon', className)}
-      fill="none"
-    >
+    <SvgIcon {...rest} data-testid="XrplLogoIcon" className={clsx(undefined, 'Icon', className)} fill="none">
       <path
         d="M5.52044 4.12281H5.95708V3H5.52044C5.05751 2.9996 4.59902 3.09048 4.17125 3.26745C3.74347 3.44441 3.35479 3.704 3.02744 4.03135C2.7001 4.3587 2.44051 4.74737 2.26352 5.17515C2.08655 5.60293 1.99569 6.06142 1.99609 6.52435V9.08185C1.99703 9.62337 1.79079 10.1447 1.41964 10.5391C1.0485 10.9334 0.540576 11.1708 0 11.2027L0.0311887 11.7641L0 12.3255C0.540576 12.3574 1.0485 12.5948 1.41964 12.9891C1.79079 13.3834 1.99703 13.9048 1.99609 14.4463V17.3937C1.99443 18.3717 2.38114 19.3104 3.07124 20.0035C3.76134 20.6965 4.69837 21.087 5.67639 21.0896V19.9668C4.99823 19.9663 4.34796 19.6968 3.86841 19.2172C3.38889 18.7377 3.11931 18.0874 3.11888 17.4093V14.4463C3.11935 13.9174 2.99026 13.3963 2.74289 12.9287C2.49552 12.4612 2.13738 12.0613 1.6998 11.7641C2.13614 11.4656 2.49332 11.0655 2.74054 10.5982C2.98777 10.1309 3.11762 9.61049 3.11888 9.08185V6.52435C3.12177 5.88832 3.3757 5.27913 3.82547 4.82938C4.27522 4.37962 4.88439 4.12567 5.52044 4.12281Z"
         fill="black"

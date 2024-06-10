@@ -34,7 +34,7 @@ const basePalette = {
     info: blue,
     success: green,
     warning: orange,
-    error: error,
+    error,
   },
 } as const;
 

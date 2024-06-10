@@ -1,4 +1,4 @@
-//TODO(jordi): Get types from the snap
+// TODO(jordi): Get types from the snap
 
 export type BlockchainAddressType = 'address' | 'tx';
 

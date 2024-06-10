@@ -4,10 +4,12 @@ import ControllerFactory from 'ui/adapter/ControllerFactory';
 
 export function useLoad(): boolean {
   const [loading, setLoading] = useState(true);
-  const isInitializing = useRef(false); //Avoid initializing 2 times
+  const isInitializing = useRef(false); // Avoid initializing 2 times
 
   useEffect(() => {
-    if (isInitializing.current) return;
+    if (isInitializing.current) {
+      return;
+    }
     isInitializing.current = true;
     async function startUseLoad() {
       await RepositoryFactory.init();

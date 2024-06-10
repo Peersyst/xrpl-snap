@@ -1,4 +1,4 @@
-import { CreateConfig } from '@peersyst/react-components';
+import type { CreateConfig } from '@peersyst/react-components';
 
 const components: CreateConfig['components'] = {
   Button: {

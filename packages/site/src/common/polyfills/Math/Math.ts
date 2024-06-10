@@ -1,7 +1,4 @@
-Math.min = function <B extends number | bigint>(
-  this: string,
-  ...values: B[]
-): B {
+Math.min = function <B extends number | bigint>(this: string, ...values: B[]): B {
   if (values.length < 1) {
     return Infinity as any;
   }
@@ -10,17 +7,14 @@ Math.min = function <B extends number | bigint>(
 
   for (const value of values) {
     if (value < minValue) {
-      minValue = value;
+      minValue = value!;
     }
   }
 
   return minValue;
 };
 
-Math.max = function <B extends number | bigint>(
-  this: string,
-  ...values: B[]
-): B {
+Math.max = function <B extends number | bigint>(this: string, ...values: B[]): B {
   if (values.length < 1) {
     return -Infinity as any;
   }
@@ -29,7 +23,7 @@ Math.max = function <B extends number | bigint>(
 
   for (const value of values) {
     if (value > maxValue) {
-      maxValue = value;
+      maxValue = value!;
     }
   }
 

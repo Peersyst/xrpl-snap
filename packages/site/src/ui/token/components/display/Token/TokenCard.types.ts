@@ -1,4 +1,4 @@
-import { Token } from 'common/models/token';
+import type { Token } from 'common/models/token';
 
 export type TokenCardProps = {
   token: Token;

@@ -1,16 +1,16 @@
-import { ViewStyle } from "react-native";
+import type { QRCodeProps as BaseQrCodeProps } from 'react-qr-code';
 
-export interface QrCodeStyle extends Omit<ViewStyle, "width" | "height"> {
-    size?: number;
-    offset?: number;
-}
+export type QrCodeStyle = {
+  size?: number;
+  offset?: number;
+};
 
-export interface QrCodeProps {
-    value: string;
-    style?: QrCodeStyle;
-    disabled?: boolean;
-}
+export type QrCodeProps = {
+  value: string;
+  style?: QrCodeStyle;
+  disabled?: boolean;
+} & BaseQrCodeProps;
 
-export interface QrCodeRootProps {
-    size: number;
-}
+export type QrCodeRootProps = {
+  size: number;
+};

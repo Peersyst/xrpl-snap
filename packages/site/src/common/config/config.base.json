@@ -1,7 +1,8 @@
 {
-  "nativeToken": "nativeToken",
   "projectName": "XRP Snap",
+  "publicUrl": "/",
   "maxNumberDecimals": 15,
+  "nativeToken": "nativeToken",
   "decimals": 3,
   "peersystUrl": "https://peersyst.com",
   "snapOrigin": "local:http://localhost:8080",

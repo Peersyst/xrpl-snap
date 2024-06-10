@@ -1,14 +1,12 @@
-import { config } from '../../../common/config';
-import type { MetamaskRepository } from '../../../data_access/repository/metamask/MetamaskRepository';
-import type State from '../../common/State';
-import type { ISnapState } from '../state/snapState';
 import { DomainEvents } from 'domain/events';
 
+import { config } from '../../../common/config';
+import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
+import type State from '../../common/State';
+import type { ISnapState } from '../state/snapState';
+
 export default class SnapController {
-  constructor(
-    public readonly snapState: State<ISnapState>,
-    private readonly metamaskRepository: MetamaskRepository,
-  ) {}
+  constructor(public readonly snapState: State<ISnapState>, private readonly metamaskRepository: MetamaskRepository) {}
 
   async onInit(): Promise<void> {
     await this.recoverMetamaskState();

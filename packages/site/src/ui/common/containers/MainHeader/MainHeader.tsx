@@ -3,13 +3,15 @@ import clsx from 'clsx';
 import styled, { css } from 'styled-components';
 import SnapLogo from 'ui/common/components/display/SnapLogo/SnapLogo';
 import NetworkSelect from 'ui/network/containers/NetworkSelect/NetworkSelect';
+
 import BurguerDropdown from '../BurguerDropdown/BurguerDropdown';
 
-export interface MainHeaderProps {
+export type MainHeaderProps = {
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
+// @ts-ignore
 const MainHeaderRoot = styled(Row)(() => ({
   height: '2.5rem',
   alignItems: 'center',
@@ -43,7 +45,7 @@ function MainHeader({ className, ...rest }: MainHeaderProps) {
         <Row justifyContent="space-between" alignItems="center">
           <NetworkSelect
             css={{
-              ['.SelectMenu']: { transform: 'translateX(-5.5rem) !important' },
+              '.SelectMenu': { transform: 'translateX(-5.5rem) !important' },
             }}
           />
           <BurguerDropdown />

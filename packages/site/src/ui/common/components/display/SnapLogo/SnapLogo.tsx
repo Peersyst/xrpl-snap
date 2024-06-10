@@ -1,12 +1,12 @@
-import { SvgIconProps } from '@peersyst/react-components';
+import type { SvgIconProps } from '@peersyst/react-components';
 import clsx from 'clsx';
 
-export interface SnapLogoProps {
+export type SnapLogoProps = {
   className?: string;
   style?: React.CSSProperties;
   width?: SvgIconProps['width'];
   height?: SvgIconProps['height'];
-}
+};
 
 function SnapLogo({ className, ...rest }: SnapLogoProps) {
   return (

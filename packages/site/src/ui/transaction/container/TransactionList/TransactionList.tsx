@@ -1,17 +1,17 @@
+import type { InfiniteScrollProps } from '@peersyst/react-components';
 import clsx from 'clsx';
 import Amount from 'common/utils/Amount';
 import { useTheme } from 'styled-components';
+import useWalletState from 'ui/adapter/state/useWalletState';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TransactionCard from 'ui/transaction/components/TransactionCard/TransactionCard';
-import type { Payment, Amount as XrplAmount } from 'xrpl';
+import type { Payment, Amount as XrplAmount, ResponseOnlyTxInfo } from 'xrpl';
 import { rippleTimeToUnixTime } from 'xrpl';
-import type { ResponseOnlyTxInfo } from 'xrpl/src/models/common';
+
 import type { Token } from '../../../../common/models/token';
 import useGetTransactions from '../../query/useGetTransactions';
-import { InfiniteScrollProps } from '@peersyst/react-components';
-import useWalletState from 'ui/adapter/state/useWalletState';
 
 export type TransactionListProps = {
   className?: string;
@@ -24,14 +24,7 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
   const { spacing } = useTheme();
   const { address } = useWalletState();
 
-  const {
-    data,
-    fetchNextPage,
-    isLoading,
-    isRefetching,
-    isFetching,
-    hasNextPage,
-  } = useGetTransactions();
+  const { data, fetchNextPage, isLoading, isRefetching, isFetching, hasNextPage } = useGetTransactions();
 
   function handleEndReached() {
     if (hasNextPage) {
@@ -51,12 +44,7 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
       Skeleton={TransactionCardSkeleton}
       numberOfSkeletons={isLoading || !isFetching ? 5 : 3}
       data={data?.pages.flatMap((page) => page.transactions)}
-      nothingToShow={
-        <NothingToShow
-          css={{ marginTop: spacing[4] }}
-          message={translate('nothingToShow', { context: 'tx' })}
-        />
-      }
+      nothingToShow={<NothingToShow css={{ marginTop: spacing[4] }} message={translate('nothingToShow', { context: 'tx' })} />}
       gap={spacing[8]}
       onEndReached={handleEndReached}
       {...rest}
@@ -64,14 +52,10 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
   );
 }
 
-const extractTransactionProps = (
-  transaction: Payment & ResponseOnlyTxInfo,
-  address: string,
-) => {
+const extractTransactionProps = (transaction: Payment & ResponseOnlyTxInfo, address: string) => {
   const direction: 'out' | 'in' = getTransactionDirection(transaction, address);
   const timestamp = rippleTimeToUnixTime(transaction.date!);
-  const account =
-    direction === 'out' ? transaction.Destination : transaction.Account;
+  const account = direction === 'out' ? transaction.Destination : transaction.Account;
   const token = getTransactionToken(transaction.Amount);
   const amount = getTransactionAmount(transaction.Amount, token);
   return { direction, timestamp, account, token, amount };
@@ -91,23 +75,18 @@ const TransactionCardSkeleton = () => (
 function getTransactionAmount(amount: XrplAmount, token: Token): Amount {
   if (typeof amount === 'string') {
     return new Amount(amount, 6, 'XRP');
-  } else {
-    return Amount.fromDecToken(amount.value, token);
   }
+  return Amount.fromDecToken(amount.value, token);
 }
 
 function getTransactionToken(amount: XrplAmount): Token {
   if (typeof amount === 'string') {
     return { currency: 'XRP', issuer: '', decimals: 6 };
-  } else {
-    return { currency: amount.currency, issuer: amount.issuer, decimals: 15 };
   }
+  return { currency: amount.currency, issuer: amount.issuer, decimals: 15 };
 }
 
-function getTransactionDirection(
-  transaction: Payment & ResponseOnlyTxInfo,
-  address: string,
-): 'out' | 'in' {
+function getTransactionDirection(transaction: Payment & ResponseOnlyTxInfo, address: string): 'out' | 'in' {
   return transaction.Account === address ? 'out' : 'in';
 }
 

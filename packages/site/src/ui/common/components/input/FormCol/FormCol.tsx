@@ -1,26 +1,16 @@
-import {
-  Col,
-  Form,
-  FormProps,
-  Row,
-  useTheme,
-} from '@peersyst/react-components';
+import type { FormProps } from '@peersyst/react-components';
+import { Col, Form, Row, useTheme } from '@peersyst/react-components';
 import clsx from 'clsx';
-import Button from '../Button/Button';
 import { useTranslate } from 'ui/locale';
 
-export interface FormColProps extends FormProps {
+import Button from '../Button/Button';
+
+export type FormColProps = {
   onCancel?: () => void;
   submitLabel?: string;
-}
+} & FormProps;
 
-function FormCol({
-  className,
-  children,
-  onCancel,
-  submitLabel,
-  ...rest
-}: FormColProps) {
+function FormCol({ className, children, onCancel, submitLabel, ...rest }: FormColProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
 

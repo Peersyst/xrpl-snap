@@ -1,5 +1,5 @@
-import { Token } from 'common/models/token';
-import Amount from 'common/utils/Amount';
+import type { Token } from 'common/models/token';
+import type Amount from 'common/utils/Amount';
 
 export type TransactionCardProps = {
   account: string;

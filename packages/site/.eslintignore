@@ -1,0 +1,12 @@
+node_modules
+build
+coverage
+.idea
+craco.config.js
+package-lock.json
+openapi-spec.json
+/test/unit/__mocks__/file.mock.js
+/.nyc_output/
+/src/module/api
+/src/module/common/icons
+/src/script/iconGenerator.js

@@ -14,8 +14,7 @@ export type FormatAmountParts = {
   currency: string;
 };
 
-export type FormatAmountResult<ToParts extends boolean = false> =
-  ToParts extends true ? FormatAmountParts : string;
+export type FormatAmountResult<ToParts extends boolean = false> = ToParts extends true ? FormatAmountParts : string;
 
 export default function useFormatAmount(): <ToParts extends boolean = false>(
   amount: Amount,
@@ -24,11 +23,7 @@ export default function useFormatAmount(): <ToParts extends boolean = false>(
   const translate = useTranslate();
   const formatAmount = <ToParts extends boolean = false>(
     amount: Amount,
-    {
-      maxDecimals: maxDecimalsParam,
-      minDecimals = 0,
-      toParts = false as ToParts,
-    }: UseFormatAmountParams<ToParts> = {},
+    { maxDecimals: maxDecimalsParam, minDecimals = 0, toParts = false as ToParts }: UseFormatAmountParams<ToParts> = {},
   ): FormatAmountResult<ToParts> => {
     const maxDecimals = maxDecimalsParam ?? config.maxNumberDecimals;
     const formattedAmount = translate('formatNumber', {

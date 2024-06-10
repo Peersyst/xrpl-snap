@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const ToolbarStyles = css({
-    ".Toolbar": {
-        height: "4.75rem",
-    },
+  '.Toolbar': {
+    height: '4.75rem',
+  },
 });

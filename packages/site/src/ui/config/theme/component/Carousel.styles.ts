@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const CarouselStyles = css({
-    ".Carousel .CarouselArrow": {
-        opacity: 1,
-    },
+  '.Carousel .CarouselArrow': {
+    opacity: 1,
+  },
 });

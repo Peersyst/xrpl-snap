@@ -7,12 +7,7 @@ import type { QueryOptions, QueryResult } from 'ui/query/react-query-overrides';
 export default function useGetXrpPrice({
   refetchInterval,
   ...options
-}: QueryOptions<
-  number,
-  unknown,
-  number,
-  (Queries | number | undefined)[]
-> = {}): QueryResult<number> {
+}: QueryOptions<number, unknown, number, (Queries | number | undefined)[]> = {}): QueryResult<number> {
   const configRefetchIntervals = useConfig('refetchIntervals');
 
   return useQuery({

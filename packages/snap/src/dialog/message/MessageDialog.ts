@@ -5,10 +5,7 @@ import { translate } from '../locale/translate';
 
 export class MessageDialog {
   static buildHeader(origin: string): Component[] {
-    return [
-      heading(translate('MessageHeader')),
-      text(translate('MessageSubHeader', { origin })),
-    ];
+    return [heading(translate('MessageHeader')), text(translate('MessageSubHeader', { origin }))];
   }
 
   static buildFooter(): Component[] {
@@ -24,13 +21,7 @@ export class MessageDialog {
       method: 'snap_dialog',
       params: {
         type: 'confirmation',
-        content: panel([
-          ...this.buildHeader(origin),
-          divider(),
-          ...this.buildBody(message),
-          divider(),
-          ...this.buildFooter(),
-        ]),
+        content: panel([...this.buildHeader(origin), divider(), ...this.buildBody(message), divider(), ...this.buildFooter()]),
       },
     });
     return Boolean(signPrompt);

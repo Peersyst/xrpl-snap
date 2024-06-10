@@ -1,14 +1,13 @@
 import { Chip, InfoIcon } from '@peersyst/react-components';
-import { alpha } from '@peersyst/react-utils';
 import clsx from 'clsx';
 import styled, { css } from 'styled-components';
 
-export interface ChipIconButtonProps {
+export type ChipIconButtonProps = {
   className?: string;
   style?: React.CSSProperties;
   Icon: typeof InfoIcon;
   size?: 'md' | 'lg';
-}
+};
 
 const ChipIconButtonRoot = styled(Chip)(
   ({ size, theme }) => css`
@@ -40,20 +39,8 @@ const ChipIconButtonRoot = styled(Chip)(
   `,
 );
 
-function ChipIconButton({
-  className,
-  size = 'md',
-  Icon = InfoIcon,
-  ...rest
-}: ChipIconButtonProps) {
-  return (
-    <ChipIconButtonRoot
-      size={size}
-      className={clsx('ChipIconButton', className)}
-      label={<Icon />}
-      {...rest}
-    />
-  );
+function ChipIconButton({ className, size = 'md', Icon = InfoIcon, ...rest }: ChipIconButtonProps) {
+  return <ChipIconButtonRoot size={size} className={clsx('ChipIconButton', className)} label={<Icon />} {...rest} />;
 }
 
 export default ChipIconButton;

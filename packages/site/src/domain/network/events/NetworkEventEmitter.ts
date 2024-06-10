@@ -1,4 +1,4 @@
-import { Network } from 'common/models/network/network.types';
+import type { Network } from 'common/models/network/network.types';
 import { EventEmitter } from 'common/utils/events';
 
 type NetworkEvents = {
