@@ -8,7 +8,7 @@ import 'styled-components/cssprop';
 
 // Custom components theme
 declare module '@peersyst/react-components' {
-  export type ThemePalette = {
+  export interface ThemePalette {
     accent: string;
     white: string;
     black: string;
@@ -44,16 +44,16 @@ declare module '@peersyst/react-components' {
     inverted: string;
     invertedContrast: string;
     lemon: string;
-  };
+  }
 
-  export type CreateThemeTypography = {};
+  export interface CreateThemeTypography {}
 
-  export type TypographyVariantsOverrides = {
+  export interface TypographyVariantsOverrides {
     subtitle1: false;
     subtitle2: false;
-  };
+  }
 
-  export type Theme = {
+  export interface Theme {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
@@ -62,9 +62,9 @@ declare module '@peersyst/react-components' {
     borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  };
+  }
 
-  export type CreateTheme = {
+  export interface CreateTheme {
     fromControl: {
       horizontalPadding: string;
       inputHeight: string;
@@ -73,17 +73,17 @@ declare module '@peersyst/react-components' {
     borderRadiusXl: string;
     spacing: ThemeSpacing;
     roundedBorder: string;
-  };
+  }
 }
 
 // Type styled components theme with our components theme
 declare module 'styled-components' {
-  export type DefaultTheme = {} & Theme;
+  export interface DefaultTheme extends Theme {}
 }
 
 // Use css prop in components
 declare module 'react' {
-  export type Attributes = {
+  export interface Attributes {
     css?: CSSProp<Theme>;
-  };
+  }
 }

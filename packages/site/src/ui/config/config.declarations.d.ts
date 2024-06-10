@@ -4,15 +4,15 @@ import type { TFunction } from 'react-i18next';
 import type { Config as CommonConfig } from '../../common/config/config.types';
 
 declare module '@peersyst/react-components' {
-  export type ConfigTypes = {
+  export interface ConfigTypes {
     TranslateFn: TFunction<'error'>;
-  };
+  }
 
-  export type Config = {} & CommonConfig;
+  export interface Config extends CommonConfig {}
 
-  export type CreateConfig = {};
+  export interface CreateConfig {}
 
-  export type BlockchainLinksTypesOverrides = {
+  export interface BlockchainLinksTypesOverrides {
     address: false;
     tx: false;
     token: false;
@@ -21,8 +21,8 @@ declare module '@peersyst/react-components' {
     mainnetTx: true;
     testnetAddress: true;
     testnetTx: true;
-  };
-  export type BlockchainLinks = {
+  }
+  export interface BlockchainLinks {
     address: undefined;
     tx: undefined;
     token: undefined;
@@ -31,9 +31,9 @@ declare module '@peersyst/react-components' {
     mainnetTx: string;
     testnetAddress: string;
     testnetTx: string;
-  };
+  }
 
-  export type ExtraValidators = {
+  export interface ExtraValidators {
     xrplAddress: Validator<boolean>;
-  };
+  }
 }

@@ -46,7 +46,8 @@ module.exports = {
         'no-useless-concat': 0,
         'no-extend-native': 0,
         '@typescript-eslint/consistent-type-definitions': 0,
-  'import/no-extraneous-dependencies': 0,
+        'import/no-extraneous-dependencies': 0,
+        '@typescript-eslint/no-empty-interface': 0
       },
     },
   ],
