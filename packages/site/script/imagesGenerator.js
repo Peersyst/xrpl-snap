@@ -54,7 +54,7 @@ function addImages(folder) {
 addImages(imgFolder);
 
 // Create an index
-fs.writeFileSync(`${imgFolder}index.ts`, `//@ts-nocheck\n${imgRequires.map((ex) => `\t${ex}`).join(';\n')}\n`);
+fs.writeFileSync(`${imgFolder}index.ts`, `// @ts-nocheck\n${imgRequires.map((ex) => `\t${ex}`).join(';\n')}\n`);
 console.log('images index.ts created');
 
 try {

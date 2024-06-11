@@ -28,7 +28,8 @@ const svgs = [];
  * @returns {string} Icon component's code
  */
 function generateComponent(name, data, removeFill) {
-  return `import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
+  return `import type { SvgIconProps } from '@peersyst/react-components';
+  import { SvgIcon } from '@peersyst/react-components';
 import clsx from "clsx";
 
 export default function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "children">): JSX.Element {
