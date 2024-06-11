@@ -4,8 +4,8 @@ import clsx from 'clsx';
 
 export type XrplAddressTextFieldProps = {} & TextFieldProps;
 
-function XrplAddressTextField({ className, ...rest }: XrplAddressTextFieldProps) {
-  return <TextField validators={{ xrplAddress: true }} className={clsx('XrplAddressTextField', className)} {...rest} />;
+function XrplAddressTextField({ className, validators, ...rest }: XrplAddressTextFieldProps) {
+  return <TextField validators={{ ...validators, xrplAddress: true }} className={clsx('XrplAddressTextField', className)} {...rest} />;
 }
 
 export default XrplAddressTextField;

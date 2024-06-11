@@ -8,6 +8,7 @@ import FormCol from 'ui/common/components/input/FormCol/FormCol';
 import XrplAddressTextField from 'ui/common/components/input/XrplAddressTextField/XrplAddressTextField';
 import NetworkInfoDisplay from 'ui/network/containers/NetworkInfoDisplay/NetworkInfoDisplay';
 import TokenSelect from 'ui/token/containers/TokenSelect/TokenSelect';
+import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 
 import { useTranslate } from '../../../locale';
 
@@ -19,12 +20,19 @@ export type SendModalFormProps = {
 export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
   const translate = useTranslate();
   const [token, setToken] = useState<TokenWithBalance | undefined>();
+  const address = useGetAddress();
 
   return (
     <FormCol onSubmit={onSubmit} onCancel={onCancel}>
       <AlertCallout type="info" content={<Typography variant="body1">{translate('sendCallout')}</Typography>} />
       <NetworkInfoDisplay />
-      <XrplAddressTextField placeholder={translate('pasteRecipientAddress')} name="destination" required label={translate('to')} />
+      <XrplAddressTextField
+        validators={{ ...(address && { notEq: [address, translate('canNotSendToYourself', { ns: 'error' })] }) }}
+        placeholder={translate('pasteRecipientAddress')}
+        name="destination"
+        required
+        label={translate('to')}
+      />
       <TokenSelect
         value={token}
         onChange={setToken}

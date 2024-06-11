@@ -71,7 +71,7 @@ export default class WalletController {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
     }
 
-    const networkResereve = this.networkController.getNetworkReserve();
+    const networkReserve = this.networkController.getNetworkReserve();
 
     let xrpBalance = new Amount('0', 6, 'XRP');
     try {
@@ -81,11 +81,11 @@ export default class WalletController {
       xrpBalance = xrpBalance.plus(Balance);
 
       // Subtract the network reserve cost
-      xrpBalance = xrpBalance.minus(xrpToDrops(networkResereve.baseReserveCostInXrp).toString());
+      xrpBalance = xrpBalance.minus(xrpToDrops(networkReserve.baseReserveCostInXrp).toString());
 
       // For each OwnerCount, subtract the owner reserve cost
-      const ownerReserveCost = new BigNumber(xrpToDrops(networkResereve.ownerReserveCostInXrpPerItem));
-      ownerReserveCost.times(Number(OwnerCount));
+      let ownerReserveCost = new BigNumber(xrpToDrops(networkReserve.ownerReserveCostInXrpPerItem));
+      ownerReserveCost = ownerReserveCost.times(Number(OwnerCount));
       xrpBalance = xrpBalance.minus(ownerReserveCost.toString());
     } catch (e) {}
     return xrpBalance;
