@@ -3,8 +3,8 @@ import { css } from 'styled-components';
 import { metamask } from 'ui/assets/images';
 import AlertCallout from 'ui/common//components/feedback/AlertCallout/AlertCallout';
 import type { ModalProps } from 'ui/common//components/feedback/Modal/Modal.types';
-import Button from 'ui/common//components/input/Button/Button';
 import Modal from 'ui/common/components/feedback/Modal/Modal';
+import Button from 'ui/common/components/input/Button/Button';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import { useTranslate } from 'ui/locale';
 
