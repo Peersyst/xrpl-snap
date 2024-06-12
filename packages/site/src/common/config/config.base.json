@@ -23,5 +23,8 @@
   "xrplNetwork": {
     "baseReserveCostInXrp": "10",
     "ownerReserveCostInXrpPerItem": "2"
+  },
+  "featureFlags": {
+    "enablePlayground": true
   }
 }

@@ -1,16 +1,15 @@
 import { ModalProvider } from '@peersyst/react-components';
 import { config } from 'common/config';
-import { BrowserRouter, Outlet, useRoutes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Outlet, useRoutes } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
 import CardPage from 'ui/common/pages/CardPage/CardPage';
 import HomePage from 'ui/common/pages/HomePage/HomePage';
-import SnapPlaygroundPage from 'ui/snap/pages/SnapPlaygroundPage';
+import { usePlaygroundRoutes } from 'ui/playground/router/PlaygroundRouter';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 export enum MainRoutes {
   MAIN = '/',
-  SNAP_PLAYGROUND = '/snap-playground',
 }
 
 export const useHomeRoutes = (): RouteObject[] => {
@@ -27,10 +26,6 @@ export const useHomeRoutes = (): RouteObject[] => {
           path: MainRoutes.MAIN,
           element: <HomePage />,
         },
-        {
-          path: MainRoutes.SNAP_PLAYGROUND,
-          element: <SnapPlaygroundPage />,
-        },
       ],
     },
   ];
@@ -38,8 +33,9 @@ export const useHomeRoutes = (): RouteObject[] => {
 
 const Routes = () => {
   const dashboardRoutes = useHomeRoutes();
+  const playgroundRoutes = usePlaygroundRoutes();
 
-  return useRoutes([...dashboardRoutes]);
+  return useRoutes([...dashboardRoutes, ...playgroundRoutes, { path: '*', element: <Navigate to="/" /> }]);
 };
 
 const Router = (): JSX.Element => {

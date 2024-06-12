@@ -23,4 +23,7 @@ export type Config = {
   mockedAddress: string;
   fiatDecimals: number;
   xrplNetwork: NetworkReserve;
+  featureFlags: {
+    enablePlayground: boolean;
+  };
 };
