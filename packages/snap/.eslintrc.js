@@ -19,5 +19,14 @@ module.exports = {
     },
   ],
 
+  rules: {
+    'jsdoc/match-description': 'off',
+    'jsdoc/require-returns': 'off',
+    'jsdoc/require-param-description': 'off',
+    '@typescript-eslint/no-throw-literal': 'off',
+    'jsdoc/check-tag-names': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+  },
+
   ignorePatterns: ['!.eslintrc.js', 'dist/'],
 };

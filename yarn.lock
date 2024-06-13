@@ -5677,6 +5677,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
     "@xrpl-snap/ripple-binary-codec": ^1.9.0
+    bignumber.js: ^9.1.2
     buffer: ^6.0.3
     eslint: ^8.45.0
     eslint-config-prettier: ^8.5.0
