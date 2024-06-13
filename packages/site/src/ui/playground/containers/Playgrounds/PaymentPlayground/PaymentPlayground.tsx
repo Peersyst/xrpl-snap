@@ -26,10 +26,15 @@ function PaymentPlayground({ className, children, ...rest }: PaymentPlaygroundPr
   const translate = useTranslate();
 
   async function handleSubmit({ amount, destination, token, DestinationTag, InvoiceID }: Record<string, any>) {
+    let Amount = amount;
     if (token.currency !== 'XRP') {
-      // eslint-disable-next-line
-      window.alert('Only XRP is supported here');
-      return;
+      Amount = {
+        currency: token.currency,
+        value: amount,
+        issuer: token.issuer,
+      };
+    } else {
+      Amount = xrpToDrops(amount);
     }
 
     const payment = {
@@ -37,7 +42,7 @@ function PaymentPlayground({ className, children, ...rest }: PaymentPlaygroundPr
       // @ts-ignore
       Account: address!,
       Destination: destination,
-      Amount: xrpToDrops(amount),
+      Amount,
       ...(Boolean(DestinationTag) && { DestinationTag: Number(DestinationTag) }),
       ...(InvoiceID && { InvoiceID }),
     };
