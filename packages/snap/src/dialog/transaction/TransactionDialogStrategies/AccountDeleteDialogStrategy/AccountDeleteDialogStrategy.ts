@@ -7,7 +7,7 @@ import {
   DestinationTagComponent,
   FeeComponent,
   TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class AccountDeleteDialogStrategy implements TransactionDialogStrategy<AccountDelete> {

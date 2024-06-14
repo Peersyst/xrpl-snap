@@ -3,7 +3,7 @@ import type { SubmittableTransaction, Transaction } from 'xrpl';
 
 export type TransactionDialogStrategy<T extends Transaction = Transaction> = {
   buildHeader?(origin: string): Component[];
-  buildBody?(transaction: T): Component[];
+  buildBody(transaction: T): Component[];
   buildFooter?(): Component[];
 };
 

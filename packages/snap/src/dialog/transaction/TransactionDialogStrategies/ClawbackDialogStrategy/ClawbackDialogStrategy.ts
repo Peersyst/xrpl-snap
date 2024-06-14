@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Clawback, Transaction } from 'xrpl';
 
-import { AccountComponent, AmountComponent, FeeComponent, TransactionTypeComponent } from '../TransactionComponents/TransactionComponents';
+import { AccountComponent, AmountComponent, FeeComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class ClawbackDialogStrategy implements TransactionDialogStrategy<Clawback> {

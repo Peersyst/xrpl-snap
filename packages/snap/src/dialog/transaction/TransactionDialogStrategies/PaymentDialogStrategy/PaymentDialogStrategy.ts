@@ -1,7 +1,6 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Payment, Transaction } from 'xrpl';
 
-import { DeliverMinComponent, SendMaxComponent } from '../../TransactionComponents';
 import {
   AccountComponent,
   AmountComponent,
@@ -10,7 +9,9 @@ import {
   FeeComponent,
   InvoiceIDComponent,
   TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+  DeliverMinComponent,
+  SendMaxComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class PaymentDialogStrategy implements TransactionDialogStrategy<Payment> {

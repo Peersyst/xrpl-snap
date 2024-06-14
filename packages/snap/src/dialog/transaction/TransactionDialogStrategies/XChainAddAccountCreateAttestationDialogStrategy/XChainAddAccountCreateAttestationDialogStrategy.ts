@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { XChainAddAccountCreateAttestation, Transaction } from 'xrpl';
 
-import { AccountComponent, FullTransactionComponent, TransactionTypeComponent } from '../TransactionComponents/TransactionComponents';
+import { AccountComponent, FullTransactionComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class XChainAddAccountCreateAttestationDialogStrategy implements TransactionDialogStrategy<XChainAddAccountCreateAttestation> {

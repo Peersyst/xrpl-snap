@@ -7,7 +7,7 @@ import {
   OfferSequenceComponent,
   OwnerComponent,
   TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class EscrowCancelDialogStrategy implements TransactionDialogStrategy<EscrowCancel> {

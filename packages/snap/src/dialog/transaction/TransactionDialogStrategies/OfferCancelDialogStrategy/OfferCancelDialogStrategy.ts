@@ -1,12 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Transaction, OfferCancel } from 'xrpl';
 
-import {
-  AccountComponent,
-  FeeComponent,
-  OfferSequenceComponent,
-  TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+import { AccountComponent, FeeComponent, OfferSequenceComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class OfferCancelDialogStrategy implements TransactionDialogStrategy<OfferCancel> {

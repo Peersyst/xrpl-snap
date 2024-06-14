@@ -9,7 +9,7 @@ import {
   TakerGetsComponent,
   TakerPaysComponent,
   TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class OfferCreateDialogStrategy implements TransactionDialogStrategy<OfferCreate> {

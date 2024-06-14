@@ -1,8 +1,13 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { SignerListSet, Transaction } from 'xrpl';
 
-import { FeeComponent, SignerEntriesComponent, SignerQuorumComponent } from '../../TransactionComponents';
-import { AccountComponent, TransactionTypeComponent } from '../TransactionComponents/TransactionComponents';
+import {
+  FeeComponent,
+  SignerEntriesComponent,
+  SignerQuorumComponent,
+  AccountComponent,
+  TransactionTypeComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class SignerListSetDialogStrategy implements TransactionDialogStrategy<SignerListSet> {

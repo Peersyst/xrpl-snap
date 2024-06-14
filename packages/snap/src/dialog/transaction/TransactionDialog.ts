@@ -27,8 +27,6 @@ export class TransactionDialog {
     const content = [
       ...(strategy?.buildHeader ? strategy.buildHeader(origin) : this.buildHeader(origin)),
       divider(),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore The transaction should be validated before being passed to the dialog
       ...strategy.buildBody(transaction),
       divider(),
       ...(strategy?.buildFooter ? strategy.buildFooter() : this.buildFooter()),

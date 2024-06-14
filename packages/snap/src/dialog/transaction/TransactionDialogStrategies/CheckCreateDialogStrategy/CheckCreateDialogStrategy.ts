@@ -10,7 +10,7 @@ import {
   InvoiceIDComponent,
   SendMaxComponent,
   TransactionTypeComponent,
-} from '../TransactionComponents/TransactionComponents';
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class CheckCreateDialogStrategy implements TransactionDialogStrategy<CheckCreate> {

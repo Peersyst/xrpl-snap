@@ -1,10 +1,10 @@
 import type { Component } from '@metamask/snaps-sdk';
-import { text } from '@metamask/snaps-sdk';
+import { copyable, row, text } from '@metamask/snaps-sdk';
 import type { LocaleKey } from 'src/dialog/locale/translate';
 import type { Transaction } from 'xrpl';
 import { type IssuedCurrencyAmount } from 'xrpl';
 
-import { TransactionCopyableField, TransactionField } from '../base/base';
+import { Label, TransactionCopyableField, TransactionField } from '../base/base';
 import { formatRippleTime, translateLabel } from '../utils';
 import { isNumber, isString } from '../utils/data-types-validator';
 
@@ -45,7 +45,7 @@ const XrplTimeComponent = (label: LocaleKey, rippleTime: number | undefined): Co
     return [];
   }
   const time = formatRippleTime(rippleTime);
-  return TransactionField(label, time);
+  return [Label(label), row(String(rippleTime), text(time))];
 };
 
 const ExpirationComponent = (expiration: number | undefined): Component[] => {
@@ -76,6 +76,15 @@ const CancelAfterComponent = (cancelAfter: number | undefined): Component[] => {
   return XrplTimeComponent('CancelAfter', cancelAfter);
 };
 
+const FullTransactionComponent = (transaction: Record<string, unknown>): Component[] => {
+  const components: Component[] = [];
+  const keys = Object.keys(transaction);
+  for (const key of keys) {
+    components.push(...[text(`**${key}**:`), copyable(JSON.stringify(transaction[key]))]);
+  }
+  return components;
+};
+
 export {
   CancelAfterComponent,
   Issuer,
@@ -87,4 +96,5 @@ export {
   XrplTimeComponent,
   URIComponent,
   OwnerComponent,
+  FullTransactionComponent,
 };
