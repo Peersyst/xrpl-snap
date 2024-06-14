@@ -26,8 +26,13 @@ declare const _default: {
   /**
    * Account dialogs
    */
-  ExtractPrivateKeyHeader: string;
-  ExtractPrivateKeyRequestHeader: string;
-  ExtractPrivateKeyRequestBody: string;
+  ExtractFamilySeedHeader: string;
+  ExtractFamilySeedRequestHeader: string;
+  ExtractFamilySeedRequestBodyStepTitle1: string;
+  ExtractFamilySeedRequestBodyStepExplanation1: string;
+  ExtractFamilySeedRequestBodyStepTitle2: string;
+  ExtractFamilySeedRequestBodyStepExplanation2: string;
+  ExtractFamilySeedRequestBodyStepTitle3: string;
+  ExtractFamilySeedRequestBodyStepExplanation3: string;
 };
 export default _default;

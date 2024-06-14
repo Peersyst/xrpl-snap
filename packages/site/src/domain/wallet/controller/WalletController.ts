@@ -91,9 +91,9 @@ export default class WalletController {
     return xrpBalance;
   }
 
-  async exportPrivateKey(): Promise<void> {
+  async exportFamilySeed(): Promise<void> {
     await withMetamaskRepositoryError(async () => {
-      await this.metamaskRepository.exportPrivateKey();
+      await this.metamaskRepository.exportFamilySeed();
     });
   }
 }

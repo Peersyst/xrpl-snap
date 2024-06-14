@@ -28,9 +28,16 @@ export default {
   /**
    * Account dialogs
    */
-  ExtractPrivateKeyHeader: 'XRPL Account Private Key',
+  ExtractFamilySeedHeader: 'XRPL Account Family Seeed',
 
-  ExtractPrivateKeyRequestHeader: 'Do you want to export your Private Key ?',
-  ExtractPrivateKeyRequestBody:
-    '⚠️ Warning: Never disclose this key. Anyone with your private keys can steal any assets held in your account.',
+  ExtractFamilySeedRequestHeader: 'Do you want to export your Family Seeed?',
+  ExtractFamilySeedRequestBodyStepTitle1: 'Understand the Risk',
+  ExtractFamilySeedRequestBodyStepExplanation1:
+    '⚠️ **Warning**: Never disclose this key. Anyone with your family seed can steal any assets held in your account.',
+  ExtractFamilySeedRequestBodyStepTitle2: 'Be Aware of Irreversibility',
+  ExtractFamilySeedRequestBodyStepExplanation2:
+    '⚠️ **Warning**: If you lose your family seed, nobody can help you, neither the XRPL Snap or the Metamask team.',
+  ExtractFamilySeedRequestBodyStepTitle3: 'Protect Yourself from Scams',
+  ExtractFamilySeedRequestBodyStepExplanation3:
+    '⚠️ **Warning**: If anyone, even a support agent, asks for your Secret Recovery Phrase, you are being scammed.',
 };

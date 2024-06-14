@@ -1,9 +1,9 @@
 import type { Context } from '../../core/Context';
-import type { ExtractPrivateKeyMethod, ExtractPrivateKeyHandler } from './ExtractPrivateKeyHandler';
+import type { ExtractFamilySeedMethod, ExtractFamilySeedHandler } from './ExtractFamilySeedHandler';
 import type { GetAccountMethod, GetAccountHandler } from './GetAccountHandler';
 
-export declare type AccountMethod = typeof GetAccountMethod | typeof ExtractPrivateKeyMethod;
+export declare type AccountMethod = typeof GetAccountMethod | typeof ExtractFamilySeedMethod;
 export declare const AccountHandlerFactory: (context: Context) => {
   xrpl_getAccount: GetAccountHandler;
-  xrpl_extractPrivateKey: ExtractPrivateKeyHandler;
+  xrpl_extractFamilySeed: ExtractFamilySeedHandler;
 };

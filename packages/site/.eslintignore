@@ -10,3 +10,7 @@ openapi-spec.json
 /src/module/api
 /src/module/common/icons
 /src/script/iconGenerator.js
+/src/common/config
+/src/ui/locale/locales
+tsconfig.json
+package.json

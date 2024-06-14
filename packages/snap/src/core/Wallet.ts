@@ -9,6 +9,7 @@ export class Wallet {
   public readonly address: string;
   public readonly publicKey: string;
   public readonly privateKey: string;
+  public readonly familySeed: string;
 
   constructor(public readonly account: xal.XRPL_Account) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -17,6 +18,8 @@ export class Wallet {
     this.publicKey = account.keypair.publicKey!;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.privateKey = account.keypair.privateKey!;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.familySeed = account.secret.familySeed!;
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -2,7 +2,7 @@ import { Row, useConfig, useTheme } from '@peersyst/react-components';
 import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 import ExplorerButton from 'ui/network/containers/ExplorerButton/ExplorerButton';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
-import useExportPrivateKey from 'ui/wallet/query/useExportPrivateKey';
+import useExportFamilySeed from 'ui/wallet/query/useExportFamilySeed';
 
 import Button from '../../../common/components/input/Button/Button';
 import { useTranslate } from '../../../locale';
@@ -15,7 +15,7 @@ function AccountDetailsModal({ ...rest }: ModalProps) {
   const mockedAddress = useConfig('mockedAddress');
   const address = walletAddress ?? mockedAddress;
 
-  const { mutate: exportPrivateKey } = useExportPrivateKey();
+  const { mutate: exportFamilySeed } = useExportFamilySeed();
 
   return (
     <BaseAccountModal
@@ -24,8 +24,8 @@ function AccountDetailsModal({ ...rest }: ModalProps) {
       footer={
         <Row gap={spacing[4]}>
           <ExplorerButton variant="secondary" css={{ width: '100%' }} address={address} type={'address'} />
-          <Button onClick={() => exportPrivateKey()} variant="secondary" fullWidth>
-            {translate('exportPrivateKey')}
+          <Button onClick={() => exportFamilySeed()} variant="secondary" fullWidth>
+            {translate('exportFamilySeed')}
           </Button>
         </Row>
       }

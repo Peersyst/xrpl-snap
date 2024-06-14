@@ -10,6 +10,8 @@ export declare class Wallet {
 
   readonly privateKey: string;
 
+  readonly familySeed: string;
+
   constructor(account: xal.XRPL_Account);
 
   sign(transaction: Transaction): {

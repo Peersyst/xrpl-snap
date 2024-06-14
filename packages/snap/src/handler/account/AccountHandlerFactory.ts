@@ -1,10 +1,10 @@
 import type { Context } from '../../core/Context';
-import { ExtractPrivateKeyMethod, ExtractPrivateKeyHandler } from './ExtractPrivateKeyHandler';
+import { ExtractFamilySeedMethod, ExtractFamilySeedHandler } from './ExtractFamilySeedHandler';
 import { GetAccountMethod, GetAccountHandler } from './GetAccountHandler';
 
-export type AccountMethod = typeof GetAccountMethod | typeof ExtractPrivateKeyMethod;
+export type AccountMethod = typeof GetAccountMethod | typeof ExtractFamilySeedMethod;
 
 export const AccountHandlerFactory = (context: Context) => ({
   [GetAccountMethod]: new GetAccountHandler(context),
-  [ExtractPrivateKeyMethod]: new ExtractPrivateKeyHandler(context),
+  [ExtractFamilySeedMethod]: new ExtractFamilySeedHandler(context),
 });

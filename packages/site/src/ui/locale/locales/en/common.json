@@ -13,7 +13,7 @@
   "nothingToShow_tx": "You don't have any transaction yet",
   "myAccountDetails": "My account details",
   "viewOnExplorer": "View on explorer",
-  "exportPrivateKey": "Export private key",
+  "exportFamilySeed": "Export family seed",
   "connectSnapTitle": "Connect to XRP Snap",
   "connectSnapSubtitle": "If you don’t have the XRP Snap installed you will be prompted to install it.",
   "snapQuestion": "What is a snap?",

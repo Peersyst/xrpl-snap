@@ -165,10 +165,10 @@ export class MetamaskRepository {
     });
   }
 
-  async exportPrivateKey(): Promise<void> {
+  async exportFamilySeed(): Promise<void> {
     await withMetamaskError(async () =>
       this.invokeSnap({
-        method: 'xrpl_extractPrivateKey',
+        method: 'xrpl_extractFamilySeed',
         params: undefined,
       }),
     );
