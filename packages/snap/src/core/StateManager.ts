@@ -10,24 +10,33 @@ export type State = {
   activeNetwork: Network;
 };
 
-const DEFAULT_NETWORKS = [
+/**
+ * NetworkID: https://xrpl.org/docs/references/protocol/transactions/common-fields/#networkid-field
+ */
+const DEFAULT_NETWORKS: Network[] = [
   {
-    chainId: 1,
+    chainId: 0,
     name: 'XRPL Mainnet',
     nodeUrl: 'https://xrplcluster.com',
     explorerUrl: 'https://livenet.xrpl.org',
   },
   {
-    chainId: 2,
+    chainId: 1,
     name: 'XRPL Testnet',
     nodeUrl: 'https://testnet.xrpl-labs.com',
-    explorerUrl: 'https://livenet.xrpl.org',
+    explorerUrl: 'https://testnet.xrpl.org',
+  },
+  {
+    chainId: 2,
+    name: 'XRPL Devnet',
+    nodeUrl: 'https://s.devnet.rippletest.net:51234',
+    explorerUrl: 'https://devnet.xrpl.org',
   },
 ];
+
 const DEFAULT_STATE: State = {
   networks: DEFAULT_NETWORKS,
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  activeNetwork: DEFAULT_NETWORKS[0]!,
+  activeNetwork: DEFAULT_NETWORKS[0] as Network,
 };
 
 export class StateManager {

@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import { divider, heading, panel, text } from '@metamask/snaps-sdk';
 
-import { translate } from '../locale/translate';
+import { SnapLocaleKey, translate } from '../locale/translate';
 
 export class ExtractPrivateKeyRequestDialog {
   static buildHeader(): Component[] {
@@ -9,7 +9,14 @@ export class ExtractPrivateKeyRequestDialog {
   }
 
   static buildBody(): Component[] {
-    return [text(translate('ExtractPrivateKeyRequestBody'))];
+    const body: Component[] = [];
+    for (let i = 1; i <= 3; i++) {
+      body.push(
+        heading(translate(`ExtractPrivateKeyRequestBodyStepTitle${i}` as SnapLocaleKey)),
+        text(translate(`ExtractPrivateKeyRequestBodyStepExplanation${i}` as SnapLocaleKey)),
+      );
+    }
+    return body;
   }
 
   static async prompt(): Promise<boolean> {

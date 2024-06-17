@@ -9,7 +9,7 @@ export class ExtractPrivateKeyDialog {
   }
 
   static buildBody(privateKey: string): Component[] {
-    return [text(copyable(privateKey))];
+    return [copyable(privateKey)];
   }
 
   static async prompt(privateKey: string): Promise<void> {
