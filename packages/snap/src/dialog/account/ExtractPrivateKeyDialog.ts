@@ -1,5 +1,5 @@
 import type { Component } from '@metamask/snaps-sdk';
-import { copyable, divider, heading, panel, text } from '@metamask/snaps-sdk';
+import { copyable, divider, heading, panel } from '@metamask/snaps-sdk';
 
 import { translate } from '../locale/translate';
 

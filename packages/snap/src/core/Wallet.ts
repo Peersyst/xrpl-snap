@@ -55,7 +55,7 @@ export class Wallet {
      * Use the compressed public key
      * @see https://xrpl.org/docs/concepts/accounts/cryptographic-keys/#secp256k1-key-derivation
      */
-    const xrpPublicKey = bip44CompressedPublicKeyToXRPPublicKey(bip44Node.compressedPublicKey as string);
+    const xrpPublicKey = bip44CompressedPublicKeyToXRPPublicKey(bip44Node.compressedPublicKey);
 
     const classicAddress = deriveAddress(xrpPublicKey);
 

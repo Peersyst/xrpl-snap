@@ -1,7 +1,8 @@
 import type { Component } from '@metamask/snaps-sdk';
 import { divider, heading, panel, text } from '@metamask/snaps-sdk';
 
-import { SnapLocaleKey, translate } from '../locale/translate';
+import { translate } from '../locale/translate';
+import type { SnapLocaleKey } from '../locale/translate';
 
 export class ExtractPrivateKeyRequestDialog {
   static buildHeader(): Component[] {
