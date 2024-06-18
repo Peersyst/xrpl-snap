@@ -104,7 +104,9 @@ export class MetamaskRepository {
     if (submittedTx.result.engine_result === 'tesSUCCESS') {
       return submittedTx.result.tx_json.hash!;
     } else if (submittedTx.result.engine_result) {
-      throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
+      throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR, {
+        result: submittedTx.result.engine_result,
+      });
     } else {
       throw new RepositoryError(RepositoryErrorCodes.TRANSACTION_ERROR);
     }

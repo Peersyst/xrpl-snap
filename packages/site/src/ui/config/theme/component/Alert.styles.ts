@@ -2,8 +2,9 @@ import { alpha } from '@peersyst/react-utils';
 import { css } from 'styled-components';
 
 export const AlertStyles = css(({ theme }) => ({
-  '.Alert': {
-    padding: '1.5rem',
+  '.Alert.Alert.Alert': {
+    padding: '1rem 1.5rem',
+    borderRadius: '0.75rem',
     '&.Info': {
       color: theme.palette.text,
       backgroundColor: alpha(theme.palette.primary, 0.08),
