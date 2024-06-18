@@ -9,7 +9,7 @@ export class Context {
     const stateManager = new StateManager();
     const state = await stateManager.get();
     const provider = new Provider(state.activeNetwork.nodeUrl);
-    const wallet = await Wallet.derive(state.activeNetwork.chainId);
+    const wallet = await Wallet.derive();
     return new Context(stateManager, provider, wallet);
   }
 }

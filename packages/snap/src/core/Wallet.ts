@@ -1,23 +1,11 @@
 /* eslint-disable lines-between-class-members */
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
 import { encode, encodeForSigning } from '@xrpl-snap/ripple-binary-codec';
-import { sign } from 'ripple-keypairs';
+import { sign, deriveAddress } from 'ripple-keypairs';
 import type { Transaction } from 'xrpl';
-import * as xal from 'xrpl-accountlib';
 
 export class Wallet {
-  public readonly address: string;
-  public readonly publicKey: string;
-  public readonly privateKey: string;
-
-  constructor(public readonly account: xal.XRPL_Account) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.address = account.address!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.publicKey = account.keypair.publicKey!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.privateKey = account.keypair.privateKey!;
-  }
+  constructor(public readonly address: string, public readonly publicKey: string, public readonly privateKey: string) {}
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public sign(transaction: Transaction): { tx_blob: string; hash: string } {
@@ -26,13 +14,17 @@ export class Wallet {
       throw new Error('Transaction must not contain TxnSignature or Signers');
     }
 
-    transaction.SigningPubKey = this.publicKey;
-    const signingData = encodeForSigning(transaction);
-    transaction.TxnSignature = sign(signingData, this.privateKey);
+    const txToSignAndEncode = { ...transaction };
+
+    txToSignAndEncode.SigningPubKey = this.publicKey;
+
+    txToSignAndEncode.TxnSignature = computeSignature(txToSignAndEncode, this.privateKey);
+
+    const serialized = encode(txToSignAndEncode);
 
     return {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      tx_blob: encode(transaction),
+      tx_blob: serialized,
       hash: '', // TODO: hashSignedTx(serialized),
     };
   }
@@ -42,34 +34,50 @@ export class Wallet {
     throw new Error(`implement signMessage ${message}`);
   }
 
-  public static async derive(index: number) {
+  public static async derive(addressIndex = 0) {
     const xrplNode = await snap.request({
       method: 'snap_getBip44Entropy',
       params: {
-        coinType: 144,
+        coinType: 144, // XRP coin_type
       },
     });
 
-    const deriveXrpAddress = await getBIP44AddressKeyDeriver(xrplNode);
+    const bip44AddressKeyDeriver = await getBIP44AddressKeyDeriver(xrplNode);
 
-    const addressKey0 = await deriveXrpAddress(index);
+    /**
+     * m / 44' / coin_type' / account' / change / address_index
+     * m / 44' / 144' / 0' / 0 / `addressIndex`
+     */
+    const bip44Node = await bip44AddressKeyDeriver(addressIndex);
 
-    const data = str2ab(addressKey0.privateKey as string);
-    const familySeedData = xal.generate.familySeed({
-      entropy: data,
-    });
+    const xrpPrivateKey = bip44PrivateKeyToXRPPrivateKey(bip44Node.privateKey as string);
+    /**
+     * Use the compressed public key
+     * @see https://xrpl.org/docs/concepts/accounts/cryptographic-keys/#secp256k1-key-derivation
+     */
+    const xrpPublicKey = bip44CompressedPublicKeyToXRPPublicKey(bip44Node.compressedPublicKey);
 
-    return new Wallet(familySeedData);
+    const classicAddress = deriveAddress(xrpPublicKey);
+
+    return new Wallet(classicAddress, xrpPublicKey, xrpPrivateKey);
   }
 }
 
-function str2ab(str: string): Uint8Array {
-  // eslint-disable-next-line id-denylist
-  const buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
-  const bufView = new Uint8Array(buf);
-  for (let i = 0, strLen = str.length; i < strLen; i++) {
-    bufView[i] = str.charCodeAt(i);
-  }
+function bip44PrivateKeyToXRPPrivateKey(privateKey: string): string {
+  return `00${removeHexPreffix(privateKey).toUpperCase()}`;
+}
 
-  return bufView;
+function bip44CompressedPublicKeyToXRPPublicKey(compressedPublicKey: string): string {
+  return removeHexPreffix(compressedPublicKey).toUpperCase();
+}
+
+function removeHexPreffix(hexString: string): string {
+  if (hexString.startsWith('0x')) {
+    return hexString.slice(2);
+  }
+  return hexString;
+}
+
+function computeSignature(tx: Transaction, privateKey: string): string {
+  return sign(encodeForSigning(tx), privateKey);
 }
