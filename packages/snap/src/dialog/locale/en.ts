@@ -29,8 +29,13 @@ export default {
    * Account dialogs
    */
   ExtractPrivateKeyHeader: 'XRPL Account Private Key',
-
   ExtractPrivateKeyRequestHeader: 'Do you want to export your Private Key ?',
-  ExtractPrivateKeyRequestBody:
-    '⚠️ Warning: Never disclose this key. Anyone with your private keys can steal any assets held in your account.',
+  ExtractPrivateKeyRequestBodyStepTitle1: '⚠️ Warning: Understand the Risk',
+  ExtractPrivateKeyRequestBodyStepExplanation1:
+    'Never disclose this key. Anyone with your private key can steal any assets held in your account.',
+  ExtractPrivateKeyRequestBodyStepTitle2: '⚠️ Warning: Be Aware of Irreversibility',
+  ExtractPrivateKeyRequestBodyStepExplanation2:
+    'If you lose your private key, nobody can help you, neither the XRPL Snap or the Metamask team.',
+  ExtractPrivateKeyRequestBodyStepTitle3: '⚠️ Warning: Protect Yourself from Scams',
+  ExtractPrivateKeyRequestBodyStepExplanation3: 'If anyone, even a support agent, asks for your private key, you are being scammed.',
 };

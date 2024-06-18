@@ -16,6 +16,7 @@ export class SignAndSubmitHandler implements IHandler<typeof SignAndSubmitMethod
     const signedTransaction = await signHandler.handle(origin, params);
 
     const submitHandler = new SubmitHandler(this.context);
+
     return submitHandler.handle(origin, signedTransaction);
   }
 }

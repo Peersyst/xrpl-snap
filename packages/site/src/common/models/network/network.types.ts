@@ -18,6 +18,7 @@ export type NetworkReserve = {
 };
 
 export enum NetworkChainId {
-  MAINET = 1,
-  TESTNET = 2,
+  MAINET = 0,
+  TESTNET = 1,
+  DEVNET = 2,
 }
