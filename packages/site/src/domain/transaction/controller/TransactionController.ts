@@ -1,6 +1,7 @@
 import { polling } from '@peersyst/react-utils';
 import type { SendParams } from 'common/models/transaction/send.types';
 import type Amount from 'common/utils/Amount';
+import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
 import { xrpToDrops, type Payment } from 'xrpl';
@@ -19,10 +20,23 @@ export default class TransactionController {
 
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
     const res = await this.metamaskRepository.getAccountTransactions(address, marker);
+
+    const payments = res.result.transactions.reduce<(Payment & ResponseOnlyTxInfo)[]>((acc, { tx, meta }) => {
+      // eslint-disable-next-line no-implicit-coercion
+      if (!!tx && tx.TransactionType === 'Payment' && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
+        if (typeof tx.Amount === 'string') {
+          acc.push(tx);
+        } else {
+          const currencyCode = parseCurrencyCode(tx.Amount.currency);
+          acc.push({ ...tx, Amount: { ...tx.Amount, currency: currencyCode } });
+        }
+      }
+      return acc;
+    }, []);
+
     return {
       marker: res.result.marker,
-      transactions: res.result.transactions.map((accountTx) => accountTx.tx).filter((tx) => tx?.TransactionType === 'Payment') as (Payment &
-        ResponseOnlyTxInfo)[],
+      transactions: payments,
     };
   }
 

@@ -75,24 +75,31 @@ export function SendModalSuccess({ onClose, txHash }: { onClose: () => void; txH
 }
 
 function isMetamaskError(error: Error) {
-  return error.message.includes('MetaMask');
+  return error.message.includes('METAMASK');
 }
 
-export function SendModalError({ onClose, error }: { onClose: () => void; error: Error }) {
+export function SendModalError<E extends Error>({ onClose, error }: { onClose: () => void; error: E }) {
   const translate = useTranslate();
   const { spacing } = useTheme();
   const metamaskError = error ? isMetamaskError(error) : false;
+  // @ts-ignore
+  const reason = typeof error === 'object' && 'data' in error ? (error?.data as string) : undefined;
 
   return (
     <BaseSendModalFeedback>
       <AlertCallout
-        type={metamaskError ? 'error' : 'warning'}
+        type={metamaskError ? 'warning' : 'error'}
         content={
           <Col gap={spacing[2]}>
             <Typography variant="body1">{translate('transferFailed')}</Typography>
             <Typography variant="body1" light>
-              {translate('transferFailedText_Metamask')}
+              {translate('transferFailedText', { context: metamaskError ? 'Metamask' : 'error' })}
             </Typography>
+            {reason && (
+              <Typography variant="body1" light>
+                {JSON.stringify(reason)}
+              </Typography>
+            )}
           </Col>
         }
       />
