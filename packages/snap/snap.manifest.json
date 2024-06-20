@@ -7,12 +7,13 @@
     "url": "https://github.com/Peersyst/xrpl-snap.git"
   },
   "source": {
-    "shasum": "FIOQsJFolm+CTPDsUEXXuy+M0QmFi4JVlSN3qSSW+AE=",
+    "shasum": "jTimx1eNG1mm36aAX80KuQR4uE78HKssf72zG/wm+PI=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "packageName": "@peersyst/xrpl-snap",
-        "registry": "https://registry.npmjs.org/"
+        "registry": "https://registry.npmjs.org/",
+        "iconPath": "images/icon.svg"
       }
     }
   },
