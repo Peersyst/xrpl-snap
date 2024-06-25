@@ -13,7 +13,7 @@ export default function useGetXrpPrice({
   return useQuery({
     refetchInterval: refetchInterval ?? configRefetchIntervals.coinPrice,
     queryKey: [Queries.GET_XRP_PRICE],
-    queryFn: async () => ControllerFactory.tokenPriceController.getXrpPrice(),
+    queryFn: async () => ControllerFactory.tokenController.getXrpPrice(),
     ...options,
   });
 }

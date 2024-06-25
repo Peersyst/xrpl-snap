@@ -9,3 +9,8 @@ export type Token = {
 export type TokenWithBalance = Token & {
   balance: Amount;
 };
+
+export type TokenMetadata = {
+  price: number;
+  icon: string;
+};

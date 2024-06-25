@@ -3,20 +3,18 @@ import clsx from 'clsx';
 import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
 
+import TokenIcon from '../TokenIcon/TokenIcon';
 import { TokenCardRoot } from './TokenCard.styles';
 import type { TokenCardProps } from './TokenCard.types';
-import { getTokenIcon } from './utils/getTokenIcon';
 
 export function TokenCard({ className, token, balance, loading = false }: TokenCardProps): JSX.Element {
-  const getIcon = getTokenIcon();
-  const TokenIcon = getIcon(token);
   const { spacing } = useTheme();
 
   return (
     <TokenCardRoot className={clsx('Token', className)} gap={spacing[5]}>
       <Col>
         <Skeleton shape="circular" loading={loading} css={{ width: '2.5rem', height: '2.5rem' }}>
-          {!loading && <TokenIcon style={{ fontSize: '2.5rem' }} />}
+          {!loading && <TokenIcon token={token} loading={loading} size="2.5rem" />}
         </Skeleton>
       </Col>
 

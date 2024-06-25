@@ -14,6 +14,9 @@ export type Config = {
     apiUrl: string;
     xrpId: string;
   };
+  tokenMetadata: {
+    apiUrl: string;
+  };
   metamaskInstallationLink: string;
   refetchIntervals: {
     balance: number;

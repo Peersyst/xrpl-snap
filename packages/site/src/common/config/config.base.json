@@ -26,5 +26,8 @@
   },
   "featureFlags": {
     "enablePlayground": true
+  },
+  "tokenMetadata": {
+    "apiUrl": "https://s1.xrplmeta.org/token/"
   }
 }

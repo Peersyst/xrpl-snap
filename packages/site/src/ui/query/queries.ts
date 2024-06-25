@@ -6,4 +6,5 @@ export enum Queries {
   GET_TRANSACTIONS = 'get-tokens',
   GET_BALANCE = 'get-balance',
   GET_XRP_PRICE = 'get-xrp-price',
+  GET_TOKEN_INFO = 'get-token-info',
 }

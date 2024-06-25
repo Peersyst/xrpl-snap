@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import type { TokenWithBalance } from 'common/models/token';
 import { useMemo } from 'react';
 import Balance from 'ui/common/components/display/Balance/Balance';
-import { getTokenIcon } from 'ui/token/components/display/Token/utils/getTokenIcon';
+import TokenIcon from 'ui/token/components/display/TokenIcon/TokenIcon';
 import useGetTokens from 'ui/wallet/query/useGetTokens';
 
 import { TokenSelectRoot } from './TokenSelect.styles';
@@ -12,18 +12,17 @@ import { TokenSelectRoot } from './TokenSelect.styles';
 export type TokenSelectProps = {} & Omit<SelectProps<TokenWithBalance>, 'children' | 'options'>;
 
 function TokenSelectItem({ token }: { token: TokenWithBalance }) {
-  const getIcon = getTokenIcon();
-  const Icon = getIcon(token);
-
   return (
     <Row alignItems="center" gap="0.75rem">
-      <Icon
+      <TokenIcon
+        token={token}
         style={{
           filter: 'unset',
           fontSize: '1.5rem',
           width: '1.5rem',
           height: '1.5rem',
         }}
+        size={'1.5rem'}
       />
       <Row gap="0.5rem">
         <Typography variant={'body1'} fontWeight="500" numberOfLines={1}>

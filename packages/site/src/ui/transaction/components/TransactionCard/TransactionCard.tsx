@@ -5,6 +5,7 @@ import Balance from 'ui/common/components/display/Balance/Balance';
 import DateDisplay from 'ui/common/components/display/DateDisplay/DateDisplay';
 import { DateFormat } from 'ui/common/components/display/DateDisplay/hooks/formatDate.types';
 import { useTranslate } from 'ui/locale';
+import FiatBalance from 'ui/wallet/containers/FiatBalance/FiatBalance';
 
 import { DirectionLogo, TransactionCardRoot } from './TransactionCard.styles';
 import type { TransactionCardProps } from './TransactionCard.types';
@@ -22,7 +23,6 @@ export function TransactionCard({ account, direction, timestamp, amount, token, 
           <Skeleton loading={loading}>
             <Row gap={spacing[1]}>
               <Typography variant="body1">{translate(isReceiver ? 'receivedFrom' : 'sentTo')}</Typography>
-
               <BlockchainAddress
                 variant="body1"
                 address={account}
@@ -39,7 +39,7 @@ export function TransactionCard({ account, direction, timestamp, amount, token, 
         </Col>
         <Col gap={spacing[1]} alignItems="end">
           <Balance balance={amount.formatAmount()} currency={token.currency} variant="body1" loading={loading} />
-          <Balance balance={amount.formatAmount()} currency={token.currency} variant="body2" light loading={loading} />
+          <FiatBalance balance={amount.formatAmount()} token={token} variant="body2" light loading={loading} />
         </Col>
       </Row>
     </TransactionCardRoot>
