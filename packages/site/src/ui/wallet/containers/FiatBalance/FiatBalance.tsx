@@ -12,10 +12,13 @@ export interface FiatBalanceProps extends Omit<BalanceProps, 'currency'> {
 }
 
 function TokenFiatBalance({ className, token, balance, loading, ...rest }: FiatBalanceProps) {
+  const { getXrpFiatPriceFromAmount } = useGetXrpFiatPriceFromAmount();
   const { data: { price = 0 } = {} } = useGetTokenInfo(token, { enabled: !loading || token.currency === 'XRP' });
-  const fiatBalance = BigNumber(balance).times(price).toNumber();
+  const xrpEquivalentBalance = BigNumber(balance).times(price).toNumber();
+  const fiatBalance = getXrpFiatPriceFromAmount(xrpEquivalentBalance);
   return (
     <Balance
+      loading={loading}
       action="round"
       balance={fiatBalance}
       currency={config.fiatCurrency}
@@ -25,7 +28,7 @@ function TokenFiatBalance({ className, token, balance, loading, ...rest }: FiatB
   );
 }
 
-function XrpFiatBalance({ className, balance, loading, ...rest }: FiatBalanceProps) {
+function XrpFiatBalance({ className, balance, ...rest }: FiatBalanceProps) {
   const { getXrpFiatPriceFromAmount } = useGetXrpFiatPriceFromAmount();
   const fiatBalance = getXrpFiatPriceFromAmount(Number(balance));
   return (
