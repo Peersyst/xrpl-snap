@@ -41,6 +41,8 @@ const components: CreateConfig['components'] = {
       testnetAddress: 'https://testnet.xrpl.org/accounts/',
       testnetTx: 'https://testnet.xrpl.org/transactions/',
       mainnetTx: 'https://livenet.xrpl.org/transactions/',
+      devnetAddress: 'https://devnet.xrpl.org/accounts/',
+      devnetTx: 'https://devnet.xrpl.org/transactions/',
     },
   },
 };

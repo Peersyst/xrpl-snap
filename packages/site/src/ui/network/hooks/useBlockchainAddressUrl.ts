@@ -9,10 +9,16 @@ export function useBlockchainAddressUrl(typeParam: BlockchainAddressType, addres
   const { data: network } = useGetActiveNetwork();
 
   const type = ((): BlockchainAddressProps['type'] => {
-    if (network?.chainId === NetworkChainId.TESTNET) {
-      return typeParam === 'address' ? 'testnetAddress' : 'testnetTx';
+    switch (network?.chainId) {
+      case NetworkChainId.DEVNET:
+        return typeParam === 'address' ? 'devnetAddress' : 'devnetTx';
+      case NetworkChainId.MAINNET:
+        return typeParam === 'address' ? 'mainnetAddress' : 'mainnetTx';
+      case NetworkChainId.TESTNET:
+        return typeParam === 'address' ? 'testnetAddress' : 'testnetTx';
+      default:
+        return typeParam === 'address' ? 'mainnetAddress' : 'mainnetTx';
     }
-    return typeParam === 'address' ? 'mainnetAddress' : 'mainnetTx';
   })();
 
   const { blockchainLinks } = useComponentConfig('BlockchainAddress');

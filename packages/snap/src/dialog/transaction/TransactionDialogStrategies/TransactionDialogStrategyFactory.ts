@@ -75,12 +75,12 @@ export const TransactionDialogStrategyFactory = (): ITransactionDialogStrategies
   SignerListSet: new SignerListSetDialogStrategy(),
   TicketCreate: new TicketCreateDialogStrategy(),
   TrustSet: new TrustSetDialogStrategy(),
-  XChainAccountCreateCommit: new XChainAccountCreateCommitDialogStrategy(), // @needsaudit
-  XChainAddAccountCreateAttestation: new XChainAddAccountCreateAttestationDialogStrategy(), // @needsaudit
-  XChainAddClaimAttestation: new XChainAddClaimAttestationDialogStrategy(), // @needsaudit
-  XChainClaim: new XChainClaimDialogStrategy(), // @needsaudit
-  XChainCommit: new XChainCommitDialogStrategy(), // @needsaudit
-  XChainCreateBridge: new XChainCreateBridgeDialogStrategy(), // @needsaudit
-  XChainCreateClaimID: new XChainCreateClaimIDDialogStrategy(), // @needsaudit
-  XChainModifyBridge: new XChainModifyBridgeDialogStrategy(), // @needsaudit
+  XChainAccountCreateCommit: new XChainAccountCreateCommitDialogStrategy(), // TODO: Will be removed in the future
+  XChainAddAccountCreateAttestation: new XChainAddAccountCreateAttestationDialogStrategy(), // TODO: Will be removed in the future
+  XChainAddClaimAttestation: new XChainAddClaimAttestationDialogStrategy(), // TODO: Will be removed in the future
+  XChainClaim: new XChainClaimDialogStrategy(), // TODO: Will be removed in the future
+  XChainCommit: new XChainCommitDialogStrategy(), // TODO: Will be removed in the future
+  XChainCreateBridge: new XChainCreateBridgeDialogStrategy(), // TODO: Will be removed in the future
+  XChainCreateClaimID: new XChainCreateClaimIDDialogStrategy(), // TODO: Will be removed in the future
+  XChainModifyBridge: new XChainModifyBridgeDialogStrategy(), // TODO: Will be removed in the future
 });

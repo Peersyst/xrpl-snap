@@ -8,4 +8,5 @@ export type TransactionCardProps = {
   token: Token;
   direction: 'out' | 'in';
   loading?: boolean;
+  txHash: string;
 };

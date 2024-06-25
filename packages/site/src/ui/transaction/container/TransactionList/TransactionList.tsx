@@ -58,11 +58,12 @@ const extractTransactionProps = (transaction: Payment & ResponseOnlyTxInfo, addr
   const account = direction === 'out' ? transaction.Destination : transaction.Account;
   const token = getTransactionToken(transaction.Amount);
   const amount = getTransactionAmount(transaction.Amount, token);
-  return { direction, timestamp, account, token, amount };
+  return { direction, timestamp, account, token, amount, txHash: transaction.hash ?? '' };
 };
 
 const TransactionCardSkeleton = () => (
   <TransactionCard
+    txHash=""
     direction="in"
     timestamp={new Date().getTime()}
     account="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"

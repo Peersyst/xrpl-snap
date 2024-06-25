@@ -25,6 +25,10 @@ export default class TransactionController {
       // eslint-disable-next-line no-implicit-coercion
       if (!!tx && tx.TransactionType === 'Payment' && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
         if (typeof tx.Amount === 'string') {
+          // This case is for SWAP AMM transactions
+          if (tx.Account === tx.Destination) {
+            tx.Amount = meta.DeliveredAmount || meta.delivered_amount || '0';
+          }
           acc.push(tx);
         } else {
           const currencyCode = parseCurrencyCode(tx.Amount.currency);

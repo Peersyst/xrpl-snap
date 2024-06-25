@@ -19,7 +19,7 @@ export default function useGetTokenInfo(
   const { data: network } = useGetActiveNetwork();
 
   return useQuery({
-    enabled: enabled && Boolean(address) && network?.chainId === NetworkChainId.MAINET,
+    enabled: enabled && Boolean(address) && network?.chainId === NetworkChainId.MAINNET,
     queryKey: [Queries.GET_TOKEN_INFO, address, network?.chainId, token.currency, token.issuer],
     queryFn: async () => ControllerFactory.tokenController.getIOUInfo(token),
     ...options,
