@@ -1,7 +1,7 @@
 import { polling } from '@peersyst/react-utils';
 import type { SendParams } from 'common/models/transaction/send.types';
 import type Amount from 'common/utils/Amount';
-import { parseCurrencyCode } from 'common/utils/token/currencyCode';
+import { convertCurrencyCode, parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
 import { xrpToDrops, type Payment } from 'xrpl';
@@ -91,7 +91,7 @@ export default class TransactionController {
     return await this.metamaskRepository.send({
       destination,
       amount: {
-        currency: token.currency,
+        currency: convertCurrencyCode(token.currency),
         value: amount,
         issuer: token.issuer,
       },
