@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "XRPL Snap",
   "proposedName": "XRPL",
   "repository": {
@@ -7,13 +7,12 @@
     "url": "https://github.com/Peersyst/xrpl-snap.git"
   },
   "source": {
-    "shasum": "jspbCgIVD30j4JCrp4ekebYsXr5c0cXXF5A/VxBIxq4=",
+    "shasum": "WVDnYE5mmHrDubw5rs2YrOCBMsYRtmdPdVmXUaY23hA=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "packageName": "@peersyst/xrpl-snap",
-        "registry": "https://registry.npmjs.org/",
-        "iconPath": "images/icon.svg"
+        "registry": "https://registry.npmjs.org/"
       }
     }
   },
