@@ -1,7 +1,7 @@
 import type { IssuedCurrencyAmount } from 'xrpl';
 
-import { dropsToXrp } from './xrp-conversion';
 import { parseCurrencyCode } from './currency-code';
+import { dropsToXrp } from './xrp-conversion';
 
 export const formatXrpAmount = (amount: string): string => {
   const xrpAmount = dropsToXrp(amount);

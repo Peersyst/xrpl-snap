@@ -6,6 +6,7 @@ import { convertHexToString, convertStringToHex } from './hex';
  * @param currencyCode - Standard or non standard currency code
  */
 export function isStandardCurrencyCode(currencyCode: string): boolean {
+  // eslint-disable-next-line require-unicode-regexp
   return /^[a-zA-Z0-9?!@#$%^&*<>()[\]{}|]{3}$/.test(currencyCode);
 }
 
@@ -30,5 +31,6 @@ export function parseCurrencyCode(currencyCode: string): string {
   if (isStandardCurrencyCode(currencyCode)) {
     return currencyCode;
   }
+  // eslint-disable-next-line require-unicode-regexp
   return convertHexToString(currencyCode).replace(/\0/g, '');
 }
