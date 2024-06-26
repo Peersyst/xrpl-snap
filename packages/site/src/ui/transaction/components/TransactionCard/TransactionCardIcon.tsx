@@ -46,11 +46,16 @@ const TransactionCardIconRoot = styled(ChipIconButton)(
     }
     &.Active.Active.Active {
       background-color: ${alpha(theme.palette.primary, 0.08)};
-      border: none;
+      border-color: transparent;
       .Icon {
         color: ${theme.palette.primary};
-        &:second-child {
-          color: ${theme.palette.white};
+      }
+    }
+    &:hover {
+      &.Active.Active.Active {
+        border: 1px solid ${alpha(theme.palette.primary, 0.8)};
+        .Icon {
+          color: ${theme.palette.primary};
         }
       }
     }
