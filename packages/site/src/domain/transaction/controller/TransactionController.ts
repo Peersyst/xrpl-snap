@@ -6,7 +6,7 @@ import { convertCurrencyCode, parseCurrencyCode } from 'common/utils/token/curre
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
 import { xrpToDrops } from 'xrpl';
-import type { ResponseOnlyTxInfo, Transaction } from 'xrpl';
+import type { IssuedCurrencyAmount, ResponseOnlyTxInfo, Transaction } from 'xrpl';
 
 import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
@@ -27,6 +27,9 @@ export default class TransactionController {
           }
           acc.push(tx);
         } else {
+          if (tx.Account === tx.Destination) {
+            tx.Amount = (meta.DeliveredAmount || meta.delivered_amount || tx.Amount) as IssuedCurrencyAmount;
+          }
           const currencyCode = parseCurrencyCode(tx.Amount.currency);
           acc.push({ ...tx, Amount: { ...tx.Amount, currency: currencyCode } });
         }
