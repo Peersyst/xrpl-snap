@@ -68,36 +68,43 @@ export class MetamaskRepository {
    * @param account - Address of the account
    */
   async getIOUTokens(account: string): Promise<TokenWithBalance[]> {
-    const res = (await this.invokeSnap({
-      method: 'xrpl_request',
-      params: { command: 'account_lines', account },
-    })) as AccountLinesResponse;
-
-    const { lines } = res.result;
-
-    while (res.result.marker && res.result.lines.length > 0) {
-      (await this.invokeSnap({
+    try {
+      const res = (await this.invokeSnap({
         method: 'xrpl_request',
-        params: {
-          command: 'account_lines',
-          account,
-          marker: res.result.marker,
-        },
+        params: { command: 'account_lines', account },
       })) as AccountLinesResponse;
-      lines.push(...res.result.lines);
-    }
 
-    return lines.map((line) => {
-      const token = {
-        currency: parseCurrencyCode(line.currency),
-        issuer: line.account,
-        decimals: 15,
-      };
-      return {
-        ...token,
-        balance: Amount.fromDecToken(line.balance, token),
-      };
-    });
+      const { lines } = res.result;
+
+      while (res.result.marker && res.result.lines.length > 0) {
+        (await this.invokeSnap({
+          method: 'xrpl_request',
+          params: {
+            command: 'account_lines',
+            account,
+            marker: res.result.marker,
+          },
+        })) as AccountLinesResponse;
+        lines.push(...res.result.lines);
+      }
+
+      return lines.map((line) => {
+        const token = {
+          currency: parseCurrencyCode(line.currency),
+          issuer: line.account,
+          decimals: 15,
+        };
+        const [int, dec] = line.balance?.split('.') || [];
+
+        return {
+          ...token,
+          balance: Amount.fromDecToken(dec ? `${int}.${dec.slice(0, 14)}` : int, token),
+        };
+      });
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
   }
 
   private getTransactionHashFromTxResponse(submittedTx: SubmitResponse): string {
