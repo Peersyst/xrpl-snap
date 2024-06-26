@@ -99,6 +99,9 @@ function getTransactionToken(tx: XrplTx): Token | undefined {
 }
 
 function getTransactionDirection(transaction: XrplTx, address: string): 'out' | 'in' {
+  if ('Destination' in transaction && transaction.Destination === transaction.Account) {
+    return 'in';
+  }
   return transaction.Account === address ? 'out' : 'in';
 }
 
