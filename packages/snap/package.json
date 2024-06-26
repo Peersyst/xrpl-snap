@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@metamask/snaps-sdk": "^4.0.0",
+    "@metamask/snaps-sdk": "^6.0.0",
     "@xrpl-snap/ripple-binary-codec": "^1.9.0",
     "bignumber.js": "^9.1.2",
     "buffer": "^6.0.3",
