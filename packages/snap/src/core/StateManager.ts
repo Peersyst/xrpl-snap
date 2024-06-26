@@ -26,12 +26,14 @@ const DEFAULT_NETWORKS: Network[] = [
     nodeUrl: 'https://testnet.xrpl-labs.com',
     explorerUrl: 'https://testnet.xrpl.org',
   },
+  /* 
+  TODO: Add Devnet support
   {
     chainId: 2,
     name: 'XRPL Devnet',
     nodeUrl: 'https://s.devnet.rippletest.net:51234',
     explorerUrl: 'https://devnet.xrpl.org',
-  },
+  }, */
 ];
 
 const DEFAULT_STATE: State = {
