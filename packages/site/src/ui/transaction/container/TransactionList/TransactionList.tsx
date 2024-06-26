@@ -1,5 +1,6 @@
 import type { InfiniteScrollProps } from '@peersyst/react-components';
 import clsx from 'clsx';
+import { XrplTx } from 'common/models/transaction/tx.types';
 import Amount from 'common/utils/Amount';
 import { useTheme } from 'styled-components';
 import useWalletState from 'ui/adapter/state/useWalletState';
@@ -7,7 +8,6 @@ import { InfiniteList } from 'ui/common/components/display/InfiniteList/Infinite
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
 import TransactionCard from 'ui/transaction/components/TransactionCard/TransactionCard';
-import type { Payment, Amount as XrplAmount, ResponseOnlyTxInfo } from 'xrpl';
 import { rippleTimeToUnixTime } from 'xrpl';
 
 import type { Token } from '../../../../common/models/token';
@@ -32,15 +32,16 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
     }
   }
 
+  const loading = (!address || isFetching) && !isRefetching;
   return (
     <InfiniteList
       className={clsx('TransactionList', className)}
       renderItem={(tx, i) => {
         const props = extractTransactionProps(tx, address || '');
-        return <TransactionCard key={i} {...props} />;
+        return <TransactionCard key={i} {...props} loading={loading} />;
       }}
       end={!hasNextPage}
-      isLoading={(!address || isFetching) && !isRefetching}
+      isLoading={loading}
       Skeleton={TransactionCardSkeleton}
       numberOfSkeletons={isLoading || !isFetching ? 5 : 3}
       data={data?.pages.flatMap((page) => page.transactions)}
@@ -52,17 +53,19 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
   );
 }
 
-const extractTransactionProps = (transaction: Payment & ResponseOnlyTxInfo, address: string) => {
+const extractTransactionProps = (transaction: XrplTx, address: string) => {
   const direction: 'out' | 'in' = getTransactionDirection(transaction, address);
   const timestamp = rippleTimeToUnixTime(transaction.date!);
-  const account = direction === 'out' ? transaction.Destination : transaction.Account;
-  const token = getTransactionToken(transaction.Amount);
-  const amount = getTransactionAmount(transaction.Amount, token);
-  return { direction, timestamp, account, token, amount, txHash: transaction.hash ?? '' };
+  // @ts-ignore
+  const account = direction === 'out' ? transaction.Destination || transaction.Account : transaction.Account;
+  const token = getTransactionToken(transaction);
+  const amount = getTransactionAmount(transaction, token);
+  return { direction, timestamp, account, token, amount, txHash: transaction.hash ?? '', txType: transaction.TransactionType };
 };
 
 const TransactionCardSkeleton = () => (
   <TransactionCard
+    txType="Payment"
     txHash=""
     direction="in"
     timestamp={new Date().getTime()}
@@ -73,21 +76,29 @@ const TransactionCardSkeleton = () => (
   />
 );
 
-function getTransactionAmount(amount: XrplAmount, token: Token): Amount {
-  if (typeof amount === 'string') {
-    return new Amount(amount, 6, 'XRP');
+function getTransactionAmount(tx: XrplTx, token?: Token): Amount | undefined {
+  if (!token) {
+    return;
   }
-  return Amount.fromDecToken(amount.value, token);
+  if ('Amount' in tx) {
+    if (typeof tx.Amount === 'string') {
+      return new Amount(tx.Amount, 6, 'XRP');
+    } else if (typeof tx.Amount === 'object') {
+      return Amount.fromDecToken(tx.Amount.value, token);
+    }
+  }
 }
 
-function getTransactionToken(amount: XrplAmount): Token {
-  if (typeof amount === 'string') {
-    return { currency: 'XRP', issuer: '', decimals: 6 };
+function getTransactionToken(tx: XrplTx): Token | undefined {
+  if ('Amount' in tx && typeof tx.Amount !== undefined) {
+    if (typeof tx.Amount === 'string') {
+      return { currency: 'XRP', issuer: '', decimals: 6 };
+    }
+    return { currency: tx.Amount?.currency || '', issuer: tx.Amount?.issuer || '', decimals: 15 };
   }
-  return { currency: amount.currency, issuer: amount.issuer, decimals: 15 };
 }
 
-function getTransactionDirection(transaction: Payment & ResponseOnlyTxInfo, address: string): 'out' | 'in' {
+function getTransactionDirection(transaction: XrplTx, address: string): 'out' | 'in' {
   return transaction.Account === address ? 'out' : 'in';
 }
 

@@ -1,4 +1,4 @@
-import { Image, Row } from '@peersyst/react-components';
+import { Row } from '@peersyst/react-components';
 import styled from 'styled-components';
 
 export const TransactionCardRoot = styled(Row)(({ theme }) => ({
@@ -8,9 +8,4 @@ export const TransactionCardRoot = styled(Row)(({ theme }) => ({
   '&:hover': {
     color: theme.palette.primary,
   },
-}));
-
-export const DirectionLogo = styled(Image)(() => ({
-  width: '2.5rem',
-  borderRadius: '50%',
 }));

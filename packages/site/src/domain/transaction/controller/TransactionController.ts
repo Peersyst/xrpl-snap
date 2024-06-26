@@ -1,19 +1,15 @@
 import { polling } from '@peersyst/react-utils';
 import type { SendParams } from 'common/models/transaction/send.types';
+import { TransactionsWithMarker } from 'common/models/transaction/tx.types';
 import type Amount from 'common/utils/Amount';
 import { convertCurrencyCode, parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
-import { xrpToDrops, type Payment } from 'xrpl';
-import type { ResponseOnlyTxInfo } from 'xrpl';
+import { xrpToDrops } from 'xrpl';
+import type { ResponseOnlyTxInfo, Transaction } from 'xrpl';
 
 import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
-
-export type TransactionsWithMarker = {
-  transactions: (Payment & ResponseOnlyTxInfo)[];
-  marker: unknown;
-};
 
 export default class TransactionController {
   constructor(private readonly metamaskRepository: MetamaskRepository) {}
@@ -21,7 +17,7 @@ export default class TransactionController {
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
     const res = await this.metamaskRepository.getAccountTransactions(address, marker);
 
-    const payments = res.result.transactions.reduce<(Payment & ResponseOnlyTxInfo)[]>((acc, { tx, meta }) => {
+    const payments = res.result.transactions.reduce<(Transaction & ResponseOnlyTxInfo)[]>((acc, { tx, meta }) => {
       // eslint-disable-next-line no-implicit-coercion
       if (!!tx && tx.TransactionType === 'Payment' && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
         if (typeof tx.Amount === 'string') {
@@ -34,6 +30,8 @@ export default class TransactionController {
           const currencyCode = parseCurrencyCode(tx.Amount.currency);
           acc.push({ ...tx, Amount: { ...tx.Amount, currency: currencyCode } });
         }
+      } else if (tx !== undefined) {
+        acc.push(tx);
       }
       return acc;
     }, []);

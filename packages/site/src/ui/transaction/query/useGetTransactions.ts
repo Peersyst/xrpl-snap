@@ -1,9 +1,9 @@
 import { useInfiniteQuery, type InfiniteData } from '@tanstack/react-query';
+import { TransactionsWithMarker } from 'common/models/transaction/tx.types';
 import ControllerFactory from 'ui/adapter/ControllerFactory';
 import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import { Queries } from 'ui/query/queries';
 
-import type { TransactionsWithMarker } from '../../../domain/transaction/controller/TransactionController';
 import useWalletState from '../../adapter/state/useWalletState';
 
 export default function useGetTransactions() {
