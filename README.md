@@ -1,8 +1,20 @@
 <p align="center">
-  <a href="https://peersyst.com/" target="blank"><img src=".github/assets/icon.svg" width="120" alt="Xrpl Snap Logo" /></a>
+  <a href="https://peersyst.com/" target="blank"><img src=".github/assets/icon.svg" width="150" alt="Xrpl Snap Logo" /></a>
 </p>
 
-# XRPL Snap for Metamask
+  <p align="center">If you have a Metamask wallet now you have an XRPL one.  Securely manage your XRP and interact with XRPL-based DApps directly from Metamask.</p>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap" target="_blank">
+    <img src="https://img.shields.io/npm/v/@peersyst/xrpl-snap.svg" alt="NPM Version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap" target="_blank">
+    <img src="https://img.shields.io/npm/l/@peersyst/xrpl-snap.svg" alt="Package License" />
+  </a>
+  <a href="https://twitter.com/Peersyst">
+    <img alt="Twitter Follow Peersyst" src="https://img.shields.io/twitter/follow/Peersyst"/>
+  </a>
+</div>
 
 ## Overview
 
