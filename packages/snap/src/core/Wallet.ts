@@ -1,8 +1,10 @@
 /* eslint-disable lines-between-class-members */
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
-import { encode, encodeForSigning } from '@xrpl-snap/ripple-binary-codec';
-import { sign, deriveAddress } from 'ripple-keypairs';
+import { encode } from '@xrpl-snap/ripple-binary-codec';
+import { deriveAddress } from 'ripple-keypairs';
 import type { Transaction } from 'xrpl';
+
+import { bip44CompressedPublicKeyToXRPPublicKey, bip44PrivateKeyToXRPPrivateKey, computeSignature } from './utils/wallet-utils';
 
 export class Wallet {
   constructor(public readonly address: string, public readonly publicKey: string, public readonly privateKey: string) {}
@@ -61,23 +63,4 @@ export class Wallet {
 
     return new Wallet(classicAddress, xrpPublicKey, xrpPrivateKey);
   }
-}
-
-function bip44PrivateKeyToXRPPrivateKey(privateKey: string): string {
-  return `00${removeHexPreffix(privateKey).toUpperCase()}`;
-}
-
-function bip44CompressedPublicKeyToXRPPublicKey(compressedPublicKey: string): string {
-  return removeHexPreffix(compressedPublicKey).toUpperCase();
-}
-
-function removeHexPreffix(hexString: string): string {
-  if (hexString.startsWith('0x')) {
-    return hexString.slice(2);
-  }
-  return hexString;
-}
-
-function computeSignature(tx: Transaction, privateKey: string): string {
-  return sign(encodeForSigning(tx), privateKey);
 }
