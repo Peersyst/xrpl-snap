@@ -1,53 +1,183 @@
-# @metamask/template-snap-monorepo
+# XRPL Snap for Metamask
 
-This repository demonstrates how to develop a snap with TypeScript. For detailed
-instructions, see [the MetaMask documentation](https://docs.metamask.io/guide/snaps.html#serving-a-snap-to-your-local-environment).
+## Overview
 
-MetaMask Snaps is a system that allows anyone to safely expand the capabilities
-of MetaMask. A _snap_ is a program that we run in an isolated environment that
-can customize the wallet experience.
+The XRPL Snap for Metamask is an extension that allows users to interact with the XRP Ledger (XRPL) directly from their Metamask wallet. This Snap introduces support for XRPL, enabling users to manage XRP and other tokens on the XRPL, perform transactions, and interact with XRPL-based decentralized applications (DApps).
 
-## Snaps is pre-release software
+## Features
 
-To interact with (your) Snaps, you will need to install [MetaMask Flask](https://metamask.io/flask/),
-a canary distribution for developers that provides access to upcoming features.
+- **XRPL Integration**: Manage XRP and XRPL tokens within Metamask.
+- **Transaction Support**: Send and receive XRP and other XRPL tokens.
+- **DApp Interaction**: Use XRPL-based DApps seamlessly.
+- **Account Management**: View account balances, transaction history, and other details.
+- **Secure and User-Controlled**: Full control over your XRPL keys and permissions.
 
-## Getting Started
+## Usage
 
-Clone the template-snap repository [using this template](https://github.com/MetaMask/template-snap-monorepo/generate)
-and set up the development environment:
+To use the XRPL Snap, first install it by following these steps:
 
-```shell
-yarn install && yarn start
+1. **Open Metamask**: Ensure you have the latest version of the Metamask extension installed in your browser.
+2. **Navigate to Settings**: Click on the Metamask icon, go to settings, and look for the Snaps section.
+3. **Add XRPL Snap**: In the Snaps section, add the XRPL Snap by providing its URL or selecting it from the Snap store.
+4. **Install Snap**: Click on the XRPL Snap and follow the prompts to add it to your Metamask wallet.
+5. **Enable Snap**: Once installed, enable the Snap and grant necessary permissions.
+
+## Development
+
+Developers can create their own XRPL Snaps to extend Metamask's functionality further. Here’s a basic guide to get started:
+
+### Prerequisites
+
+- Node.js
+- [MetaMask Flask](https://metamask.io/flask/)
+
+### Installation
+
+```bash
+yarn
 ```
 
-## Cloning
+### Running
 
-This repository contains GitHub Actions that you may find useful, see
-`.github/workflows` and [Releasing & Publishing](https://github.com/MetaMask/template-snap-monorepo/edit/main/README.md#releasing--publishing)
-below for more information.
+```bash
+yarn start
+```
 
-If you clone or create this repository outside the MetaMask GitHub organization,
-you probably want to run `./scripts/cleanup.sh` to remove some files that will
-not work properly outside the MetaMask GitHub organization.
+- To only start the UI, navigate to `packages/site` and start from there. The same applies to the snap in `packages/snap`.
+- If you make changes to the snap, first remove the previously installed version to see the changes.
+- Enable the [MetaMask Flask](https://metamask.io/flask/) in your extensions.
 
-If you don't wish to use any of the existing GitHub actions in this repository,
-simply delete the `.github/workflows` directory.
+## API
+
+### Installation
+
+Use the following request to install the Snap:
+
+```javascript
+provider.request({
+  method: 'wallet_requestSnaps',
+  params: {
+    ['npm:@peersyst/xrpl-snap']: {},
+  },
+});
+```
+
+For developing the snap, change the request to:
+
+```javascript
+params: {
+    ["local:http://localhost:8080"]: {},
+},
+```
+
+### Interact with the Snap
+
+To make requests using the RPC, use the following code:
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:@peersyst/xrpl-snap',
+    request: {
+      method: 'xrpl_request',
+      params: { command: 'account_info', account: 'rBg...' },
+    },
+  },
+});
+```
+
+### Network
+
+- Get supported networks:
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:@peersyst/xrpl-snap',
+    request: {
+      method: 'xrpl_getSupportedNetworks',
+    },
+  },
+});
+```
+
+- Get current network:
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:@peersyst/xrpl-snap',
+    request: {
+      method: 'xrpl_getActiveNetwork',
+    },
+  },
+});
+```
+
+- Change the selected network:
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:@peersyst/xrpl-snap',
+    request: {
+      method: 'xrpl_changeNetwork',
+      params: { chainId: 1 }, // Example chainId
+    },
+  },
+});
+```
+
+### Signing and submitting transactions
+
+To sign and submit transactions
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:@peersyst/xrpl-snap',
+    request: {
+      method: 'xrpl_signAndSubmit',
+      params: {
+        TransactionType: 'Payment',
+        Account: 'rBg...',
+        Destination: 'rPT...',
+        Amount: '1000000', // Amount in drops
+      },
+    },
+  },
+});
+```
+
+- If you only want to sing the transaction use `xrpl_sign`.
+
+## Support
+
+For support and further information, refer to the following resources:
+
+- **XRPL Documentation**: [XRPL.org](https://xrpl.org/)
+- **Metamask Snaps Documentation**: [Metamask Snaps](https://docs.metamask.io/snaps/)
+- **Community Forums**: Join discussions on Metamask and XRPL community forums.
 
 ## Contributing
 
-### Testing and Linting
+We welcome contributions to the XRPL Snap project. To contribute, please follow these steps:
 
-Run `yarn test` to run the tests once.
+1. **Fork the Repository**: Fork the XRPL Snap repository on GitHub.
+2. **Create a Branch**: Create a new branch for your feature or bugfix.
+3. **Submit a Pull Request**: Submit a pull request with a detailed description of your changes.
 
-Run `yarn lint` to run the linter, or run `yarn lint:fix` to run the linter and
-fix any automatically fixable issues.
+## Stay in Touch
 
-### Using NPM packages with scripts
+- Author - [Peersyst](https://peersyst.com/)
+- Website - [https://peersyst.com/](https://peersyst.com/)
+- X - [@peersyst](https://peersyst.com/)
 
-Scripts are disabled by default for security reasons. If you need to use NPM
-packages with scripts, you can run `yarn allow-scripts auto`, and enable the
-script in the `lavamoat.allowScripts` section of `package.json`.
+## License
 
-See the documentation for [@lavamoat/allow-scripts](https://github.com/LavaMoat/LavaMoat/tree/main/packages/allow-scripts)
-for more information.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
