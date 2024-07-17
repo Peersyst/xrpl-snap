@@ -2,12 +2,12 @@
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
 import { encode, encodeForSigning } from '@xrpl-snap/ripple-binary-codec';
 import { sign, deriveAddress } from 'ripple-keypairs';
-import type { Transaction } from 'xrpl';
+import { type Transaction } from 'xrpl';
+import { hashSignedTx } from 'xrpl/dist/npm/utils/hashes';
 
 export class Wallet {
   constructor(public readonly address: string, public readonly publicKey: string, public readonly privateKey: string) {}
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public sign(transaction: Transaction): { tx_blob: string; hash: string } {
     // must be without signers or already signed
     if (transaction.TxnSignature || transaction.Signers) {
@@ -18,23 +18,21 @@ export class Wallet {
 
     txToSignAndEncode.SigningPubKey = this.publicKey;
 
-    txToSignAndEncode.TxnSignature = computeSignature(txToSignAndEncode, this.privateKey);
+    txToSignAndEncode.TxnSignature = this._computeTxSignature(txToSignAndEncode);
 
     const serialized = encode(txToSignAndEncode);
 
     return {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       tx_blob: serialized,
-      hash: '', // TODO: hashSignedTx(serialized),
+      hash: hashSignedTx(serialized),
     };
   }
 
-  // Todo: Implement
   public signMessage(message: string): string {
-    throw new Error(`implement signMessage ${message}`);
+    return this._computeSignature(message);
   }
 
-  public static async derive(addressIndex = 0) {
+  public static async derive(addressIndex = 0): Promise<Wallet> {
     const xrplNode = await snap.request({
       method: 'snap_getBip44Entropy',
       params: {
@@ -61,6 +59,14 @@ export class Wallet {
 
     return new Wallet(classicAddress, xrpPublicKey, xrpPrivateKey);
   }
+
+  _computeTxSignature(tx: Transaction): string {
+    return this._computeSignature(encodeForSigning(tx));
+  }
+
+  _computeSignature(message: string): string {
+    return sign(message, this.privateKey);
+  }
 }
 
 function bip44PrivateKeyToXRPPrivateKey(privateKey: string): string {
@@ -76,8 +82,4 @@ function removeHexPreffix(hexString: string): string {
     return hexString.slice(2);
   }
   return hexString;
-}
-
-function computeSignature(tx: Transaction, privateKey: string): string {
-  return sign(encodeForSigning(tx), privateKey);
 }
