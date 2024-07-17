@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://peersyst.com/" target="blank"><img src=".github/assets/icon.svg" width="120" alt="Xrpl Snap Logo" /></a>
+</p>
+
 # XRPL Snap for Metamask
 
 ## Overview
