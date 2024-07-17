@@ -5,6 +5,8 @@ import { sign, deriveAddress } from 'ripple-keypairs';
 import { type Transaction } from 'xrpl';
 import { hashSignedTx } from 'xrpl/dist/npm/utils/hashes';
 
+import { bip44CompressedPublicKeyToXRPPublicKey, bip44PrivateKeyToXRPPrivateKey } from './utils/wallet-utils';
+
 export class Wallet {
   constructor(public readonly address: string, public readonly publicKey: string, public readonly privateKey: string) {}
 
@@ -67,19 +69,4 @@ export class Wallet {
   _computeSignature(message: string): string {
     return sign(message, this.privateKey);
   }
-}
-
-function bip44PrivateKeyToXRPPrivateKey(privateKey: string): string {
-  return `00${removeHexPreffix(privateKey).toUpperCase()}`;
-}
-
-function bip44CompressedPublicKeyToXRPPublicKey(compressedPublicKey: string): string {
-  return removeHexPreffix(compressedPublicKey).toUpperCase();
-}
-
-function removeHexPreffix(hexString: string): string {
-  if (hexString.startsWith('0x')) {
-    return hexString.slice(2);
-  }
-  return hexString;
 }
