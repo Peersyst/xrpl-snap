@@ -71,12 +71,12 @@ export default {
   SignerEntry: 'Signer Entry',
   SignerWeight: 'Signer Weight',
   /**
-   * Message dialogs
+   * Sign Message dialogs
    */
-  MessageHeader: 'Sign Message',
-  MessageSubHeader: 'Got a request from %origin% to sign the following message',
-  Message: '**Message:** %message%',
-  MessageFooter: '**Signing of a message can be dangerous.**',
+  SignMessageHeader: 'Sign Message',
+  SignMessageSubHeader: 'Got a request from %origin% to sign the following message',
+  SignMessage: '**Message:** %message%',
+  SignMessageFooter: '**Signing of a message can be dangerous.**',
   /**
    * Network dialogs
    */
