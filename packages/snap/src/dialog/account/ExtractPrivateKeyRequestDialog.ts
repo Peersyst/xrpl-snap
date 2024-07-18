@@ -2,7 +2,7 @@ import type { Component } from '@metamask/snaps-sdk';
 import { divider, heading, panel, text } from '@metamask/snaps-sdk';
 
 import { translate } from '../locale/translate';
-import type { SnapLocaleKey } from '../locale/translate';
+import type { LocaleKey } from '../locale/translate';
 
 export class ExtractPrivateKeyRequestDialog {
   static buildHeader(): Component[] {
@@ -13,8 +13,8 @@ export class ExtractPrivateKeyRequestDialog {
     const body: Component[] = [];
     for (let i = 1; i <= 3; i++) {
       body.push(
-        heading(translate(`ExtractPrivateKeyRequestBodyStepTitle${i}` as SnapLocaleKey)),
-        text(translate(`ExtractPrivateKeyRequestBodyStepExplanation${i}` as SnapLocaleKey)),
+        heading(translate(`ExtractPrivateKeyRequestBodyStepTitle${i}` as LocaleKey)),
+        text(translate(`ExtractPrivateKeyRequestBodyStepExplanation${i}` as LocaleKey)),
       );
     }
     return body;
