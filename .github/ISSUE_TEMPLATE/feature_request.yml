@@ -1,6 +1,6 @@
-name: "🙋‍♂️ Feature Request"
-description: "Request the addition of a new feature."
-labels: ["feature", "request"]
+name: '🙋‍♂️ Feature Request'
+description: 'Request the addition of a new feature.'
+labels: ['feature', 'request']
 body:
   - type: markdown
     attributes:
@@ -8,8 +8,8 @@ body:
   - type: textarea
     attributes:
       label: Feature Request
-      description: "Please describe the feature you would like to request."
-      placeholder: "Enter details about the feature you want."
-      value: "I want to request a feature that..."
+      description: 'Please describe the feature you would like to request.'
+      placeholder: 'Enter details about the feature you want.'
+      value: 'I want to request a feature that...'
     validations:
       required: true

@@ -1,6 +1,6 @@
-name: "❓ Questions and Discussions"
-description: "Initiate a conversation or seek clarification on specific aspects."
-labels: ["question"]
+name: '❓ Questions and Discussions'
+description: 'Initiate a conversation or seek clarification on specific aspects.'
+labels: ['question']
 body:
   - type: markdown
     attributes:
@@ -8,8 +8,8 @@ body:
   - type: input
     attributes:
       label: Question or Discussion
-      description: "Please provide a brief description of your question or the topic you wish to discuss."
-      placeholder: "Enter your question or discussion topic here."
-      value: "I have a question about..."
+      description: 'Please provide a brief description of your question or the topic you wish to discuss.'
+      placeholder: 'Enter your question or discussion topic here.'
+      value: 'I have a question about...'
     validations:
       required: true
