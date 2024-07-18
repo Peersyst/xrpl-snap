@@ -1,6 +1,6 @@
-name: "🐞 Bug Report"
-description: "Report a reproducible bug"
-labels: ["bug"]
+name: '🐞 Bug Report'
+description: 'Report a reproducible bug'
+labels: ['bug']
 body:
   - type: markdown
     attributes:
@@ -9,23 +9,23 @@ body:
     attributes:
       label: Steps to reproduce
       description: Provide a detailed list of steps to reproduce the bug.
-      placeholder: "1. 2. 3. 4."
-      value: "Bug steps"
+      placeholder: '1. 2. 3. 4.'
+      value: 'Bug steps'
     validations:
       required: true
   - type: textarea
     attributes:
       label: Expected behavior
       description: Describe what you expected to happen.
-      placeholder: "Expected behavior"
-      value: "Expected behavior"
+      placeholder: 'Expected behavior'
+      value: 'Expected behavior'
     validations:
       required: true
   - type: textarea
     attributes:
       label: Actual behavior
       description: Describe what actually happened.
-      placeholder: "Actual behavior"
-      value: "Actual behavior"
+      placeholder: 'Actual behavior'
+      value: 'Actual behavior'
     validations:
       required: true
