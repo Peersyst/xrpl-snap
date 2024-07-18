@@ -4,7 +4,7 @@ import {
   removeHexPreffix,
 } from '../../src/core/utils/wallet-utils';
 
-describe('Ripple Key Functions', () => {
+describe('Wallet utils Functions', () => {
   test('bip44PrivateKeyToXRPPrivateKey should convert a BIP44 private key to an XRP private key', () => {
     const privateKey = '0xabcdef';
     const expected = '00ABCDEF';
