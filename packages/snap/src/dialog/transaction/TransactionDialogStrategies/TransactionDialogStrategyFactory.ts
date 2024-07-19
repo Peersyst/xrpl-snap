@@ -31,7 +31,7 @@ import { PaymentChannelFundDialogStrategy } from './PaymentChannelFundDialogStra
 import { PaymentDialogStrategy } from './PaymentDialogStrategy/PaymentDialogStrategy';
 import { SetRegularKeyDialogStrategy } from './SetRegularKeyDialogStrategy/SetRegularKeyDialogStrategy';
 import { SignerListSetDialogStrategy } from './SignerListSetDialogStrategy/SignerListSetDialogStrategy';
-import { TicketCreateDialogStrategy } from './TickerCreateDialogStrategy/TickerCreateDialogStrategy';
+import { TicketCreateDialogStrategy } from './TicketCreateDialogStrategy/TicketCreateDialogStrategy';
 import type { ITransactionDialogStrategiesFactory } from './TransactionDialogStrategies.types';
 import { TrustSetDialogStrategy } from './TrustSetDialogStrategy/TrustSetDialogStrategy';
 import { XChainAccountCreateCommitDialogStrategy } from './XChainAccountCreateCommitDialogStrategy/XChainAccountCreateCommitDialogStrategy';

@@ -7,7 +7,7 @@ import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.t
 export class XChainCommitDialogStrategy implements TransactionDialogStrategy<XChainCommit> {
   transactionType: Transaction['TransactionType'] = 'XChainCommit';
 
-  buildBody({ Account, ...rest }: XChainCommit): Component[] {
-    return [...TransactionTypeComponent(this.transactionType), ...AccountComponent(Account), ...FullTransactionComponent(rest)];
+  buildBody({ Account, TransactionType, ...rest }: XChainCommit): Component[] {
+    return [...TransactionTypeComponent(TransactionType), ...AccountComponent(Account), ...FullTransactionComponent(rest)];
   }
 }
