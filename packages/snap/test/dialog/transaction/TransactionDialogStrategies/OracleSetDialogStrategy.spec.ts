@@ -47,6 +47,8 @@ describe('OracleSetDialogStrategy', () => {
       ...TransactionTypeComponent('OracleSet'),
       ...AccountComponent(txs.OracleSet.Account),
       ...OracleDocumentIDComponent(txs.OracleSet.OracleDocumentID),
+      ...LastUpdateTimeComponent(txs.OracleSet.LastUpdateTime),
+      ...PriceDataSeriesComponment(txs.OracleSet.PriceDataSeries),
       ...FeeComponent(txs.OracleSet.Fee),
     ];
 
