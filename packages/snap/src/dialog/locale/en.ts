@@ -70,6 +70,15 @@ export default {
   SignerEntries: 'Signer Entries',
   SignerEntry: 'Signer Entry',
   SignerWeight: 'Signer Weight',
+  OracleDocumentID: 'Oracle Document ID',
+  LastUpdateTime: 'Last Update Time',
+  BaseAsset: 'Base Asset',
+  QuoteAsset: 'Quote Asset',
+  AssetPrice: 'Asset Price',
+  Scale: 'Scale',
+  PriceData: 'Price Data',
+  Provider: 'Provider',
+  AssetClass: 'Asset Class',
   /**
    * Sign Message dialogs
    */
