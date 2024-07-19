@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { SetRegularKeyDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/SetRegularKeyDialogStrategy/SetRegularKeyDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   RegularKeyComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { SetRegularKeyDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/SetRegularKeyDialogStrategy/SetRegularKeyDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('SetRegularKeyDialogStrategy', () => {
   let strategy: SetRegularKeyDialogStrategy;

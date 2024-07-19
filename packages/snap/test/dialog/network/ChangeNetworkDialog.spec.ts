@@ -1,7 +1,8 @@
 import { divider, heading, panel, text } from '@metamask/snaps-sdk';
-import { ChangeNetworkDialog } from '../../../src/dialog/network/ChangeNetworkDialog';
+
+import type { Network } from '../../../src/core/StateManager';
 import { translate } from '../../../src/dialog/locale/translate';
-import { Network } from '../../../src/core/StateManager';
+import { ChangeNetworkDialog } from '../../../src/dialog/network/ChangeNetworkDialog';
 
 describe('ChangeNetworkDialog', () => {
   const origin = 'mockOrigin';

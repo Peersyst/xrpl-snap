@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AMMDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMDeleteDialogStrategy/AMMDeleteDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -7,6 +5,8 @@ import {
   Asset2Component,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AMMDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMDeleteDialogStrategy/AMMDeleteDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AMMDeleteDialogStrategy', () => {
   let strategy: AMMDeleteDialogStrategy;

@@ -1,4 +1,4 @@
-import { AMMVote } from 'xrpl';
+import type { AMMVote } from 'xrpl';
 
 export const AMM_VOTE: AMMVote = {
   TransactionType: 'AMMVote',

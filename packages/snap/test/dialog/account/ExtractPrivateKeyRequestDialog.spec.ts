@@ -1,7 +1,8 @@
-import { translate } from '../../utils/translate';
-import { ExtractPrivateKeyRequestDialog } from '../../../src/dialog/account/ExtractPrivateKeyRequestDialog';
-import { LocaleKey } from '../../../src/dialog/locale/translate';
 import { heading, text } from '@metamask/snaps-sdk';
+
+import { ExtractPrivateKeyRequestDialog } from '../../../src/dialog/account/ExtractPrivateKeyRequestDialog';
+import type { LocaleKey } from '../../../src/dialog/locale/translate';
+import { translate } from '../../utils/translate';
 
 describe('ExtractPrivateKeyRequestDialog', () => {
   const headerResult = [heading(translate('ExtractPrivateKeyRequestHeader'))];

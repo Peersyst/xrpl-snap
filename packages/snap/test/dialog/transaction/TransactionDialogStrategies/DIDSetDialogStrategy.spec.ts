@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { DIDSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DIDSetDialogStrategy/DIDSetDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -8,6 +6,8 @@ import {
   DIDDocumentComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { DIDSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DIDSetDialogStrategy/DIDSetDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('DIDSetDialogStrategy', () => {
   let strategy: DIDSetDialogStrategy;

@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { OfferCancelDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OfferCancelDialogStrategy/OfferCancelDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   OfferSequenceComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { OfferCancelDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OfferCancelDialogStrategy/OfferCancelDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('OfferCancelDialogStrategy', () => {
   let strategy: OfferCancelDialogStrategy;

@@ -1,4 +1,5 @@
 import { copyable, divider, heading, panel } from '@metamask/snaps-sdk';
+
 import { ExtractPrivateKeyDialog } from '../../../src/dialog/account/ExtractPrivateKeyDialog';
 import { translate } from '../../../src/dialog/locale/translate';
 

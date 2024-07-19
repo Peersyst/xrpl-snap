@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { EscrowFinishDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/EscrowFinishDialogStrategy/EscrowFinishDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -9,6 +7,8 @@ import {
   FulfillmentComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { EscrowFinishDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/EscrowFinishDialogStrategy/EscrowFinishDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('EscrowFinishDialogStrategy', () => {
   let strategy: EscrowFinishDialogStrategy;

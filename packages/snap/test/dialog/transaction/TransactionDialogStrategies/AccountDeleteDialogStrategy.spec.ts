@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AccountDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AccountDeleteDialogStrategy/AccountDeleteDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -7,6 +5,8 @@ import {
   DestinationTagComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AccountDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AccountDeleteDialogStrategy/AccountDeleteDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AccountDeleteDialogStrategy', () => {
   let strategy: AccountDeleteDialogStrategy;

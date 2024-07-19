@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { PaymentChannelFundDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelFundDialogStrategy/PaymentChannelFundDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -8,6 +6,8 @@ import {
   ExpirationComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { PaymentChannelFundDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelFundDialogStrategy/PaymentChannelFundDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('PaymentChannelFundDialogStrategy', () => {
   let strategy: PaymentChannelFundDialogStrategy;

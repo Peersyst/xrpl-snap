@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { TicketCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/TicketCreateDialogStrategy/TicketCreateDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   TicketCountComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { TicketCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/TicketCreateDialogStrategy/TicketCreateDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('TicketCreateDialogStrategy', () => {
   let strategy: TicketCreateDialogStrategy;

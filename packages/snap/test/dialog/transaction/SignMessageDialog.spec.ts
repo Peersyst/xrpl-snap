@@ -1,6 +1,7 @@
 import { divider, heading, panel, text } from '@metamask/snaps-sdk';
-import { SignMessageDialog } from '../../../src/dialog/transaction/SignMessageDialog';
+
 import { translate } from '../../../src/dialog/locale/translate';
+import { SignMessageDialog } from '../../../src/dialog/transaction/SignMessageDialog';
 
 describe('SignMessageDialog', () => {
   const origin = 'mockOrigin';

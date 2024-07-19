@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { PaymentDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentDialogStrategy/PaymentDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -11,6 +9,8 @@ import {
   DeliverMinComponent,
   SendMaxComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { PaymentDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentDialogStrategy/PaymentDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('PaymentDialogStrategy', () => {
   let strategy: PaymentDialogStrategy;

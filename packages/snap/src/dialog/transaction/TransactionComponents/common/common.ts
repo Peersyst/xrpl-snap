@@ -59,7 +59,7 @@ const URIComponent = (uri: string | undefined | null): Component[] => {
   if (!isString(uri)) {
     return [];
   }
-  //TODO: Convert hex to string
+  // TODO: Convert hex to string
   return TransactionField('URI', uri);
 };
 

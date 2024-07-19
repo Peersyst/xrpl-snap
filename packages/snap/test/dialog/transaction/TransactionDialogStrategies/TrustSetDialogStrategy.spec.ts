@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { TrustSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/TrustSetDialogStrategy/TrustSetDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -8,6 +6,8 @@ import {
   QualityOutComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { TrustSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/TrustSetDialogStrategy/TrustSetDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('TrustSetDialogStrategy', () => {
   let strategy: TrustSetDialogStrategy;

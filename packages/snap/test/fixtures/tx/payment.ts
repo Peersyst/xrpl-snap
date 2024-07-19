@@ -1,4 +1,4 @@
-import { Payment } from 'xrpl';
+import type { Payment } from 'xrpl';
 
 export const PAYMENT: Payment = {
   TransactionType: 'Payment',

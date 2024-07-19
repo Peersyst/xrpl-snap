@@ -1,6 +1,6 @@
-import txs from '../../../fixtures/tx';
-import { DIDDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DIDDeleteDialogStrategy/DIDDeleteDialogStrategy';
 import { TransactionTypeComponent, AccountComponent, FeeComponent } from '../../../../src/dialog/transaction/TransactionComponents';
+import { DIDDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DIDDeleteDialogStrategy/DIDDeleteDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('DIDDeleteDialogStrategy', () => {
   let strategy: DIDDeleteDialogStrategy;

@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AMMDepositDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMDepositDialogStrategy/AMMDepositDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -11,6 +9,8 @@ import {
   LPTokenOutComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AMMDepositDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMDepositDialogStrategy/AMMDepositDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AMMDepositDialogStrategy', () => {
   let strategy: AMMDepositDialogStrategy;

@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { OracleDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OracleDeleteDialogStrategy/OracleDeleteDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   OracleDocumentIDComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { OracleDeleteDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OracleDeleteDialogStrategy/OracleDeleteDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('OracleDeleteDialogStrategy', () => {
   let strategy: OracleDeleteDialogStrategy;

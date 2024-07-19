@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AMMWithdrawDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMWithdrawDialogStrategy/AMMWithdrawDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -11,6 +9,8 @@ import {
   LPTokenInComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AMMWithdrawDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMWithdrawDialogStrategy/AMMWithdrawDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AMMWithdrawDialogStrategy', () => {
   let strategy: AMMWithdrawDialogStrategy;

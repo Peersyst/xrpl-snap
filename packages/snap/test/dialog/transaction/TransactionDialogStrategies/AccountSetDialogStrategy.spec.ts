@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AccountSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AccountSetDialogStrategy/AccountSetDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -12,6 +10,8 @@ import {
   TransferRateComponent,
   NFTokenMinterComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AccountSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AccountSetDialogStrategy/AccountSetDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AccountSetDialogStrategy', () => {
   let strategy: AccountSetDialogStrategy;

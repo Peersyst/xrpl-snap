@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { AMMBidDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMBidDialogStrategy/AMMBidDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -10,6 +8,8 @@ import {
   AuthAccountsComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { AMMBidDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AMMBidDialogStrategy/AMMBidDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('AMMBidDialogStrategy', () => {
   let strategy: AMMBidDialogStrategy;

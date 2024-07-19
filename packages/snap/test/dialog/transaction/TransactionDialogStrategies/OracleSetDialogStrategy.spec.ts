@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { OracleSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OracleSetDialogStrategy/OracleSetDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -11,6 +9,8 @@ import {
   AssetClassComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { OracleSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OracleSetDialogStrategy/OracleSetDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('OracleSetDialogStrategy', () => {
   let strategy: OracleSetDialogStrategy;

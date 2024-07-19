@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { PaymentChannelCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelCreateDialogStrategy/PaymentChannelCreateDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -11,6 +9,8 @@ import {
   DestinationTagComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { PaymentChannelCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelCreateDialogStrategy/PaymentChannelCreateDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('PaymentChannelCreateDialogStrategy', () => {
   let strategy: PaymentChannelCreateDialogStrategy;

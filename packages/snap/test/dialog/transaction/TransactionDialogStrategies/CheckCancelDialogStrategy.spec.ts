@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { CheckCancelDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/CheckCancelDialogStrategy/CheckCancelDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   CheckIDComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { CheckCancelDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/CheckCancelDialogStrategy/CheckCancelDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('CheckCancelDialogStrategy', () => {
   let strategy: CheckCancelDialogStrategy;

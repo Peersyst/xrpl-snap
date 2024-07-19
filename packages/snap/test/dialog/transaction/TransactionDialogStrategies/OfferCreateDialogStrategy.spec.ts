@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { OfferCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OfferCreateDialogStrategy/OfferCreateDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -9,6 +7,8 @@ import {
   ExpirationComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { OfferCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/OfferCreateDialogStrategy/OfferCreateDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('OfferCreateDialogStrategy', () => {
   let strategy: OfferCreateDialogStrategy;

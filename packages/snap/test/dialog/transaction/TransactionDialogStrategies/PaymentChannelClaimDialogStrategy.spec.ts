@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { PaymentChannelClaimDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelClaimDialogStrategy/PaymentChannelClaimDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -10,6 +8,8 @@ import {
   PublicKeyComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { PaymentChannelClaimDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/PaymentChannelClaimDialogStrategy/PaymentChannelClaimDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('PaymentChannelClaimDialogStrategy', () => {
   let strategy: PaymentChannelClaimDialogStrategy;

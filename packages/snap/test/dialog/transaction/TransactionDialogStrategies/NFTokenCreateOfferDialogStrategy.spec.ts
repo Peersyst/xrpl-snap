@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { NFTokenCreateOfferDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/NFTokenCreateOfferDialogStrategy/NFTokenCreateOfferDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -10,6 +8,8 @@ import {
   DestinationComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { NFTokenCreateOfferDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/NFTokenCreateOfferDialogStrategy/NFTokenCreateOfferDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('NFTokenCreateOfferDialogStrategy', () => {
   let strategy: NFTokenCreateOfferDialogStrategy;

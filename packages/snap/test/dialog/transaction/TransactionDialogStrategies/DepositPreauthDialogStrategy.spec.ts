@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { DepositPreauthDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DepositPreauthDialogStrategy/DepositPreauthDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -7,6 +5,8 @@ import {
   UnauthorizeComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { DepositPreauthDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/DepositPreauthDialogStrategy/DepositPreauthDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('DepositPreauthDialogStrategy', () => {
   let strategy: DepositPreauthDialogStrategy;

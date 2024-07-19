@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { SignerListSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/SignerListSetDialogStrategy/SignerListSetDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -7,6 +5,8 @@ import {
   SignerEntriesComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { SignerListSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/SignerListSetDialogStrategy/SignerListSetDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('SignerListSetDialogStrategy', () => {
   let strategy: SignerListSetDialogStrategy;

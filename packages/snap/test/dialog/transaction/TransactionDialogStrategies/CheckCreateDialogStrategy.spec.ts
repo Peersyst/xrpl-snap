@@ -1,5 +1,3 @@
-import txs from '../../../fixtures/tx';
-import { CheckCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/CheckCreateDialogStrategy/CheckCreateDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
@@ -10,6 +8,8 @@ import {
   InvoiceIDComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { CheckCreateDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/CheckCreateDialogStrategy/CheckCreateDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('CheckCreateDialogStrategy', () => {
   let strategy: CheckCreateDialogStrategy;

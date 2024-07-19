@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { ClawbackDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/ClawbackDialogStrategy/ClawbackDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   AmountComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { ClawbackDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/ClawbackDialogStrategy/ClawbackDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('ClawbackDialogStrategy', () => {
   let strategy: ClawbackDialogStrategy;

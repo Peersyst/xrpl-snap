@@ -1,11 +1,11 @@
-import txs from '../../../fixtures/tx';
-import { NFTokenCancelOfferDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/NFTokenCancelOfferDialogStrategy/NFTokenCancelOfferDialogStrategy';
 import {
   TransactionTypeComponent,
   AccountComponent,
   NFTokenOffersComponent,
   FeeComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
+import { NFTokenCancelOfferDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/NFTokenCancelOfferDialogStrategy/NFTokenCancelOfferDialogStrategy';
+import txs from '../../../fixtures/tx';
 
 describe('NFTokenCancelOfferDialogStrategy', () => {
   let strategy: NFTokenCancelOfferDialogStrategy;
