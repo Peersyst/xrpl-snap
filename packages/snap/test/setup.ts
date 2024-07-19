@@ -1,3 +1,5 @@
+/* eslint-disable import/unambiguous */
+
 jest.mock('@xrpl-snap/ripple-binary-codec', () => ({
   __esModule: true,
   ...jest.requireActual('@xrpl-snap/ripple-binary-codec'),

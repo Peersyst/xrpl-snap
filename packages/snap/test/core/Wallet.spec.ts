@@ -1,7 +1,8 @@
-import { Wallet } from '../../src/core/Wallet'; // adjust the path accordingly
 import * as MetamaskKeyTree from '@metamask/key-tree';
 import type { BIP44AddressKeyDeriver } from '@metamask/key-tree';
+
 import { bip44CompressedPublicKeyToXRPPublicKey, bip44PrivateKeyToXRPPrivateKey } from '../../src/core/utils/wallet-utils';
+import { Wallet } from '../../src/core/Wallet'; // adjust the path accordingly
 import requests from '../fixtures/requests';
 import responses from '../fixtures/responses';
 
@@ -54,5 +55,5 @@ describe('Wallet functions', () => {
 });
 
 function isHex(str: string): boolean {
-  return /^[A-F0-9]+$/i.test(str);
+  return /^[A-F0-9]+$/iu.test(str);
 }
