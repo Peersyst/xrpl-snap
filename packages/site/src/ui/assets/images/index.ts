@@ -11,4 +11,5 @@ export { default as received } from './received.png';
 export { default as sent } from './sent.png';
 export { default as token_default_logo } from './token-default-logo.png';
 export { default as xrp_loader } from './xrp_loader.gif';
+export { default as xrpl_snap_fox_logo } from './xrpl-snap-fox-logo.png';
 export { default as xrpl } from './xrpl.png';
