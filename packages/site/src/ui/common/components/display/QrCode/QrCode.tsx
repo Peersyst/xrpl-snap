@@ -1,5 +1,4 @@
 import { useTheme } from '@peersyst/react-components';
-import { QRCode } from 'react-qrcode-logo';
 import { xrpl_snap_fox_logo } from 'ui/assets/images';
 
 import { QrCodeRoot } from './QrCode.styles';
@@ -11,22 +10,28 @@ const QrCode = ({
   showLogo = true,
   logoWidth = 34,
   logoPadding = 4,
-  style: { size = 160, offset = 18, ...restStyle } = {},
+  logoPaddingStyle = 'square',
+  size = 144,
+  quietZone = 8,
+  style,
+  ...rest
 }: QrCodeProps): JSX.Element => {
   const { palette } = useTheme();
 
   return (
-    <QrCodeRoot size={size} style={restStyle}>
-      <QRCode
-        removeQrCodeBehindLogo
-        fgColor={disabled ? palette.disabled : undefined}
-        logoWidth={logoWidth}
-        logoImage={showLogo ? xrpl_snap_fox_logo : undefined}
-        logoPadding={logoPadding}
-        value={value}
-        size={size - offset}
-      />
-    </QrCodeRoot>
+    <QrCodeRoot
+      removeQrCodeBehindLogo
+      fgColor={disabled ? palette.disabled : undefined}
+      logoWidth={logoWidth}
+      logoImage={showLogo ? xrpl_snap_fox_logo : undefined}
+      logoPadding={logoPadding}
+      logoPaddingStyle={logoPaddingStyle}
+      quietZone={quietZone}
+      value={value}
+      style={{ borderRadius: '0.5rem', ...style }}
+      size={size}
+      {...rest}
+    />
   );
 };
 
