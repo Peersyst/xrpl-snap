@@ -102,7 +102,6 @@ export class MetamaskRepository {
         };
       });
     } catch (e) {
-      console.log(e);
       return [];
     }
   }

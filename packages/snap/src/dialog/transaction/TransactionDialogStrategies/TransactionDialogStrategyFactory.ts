@@ -23,13 +23,15 @@ import { NFTokenCreateOfferDialogStrategy } from './NFTokenCreateOfferDialogStra
 import { NFTokenMintDialogStrategy } from './NFTokenMintDialogStrategy/NFTokenMintDialogStrategy';
 import { OfferCancelDialogStrategy } from './OfferCancelDialogStrategy/OfferCancelDialogStrategy';
 import { OfferCreateDialogStrategy } from './OfferCreateDialogStrategy/OfferCreateDialogStrategy';
+import { OracleDeleteDialogStrategy } from './OracleDeleteDialogStrategy/OracleDeleteDialogStrategy';
+import { OracleSetDialogStrategy } from './OracleSetDialogStrategy/OracleSetDialogStrategy';
 import { PaymentChannelClaimDialogStrategy } from './PaymentChannelClaimDialogStrategy/PaymentChannelClaimDialogStrategy';
 import { PaymentChannelCreateDialogStrategy } from './PaymentChannelCreateDialogStrategy/PaymentChannelCreateDialogStrategy';
 import { PaymentChannelFundDialogStrategy } from './PaymentChannelFundDialogStrategy/PaymentChannelFundDialogStrategy';
 import { PaymentDialogStrategy } from './PaymentDialogStrategy/PaymentDialogStrategy';
 import { SetRegularKeyDialogStrategy } from './SetRegularKeyDialogStrategy/SetRegularKeyDialogStrategy';
 import { SignerListSetDialogStrategy } from './SignerListSetDialogStrategy/SignerListSetDialogStrategy';
-import { TicketCreateDialogStrategy } from './TickerCreateDialogStrategy/TickerCreateDialogStrategy';
+import { TicketCreateDialogStrategy } from './TicketCreateDialogStrategy/TicketCreateDialogStrategy';
 import type { ITransactionDialogStrategiesFactory } from './TransactionDialogStrategies.types';
 import { TrustSetDialogStrategy } from './TrustSetDialogStrategy/TrustSetDialogStrategy';
 import { XChainAccountCreateCommitDialogStrategy } from './XChainAccountCreateCommitDialogStrategy/XChainAccountCreateCommitDialogStrategy';
@@ -67,6 +69,8 @@ export const TransactionDialogStrategyFactory = (): ITransactionDialogStrategies
   NFTokenMint: new NFTokenMintDialogStrategy(),
   OfferCancel: new OfferCancelDialogStrategy(),
   OfferCreate: new OfferCreateDialogStrategy(),
+  OracleDelete: new OracleDeleteDialogStrategy(),
+  OracleSet: new OracleSetDialogStrategy(),
   Payment: new PaymentDialogStrategy(),
   PaymentChannelClaim: new PaymentChannelClaimDialogStrategy(),
   PaymentChannelCreate: new PaymentChannelCreateDialogStrategy(),
@@ -75,12 +79,12 @@ export const TransactionDialogStrategyFactory = (): ITransactionDialogStrategies
   SignerListSet: new SignerListSetDialogStrategy(),
   TicketCreate: new TicketCreateDialogStrategy(),
   TrustSet: new TrustSetDialogStrategy(),
-  XChainAccountCreateCommit: new XChainAccountCreateCommitDialogStrategy(), // TODO: Will be removed in the future
-  XChainAddAccountCreateAttestation: new XChainAddAccountCreateAttestationDialogStrategy(), // TODO: Will be removed in the future
-  XChainAddClaimAttestation: new XChainAddClaimAttestationDialogStrategy(), // TODO: Will be removed in the future
-  XChainClaim: new XChainClaimDialogStrategy(), // TODO: Will be removed in the future
-  XChainCommit: new XChainCommitDialogStrategy(), // TODO: Will be removed in the future
-  XChainCreateBridge: new XChainCreateBridgeDialogStrategy(), // TODO: Will be removed in the future
-  XChainCreateClaimID: new XChainCreateClaimIDDialogStrategy(), // TODO: Will be removed in the future
-  XChainModifyBridge: new XChainModifyBridgeDialogStrategy(), // TODO: Will be removed in the future
+  XChainAccountCreateCommit: new XChainAccountCreateCommitDialogStrategy(), // @deprecated
+  XChainAddAccountCreateAttestation: new XChainAddAccountCreateAttestationDialogStrategy(), // @deprecated
+  XChainAddClaimAttestation: new XChainAddClaimAttestationDialogStrategy(), // @deprecated
+  XChainClaim: new XChainClaimDialogStrategy(), // @deprecated
+  XChainCommit: new XChainCommitDialogStrategy(), // @deprecated
+  XChainCreateBridge: new XChainCreateBridgeDialogStrategy(), // @deprecated
+  XChainCreateClaimID: new XChainCreateClaimIDDialogStrategy(), // @deprecated
+  XChainModifyBridge: new XChainModifyBridgeDialogStrategy(), // @deprecated
 });

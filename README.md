@@ -1,4 +1,3 @@
-
 <p align="center">
   <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap">
     <picture>
