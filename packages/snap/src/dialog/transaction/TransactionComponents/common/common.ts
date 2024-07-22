@@ -59,6 +59,7 @@ const URIComponent = (uri: string | undefined | null): Component[] => {
   if (!isString(uri)) {
     return [];
   }
+  // TODO: Convert hex to string
   return TransactionField('URI', uri);
 };
 
@@ -76,7 +77,7 @@ const CancelAfterComponent = (cancelAfter: number | undefined): Component[] => {
   return XrplTimeComponent('CancelAfter', cancelAfter);
 };
 
-const FullTransactionComponent = (transaction: Record<string, unknown>): Component[] => {
+const FullTransactionComponent = (transaction: object): Component[] => {
   const components: Component[] = [];
   const keys = Object.keys(transaction);
   for (const key of keys) {

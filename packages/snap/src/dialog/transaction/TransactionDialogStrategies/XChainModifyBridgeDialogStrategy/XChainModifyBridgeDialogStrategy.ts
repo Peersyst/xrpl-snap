@@ -7,7 +7,7 @@ import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.t
 export class XChainModifyBridgeDialogStrategy implements TransactionDialogStrategy<XChainModifyBridge> {
   transactionType: Transaction['TransactionType'] = 'XChainModifyBridge';
 
-  buildBody({ Account, ...rest }: XChainModifyBridge): Component[] {
-    return [...TransactionTypeComponent(this.transactionType), ...AccountComponent(Account), ...FullTransactionComponent(rest)];
+  buildBody({ Account, TransactionType, ...rest }: XChainModifyBridge): Component[] {
+    return [...TransactionTypeComponent(TransactionType), ...AccountComponent(Account), ...FullTransactionComponent(rest)];
   }
 }

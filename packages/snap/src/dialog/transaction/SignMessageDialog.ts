@@ -3,17 +3,17 @@ import { divider, heading, panel, text } from '@metamask/snaps-sdk';
 
 import { translate } from '../locale/translate';
 
-export class MessageDialog {
+export class SignMessageDialog {
   static buildHeader(origin: string): Component[] {
-    return [heading(translate('MessageHeader')), text(translate('MessageSubHeader', { origin }))];
+    return [heading(translate('SignMessageHeader')), text(translate('SignMessageSubHeader', { origin }))];
   }
 
   static buildFooter(): Component[] {
-    return [text(translate('MessageFooter'))];
+    return [text(translate('SignMessageFooter'))];
   }
 
   static buildBody(message: string): Component[] {
-    return [text(translate('Message', { message }))];
+    return [text(translate('SignMessage', { message }))];
   }
 
   static async prompt(origin: string, message: string): Promise<boolean> {
