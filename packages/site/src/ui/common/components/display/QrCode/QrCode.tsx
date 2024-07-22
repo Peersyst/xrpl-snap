@@ -9,7 +9,7 @@ const QrCode = ({
   value = '',
   disabled,
   showLogo = true,
-  logoWidth = 36,
+  logoWidth = 34,
   logoPadding = 4,
   style: { size = 160, offset = 18, ...restStyle } = {},
 }: QrCodeProps): JSX.Element => {
@@ -18,6 +18,7 @@ const QrCode = ({
   return (
     <QrCodeRoot size={size} style={restStyle}>
       <QRCode
+        removeQrCodeBehindLogo
         fgColor={disabled ? palette.disabled : undefined}
         logoWidth={logoWidth}
         logoImage={showLogo ? xrpl_snap_fox_logo : undefined}
