@@ -7,7 +7,7 @@ export default {
   TransactionSubHeader: 'Got a request from %origin% to sign the following transaction',
   TransactionFooter: '⚠️ Please check that all of the above fields are correct.',
   // Transaction fields
-  TransactionType: 'TransctionType',
+  TransactionType: 'TransactionType',
   Account: 'Account',
   Destination: 'Destination',
   DestinationTag: 'Destination Tag',

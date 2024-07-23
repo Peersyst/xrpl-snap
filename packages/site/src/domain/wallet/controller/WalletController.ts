@@ -73,22 +73,27 @@ export default class WalletController {
 
     const networkReserve = this.networkController.getNetworkReserve();
 
-    let xrpBalance = new Amount('0', 6, 'XRP');
+    const defaultAmount = new Amount('0', 6, 'XRP');
+    let dropsBalance = defaultAmount;
     try {
       const { Balance, OwnerCount } = await this.metamaskRepository.getAccountInfo(state.address);
 
       // Set the available balance
-      xrpBalance = xrpBalance.plus(Balance);
+      dropsBalance = dropsBalance.plus(Balance);
 
       // Subtract the network reserve cost
-      xrpBalance = xrpBalance.minus(xrpToDrops(networkReserve.baseReserveCostInXrp).toString());
+      dropsBalance = dropsBalance.minus(xrpToDrops(networkReserve.baseReserveCostInXrp).toString());
 
       // For each OwnerCount, subtract the owner reserve cost
       let ownerReserveCost = new BigNumber(xrpToDrops(networkReserve.ownerReserveCostInXrpPerItem));
       ownerReserveCost = ownerReserveCost.times(Number(OwnerCount));
-      xrpBalance = xrpBalance.minus(ownerReserveCost.toString());
+      dropsBalance = dropsBalance.minus(ownerReserveCost.toString());
+
+      if (dropsBalance.lt('0')) {
+        return defaultAmount;
+      }
     } catch (e) {}
-    return xrpBalance;
+    return dropsBalance;
   }
 
   async exportPrivateKey(): Promise<void> {

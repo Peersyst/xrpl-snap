@@ -20,6 +20,9 @@ export default function useSend() {
       invalidateQueries({
         queryKey: [Queries.GET_BALANCE, address, network?.chainId],
       });
+      invalidateQueries({
+        queryKey: [Queries.GET_TOKENS, address, network?.chainId],
+      });
       invalidateInfiniteQueries([Queries.GET_TRANSACTIONS, address, String(network?.chainId)]);
     },
   });

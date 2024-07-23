@@ -3,7 +3,7 @@
   "publicUrl": "/",
   "maxNumberDecimals": 15,
   "nativeToken": "nativeToken",
-  "decimals": 3,
+  "decimals": 6,
   "peersystUrl": "https://peersyst.com",
   "snapOrigin": "npm:@peersyst/xrpl-snap",
   "snapAboutUrl": "https://peersyst.com",

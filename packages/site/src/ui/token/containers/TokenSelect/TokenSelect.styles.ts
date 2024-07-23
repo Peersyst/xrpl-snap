@@ -7,25 +7,55 @@ export const TokenSelectRoot = styled(Select)(({ theme }) => ({
   borderColor: theme.palette.grey[200],
   padding: theme.spacing.horizontal(4),
   paddingBottom: theme.spacing[2],
+  position: 'relative',
+  height: '3.75rem',
   '&.FormControl': {
     borderRadius: theme.borderRadiusXl,
   },
+  '&.Focused': {
+    borderBottomLeftRadius: 'unset',
+    borderBottomRightRadius: 'unset',
+    background: alpha(theme.palette.primary, 0.08),
+  },
+  '.Label.Label.Label': {
+    paddingBottom: 'unset',
+  },
+  transition: '0.2s',
   '.SelectMenu.SelectMenu.SelectMenu.SelectMenu.SelectMenu': {
-    width: '100%',
-    maxHeight: '8.5rem',
+    width: 'calc(100% + 2px)',
+    height: 'fit-content',
+    maxHeight: 'calc(8rem + 2px)',
+    background: theme.palette.background,
+    color: theme.palette.text,
+    left: '-1px',
+    bottom: '-8rem',
+    borderRadius: 'unset',
+    borderTopColor: theme.palette.primary,
+    borderBottomLeftRadius: theme.borderRadiusXl,
+    borderBottomRightRadius: theme.borderRadiusXl,
     '.SelectItem': {
-      height: '2.75rem',
+      height: '4rem',
+      transition: '0.2s',
+      '&:hover': {
+        background: alpha(theme.palette.primary, 0.08),
+      },
+    },
+    '.SelectItem:not(:first-child)': {
+      borderTop: `1px solid`,
+      borderColor: theme.palette.grey[200],
     },
   },
   '.Select': {
+    position: 'unset',
     '.SelectDisplay.SelectDisplay.SelectDisplay': {
       minHeight: '2rem',
       maxHeight: '2rem',
+      padding: 0,
       '.Placeholder': {
         color: `${alpha(theme.palette.grey[600], 0.2)} `,
       },
-      '.Image': {
-        filter: 'invert(100%) !important',
+      '.SelectDropdown': {
+        transform: 'unset',
       },
     },
   },

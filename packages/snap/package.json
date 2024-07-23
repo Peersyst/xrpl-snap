@@ -1,6 +1,6 @@
 {
   "name": "@peersyst/xrpl-snap",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "XRPL Metamask snap",
   "repository": {
     "type": "git",

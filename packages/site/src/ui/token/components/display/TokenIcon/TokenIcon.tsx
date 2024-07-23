@@ -9,10 +9,10 @@ export interface TokenIconProps {
   style?: React.CSSProperties;
   token: Token;
   loading?: boolean;
-  size: string;
+  size?: string;
 }
 
-function TokenIcon({ token, size, loading, style }: TokenIconProps) {
+function TokenIcon({ token, size = '2.5rem', loading, style }: TokenIconProps) {
   const { data: { icon } = {} } = useGetTokenInfo(token, { enabled: !loading || token.currency === 'XRP' });
   const css = {
     width: size,

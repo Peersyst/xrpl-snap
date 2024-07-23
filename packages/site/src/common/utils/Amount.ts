@@ -91,7 +91,7 @@ export default class Amount {
    */
   lt(amount: string | Amount): boolean {
     const value = amount instanceof Amount ? amount.amount : amount;
-    return BigNumber(this.amount).gt(BigNumber(value));
+    return BigNumber(this.amount).lt(BigNumber(value));
   }
 
   /**
@@ -101,7 +101,7 @@ export default class Amount {
    */
   lte(amount: string | Amount): boolean {
     const value = amount instanceof Amount ? amount.amount : amount;
-    return BigNumber(this.amount).gte(BigNumber(value));
+    return BigNumber(this.amount).lte(BigNumber(value));
   }
 
   /**
