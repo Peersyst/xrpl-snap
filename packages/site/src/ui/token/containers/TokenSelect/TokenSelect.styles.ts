@@ -35,6 +35,10 @@ export const TokenSelectRoot = styled(Select)(({ theme }) => ({
     borderBottomRightRadius: theme.borderRadiusXl,
     '.SelectItem': {
       height: '4rem',
+      transition: '0.2s',
+      '&:hover': {
+        background: alpha(theme.palette.primary, 0.08),
+      },
     },
     '.SelectItem:not(:first-child)': {
       borderTop: `1px solid`,
