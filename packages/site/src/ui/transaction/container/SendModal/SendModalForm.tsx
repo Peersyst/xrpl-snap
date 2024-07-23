@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@peersyst/react-components';
+import { Typography } from '@peersyst/react-components';
 import type { TokenWithBalance } from 'common/models/token';
 import Amount from 'common/utils/Amount';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallou
 import AmountField from 'ui/common/components/input/AmountField/AmountField';
 import type { FormColProps } from 'ui/common/components/input/FormCol/FormCol';
 import FormCol from 'ui/common/components/input/FormCol/FormCol';
+import NumericField from 'ui/common/components/input/NumericField/NumericField';
 import XrplAddressTextField from 'ui/common/components/input/XrplAddressTextField/XrplAddressTextField';
 import NetworkInfoDisplay from 'ui/network/containers/NetworkInfoDisplay/NetworkInfoDisplay';
 import TokenSelect from 'ui/token/containers/TokenSelect/TokenSelect';
@@ -36,7 +37,7 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
         required
         label={translate('to')}
       />
-      <TextField
+      <NumericField
         label={`${translate('destinationTag')} (${translate('optional')})`}
         placeholder={translate('enterDestinationTag')}
         name="destinationTag"

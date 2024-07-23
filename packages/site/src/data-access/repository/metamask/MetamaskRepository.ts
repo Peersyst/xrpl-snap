@@ -125,7 +125,7 @@ export class MetamaskRepository {
   }: {
     destination: string;
     amount: XrplAmount;
-    destinationTag?: string;
+    destinationTag?: number;
   }): Promise<string> {
     return await withMetamaskError(async () => {
       const { account } = await this.getWallet();

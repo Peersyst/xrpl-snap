@@ -22,7 +22,7 @@ function SendModal({ defaultOpen, open: openProp, onClose, ...rest }: Omit<BaseA
   function handleSubmit({ destinationTag, ...rest }: SendParams) {
     const sendParams: SendParams = { ...rest };
     if (destinationTag) {
-      sendParams.destinationTag = destinationTag;
+      sendParams.destinationTag = Number(destinationTag);
     }
     mutate(sendParams);
   }
