@@ -1,5 +1,6 @@
-import { Typography } from '@peersyst/react-components';
+import { TextField, Typography } from '@peersyst/react-components';
 import type { TokenWithBalance } from 'common/models/token';
+import Amount from 'common/utils/Amount';
 import { useState } from 'react';
 import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallout';
 import AmountField from 'ui/common/components/input/AmountField/AmountField';
@@ -9,6 +10,7 @@ import XrplAddressTextField from 'ui/common/components/input/XrplAddressTextFiel
 import NetworkInfoDisplay from 'ui/network/containers/NetworkInfoDisplay/NetworkInfoDisplay';
 import TokenSelect from 'ui/token/containers/TokenSelect/TokenSelect';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
+import useGetTokens from 'ui/wallet/query/useGetTokens';
 
 import { useTranslate } from '../../../locale';
 
@@ -19,7 +21,8 @@ export type SendModalFormProps = {
 
 export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
   const translate = useTranslate();
-  const [token, setToken] = useState<TokenWithBalance | undefined>();
+  const { data: tokens = [] } = useGetTokens();
+  const [token, setToken] = useState<TokenWithBalance | undefined>(tokens[0]);
   const address = useGetAddress();
 
   return (
@@ -33,6 +36,11 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
         required
         label={translate('to')}
       />
+      <TextField
+        label={`${translate('destinationTag')} (${translate('optional')})`}
+        placeholder={translate('enterDestinationTag')}
+        name="destinationTag"
+      />
       <TokenSelect
         value={token}
         onChange={setToken}
@@ -44,7 +52,7 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
       <AmountField
         maxDecimals={token?.decimals ?? 6}
         validators={{ gt: [0, translate('cantSendZero', { ns: 'error' })] }}
-        balance={token?.balance}
+        balance={token?.balance ?? new Amount('0', 6, 'XRP')}
         placeholder={translate('enterAmount')}
         name="amount"
         required

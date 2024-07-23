@@ -16,7 +16,7 @@ function FormCol({ className, children, onCancel, submitLabel, ...rest }: FormCo
 
   return (
     <Form className={clsx('FormCol', className)} {...rest}>
-      <Col gap={spacing[8]}>
+      <Col gap={spacing[7]}>
         {children}
         <Row gap={spacing[8]}>
           <Button fullWidth variant="secondary" onClick={onCancel}>

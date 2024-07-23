@@ -53,5 +53,8 @@
   "selectToken": "Select token",
   "selectTokenToSend": "Select token to send",
   "goToYourMetamaskToSignTheTx": "Go to your MetaMask to sign the transaction",
-  "from": "From"
+  "from": "From",
+  "destinationTag": "Destination tag",
+  "enterDestinationTag": "Enter destination tag",
+  "optional": "optional"
 }

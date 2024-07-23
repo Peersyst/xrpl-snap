@@ -118,7 +118,15 @@ export class MetamaskRepository {
     }
   }
 
-  async send({ amount, destination }: { destination: string; amount: XrplAmount }): Promise<string> {
+  async send({
+    amount,
+    destination,
+    destinationTag,
+  }: {
+    destination: string;
+    amount: XrplAmount;
+    destinationTag?: string;
+  }): Promise<string> {
     return await withMetamaskError(async () => {
       const { account } = await this.getWallet();
 
@@ -128,6 +136,7 @@ export class MetamaskRepository {
           TransactionType: 'Payment',
           Account: account,
           Destination: destination,
+          DestinationTag: destinationTag,
           Amount: amount,
         },
       });

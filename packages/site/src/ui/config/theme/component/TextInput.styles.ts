@@ -4,9 +4,10 @@ import { css } from 'styled-components';
 export const TextInputStyles = css(({ theme }) => ({
   '.FormControl': {
     '.FormControlHint': {
-      marginTop: '0.25rem',
+      marginTop: '0px',
       overflow: 'visible',
     },
+
     '&.TextField': {
       border: `1px solid`,
       borderColor: theme.palette.grey[200],

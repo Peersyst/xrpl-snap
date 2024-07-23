@@ -73,20 +73,7 @@ export default class TransactionController {
     );
   }
 
-  async sendXrpTransaction(params: SendParams): Promise<string> {
-    const availableAmount: Amount = params.token.balance;
-
-    if (!availableAmount.canPay(params.amount)) {
-      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
-    }
-
-    return await this.metamaskRepository.send({
-      ...params,
-      amount: xrpToDrops(params.amount),
-    });
-  }
-
-  async sendIOUTransaction({ amount, destination, token }: SendParams): Promise<string> {
+  async sendXrpTransaction({ token, amount, ...rest }: SendParams): Promise<string> {
     const availableAmount: Amount = token.balance;
 
     if (!availableAmount.canPay(amount)) {
@@ -94,7 +81,20 @@ export default class TransactionController {
     }
 
     return await this.metamaskRepository.send({
-      destination,
+      ...rest,
+      amount: xrpToDrops(amount),
+    });
+  }
+
+  async sendIOUTransaction({ amount, token, ...rest }: SendParams): Promise<string> {
+    const availableAmount: Amount = token.balance;
+
+    if (!availableAmount.canPay(amount)) {
+      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+    }
+
+    return await this.metamaskRepository.send({
+      ...rest,
       amount: {
         currency: convertCurrencyCode(token.currency),
         value: amount,
