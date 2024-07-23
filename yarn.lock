@@ -20434,6 +20434,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
+  languageName: node
+  linkType: hard
+
 "lodash.memoize@npm:4.x, lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -24056,10 +24063,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qr.js@npm:0.0.0":
-  version: 0.0.0
-  resolution: "qr.js@npm:0.0.0"
-  checksum: 5ac6c393967bdeaa660e7fd3a501a25eb538c1f6008a4d30ab2b97bbe520e5c236530090773f1578aa0a523cdaa6923c866615e21143f9e7cd22abd41c789b69
+"qrcode-generator@npm:^1.4.4":
+  version: 1.4.4
+  resolution: "qrcode-generator@npm:1.4.4"
+  checksum: 860cfdd2a7a608d34e92cab99774cc08182e1911432f30ed36d16f8a5cdabd7fdf40239caed91fa2691cfe66c8d95c1340a2fc9cc439eed07a9f2eb328c6f527
   languageName: node
   linkType: hard
 
@@ -24418,19 +24425,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-qr-code@npm:^2.0.14":
-  version: 2.0.14
-  resolution: "react-qr-code@npm:2.0.14"
+"react-qrcode-logo@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "react-qrcode-logo@npm:3.0.0"
   dependencies:
-    prop-types: ^15.8.1
-    qr.js: 0.0.0
+    lodash.isequal: ^4.5.0
+    qrcode-generator: ^1.4.4
   peerDependencies:
-    react: "*"
-    react-native-svg: "*"
-  peerDependenciesMeta:
-    react-native-svg:
-      optional: true
-  checksum: ca17f24ef18339a17bea31e98412339fe66c6679d2ea15365c8213ab004bcd33b7b16338ff456f2d8d524fd23d9204fda8a385e16bfc4b35d976a256cd3039a3
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: e61945a6980108202422533db0fd54641a499ef0bd04cc82fe7e6fd7e54d9e15c5481f4a4d1b8df314ba8c7914cb2cb67f38841828633a74b49bec45460f3e8e
   languageName: node
   linkType: hard
 
@@ -26135,7 +26139,7 @@ __metadata:
     react-dom: ^18.2.0
     react-error-overlay: 6.0.11
     react-i18next: ^14.1.2
-    react-qr-code: ^2.0.14
+    react-qrcode-logo: ^3.0.0
     react-router-dom: 6.8.0
     react-scripts: ^5.0.1
     styled-components: ^5.3.6

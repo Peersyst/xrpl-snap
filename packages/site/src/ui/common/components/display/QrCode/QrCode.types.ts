@@ -1,15 +1,10 @@
-import type { QRCodeProps as BaseQrCodeProps } from 'react-qr-code';
-
-export type QrCodeStyle = {
-  size?: number;
-  offset?: number;
-};
+import { IProps as BaseQRCodeProps } from 'react-qrcode-logo';
 
 export type QrCodeProps = {
   value: string;
-  style?: QrCodeStyle;
   disabled?: boolean;
-} & BaseQrCodeProps;
+  showLogo?: boolean;
+} & BaseQRCodeProps;
 
 export type QrCodeRootProps = {
   size: number;
