@@ -6,6 +6,7 @@ import {
   Asset2Component,
   AssetComponent,
   FeeComponent,
+  MemosComponent,
   TradingFeeComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
@@ -22,7 +23,8 @@ export class AMMVoteDialogStrategy implements TransactionDialogStrategy<AMMVote>
    * - Asset (Currency)
    * - Asset2 (Currency)
    * - TradingFee (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -34,6 +36,7 @@ export class AMMVoteDialogStrategy implements TransactionDialogStrategy<AMMVote>
       ...AssetComponent(transaction.Asset),
       ...Asset2Component(transaction.Asset2),
       ...TradingFeeComponent(transaction.TradingFee),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

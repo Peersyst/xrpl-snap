@@ -7,6 +7,7 @@ import {
   SignerQuorumComponent,
   AccountComponent,
   TransactionTypeComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -20,7 +21,8 @@ export class SignerListSetDialogStrategy implements TransactionDialogStrategy<Si
    * - Account
    * - SignerQuorum
    * - SignerEntries
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -31,6 +33,7 @@ export class SignerListSetDialogStrategy implements TransactionDialogStrategy<Si
       ...AccountComponent(transaction.Account),
       ...SignerQuorumComponent(transaction.SignerQuorum),
       ...SignerEntriesComponent(transaction.SignerEntries),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

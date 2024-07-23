@@ -79,6 +79,9 @@ export default {
   PriceData: 'Price Data',
   Provider: 'Provider',
   AssetClass: 'Asset Class',
+  MemoData: 'Memo Data',
+  MemoType: 'Memo Type',
+  MemoFormat: 'Memo Format',
   /**
    * Sign Message dialogs
    */

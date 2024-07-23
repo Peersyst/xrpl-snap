@@ -5,6 +5,7 @@ import {
   AccountComponent,
   AuthorizeComponent,
   FeeComponent,
+  MemosComponent,
   TransactionTypeComponent,
   UnauthorizeComponent,
 } from '../../TransactionComponents';
@@ -20,7 +21,8 @@ export class DepositPreauthDialogStrategy implements TransactionDialogStrategy<D
    * - Account
    * - Authorize (string)
    * - Unauthorize (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -31,6 +33,7 @@ export class DepositPreauthDialogStrategy implements TransactionDialogStrategy<D
       ...AccountComponent(transaction.Account),
       ...AuthorizeComponent(transaction.Authorize),
       ...UnauthorizeComponent(transaction.Unauthorize),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

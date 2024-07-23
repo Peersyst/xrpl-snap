@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Transaction, OracleSet } from 'xrpl';
 
-import { AccountComponent, FeeComponent, TransactionTypeComponent, URIComponent } from '../../TransactionComponents';
+import { AccountComponent, FeeComponent, MemosComponent, TransactionTypeComponent, URIComponent } from '../../TransactionComponents';
 import {
   AssetClassComponent,
   LastUpdateTimeComponent,
@@ -25,7 +25,8 @@ export class OracleSetDialogStrategy implements TransactionDialogStrategy<Oracle
    * - Provider
    * - URI
    * - AssetClass
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    * TODO(jordi) Missing fields:
    * - Flags
    *
@@ -42,6 +43,7 @@ export class OracleSetDialogStrategy implements TransactionDialogStrategy<Oracle
       ...ProviderComponent(transaction.Provider),
       ...URIComponent(transaction.URI),
       ...AssetClassComponent(transaction.AssetClass),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

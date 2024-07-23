@@ -15,3 +15,4 @@ export * from './signer-list-set/signer-list-set';
 export * from './ticket/ticket';
 export * from './trust-set/trust-set';
 export * from './oracle/oracle';
+export * from './memo/memo';

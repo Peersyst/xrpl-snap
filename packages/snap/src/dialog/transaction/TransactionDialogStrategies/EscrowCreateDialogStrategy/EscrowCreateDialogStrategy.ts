@@ -9,6 +9,7 @@ import {
   DestinationTagComponent,
   FeeComponent,
   FinishAfterComponent,
+  MemosComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
@@ -26,7 +27,8 @@ export class EscrowCreateDialogStrategy implements TransactionDialogStrategy<Esc
    * - FinishAfter (number - XRPTime)
    * - Condition (string)
    * - DestinationTag (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -40,6 +42,7 @@ export class EscrowCreateDialogStrategy implements TransactionDialogStrategy<Esc
       ...FinishAfterComponent(transaction.FinishAfter),
       ...ConditionComponent(transaction.Condition),
       ...DestinationTagComponent(transaction.DestinationTag),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

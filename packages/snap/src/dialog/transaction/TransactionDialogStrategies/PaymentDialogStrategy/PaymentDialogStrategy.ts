@@ -11,6 +11,7 @@ import {
   TransactionTypeComponent,
   DeliverMinComponent,
   SendMaxComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -28,9 +29,9 @@ export class PaymentDialogStrategy implements TransactionDialogStrategy<Payment>
    * - InvoiceID (string)
    * - SendMax (Amount)
    * - DeliverMin (Amount)
+   * - Memos (Memo[])
    * TODO(jordi) Missing fields:
    * - Flags
-   * - Paths
    *
    * @param payment - Payment transaction
    * @returns Components to render in the dialog
@@ -40,12 +41,13 @@ export class PaymentDialogStrategy implements TransactionDialogStrategy<Payment>
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(payment.Account),
       ...DestinationComponent(payment.Destination),
-      ...AmountComponent(payment.Amount),
-      ...FeeComponent(payment.Fee),
       ...DestinationTagComponent(payment.DestinationTag),
+      ...AmountComponent(payment.Amount),
       ...InvoiceIDComponent(payment.InvoiceID),
       ...DeliverMinComponent(payment.DeliverMin),
       ...SendMaxComponent(payment.SendMax),
+      ...MemosComponent(payment.Memos),
+      ...FeeComponent(payment.Fee),
     ];
   }
 }

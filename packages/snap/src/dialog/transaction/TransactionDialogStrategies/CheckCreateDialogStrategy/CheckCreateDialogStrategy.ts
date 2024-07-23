@@ -8,6 +8,7 @@ import {
   ExpirationComponent,
   FeeComponent,
   InvoiceIDComponent,
+  MemosComponent,
   SendMaxComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
@@ -26,7 +27,8 @@ export class CheckCreateDialogStrategy implements TransactionDialogStrategy<Chec
    * - Expiration (number)
    * - DestinationTag (number)
    * - InvoiceID (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -40,6 +42,7 @@ export class CheckCreateDialogStrategy implements TransactionDialogStrategy<Chec
       ...ExpirationComponent(transaction.Expiration),
       ...DestinationTagComponent(transaction.DestinationTag),
       ...InvoiceIDComponent(transaction.InvoiceID),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

@@ -10,6 +10,7 @@ import {
   EPriceComponent,
   FeeComponent,
   LPTokenInComponent,
+  MemosComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
@@ -28,7 +29,8 @@ export class AMMWithdrawDialogStrategy implements TransactionDialogStrategy<AMMW
    * - Amount2 (Amount)
    * - EPrice (Amount)
    * - LPTokenIn (IssuedCurrencyAmount)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -43,6 +45,7 @@ export class AMMWithdrawDialogStrategy implements TransactionDialogStrategy<AMMW
       ...Amount2Component(transaction.Amount2),
       ...EPriceComponent(transaction.EPrice),
       ...LPTokenInComponent(transaction.LPTokenIn),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

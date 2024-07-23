@@ -6,6 +6,7 @@ import {
   ConditionComponent,
   FeeComponent,
   FulfillmentComponent,
+  MemosComponent,
   OfferSequenceComponent,
   OwnerComponent,
   TransactionTypeComponent,
@@ -24,7 +25,8 @@ export class EscrowFinishDialogStrategy implements TransactionDialogStrategy<Esc
    * - OfferSequence (number | string)
    * - Condition (string)
    * - Fulfillment (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -37,6 +39,7 @@ export class EscrowFinishDialogStrategy implements TransactionDialogStrategy<Esc
       ...OfferSequenceComponent(transaction.OfferSequence),
       ...ConditionComponent(transaction.Condition),
       ...FulfillmentComponent(transaction.Fulfillment),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

@@ -1,7 +1,14 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { NFTokenBurn, Transaction } from 'xrpl';
 
-import { AccountComponent, FeeComponent, NFTokenIDComponent, OwnerComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import {
+  AccountComponent,
+  FeeComponent,
+  MemosComponent,
+  NFTokenIDComponent,
+  OwnerComponent,
+  TransactionTypeComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class NFTokenBurnDialogStrategy implements TransactionDialogStrategy<NFTokenBurn> {
@@ -14,7 +21,8 @@ export class NFTokenBurnDialogStrategy implements TransactionDialogStrategy<NFTo
    * - Account
    * - NFTokenID (string)
    * - Owner (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -25,6 +33,7 @@ export class NFTokenBurnDialogStrategy implements TransactionDialogStrategy<NFTo
       ...AccountComponent(transaction.Account),
       ...NFTokenIDComponent(transaction.NFTokenID),
       ...OwnerComponent(transaction.Owner),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

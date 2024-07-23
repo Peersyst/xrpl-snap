@@ -10,6 +10,7 @@ import {
   AccountComponent,
   FeeComponent,
   TransactionTypeComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -26,6 +27,8 @@ export class AMMBidDialogStrategy implements TransactionDialogStrategy<AMMBid> {
    * - BidMin (Amount)
    * - BidMax (Amount)
    * - AuthAccounts[] (AuthAccount[])
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -39,6 +42,7 @@ export class AMMBidDialogStrategy implements TransactionDialogStrategy<AMMBid> {
       ...BidMinComponent(transaction.BidMin),
       ...BidMaxComponent(transaction.BidMax),
       ...AuthAccountsComponent(transaction.AuthAccounts),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

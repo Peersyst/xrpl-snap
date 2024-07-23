@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { SetRegularKey, Transaction } from 'xrpl';
 
-import { AccountComponent, FeeComponent, RegularKeyComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import { AccountComponent, FeeComponent, MemosComponent, RegularKeyComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class SetRegularKeyDialogStrategy implements TransactionDialogStrategy<SetRegularKey> {
@@ -13,7 +13,8 @@ export class SetRegularKeyDialogStrategy implements TransactionDialogStrategy<Se
    * - TransactionType
    * - Account
    * - RegularKey (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -23,6 +24,7 @@ export class SetRegularKeyDialogStrategy implements TransactionDialogStrategy<Se
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...RegularKeyComponent(transaction.RegularKey),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

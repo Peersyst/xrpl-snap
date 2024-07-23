@@ -9,6 +9,7 @@ import {
   TransactionTypeComponent,
   TransferFeeComponent,
   URIComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -24,7 +25,8 @@ export class NFTokenMintDialogStrategy implements TransactionDialogStrategy<NFTo
    * - Issuer (string)
    * - TransferFee (number)
    * - URI (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -37,6 +39,7 @@ export class NFTokenMintDialogStrategy implements TransactionDialogStrategy<NFTo
       ...IssuerComponent(transaction.Issuer),
       ...TransferFeeComponent(transaction.TransferFee),
       ...URIComponent(transaction.URI),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

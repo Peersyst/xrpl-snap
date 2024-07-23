@@ -1,7 +1,13 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { NFTokenCancelOffer, Transaction } from 'xrpl';
 
-import { AccountComponent, FeeComponent, NFTokenOffersComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import {
+  AccountComponent,
+  FeeComponent,
+  MemosComponent,
+  NFTokenOffersComponent,
+  TransactionTypeComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class NFTokenCancelOfferDialogStrategy implements TransactionDialogStrategy<NFTokenCancelOffer> {
@@ -13,7 +19,8 @@ export class NFTokenCancelOfferDialogStrategy implements TransactionDialogStrate
    * - TransactionType
    * - Account
    * - NFTokenOffers (string[])
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -23,6 +30,7 @@ export class NFTokenCancelOfferDialogStrategy implements TransactionDialogStrate
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...NFTokenOffersComponent(transaction.NFTokenOffers),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

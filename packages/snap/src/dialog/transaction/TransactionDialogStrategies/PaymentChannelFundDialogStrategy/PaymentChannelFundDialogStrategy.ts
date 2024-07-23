@@ -7,6 +7,7 @@ import {
   ChannelComponent,
   ExpirationComponent,
   FeeComponent,
+  MemosComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
@@ -22,7 +23,8 @@ export class PaymentChannelFundDialogStrategy implements TransactionDialogStrate
    * - Channel (string)
    * - Amount (drops)
    * - Expiration (number - xrpl timestamp)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -34,6 +36,7 @@ export class PaymentChannelFundDialogStrategy implements TransactionDialogStrate
       ...ChannelComponent(transaction.Channel),
       ...AmountComponent(transaction.Amount),
       ...ExpirationComponent(transaction.Expiration),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

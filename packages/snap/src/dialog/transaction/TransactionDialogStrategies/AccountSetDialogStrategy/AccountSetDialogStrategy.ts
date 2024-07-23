@@ -12,6 +12,7 @@ import {
   TickSizeComponent,
   TransactionTypeComponent,
   TransferRateComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -23,7 +24,6 @@ export class AccountSetDialogStrategy implements TransactionDialogStrategy<Accou
    * Supported fields:
    * - TransactionType
    * - Account (string)
-   * - Fee (drops)
    * - ClearFlag (number)
    * - Domain (string)
    * - EmailHash (string)
@@ -31,6 +31,9 @@ export class AccountSetDialogStrategy implements TransactionDialogStrategy<Accou
    * - TickSize (number)
    * - TransferRate (number)
    * - NFTokenMinter (string)
+   * - Memos (Memo[])
+   * - Fee (drops)
+   *
    * TODO(jordi): Missing fields:
    * - Flags
    * - SetFlag
@@ -42,7 +45,6 @@ export class AccountSetDialogStrategy implements TransactionDialogStrategy<Accou
     return [
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(accountSet.Account),
-      ...FeeComponent(accountSet.Fee),
       ...ClearFlagComponent(accountSet.ClearFlag),
       ...DomainComponent(accountSet.Domain),
       ...EmailHashComponent(accountSet.EmailHash),
@@ -50,6 +52,8 @@ export class AccountSetDialogStrategy implements TransactionDialogStrategy<Accou
       ...TickSizeComponent(accountSet.TickSize),
       ...TransferRateComponent(accountSet.TransferRate),
       ...NFTokenMinterComponent(accountSet.NFTokenMinter),
+      ...MemosComponent(accountSet.Memos),
+      ...FeeComponent(accountSet.Fee),
     ];
   }
 }

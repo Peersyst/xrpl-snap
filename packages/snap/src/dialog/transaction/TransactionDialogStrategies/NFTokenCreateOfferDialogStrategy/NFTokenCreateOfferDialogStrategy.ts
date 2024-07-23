@@ -7,6 +7,7 @@ import {
   DestinationComponent,
   ExpirationComponent,
   FeeComponent,
+  MemosComponent,
   NFTokenIDComponent,
   OwnerComponent,
   TransactionTypeComponent,
@@ -26,7 +27,8 @@ export class NFTokenCreateOfferDialogStrategy implements TransactionDialogStrate
    * - Owner (string)
    * - Expiration (number - XRPTime)
    * - Destination (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    * TODO(jordi) Missing fields:
    * - Flags
    *
@@ -42,6 +44,7 @@ export class NFTokenCreateOfferDialogStrategy implements TransactionDialogStrate
       ...OwnerComponent(transaction.Owner),
       ...ExpirationComponent(transaction.Expiration),
       ...DestinationComponent(transaction.Destination),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }
