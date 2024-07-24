@@ -1,13 +1,14 @@
-import { divider, heading, panel, text } from '@metamask/snaps-sdk';
+import { copyable, divider, heading, panel, text } from '@metamask/snaps-sdk';
 
 import { translate } from '../../../src/dialog/locale/translate';
 import { SignMessageDialog } from '../../../src/dialog/transaction/SignMessageDialog';
+import { Label } from '../../../src/dialog/transaction/TransactionComponents/base/base';
 
 describe('SignMessageDialog', () => {
   const origin = 'mockOrigin';
   const message = 'mockMessage';
   const headerResult = [heading(translate('SignMessageHeader')), text(translate('SignMessageSubHeader', { origin }))];
-  const bodyResult = [text(translate('SignMessage', { message }))];
+  const bodyResult = [Label('SignMessage'), copyable(message)];
   const footerResult = [text(translate('SignMessageFooter'))];
 
   describe('BuildHeader', () => {

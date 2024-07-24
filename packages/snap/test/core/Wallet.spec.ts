@@ -7,7 +7,7 @@ import requests from '../fixtures/requests';
 import responses from '../fixtures/responses';
 
 describe('Wallet functions', () => {
-  const mockXRPPrivateKey = '00B6FE8507D977E46E988A8A94DB3B8B35E404B60F8B11AC5213FA8B5ABC8A8D19';
+  const mockXRPPrivateKey = 'B6FE8507D977E46E988A8A94DB3B8B35E404B60F8B11AC5213FA8B5ABC8A8D19';
   const mockXRPPublicKey = '03BFC2F7AE242C3493187FA0B72BE97B2DF71194FB772E507FF9DEA0AD13CA1625';
   const mockClassicAddress = 'rQKQsPeE3iTRyfUypLhuq74gZdcRdwWqDp';
 

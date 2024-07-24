@@ -87,7 +87,7 @@ export default {
    */
   SignMessageHeader: 'Sign Message',
   SignMessageSubHeader: 'Got a request from %origin% to sign the following message',
-  SignMessage: '**Message:** %message%',
+  SignMessage: 'Message:',
   SignMessageFooter: '**Signing of a message can be dangerous.**',
   /**
    * Network dialogs

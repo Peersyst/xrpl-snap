@@ -1,37 +1,36 @@
 /* eslint-disable lines-between-class-members */
+/* eslint-disable no-restricted-syntax */
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
-import { encode, encodeForSigning } from '@xrpl-snap/ripple-binary-codec';
 import { sign, deriveAddress } from 'ripple-keypairs';
-import { type Transaction } from 'xrpl';
-import { hashSignedTx } from 'xrpl/dist/npm/utils/hashes';
+import { type Transaction, Wallet as XrplWallet } from 'xrpl';
 
 import { bip44CompressedPublicKeyToXRPPublicKey, bip44PrivateKeyToXRPPrivateKey } from './utils/wallet-utils';
 
 export class Wallet {
-  constructor(public readonly address: string, public readonly publicKey: string, public readonly privateKey: string) {}
+  private readonly _wallet: XrplWallet;
+
+  constructor(private readonly _address: string, private readonly _publicKey: string, private readonly _privateKey: string) {
+    this._wallet = new XrplWallet(_publicKey, _privateKey);
+  }
+
+  get address(): string {
+    return this._address;
+  }
+
+  get publicKey(): string {
+    return this._publicKey;
+  }
+
+  get privateKey(): string {
+    return this._privateKey;
+  }
 
   public sign(transaction: Transaction): { tx_blob: string; hash: string } {
-    // must be without signers or already signed
-    if (transaction.TxnSignature || transaction.Signers) {
-      throw new Error('Transaction must not contain TxnSignature or Signers');
-    }
-
-    const txToSignAndEncode = { ...transaction };
-
-    txToSignAndEncode.SigningPubKey = this.publicKey;
-
-    txToSignAndEncode.TxnSignature = this._computeTxSignature(txToSignAndEncode);
-
-    const serialized = encode(txToSignAndEncode);
-
-    return {
-      tx_blob: serialized,
-      hash: hashSignedTx(serialized),
-    };
+    return this._wallet.sign(transaction);
   }
 
   public signMessage(message: string): string {
-    return this._computeSignature(message);
+    return sign(message, this._privateKey);
   }
 
   public static async derive(addressIndex = 0): Promise<Wallet> {
@@ -45,6 +44,7 @@ export class Wallet {
     const bip44AddressKeyDeriver = await getBIP44AddressKeyDeriver(xrplNode);
 
     /**
+     * Derive the BIP44 node for the XRP account. BIB44 levels structure:
      * m / 44' / coin_type' / account' / change / address_index
      * m / 44' / 144' / 0' / 0 / `addressIndex`
      */
@@ -60,13 +60,5 @@ export class Wallet {
     const classicAddress = deriveAddress(xrpPublicKey);
 
     return new Wallet(classicAddress, xrpPublicKey, xrpPrivateKey);
-  }
-
-  _computeTxSignature(tx: Transaction): string {
-    return this._computeSignature(encodeForSigning(tx));
-  }
-
-  _computeSignature(message: string): string {
-    return sign(message, this.privateKey);
   }
 }

@@ -1,7 +1,8 @@
 import type { Component } from '@metamask/snaps-sdk';
-import { divider, heading, panel, text } from '@metamask/snaps-sdk';
+import { copyable, divider, heading, panel, text } from '@metamask/snaps-sdk';
 
 import { translate } from '../locale/translate';
+import { Label } from './TransactionComponents/base/base';
 
 export class SignMessageDialog {
   static buildHeader(origin: string): Component[] {
@@ -13,7 +14,7 @@ export class SignMessageDialog {
   }
 
   static buildBody(message: string): Component[] {
-    return [text(translate('SignMessage', { message }))];
+    return [Label('SignMessage'), copyable(message)];
   }
 
   static async prompt(origin: string, message: string): Promise<boolean> {

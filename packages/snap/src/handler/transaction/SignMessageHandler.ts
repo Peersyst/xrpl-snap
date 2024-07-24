@@ -1,3 +1,5 @@
+import { UserRejectedRequestError } from '@metamask/snaps-sdk';
+
 import type { Context } from '../../core/Context';
 import { SignMessageDialog } from '../../dialog/transaction/SignMessageDialog';
 import type { IHandler } from '../IHandler';
@@ -10,7 +12,7 @@ export class SignMessageHandler implements IHandler<typeof SignMessageMethod> {
   async handle(origin: string, params: { message: string }): Promise<{ signature: string }> {
     const success = await SignMessageDialog.prompt(origin, params.message);
     if (!success) {
-      throw Error('User declined operation');
+      throw new UserRejectedRequestError();
     }
     return {
       signature: this.context.wallet.signMessage(params.message),

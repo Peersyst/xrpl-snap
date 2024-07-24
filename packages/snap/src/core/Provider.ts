@@ -1,3 +1,4 @@
+import { InternalError } from '@metamask/snaps-sdk';
 import type { Request as XrplRequest, Transaction } from 'xrpl';
 import type { RequestResponseMap } from 'xrpl/src/models/methods';
 
@@ -39,7 +40,7 @@ export class Provider {
     });
     const resJson: XrplResponse<Request> & { result: { error: string } } = await res.json();
     if (resJson.result.error) {
-      throw new Error(`Error calling ${req.command} - ${resJson.result.error}`);
+      throw new InternalError(`Error calling ${req.command} - ${resJson.result.error}`);
     }
     return resJson;
   }
