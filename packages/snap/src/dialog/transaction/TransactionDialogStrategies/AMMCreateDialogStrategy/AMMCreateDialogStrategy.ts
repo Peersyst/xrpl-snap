@@ -8,6 +8,7 @@ import {
   FeeComponent,
   TransactionTypeComponent,
   TradingFeeComponent,
+  MemosComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -22,7 +23,8 @@ export class AMMCreateDialogStrategy implements TransactionDialogStrategy<AMMCre
    * - Amount (Amount)
    * - Amount2 (Amount)
    * - TradingFee (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -34,6 +36,7 @@ export class AMMCreateDialogStrategy implements TransactionDialogStrategy<AMMCre
       ...AmountComponent(transaction.Amount),
       ...Amount2Component(transaction.Amount2),
       ...TradingFeeComponent(transaction.TradingFee),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

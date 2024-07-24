@@ -5,6 +5,7 @@ import {
   AccountComponent,
   FeeComponent,
   LimitAmountComponent,
+  MemosComponent,
   QualityInComponent,
   QualityOutComponent,
   TransactionTypeComponent,
@@ -21,7 +22,8 @@ export class TrustSetDialogStrategy implements TransactionDialogStrategy<TrustSe
    * - LimitAmount (IssuedCurrencyAmount)
    * - QualityIn (number)
    * - QualityOut (number)
-   * - Fee (XRPAmount)
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * TODO: Add more fields
    * - Flags
@@ -37,6 +39,7 @@ export class TrustSetDialogStrategy implements TransactionDialogStrategy<TrustSe
       ...LimitAmountComponent(transaction.LimitAmount),
       ...QualityInComponent(transaction.QualityIn),
       ...QualityOutComponent(transaction.QualityOut),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

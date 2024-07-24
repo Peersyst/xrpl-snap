@@ -8,6 +8,7 @@ import {
   DestinationComponent,
   DestinationTagComponent,
   FeeComponent,
+  MemosComponent,
   PublicKeyComponent,
   SettleDelayComponent,
   TransactionTypeComponent,
@@ -28,7 +29,8 @@ export class PaymentChannelCreateDialogStrategy implements TransactionDialogStra
    * - PublicKey (string)
    * - CancelAfter (number - xrpl timestamp)
    * - DestinationTag (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -43,6 +45,7 @@ export class PaymentChannelCreateDialogStrategy implements TransactionDialogStra
       ...PublicKeyComponent(transaction.PublicKey),
       ...CancelAfterComponent(transaction.CancelAfter),
       ...DestinationTagComponent(transaction.DestinationTag),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

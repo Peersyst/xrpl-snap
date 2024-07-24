@@ -4,6 +4,7 @@ import type { NFTokenAcceptOffer, Transaction } from 'xrpl';
 import {
   AccountComponent,
   FeeComponent,
+  MemosComponent,
   NFTokenBrokerFeeComponent,
   NFTokenBuyOfferComponent,
   NFTokenSellOfferComponent,
@@ -22,6 +23,8 @@ export class NFTokenAcceptOfferDialogStrategy implements TransactionDialogStrate
    * - NFTokenSellOffer (string)
    * - NFTokenBuyOffer (string)
    * - NFTokenBrokerFee (Amount)
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -33,6 +36,7 @@ export class NFTokenAcceptOfferDialogStrategy implements TransactionDialogStrate
       ...NFTokenBuyOfferComponent(transaction.NFTokenBuyOffer),
       ...NFTokenSellOfferComponent(transaction.NFTokenSellOffer),
       ...NFTokenBrokerFeeComponent(transaction.NFTokenBrokerFee),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

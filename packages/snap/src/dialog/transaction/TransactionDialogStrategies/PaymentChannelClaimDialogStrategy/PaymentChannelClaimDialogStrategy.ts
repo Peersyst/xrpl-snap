@@ -7,6 +7,7 @@ import {
   BalanceComponent,
   ChannelComponent,
   FeeComponent,
+  MemosComponent,
   PublicKeyComponent,
   SignatureComponent,
   TransactionTypeComponent,
@@ -26,7 +27,8 @@ export class PaymentChannelClaimDialogStrategy implements TransactionDialogStrat
    * - Amount (drops)
    * - Signature (string)
    * - PublicKey (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -40,6 +42,7 @@ export class PaymentChannelClaimDialogStrategy implements TransactionDialogStrat
       ...AmountComponent(transaction.Amount),
       ...SignatureComponent(transaction.Signature),
       ...PublicKeyComponent(transaction.PublicKey),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

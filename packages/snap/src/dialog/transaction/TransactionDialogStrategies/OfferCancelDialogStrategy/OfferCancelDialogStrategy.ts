@@ -1,7 +1,13 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Transaction, OfferCancel } from 'xrpl';
 
-import { AccountComponent, FeeComponent, OfferSequenceComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import {
+  AccountComponent,
+  FeeComponent,
+  MemosComponent,
+  OfferSequenceComponent,
+  TransactionTypeComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class OfferCancelDialogStrategy implements TransactionDialogStrategy<OfferCancel> {
@@ -13,7 +19,8 @@ export class OfferCancelDialogStrategy implements TransactionDialogStrategy<Offe
    * - TransactionType
    * - Account
    * - OfferSequence (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -23,6 +30,7 @@ export class OfferCancelDialogStrategy implements TransactionDialogStrategy<Offe
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...OfferSequenceComponent(transaction.OfferSequence),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

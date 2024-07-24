@@ -5,6 +5,7 @@ import {
   AccountComponent,
   ExpirationComponent,
   FeeComponent,
+  MemosComponent,
   OfferSequenceComponent,
   TakerGetsComponent,
   TakerPaysComponent,
@@ -24,7 +25,8 @@ export class OfferCreateDialogStrategy implements TransactionDialogStrategy<Offe
    * - OfferSequence (number)
    * - TakerGets (Amount)
    * - TakerPays (Amount)
-   * - Fee XRPAmount
+   * - Fee (drops)
+   * - Memos (Memo[])
    * TODO(jordi) Missing fields:
    * - Flags
    *
@@ -39,6 +41,7 @@ export class OfferCreateDialogStrategy implements TransactionDialogStrategy<Offe
       ...TakerPaysComponent(transaction.TakerPays),
       ...OfferSequenceComponent(transaction.OfferSequence),
       ...ExpirationComponent(transaction.Expiration),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

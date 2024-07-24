@@ -6,6 +6,7 @@ import {
   DataComponent,
   DIDDocumentComponent,
   FeeComponent,
+  MemosComponent,
   TransactionTypeComponent,
   URIComponent,
 } from '../../TransactionComponents';
@@ -22,7 +23,8 @@ export class DIDSetDialogStrategy implements TransactionDialogStrategy<DIDSet> {
    * - Data (string)
    * - URI (string)
    * - DIDDocument (string)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -34,6 +36,7 @@ export class DIDSetDialogStrategy implements TransactionDialogStrategy<DIDSet> {
       ...DataComponent(transaction.Data),
       ...URIComponent(transaction.URI),
       ...DIDDocumentComponent(transaction.DIDDocument),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

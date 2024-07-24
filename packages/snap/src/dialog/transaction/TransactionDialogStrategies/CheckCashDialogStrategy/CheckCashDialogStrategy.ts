@@ -7,6 +7,7 @@ import {
   CheckIDComponent,
   DeliverMinComponent,
   FeeComponent,
+  MemosComponent,
   TransactionTypeComponent,
 } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
@@ -22,7 +23,8 @@ export class CheckCashDialogStrategy implements TransactionDialogStrategy<CheckC
    * - CheckID (string)
    * - Amount (Amount)
    * - DeliverMin (Amount)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -34,6 +36,7 @@ export class CheckCashDialogStrategy implements TransactionDialogStrategy<CheckC
       ...CheckIDComponent(transaction.CheckID),
       ...AmountComponent(transaction.Amount),
       ...DeliverMinComponent(transaction.DeliverMin),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

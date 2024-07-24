@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Clawback, Transaction } from 'xrpl';
 
-import { AccountComponent, AmountComponent, FeeComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import { AccountComponent, AmountComponent, FeeComponent, MemosComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class ClawbackDialogStrategy implements TransactionDialogStrategy<Clawback> {
@@ -13,7 +13,8 @@ export class ClawbackDialogStrategy implements TransactionDialogStrategy<Clawbac
    * - TransactionType
    * - Account (string)
    * - Amount (IssuedCurreencyAmount)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -23,6 +24,7 @@ export class ClawbackDialogStrategy implements TransactionDialogStrategy<Clawbac
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...AmountComponent(transaction.Amount),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

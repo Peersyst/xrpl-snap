@@ -1,7 +1,13 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { TicketCreate, Transaction } from 'xrpl';
 
-import { AccountComponent, FeeComponent, TicketCountComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import {
+  AccountComponent,
+  FeeComponent,
+  MemosComponent,
+  TicketCountComponent,
+  TransactionTypeComponent,
+} from '../../TransactionComponents';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
 export class TicketCreateDialogStrategy implements TransactionDialogStrategy<TicketCreate> {
@@ -13,7 +19,8 @@ export class TicketCreateDialogStrategy implements TransactionDialogStrategy<Tic
    * - TransactionType
    * - Account
    * - TicketCount
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -23,6 +30,7 @@ export class TicketCreateDialogStrategy implements TransactionDialogStrategy<Tic
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...TicketCountComponent(transaction.TicketCount),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

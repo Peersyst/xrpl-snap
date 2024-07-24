@@ -1,7 +1,7 @@
 import type { Component } from '@metamask/snaps-sdk';
 import type { Transaction, OracleDelete } from 'xrpl';
 
-import { AccountComponent, FeeComponent, TransactionTypeComponent } from '../../TransactionComponents';
+import { AccountComponent, FeeComponent, MemosComponent, TransactionTypeComponent } from '../../TransactionComponents';
 import { OracleDocumentIDComponent } from '../../TransactionComponents/oracle/oracle';
 import type { TransactionDialogStrategy } from '../TransactionDialogStrategies.types';
 
@@ -14,7 +14,8 @@ export class OracleDeleteDialogStrategy implements TransactionDialogStrategy<Ora
    * - TransactionType
    * - Account
    * - OracleDocumentID (number)
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    * TODO(jordi) Missing fields:
    * - Flags
    *
@@ -26,6 +27,7 @@ export class OracleDeleteDialogStrategy implements TransactionDialogStrategy<Ora
       ...TransactionTypeComponent(this.transactionType),
       ...AccountComponent(transaction.Account),
       ...OracleDocumentIDComponent(transaction.OracleDocumentID),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

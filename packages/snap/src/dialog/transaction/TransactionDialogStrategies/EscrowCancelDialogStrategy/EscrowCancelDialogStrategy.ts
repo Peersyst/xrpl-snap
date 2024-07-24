@@ -4,6 +4,7 @@ import type { EscrowCancel, Transaction } from 'xrpl';
 import {
   AccountComponent,
   FeeComponent,
+  MemosComponent,
   OfferSequenceComponent,
   OwnerComponent,
   TransactionTypeComponent,
@@ -20,7 +21,8 @@ export class EscrowCancelDialogStrategy implements TransactionDialogStrategy<Esc
    * - Account
    * - Owner
    * - OfferSequence
-   * - Fee XRPAmount
+   * - Memos (Memo[])
+   * - Fee (drops)
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog
@@ -31,6 +33,7 @@ export class EscrowCancelDialogStrategy implements TransactionDialogStrategy<Esc
       ...AccountComponent(transaction.Account),
       ...OwnerComponent(transaction.Owner),
       ...OfferSequenceComponent(transaction.OfferSequence),
+      ...MemosComponent(transaction.Memos),
       ...FeeComponent(transaction.Fee),
     ];
   }

@@ -1,4 +1,4 @@
-import { convertHexToString, convertStringToHex } from './hex';
+import { convertHexToString, convertStringToHex, isHex } from './hex';
 
 /**
  * Returns whether a currency code is standard or not
@@ -31,6 +31,16 @@ export function parseCurrencyCode(currencyCode: string): string {
   if (isStandardCurrencyCode(currencyCode)) {
     return currencyCode;
   }
-  // eslint-disable-next-line require-unicode-regexp
-  return convertHexToString(currencyCode).replace(/\0/g, '');
+
+  if (isHex(currencyCode)) {
+    const prefix = currencyCode.slice(0, 2);
+    switch (prefix) {
+      case '03': // LP Tokens
+        return currencyCode;
+      default:
+        return convertHexToString(currencyCode).replace(/\0/gu, '');
+    }
+  }
+
+  return currencyCode;
 }

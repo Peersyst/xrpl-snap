@@ -9,6 +9,7 @@ import {
   TickSizeComponent,
   TransferRateComponent,
   NFTokenMinterComponent,
+  MemosComponent,
 } from '../../../../src/dialog/transaction/TransactionComponents';
 import { AccountSetDialogStrategy } from '../../../../src/dialog/transaction/TransactionDialogStrategies/AccountSetDialogStrategy/AccountSetDialogStrategy';
 import txs from '../../../fixtures/tx';
@@ -24,7 +25,6 @@ describe('AccountSetDialogStrategy', () => {
     const expectedComponents = [
       ...TransactionTypeComponent('AccountSet'),
       ...AccountComponent(txs.AccountSet.Account),
-      ...FeeComponent(txs.AccountSet.Fee),
       ...ClearFlagComponent(txs.AccountSet.ClearFlag),
       ...DomainComponent(txs.AccountSet.Domain),
       ...EmailHashComponent(txs.AccountSet.EmailHash),
@@ -32,6 +32,8 @@ describe('AccountSetDialogStrategy', () => {
       ...TickSizeComponent(txs.AccountSet.TickSize),
       ...TransferRateComponent(txs.AccountSet.TransferRate),
       ...NFTokenMinterComponent(txs.AccountSet.NFTokenMinter),
+      ...MemosComponent(txs.AccountSet.Memos),
+      ...FeeComponent(txs.AccountSet.Fee),
     ];
 
     const result = strategy.buildBody(txs.AccountSet);
