@@ -38,7 +38,7 @@ export function parseCurrencyCode(currencyCode: string): string {
       case '03': // LP Tokens
         return currencyCode;
       default:
-        return convertHexToString(currencyCode).replace(/\0/g, '');
+        return convertHexToString(currencyCode).replace(/\0/gu, '');
     }
   }
 

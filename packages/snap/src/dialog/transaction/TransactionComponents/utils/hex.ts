@@ -27,6 +27,6 @@ export function convertHexToString(hexStr: string, encoding: BufferEncoding = 'u
   return Buffer.from(hexStr, 'hex').toString(encoding);
 }
 
-export function isHex(hex: string): boolean {
-  return /^[0-9A-Fa-f]*$/.test(hex);
+export function isHex(text: string): boolean {
+  return /^[0-9A-Fa-f]*$/u.test(text);
 }

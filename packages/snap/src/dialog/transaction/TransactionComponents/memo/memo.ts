@@ -1,8 +1,9 @@
-import { Component, text } from '@metamask/snaps-sdk';
-import { Memo } from 'xrpl';
+import type { Component } from '@metamask/snaps-sdk';
+import { text } from '@metamask/snaps-sdk';
+import type { Memo } from 'xrpl';
 
+import { TransactionRow } from '../base/base';
 import { convertHexToString, isHex } from '../utils/hex';
-import { Label, TransactionRow } from '../base/base';
 
 const MemoComponent = (memo: Memo): Component[] => {
   const memoComponents: Component[] = [];
