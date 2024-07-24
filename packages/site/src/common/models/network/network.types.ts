@@ -1,5 +1,3 @@
-// TODO(jordi): Get types from the snap
-
 export type BlockchainAddressType = 'address' | 'tx';
 
 export type Network = {

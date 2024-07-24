@@ -1,4 +1,4 @@
-import type { Json } from '@metamask/snaps-sdk';
+import { UserRejectedRequestError, type Json } from '@metamask/snaps-sdk';
 
 import type { Context } from '../../core/Context';
 import { ExtractPrivateKeyDialog } from '../../dialog/account/ExtractPrivateKeyDialog';
@@ -11,9 +11,9 @@ export class ExtractPrivateKeyHandler implements IHandler<typeof ExtractPrivateK
   constructor(protected readonly context: Context) {}
 
   async handle(): Promise<Json> {
-    const res = await ExtractPrivateKeyRequestDialog.prompt();
-    if (!res) {
-      throw new Error('user declined');
+    const success = await ExtractPrivateKeyRequestDialog.prompt();
+    if (!success) {
+      throw new UserRejectedRequestError();
     }
     await ExtractPrivateKeyDialog.prompt(this.context.wallet.privateKey);
     return {};

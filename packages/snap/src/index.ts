@@ -1,4 +1,4 @@
-import type { Json, OnRpcRequestHandler } from '@metamask/snaps-sdk';
+import { MethodNotSupportedError, type Json, type OnRpcRequestHandler } from '@metamask/snaps-sdk';
 
 import { Context } from './core/Context';
 import { HandlerFactory } from './handler/HandlerFactory';
@@ -17,7 +17,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }): Pr
   const handlers = HandlerFactory(await Context.init());
   // eslint-disable-next-line no-prototype-builtins
   if (!handlers.hasOwnProperty(request.method)) {
-    throw new Error(`handler method ${request.method} not found`);
+    throw new MethodNotSupportedError(`Handler method ${request.method} not found`);
   }
   return handlers[request.method].handle(origin, request.params as any) as any;
 };

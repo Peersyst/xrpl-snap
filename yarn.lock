@@ -5676,7 +5676,7 @@ __metadata:
     "@metamask/snaps-sdk": ^4.0.0
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
-    "@xrpl-snap/ripple-binary-codec": ^1.9.0
+    "@xrplf/isomorphic": ^1.0.1
     bignumber.js: ^9.1.2
     buffer: ^6.0.3
     eslint: ^8.45.0
@@ -5695,7 +5695,6 @@ __metadata:
     ts-jest: ^29.1.0
     typescript: ^4.7.4
     xrpl: ^4.0.0
-    xrpl-accountlib: ^3.6.1
   languageName: unknown
   linkType: soft
 
@@ -9202,20 +9201,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xrpl-snap/ripple-binary-codec@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "@xrpl-snap/ripple-binary-codec@npm:1.9.0"
-  dependencies:
-    assert: ^2.0.0
-    big-integer: ^1.6.48
-    bignumber.js: ^9.1.2
-    buffer: 6.0.3
-    create-hash: ^1.2.0
-    ripple-address-codec: ^4.3.0
-  checksum: dcefc9e295c9d2d3b69f1531ec6f446ce2e6a06253a670a00f92a1916ce1f9396ceae131dd62dbd4786cf5b3d1e5de523a43b441fba98044dd0f5d23bfeb80cb
-  languageName: node
-  linkType: hard
-
 "@xrplf/isomorphic@npm:^1.0.0":
   version: 1.0.0
   resolution: "@xrplf/isomorphic@npm:1.0.0"
@@ -10750,7 +10735,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base-x@npm:^3.0.2, base-x@npm:^3.0.3, base-x@npm:^3.0.9":
+"base-x@npm:^3.0.2, base-x@npm:^3.0.9":
   version: 3.0.9
   resolution: "base-x@npm:3.0.9"
   dependencies:
@@ -10810,7 +10795,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"big-integer@npm:^1.6.48, big-integer@npm:^1.6.51, big-integer@npm:^1.6.7":
+"big-integer@npm:^1.6.48, big-integer@npm:^1.6.7":
   version: 1.6.52
   resolution: "big-integer@npm:1.6.52"
   checksum: 6e86885787a20fed96521958ae9086960e4e4b5e74d04f3ef7513d4d0ad631a9f3bde2730fc8aaa4b00419fc865f6ec573e5320234531ef37505da7da192c40b
@@ -10821,13 +10806,6 @@ __metadata:
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
   checksum: b89b6e8419b097a8fb4ed2399a1931a68c612bce3cfd5ca8c214b2d017531191070f990598de2fc6f3f993d91c0f08aa82697717f6b3b8732c9731866d233c9e
-  languageName: node
-  linkType: hard
-
-"bignumber.js@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "bignumber.js@npm:5.0.0"
-  checksum: 3c39837967741eb13159d79fefc956dc2ba4be29412f18138b8832d6ff66d127b15efba2f153129de03e8bcc9b2cf52d9ac5ee560fc20d29e6c60a2ab79a9367
   languageName: node
   linkType: hard
 
@@ -11348,16 +11326,6 @@ __metadata:
     base64-js: ^1.0.2
     ieee754: ^1.1.4
   checksum: aa3f25bb88d313b8317b436677b46e9e32db64ae397dd5a9d1f867da132985b857c71deaa36cc37666fdb955d8d0f66abeae9460aa7d9b2dca36a9da2f50d05e
-  languageName: node
-  linkType: hard
-
-"bufferutil@npm:^4.0.1":
-  version: 4.0.8
-  resolution: "bufferutil@npm:4.0.8"
-  dependencies:
-    node-gyp: latest
-    node-gyp-build: ^4.3.0
-  checksum: 7e9a46f1867dca72fda350966eb468eca77f4d623407b0650913fadf73d5750d883147d6e5e21c56f9d3b0bdc35d5474e80a600b9f31ec781315b4d2469ef087
   languageName: node
   linkType: hard
 
@@ -13037,16 +13005,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d@npm:1, d@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "d@npm:1.0.1"
-  dependencies:
-    es5-ext: ^0.10.50
-    type: ^1.0.1
-  checksum: 49ca0639c7b822db670de93d4fbce44b4aa072cd848c76292c9978a8cd0fff1028763020ff4b0f147bd77bfe29b4c7f82e0f71ade76b2a06100543cdfd948d19
-  languageName: node
-  linkType: hard
-
 "damerau-levenshtein@npm:^1.0.8":
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
@@ -13870,21 +13828,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:6.5.4, elliptic@npm:^6.5.3, elliptic@npm:^6.5.4":
-  version: 6.5.4
-  resolution: "elliptic@npm:6.5.4"
-  dependencies:
-    bn.js: ^4.11.9
-    brorand: ^1.1.0
-    hash.js: ^1.0.0
-    hmac-drbg: ^1.0.1
-    inherits: ^2.0.4
-    minimalistic-assert: ^1.0.1
-    minimalistic-crypto-utils: ^1.0.1
-  checksum: d56d21fd04e97869f7ffcc92e18903b9f67f2d4637a23c860492fbbff5a3155fd9ca0184ce0c865dd6eb2487d234ce9551335c021c376cd2d3b7cb749c7d10f4
-  languageName: node
-  linkType: hard
-
 "elliptic@npm:^6.4.0":
   version: 6.5.5
   resolution: "elliptic@npm:6.5.5"
@@ -13897,6 +13840,21 @@ __metadata:
     minimalistic-assert: ^1.0.1
     minimalistic-crypto-utils: ^1.0.1
   checksum: ec9105e4469eb3b32b0ee2579756c888ddf3f99d259aa0d65fccb906ee877768aaf8880caae73e3e669c9a4adeb3eb1945703aa974ec5000d2d33a239f4567eb
+  languageName: node
+  linkType: hard
+
+"elliptic@npm:^6.5.3, elliptic@npm:^6.5.4":
+  version: 6.5.4
+  resolution: "elliptic@npm:6.5.4"
+  dependencies:
+    bn.js: ^4.11.9
+    brorand: ^1.1.0
+    hash.js: ^1.0.0
+    hmac-drbg: ^1.0.1
+    inherits: ^2.0.4
+    minimalistic-assert: ^1.0.1
+    minimalistic-crypto-utils: ^1.0.1
+  checksum: d56d21fd04e97869f7ffcc92e18903b9f67f2d4637a23c860492fbbff5a3155fd9ca0184ce0c865dd6eb2487d234ce9551335c021c376cd2d3b7cb749c7d10f4
   languageName: node
   linkType: hard
 
@@ -14301,29 +14259,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es5-ext@npm:^0.10.35, es5-ext@npm:^0.10.50, es5-ext@npm:~0.10.14":
-  version: 0.10.62
-  resolution: "es5-ext@npm:0.10.62"
-  dependencies:
-    es6-iterator: ^2.0.3
-    es6-symbol: ^3.1.3
-    next-tick: ^1.1.0
-  checksum: 25f42f6068cfc6e393cf670bc5bba249132c5f5ec2dd0ed6e200e6274aca2fed8e9aec8a31c76031744c78ca283c57f0b41c7e737804c6328c7b8d3fbcba7983
-  languageName: node
-  linkType: hard
-
-"es5-ext@npm:^0.10.62, es5-ext@npm:^0.10.63":
-  version: 0.10.64
-  resolution: "es5-ext@npm:0.10.64"
-  dependencies:
-    es6-iterator: ^2.0.3
-    es6-symbol: ^3.1.3
-    esniff: ^2.0.1
-    next-tick: ^1.1.0
-  checksum: 01179fab0769fdbef213062222f99d0346724dbaccf04b87c0e6ee7f0c97edabf14be647ca1321f0497425ea7145de0fd278d1b3f3478864b8933e7136a5c645
-  languageName: node
-  linkType: hard
-
 "es5-shim@npm:^4.5.13":
   version: 4.6.7
   resolution: "es5-shim@npm:4.6.7"
@@ -14338,17 +14273,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es6-iterator@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "es6-iterator@npm:2.0.3"
-  dependencies:
-    d: 1
-    es5-ext: ^0.10.35
-    es6-symbol: ^3.1.1
-  checksum: 6e48b1c2d962c21dee604b3d9f0bc3889f11ed5a8b33689155a2065d20e3107e2a69cc63a71bd125aeee3a589182f8bbcb5c8a05b6a8f38fa4205671b6d09697
-  languageName: node
-  linkType: hard
-
 "es6-object-assign@npm:^1.1.0":
   version: 1.1.0
   resolution: "es6-object-assign@npm:1.1.0"
@@ -14360,16 +14284,6 @@ __metadata:
   version: 0.35.8
   resolution: "es6-shim@npm:0.35.8"
   checksum: 479826f195995f1bc38f31824ea0da74235235f64df45b0f4dd5f956f5133d1baa9063312dfba1cb03aae79197978da8af1deec9f9d5c9bf598c069492d23cea
-  languageName: node
-  linkType: hard
-
-"es6-symbol@npm:^3.1.1, es6-symbol@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "es6-symbol@npm:3.1.3"
-  dependencies:
-    d: ^1.0.1
-    ext: ^1.1.2
-  checksum: cd49722c2a70f011eb02143ef1c8c70658d2660dead6641e160b94619f408b9cf66425515787ffe338affdf0285ad54f4eae30ea5bd510e33f8659ec53bcaa70
   languageName: node
   linkType: hard
 
@@ -14965,18 +14879,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esniff@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "esniff@npm:2.0.1"
-  dependencies:
-    d: ^1.0.1
-    es5-ext: ^0.10.62
-    event-emitter: ^0.3.5
-    type: ^2.7.2
-  checksum: d814c0e5c39bce9925b2e65b6d8767af72c9b54f35a65f9f3d6e8c606dce9aebe35a9599d30f15b0807743f88689f445163cfb577a425de4fb8c3c5bc16710cc
-  languageName: node
-  linkType: hard
-
 "espree@npm:^9.6.0, espree@npm:^9.6.1":
   version: 9.6.1
   resolution: "espree@npm:9.6.1"
@@ -15113,16 +15015,6 @@ __metadata:
     "@scure/bip32": 1.3.1
     "@scure/bip39": 1.2.1
   checksum: 2e8f7b8cc90232ae838ab6a8167708e8362621404d26e79b5d9e762c7b53d699f7520aff358d9254de658fcd54d2d0af168ff909943259ed27dc4cef2736410c
-  languageName: node
-  linkType: hard
-
-"event-emitter@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "event-emitter@npm:0.3.5"
-  dependencies:
-    d: 1
-    es5-ext: ~0.10.14
-  checksum: 27c1399557d9cd7e0aa0b366c37c38a4c17293e3a10258e8b692a847dd5ba9fb90429c3a5a1eeff96f31f6fa03ccbd31d8ad15e00540b22b22f01557be706030
   languageName: node
   linkType: hard
 
@@ -15331,15 +15223,6 @@ __metadata:
     utils-merge: 1.0.1
     vary: ~1.1.2
   checksum: 212dbd6c2c222a96a61bc927639c95970a53b06257080bb9e2838adb3bffdb966856551fdad1ab5dd654a217c35db94f987d0aa88d48fb04d306340f5f34dca5
-  languageName: node
-  linkType: hard
-
-"ext@npm:^1.1.2":
-  version: 1.7.0
-  resolution: "ext@npm:1.7.0"
-  dependencies:
-    type: ^2.7.2
-  checksum: ef481f9ef45434d8c867cfd09d0393b60945b7c8a1798bedc4514cb35aac342ccb8d8ecb66a513e6a2b4ec1e294a338e3124c49b29736f8e7c735721af352c31
   languageName: node
   linkType: hard
 
@@ -16681,7 +16564,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hash.js@npm:^1.0.0, hash.js@npm:^1.0.3, hash.js@npm:^1.1.7":
+"hash.js@npm:^1.0.0, hash.js@npm:^1.0.3":
   version: 1.1.7
   resolution: "hash.js@npm:1.1.7"
   dependencies:
@@ -21422,13 +21305,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-tick@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "next-tick@npm:1.1.0"
-  checksum: 83b5cf36027a53ee6d8b7f9c0782f2ba87f4858d977342bfc3c20c21629290a2111f8374d13a81221179603ffc4364f38374b5655d17b6a8f8a8c77bdea4fe8b
-  languageName: node
-  linkType: hard
-
 "nice-try@npm:^1.0.4":
   version: 1.0.5
   resolution: "nice-try@npm:1.0.5"
@@ -21491,17 +21367,6 @@ __metadata:
   version: 1.3.1
   resolution: "node-forge@npm:1.3.1"
   checksum: 08fb072d3d670599c89a1704b3e9c649ff1b998256737f0e06fbd1a5bf41cae4457ccaee32d95052d80bbafd9ffe01284e078c8071f0267dc9744e51c5ed42a9
-  languageName: node
-  linkType: hard
-
-"node-gyp-build@npm:^4.3.0":
-  version: 4.8.1
-  resolution: "node-gyp-build@npm:4.8.1"
-  bin:
-    node-gyp-build: bin.js
-    node-gyp-build-optional: optional.js
-    node-gyp-build-test: build-test.js
-  checksum: fe6e95da6f4608c1a98655f6bf2fe4e8dd9c877cd13256056a8acaf585cc7f98718823fe9366be11b78c2f332d5a184b00cf07a4af96c9d8fea45f640c019f98
   languageName: node
   linkType: hard
 
@@ -25266,7 +25131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ripple-address-codec@npm:^4.2.4, ripple-address-codec@npm:^4.2.5, ripple-address-codec@npm:^4.3.0, ripple-address-codec@npm:^4.3.1":
+"ripple-address-codec@npm:^4.3.1":
   version: 4.3.1
   resolution: "ripple-address-codec@npm:4.3.1"
   dependencies:
@@ -25311,7 +25176,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ripple-keypairs@npm:1.3.1, ripple-keypairs@npm:^1.1.4, ripple-keypairs@npm:^1.1.5, ripple-keypairs@npm:^1.3.1":
+"ripple-keypairs@npm:1.3.1, ripple-keypairs@npm:^1.1.5, ripple-keypairs@npm:^1.3.1":
   version: 1.3.1
   resolution: "ripple-keypairs@npm:1.3.1"
   dependencies:
@@ -25332,16 +25197,6 @@ __metadata:
     "@xrplf/isomorphic": ^1.0.0
     ripple-address-codec: ^5.0.0
   checksum: 51c54811594f7f4c90ad93c261b75f408fdeb6f07fcff7877dd1d847d50087ee6d69e864b21d126994a1b25bda0b442057a4e241b5b68508376ddffee3cfd0fd
-  languageName: node
-  linkType: hard
-
-"ripple-secret-codec@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "ripple-secret-codec@npm:1.0.3"
-  dependencies:
-    base-x: ^3.0.3
-    bignumber.js: ^5.0.0
-  checksum: c936c5848aa89a53bbffd2878094b76a7ce9a6c042472e5f734a6c873fe9290dce6d999b883a1fbd036428529df30465a63f2d8be49405a09d39d6d61c02532a
   languageName: node
   linkType: hard
 
@@ -28044,20 +27899,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type@npm:^1.0.1":
-  version: 1.2.0
-  resolution: "type@npm:1.2.0"
-  checksum: dae8c64f82c648b985caf321e9dd6e8b7f4f2e2d4f846fc6fd2c8e9dc7769382d8a52369ddbaccd59aeeceb0df7f52fb339c465be5f2e543e81e810e413451ee
-  languageName: node
-  linkType: hard
-
-"type@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "type@npm:2.7.2"
-  checksum: 0f42379a8adb67fe529add238a3e3d16699d95b42d01adfe7b9a7c5da297f5c1ba93de39265ba30ffeb37dfd0afb3fb66ae09f58d6515da442219c086219f6f4
-  languageName: node
-  linkType: hard
-
 "typed-array-buffer@npm:^1.0.1, typed-array-buffer@npm:^1.0.2":
   version: 1.0.2
   resolution: "typed-array-buffer@npm:1.0.2"
@@ -28595,16 +28436,6 @@ __metadata:
   version: 3.1.1
   resolution: "use@npm:3.1.1"
   checksum: 08a130289f5238fcbf8f59a18951286a6e660d17acccc9d58d9b69dfa0ee19aa038e8f95721b00b432c36d1629a9e32a464bf2e7e0ae6a244c42ddb30bdd8b33
-  languageName: node
-  linkType: hard
-
-"utf-8-validate@npm:^5.0.2":
-  version: 5.0.10
-  resolution: "utf-8-validate@npm:5.0.10"
-  dependencies:
-    node-gyp: latest
-    node-gyp-build: ^4.3.0
-  checksum: 5579350a023c66a2326752b6c8804cc7b39dcd251bb088241da38db994b8d78352e388dcc24ad398ab98385ba3c5ffcadb6b5b14b2637e43f767869055e46ba6
   languageName: node
   linkType: hard
 
@@ -29324,20 +29155,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"websocket@npm:^1.0.34":
-  version: 1.0.35
-  resolution: "websocket@npm:1.0.35"
-  dependencies:
-    bufferutil: ^4.0.1
-    debug: ^2.2.0
-    es5-ext: ^0.10.63
-    typedarray-to-buffer: ^3.1.5
-    utf-8-validate: ^5.0.2
-    yaeti: ^0.0.6
-  checksum: 760ad7b090dee914336069cdf4fb78c1a96f5a452b2a5459b68d596af088959bb48113914667123d9662388c0398980955c875c950177c51fcf0d22cc92d935c
-  languageName: node
-  linkType: hard
-
 "whatwg-encoding@npm:^1.0.5":
   version: 1.0.5
   resolution: "whatwg-encoding@npm:1.0.5"
@@ -29953,52 +29770,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xrpl-accountlib@npm:^3.6.1":
-  version: 3.6.1
-  resolution: "xrpl-accountlib@npm:3.6.1"
-  dependencies:
-    assert: ^2.0.0
-    bip32: ^2.0.6
-    bip39: ^3.0.4
-    bn.js: ^5.2.1
-    elliptic: 6.5.4
-    hash.js: ^1.1.7
-    lodash: ^4.17.21
-    ripple-address-codec: ^4.2.5
-    ripple-keypairs: ^1.1.4
-    ripple-secret-codec: ^1.0.3
-    xrpl-binary-codec-prerelease: ^8.0.1
-    xrpl-client: ^2.3.0
-    xrpl-secret-numbers: ^0.3.3
-    xrpl-sign-keypairs: ^2.6.1
-  checksum: e79aef8c6cfef6f20007b778132c3c47098c3eca4512dd4e1e6faa60ebae503427e8e94aafcf567d4e383445ec5a8bd402ee2c33feb042cb71e91c39bd49929e
-  languageName: node
-  linkType: hard
-
-"xrpl-binary-codec-prerelease@npm:^8.0.1":
-  version: 8.0.1
-  resolution: "xrpl-binary-codec-prerelease@npm:8.0.1"
-  dependencies:
-    assert: ^2.0.0
-    big-integer: ^1.6.48
-    buffer: 6.0.3
-    create-hash: ^1.2.0
-    decimal.js: ^10.2.0
-    ripple-address-codec: ^4.3.1
-  checksum: 915db4a927b5722331d1abf1ca39267708243045c53072528e46b9c0cbe14d8636741dd123074b9e990dfa6e4b40f27343fa49a8426d78b119bdce2718db4e49
-  languageName: node
-  linkType: hard
-
-"xrpl-client@npm:^2.3.0":
-  version: 2.4.0
-  resolution: "xrpl-client@npm:2.4.0"
-  dependencies:
-    debug: ^4.1.1
-    websocket: ^1.0.34
-  checksum: 820460defc4be5efcefa8e4e7d570312c218f26a8ebae84b1e28d1824ffa92dabbffe311cfe9db0f48c795d6e923661accff3a21ae5e0ae9a2088b6d6748d85c
-  languageName: node
-  linkType: hard
-
 "xrpl-secret-numbers@npm:^0.3.3":
   version: 0.3.4
   resolution: "xrpl-secret-numbers@npm:0.3.4"
@@ -30007,18 +29778,6 @@ __metadata:
     brorand: ^1.1.0
     ripple-keypairs: ^1.1.5
   checksum: 85fbe957bab647dfc292cf7d6e68845933cadf22c17fc740aa50b996ef5d192822fa6d522997886dda2d8529674ba88e29bce0f1e3f331a2d03e0dedc7316b54
-  languageName: node
-  linkType: hard
-
-"xrpl-sign-keypairs@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "xrpl-sign-keypairs@npm:2.6.1"
-  dependencies:
-    big-integer: ^1.6.51
-    ripple-address-codec: ^4.2.4
-    ripple-keypairs: ^1.1.4
-    xrpl-binary-codec-prerelease: ^8.0.1
-  checksum: f0870b7e879fa919f001ae1d967b52c0fcdcd88b321e1bee1f098ae73f862fe16921a5a51f2757461514b0017e4d05a33db6ab3f5c4a2889bebe95d6d20eff84
   languageName: node
   linkType: hard
 
@@ -30075,13 +29834,6 @@ __metadata:
   version: 5.0.8
   resolution: "y18n@npm:5.0.8"
   checksum: 54f0fb95621ee60898a38c572c515659e51cc9d9f787fb109cef6fde4befbe1c4602dc999d30110feee37456ad0f1660fa2edcfde6a9a740f86a290999550d30
-  languageName: node
-  linkType: hard
-
-"yaeti@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "yaeti@npm:0.0.6"
-  checksum: 6db12c152f7c363b80071086a3ebf5032e03332604eeda988872be50d6c8469e1f13316175544fa320f72edad696c2d83843ad0ff370659045c1a68bcecfcfea
   languageName: node
   linkType: hard
 
