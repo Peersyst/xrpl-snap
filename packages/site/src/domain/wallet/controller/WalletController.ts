@@ -1,3 +1,4 @@
+import { BalanceInfo } from 'common/models/balance/balance';
 import Amount from 'common/utils/Amount';
 import { DomainEvents } from 'domain/events';
 import type NetworkController from 'domain/network/controller/NetworkController';
@@ -53,7 +54,7 @@ export default class WalletController {
     }
     const iouTokensPromise = this.metamaskRepository.getIOUTokens(state.address);
 
-    const xrpBalancePromise = this.getBalance().then(({ decimals, amount }) => ({
+    const xrpBalancePromise = this.getBalance().then(({ expendable: { decimals, amount } }) => ({
       balance: new Amount(amount, decimals, 'XRP'),
       currency: 'XRP',
       decimals,
@@ -65,7 +66,7 @@ export default class WalletController {
     return [xrpBalance, ...iouTokens];
   }
 
-  async getBalance(): Promise<Amount> {
+  async getBalance(): Promise<BalanceInfo> {
     const state = this.walletState.getState();
     if (!state.address) {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
@@ -73,27 +74,38 @@ export default class WalletController {
 
     const networkReserve = this.networkController.getNetworkReserve();
 
-    const defaultAmount = new Amount('0', 6, 'XRP');
-    let dropsBalance = defaultAmount;
+    let totalBalance = new Amount('0', 6, 'XRP');
+    let reserveBalance = new Amount('0', 6, 'XRP');
+    let expendableBalance = new Amount('0', 6, 'XRP');
+
     try {
       const { Balance, OwnerCount } = await this.metamaskRepository.getAccountInfo(state.address);
 
       // Set the available balance
-      dropsBalance = dropsBalance.plus(Balance);
+      totalBalance = totalBalance.plus(Balance);
 
-      // Subtract the network reserve cost
-      dropsBalance = dropsBalance.minus(xrpToDrops(networkReserve.baseReserveCostInXrp).toString());
+      // Set the default reserve balance
+      reserveBalance = reserveBalance.plus(xrpToDrops(networkReserve.baseReserveCostInXrp));
 
-      // For each OwnerCount, subtract the owner reserve cost
+      // For each OwnerCount, add the owner reserve cost
       let ownerReserveCost = new BigNumber(xrpToDrops(networkReserve.ownerReserveCostInXrpPerItem));
       ownerReserveCost = ownerReserveCost.times(Number(OwnerCount));
-      dropsBalance = dropsBalance.minus(ownerReserveCost.toString());
 
-      if (dropsBalance.lt('0')) {
-        return defaultAmount;
+      reserveBalance = reserveBalance.plus(ownerReserveCost.toString());
+
+      // Finally calculate the available balance
+      expendableBalance = totalBalance.minus(reserveBalance);
+
+      if (expendableBalance.lt('0')) {
+        expendableBalance.amount = '0';
       }
     } catch (e) {}
-    return dropsBalance;
+
+    return {
+      expendable: expendableBalance,
+      reserve: reserveBalance,
+      total: totalBalance,
+    };
   }
 
   async exportPrivateKey(): Promise<void> {

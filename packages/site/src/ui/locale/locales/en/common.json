@@ -56,5 +56,13 @@
   "from": "From",
   "destinationTag": "Destination tag",
   "enterDestinationTag": "Enter destination tag",
-  "optional": "optional"
+  "optional": "optional",
+  "aboutYourBalance": "About your balance",
+  "total": "Total",
+  "expendable": "Expendable",
+  "reserve": "Reserve",
+  "balanceInfoExplanationTitle": "Why a non-expendable reserve?",
+  "balanceInfoExplanation": "XRPL accounts require a minimum reserve of 10 XRP to prevent spam and cover the computational costs of maintaining the network, ensuring account integrity and discouraging frivolous account creation. For each OwnerCount, an additional 2 XRP is required.",
+  "balanceInfoExplanation2": "The reserve can only be recovered by deleting the account from the XRPL.",
+  "knowMore": "Know more"
 }

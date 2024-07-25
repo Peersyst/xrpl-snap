@@ -1,29 +1,15 @@
-import { useConfig } from '@peersyst/react-components';
-import { useQuery } from '@tanstack/react-query';
-import type Amount from 'common/utils/Amount';
-import ControllerFactory from 'ui/adapter/ControllerFactory';
-import useSnapState from 'ui/adapter/state/useSnapState';
-import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
+import { BalanceInfo } from 'common/models/balance/balance';
+import Amount from 'common/utils/Amount';
 import { Queries } from 'ui/query/queries';
-import type { QueryOptions, QueryResult } from 'ui/query/react-query-overrides';
+import { QueryOptions, UseQueryResult } from 'ui/query/react-query-overrides';
 
-import useWalletState from '../../adapter/state/useWalletState';
+import useGetBalanceInfo from './useGetBalanceInfo';
 
-export default function useGetBalance({
-  enabled = true,
-  refetchInterval,
-  ...options
-}: QueryOptions<Amount, unknown, Amount, (Queries | number | undefined | string | undefined)[]> = {}): QueryResult<Amount> {
-  const { address } = useWalletState();
-  const { data: network } = useGetActiveNetwork();
-  const { isSnapInstalled } = useSnapState();
-  const configRefetchIntervals = useConfig('refetchIntervals');
-
-  return useQuery({
-    refetchInterval: refetchInterval ?? configRefetchIntervals.balance,
-    enabled: enabled && Boolean(address) && isSnapInstalled,
-    queryKey: [Queries.GET_BALANCE, address, network?.chainId],
-    queryFn: async () => ControllerFactory.walletController.getBalance(),
-    ...options,
-  });
+export default function useGetBalance(
+  options: Omit<
+    QueryOptions<BalanceInfo, unknown, Amount, (Queries | number | undefined | string | undefined)[]>,
+    'refetchInterval' | 'staleTime' | 'select'
+  > = {},
+): UseQueryResult<Amount, unknown> {
+  return useGetBalanceInfo<Amount>({ select: (data) => data.expendable, ...options });
 }
