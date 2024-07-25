@@ -128,7 +128,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
             color: #121212;
             font-family: "Work Sans", sans-serif;
             font-size: clamp(14px, 1.5vw, 16px);
-            overflow-y: scroll;
+            overflow-y: auto;
         }
 
         * {
