@@ -7,10 +7,10 @@ import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalL
 import { useBlockchainAddressUrl } from 'ui/network/hooks/useBlockchainAddressUrl';
 import FiatBalance from 'ui/wallet/containers/FiatBalance/FiatBalance';
 
+import TransactionCardIcon from '../TransactionIcon/TransactionIcon';
+import TransactionLabel from '../TransactionLabel/TransactionLabel';
 import { TransactionCardRoot } from './TransactionCard.styles';
 import type { TransactionCardProps } from './TransactionCard.types';
-import TransactionCardIcon from './TransactionCardIcon';
-import TransactionLabel from './TransactionLabel';
 
 export function TransactionCard({
   account,
@@ -34,15 +34,8 @@ export function TransactionCard({
           <Col gap={spacing[1]}>
             <Skeleton loading={loading}>
               <Row gap={spacing[1]}>
-                <TransactionLabel isReceiver={isReceiver} txType={txType} />
-                <BlockchainAddress
-                  variant="body1"
-                  address={account}
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore TODO: fix this
-                  type="account"
-                  length={4}
-                />
+                <TransactionLabel variant="body1" isReceiver={isReceiver} txType={txType} />
+                <BlockchainAddress variant="body1" address={account} type="mainnetAddress" length={4} />
               </Row>
             </Skeleton>
             <Skeleton loading={loading}>
