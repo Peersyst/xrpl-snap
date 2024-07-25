@@ -29,4 +29,5 @@ export type Config = {
   featureFlags: {
     enablePlayground: boolean;
   };
+  reserveInfoLink: string;
 };

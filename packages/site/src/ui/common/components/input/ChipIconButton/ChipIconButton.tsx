@@ -6,6 +6,7 @@ export type ChipIconButtonProps = {
   className?: string;
   style?: React.CSSProperties;
   Icon: typeof InfoIcon;
+  onClick?: () => void;
   size?: 'md' | 'lg';
 };
 

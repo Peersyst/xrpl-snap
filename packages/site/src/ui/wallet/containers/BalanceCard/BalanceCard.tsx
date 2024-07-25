@@ -6,6 +6,7 @@ import useGetBalance from 'ui/wallet/query/useGetBalance';
 
 import { balance_card_left_border, balance_card_right_border } from '../../../assets/images';
 import Balance from '../../../common/components/display/Balance/Balance';
+import BalanceDetailsInfoIcon from '../BalanceDetailsInfoIcon/BalanceDetailsInfoIcon';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
 import ReceiveModalButton from './ReceiveModalButton';
 import SendModalButton from './SendModalButton';
@@ -34,7 +35,10 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
       <BalanceCardImageBorder alt="bg-image" src={balance_card_left_border} />
       <Col flex={1} alignItems="center" justifyContent="center" gap={spacing[8]}>
         <Col gap={spacing[2]} alignItems="center">
-          <Balance loading={loading} fontWeight="600" balance={formattedBalance} currency={balance?.currency ?? 'XRP'} variant="h2" />
+          <Row alignItems="center" gap="0.5rem">
+            <Balance loading={loading} fontWeight="600" balance={formattedBalance} currency={balance?.currency ?? 'XRP'} variant="h2" />
+            <BalanceDetailsInfoIcon />
+          </Row>
           <Balance
             loading={loading}
             balance={fiatBalance}

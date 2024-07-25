@@ -29,5 +29,6 @@
   },
   "tokenMetadata": {
     "apiUrl": "https://s1.xrplmeta.org/token/"
-  }
+  },
+  "reserveInfoLink": "https://xrpl.org/docs/concepts/accounts/reserves"
 }
