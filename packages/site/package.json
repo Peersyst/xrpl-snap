@@ -71,6 +71,7 @@
     "@tanstack/react-query": "^5.40.0",
     "babel-plugin-styled-components": "^2.0.7",
     "clsx": "^1.2.1",
+    "decimal.js": "^10.4.3",
     "i18next": "^23.11.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

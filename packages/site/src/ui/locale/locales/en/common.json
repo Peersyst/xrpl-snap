@@ -3,8 +3,6 @@
   "sendMax": "Send max",
   "formatNumber": "{{val, number}}",
   "footerText": "Proudly developed by",
-  "sentTo": "Sent to",
-  "receivedFrom": "Received from",
   "account": "XRPL Account",
   "send": "Send",
   "receive": "Receive",

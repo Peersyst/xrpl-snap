@@ -1,5 +1,6 @@
 import { Col, Skeleton, Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
+import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
 
@@ -10,6 +11,7 @@ import type { TokenCardProps } from './TokenCard.types';
 export function TokenCard({ className, token, balance, loading = false }: TokenCardProps): JSX.Element {
   const { spacing } = useTheme();
 
+  const parsedCurrency = parseCurrencyCode(token.currency);
   return (
     <TokenCardRoot className={clsx('Token', className)} gap={spacing[5]}>
       <Col>
@@ -21,10 +23,10 @@ export function TokenCard({ className, token, balance, loading = false }: TokenC
       <Col gap={spacing[1]} justifyContent="center">
         <Skeleton loading={loading}>
           <Typography variant={'body1'} fontWeight="500" numberOfLines={1}>
-            {token.currency.toUpperCase()}
+            {parsedCurrency.toUpperCase()}
           </Typography>
         </Skeleton>
-        <Balance balance={balance} currency={token.currency} variant="body2" fontWeight={400} loading={loading} light />
+        <Balance balance={balance} currency={parsedCurrency} variant="body2" fontWeight={400} loading={loading} light />
       </Col>
     </TokenCardRoot>
   );

@@ -33,5 +33,6 @@ export function parseCurrencyCode(currencyCode: string): string {
   if (currencyCode.startsWith('03')) {
     return `LP ${currencyCode.slice(2, 6)}`;
   }
-  return convertHexToString(currencyCode).replace(/\0/g, '');
+
+  return convertHexToString(currencyCode).replace(/\0/gu, '');
 }

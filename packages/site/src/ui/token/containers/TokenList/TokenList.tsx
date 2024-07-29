@@ -18,7 +18,7 @@ const TokenCardSkeleton = () => (
     token={{
       decimals: 0,
       issuer: '',
-      currency: 'loading...',
+      currency: 'AAAAA',
     }}
     loading
     balance={'100000'}

@@ -1,0 +1,11 @@
+{
+  "sentTo": "Sent to {{address}}",
+  "receivedFrom": "Received from {{address}}",
+  "AMMWithdraw": "AMM Withdraw",
+  "AMMDeposit": "AMM Deposit",
+  "AMMVote": "AMM Vote",
+  "AMMCreate": "AMM Create",
+  "AMMDelete": "AMM Delete",
+  "AMMBid": "AMM Bid",
+  "TrustSet": "Token added (TrustSet)"
+}

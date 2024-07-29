@@ -2,7 +2,6 @@ import type { EIP6963AnnounceProviderEvent, MetaMaskInpageProvider, RequestArgum
 import { config } from 'common/config';
 import type { TokenWithBalance } from 'common/models/token';
 import type { HandlerMethod, HandlerParams, HandlerReturns } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 import type { AccountLinesResponse, AccountTxResponse, SubmitResponse, Amount as XrplAmount } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
@@ -90,7 +89,7 @@ export class MetamaskRepository {
 
       return lines.map((line) => {
         const token = {
-          currency: parseCurrencyCode(line.currency),
+          currency: line.currency,
           issuer: line.account,
           decimals: 15,
         };

@@ -1,7 +1,8 @@
 import { Typography } from '@peersyst/react-components';
 import type { TokenWithBalance } from 'common/models/token';
 import Amount from 'common/utils/Amount';
-import { useState } from 'react';
+import { parseCurrencyCode } from 'common/utils/token/currencyCode';
+import { useMemo, useState } from 'react';
 import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallout';
 import AmountField from 'ui/common/components/input/AmountField/AmountField';
 import type { FormColProps } from 'ui/common/components/input/FormCol/FormCol';
@@ -25,6 +26,13 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
   const { data: tokens = [] } = useGetTokens();
   const [token, setToken] = useState<TokenWithBalance | undefined>(tokens[0]);
   const address = useGetAddress();
+
+  const maxBalance = useMemo(() => {
+    if (token?.balance) {
+      return new Amount(token.balance.amount, token.decimals, parseCurrencyCode(token.currency));
+    }
+    return new Amount('0', 6, 'XRP');
+  }, [token]);
 
   return (
     <FormCol onSubmit={onSubmit} onCancel={onCancel}>
@@ -53,7 +61,7 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
       <AmountField
         maxDecimals={token?.decimals ?? 6}
         validators={{ gt: [0, translate('cantSendZero', { ns: 'error' })] }}
-        balance={token?.balance ?? new Amount('0', 6, 'XRP')}
+        balance={maxBalance}
         placeholder={translate('enterAmount')}
         name="amount"
         required

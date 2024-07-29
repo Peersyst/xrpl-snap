@@ -11,7 +11,7 @@ export const ReceivedIcon = styled(ArrowInIcon)(
   `,
 );
 
-export const TransactionCardIconRoot = styled(ChipIconButton)(
+export const TransactionIconRoot = styled(ChipIconButton)(
   ({ theme }) => css`
     .ChipLabel.ChipLabel.ChipLabel {
       font-size: 1.25rem;

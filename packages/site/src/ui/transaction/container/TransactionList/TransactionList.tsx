@@ -5,11 +5,10 @@ import useWalletState from 'ui/adapter/state/useWalletState';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
-import TransactionCard from 'ui/transaction/components/display/TransactionCard/TransactionCard';
-import { TransactionCardSkeleton } from 'ui/transaction/components/feedback/TransactionCardSkeleton/TransactionCardSkeleton';
+import Transaction from 'ui/transaction/components/display/Transaction/Transaction';
+import { TransactionSkeleton } from 'ui/transaction/components/feedback/TransactionSkeleton/TransactionSkeleton';
 
 import useGetTransactions from '../../query/useGetTransactions';
-import { extractTransactionProps } from './utils/transaction-list-utils';
 
 export type TransactionListProps = {
   className?: string;
@@ -36,12 +35,11 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
     <InfiniteList
       className={clsx('TransactionList', className)}
       renderItem={(tx, i) => {
-        const props = extractTransactionProps(tx, address || '');
-        return <TransactionCard key={i} {...props} loading={loading} />;
+        return <Transaction key={i} tx={tx} accountAddress={address!} />;
       }}
       end={!hasNextPage}
       isLoading={loading}
-      Skeleton={TransactionCardSkeleton}
+      Skeleton={TransactionSkeleton}
       numberOfSkeletons={isLoading || !isFetching ? 5 : 3}
       data={data?.pages.flatMap((page) => page.transactions)}
       nothingToShow={<NothingToShow css={{ marginTop: spacing[4] }} message={translate('nothingToShow', { context: 'tx' })} />}
