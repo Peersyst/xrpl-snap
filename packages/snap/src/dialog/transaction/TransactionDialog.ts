@@ -3,6 +3,7 @@ import { DialogType, divider, heading, MethodNotSupportedError, panel, text } fr
 import { type Transaction } from 'xrpl';
 
 import { translate } from '../locale/translate';
+import { ReviewTransactionComponent } from './TransactionComponents';
 import type { ITransactionDialogStrategiesFactory } from './TransactionDialogStrategies/TransactionDialogStrategies.types';
 import { TransactionDialogStrategyFactory } from './TransactionDialogStrategies/TransactionDialogStrategyFactory';
 
@@ -13,8 +14,8 @@ export class TransactionDialog {
     return [heading(translate('TransactionHeader')), text(translate('TransactionSubHeader', { origin }))];
   }
 
-  static buildFooter(): Component[] {
-    return [text(translate('TransactionFooter'))];
+  static buildFooter(transaction: Transaction): Component[] {
+    return [text(translate('TransactionFooter')), ...ReviewTransactionComponent(transaction)];
   }
 
   static async prompt(origin: string, transaction: Transaction): Promise<boolean> {
@@ -29,7 +30,7 @@ export class TransactionDialog {
       divider(),
       ...strategy.buildBody(transaction),
       divider(),
-      ...(strategy?.buildFooter ? strategy.buildFooter() : this.buildFooter()),
+      ...(strategy?.buildFooter ? strategy.buildFooter(transaction) : this.buildFooter(transaction)),
     ];
 
     const signPrompt = await snap.request({

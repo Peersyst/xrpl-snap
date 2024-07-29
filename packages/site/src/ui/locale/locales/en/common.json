@@ -62,5 +62,8 @@
   "balanceInfoExplanationTitle": "Why a non-expendable reserve?",
   "balanceInfoExplanation": "XRPL accounts require a minimum reserve of 10 XRP to prevent spam and cover the computational costs of maintaining the network, ensuring account integrity and discouraging frivolous account creation. For each OwnerCount, an additional 2 XRP is required.",
   "balanceInfoExplanation2": "The reserve can only be recovered by deleting the account from the XRPL.",
-  "knowMore": "Know more"
+  "knowMore": "Know more",
+  "reviewTxTitle": "Review your transaction",
+  "reviewTxSubtitle": "Before confirming your transaction, please double-check all the information listed. Once the transaction is signed and broadcasted, it cannot be undone. Ensuring accuracy now can prevent potential issues later.",
+  "visiteSite": "Visit {{name}}"
 }
