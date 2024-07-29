@@ -5,5 +5,5 @@ import transactions from './transactions.json';
 export const en = {
   translation: common,
   error: errors,
-  transactions: transactions,
+  transactions,
 };
