@@ -1,5 +1,3 @@
-import Amount from 'common/utils/Amount';
-
 export type NodeType = 'CreatedNode' | 'ModifiedNode' | 'DeletedNode';
 
 export type PreviousFields = { [field: string]: unknown };
