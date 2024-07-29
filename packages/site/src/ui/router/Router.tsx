@@ -5,6 +5,8 @@ import type { RouteObject } from 'react-router-dom';
 import CardPage from 'ui/common/pages/CardPage/CardPage';
 import HomePage from 'ui/common/pages/HomePage/HomePage';
 import { usePlaygroundRoutes } from 'ui/playground/router/PlaygroundRouter';
+import { useReviewTransactionRoutes } from 'ui/review-transaction/router/ReviewTransactionRouter';
+import SnapModals from 'ui/snap/containers/SnapModals/SnapModals';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
@@ -34,8 +36,9 @@ export const useHomeRoutes = (): RouteObject[] => {
 const Routes = () => {
   const dashboardRoutes = useHomeRoutes();
   const playgroundRoutes = usePlaygroundRoutes();
+  const reviewTransactionRoutes = useReviewTransactionRoutes();
 
-  return useRoutes([...dashboardRoutes, ...playgroundRoutes, { path: '*', element: <Navigate to="/" /> }]);
+  return useRoutes([...dashboardRoutes, ...playgroundRoutes, ...reviewTransactionRoutes, { path: '*', element: <Navigate to="/" /> }]);
 };
 
 const Router = (): JSX.Element => {
@@ -44,6 +47,7 @@ const Router = (): JSX.Element => {
       <ModalProvider>
         <ScrollToTop />
         <Routes />
+        <SnapModals />
       </ModalProvider>
     </BrowserRouter>
   );

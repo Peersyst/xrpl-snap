@@ -6,7 +6,6 @@ import Providers from 'ui/Providers';
 import Router from 'ui/router/Router';
 import 'ui/locale/i18n';
 import 'common/polyfills';
-import SnapModals from 'ui/snap/containers/SnapModals/SnapModals';
 
 const App = (): JSX.Element | null => {
   const loading = useLoad();
@@ -16,7 +15,6 @@ const App = (): JSX.Element | null => {
   ) : (
     <Fragment>
       <Suspense fallback={<LoadingPage />}>
-        <SnapModals />
         <Router />
       </Suspense>
     </Fragment>

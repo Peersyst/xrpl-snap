@@ -24660,6 +24660,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react18-json-view@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "react18-json-view@npm:0.2.8"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: e306920db55d246dd021c537cf40acaa6783de7821afed101467756d9099b028d01ea4358d23d01d4961e0c9a4cb43acf391ddabe5150775a56c218063a96df4
+  languageName: node
+  linkType: hard
+
 "react@npm:^18.2.0":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
@@ -26235,6 +26244,7 @@ __metadata:
     react-qrcode-logo: ^3.0.0
     react-router-dom: 6.8.0
     react-scripts: ^5.0.1
+    react18-json-view: ^0.2.8
     styled-components: ^5.3.6
     text-encoding: ^0.7.0
     ts-jest: ^29.0.5

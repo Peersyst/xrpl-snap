@@ -16,3 +16,4 @@ export * from './ticket/ticket';
 export * from './trust-set/trust-set';
 export * from './oracle/oracle';
 export * from './memo/memo';
+export * from './review-transaction/review-transaction';
