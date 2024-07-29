@@ -1,12 +1,11 @@
 import { polling } from '@peersyst/react-utils';
 import type { SendParams } from 'common/models/transaction/send.types';
-import { TransactionsWithMarker } from 'common/models/transaction/tx.types';
+import { TransactionsWithMarker, XrplTx } from 'common/models/transaction/tx.types';
 import type Amount from 'common/utils/Amount';
-import { convertCurrencyCode, parseCurrencyCode } from 'common/utils/token/currencyCode';
+import { TransactionMeta } from 'common/utils/xrpl/meta';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
 import { xrpToDrops } from 'xrpl';
-import type { IssuedCurrencyAmount, ResponseOnlyTxInfo, Transaction } from 'xrpl';
 
 import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
@@ -17,25 +16,12 @@ export default class TransactionController {
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
     const res = await this.metamaskRepository.getAccountTransactions(address, marker);
 
-    const payments = res.result.transactions.reduce<(Transaction & ResponseOnlyTxInfo)[]>((acc, { tx, meta }) => {
+    const payments = res.result.transactions.reduce<XrplTx[]>((acc, { tx, meta }) => {
       // eslint-disable-next-line no-implicit-coercion
-      if (!!tx && tx.TransactionType === 'Payment' && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
-        if (typeof tx.Amount === 'string') {
-          // This case is for SWAP AMM transactions
-          if (tx.Account === tx.Destination) {
-            tx.Amount = meta.DeliveredAmount || meta.delivered_amount || '0';
-          }
-          acc.push(tx);
-        } else {
-          if (tx.Account === tx.Destination) {
-            tx.Amount = (meta.DeliveredAmount || meta.delivered_amount || tx.Amount) as IssuedCurrencyAmount;
-          }
-          const currencyCode = parseCurrencyCode(tx.Amount.currency);
-          acc.push({ ...tx, Amount: { ...tx.Amount, currency: currencyCode } });
-        }
-      } else if (tx !== undefined) {
-        acc.push(tx);
+      if (tx && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
+        acc.push({ ...tx, meta: new TransactionMeta(meta) });
       }
+
       return acc;
     }, []);
 
@@ -96,7 +82,7 @@ export default class TransactionController {
     return await this.metamaskRepository.send({
       ...rest,
       amount: {
-        currency: convertCurrencyCode(token.currency),
+        currency: token.currency,
         value: amount,
         issuer: token.issuer,
       },
