@@ -10,8 +10,6 @@ import { Queries } from 'ui/query/queries';
 import OnRampModal from '../containers/OnRampModal';
 import useTransakContext from './useTransakContext';
 
-export interface UseTransakOptions {}
-
 export default function useTransak() {
   const invalidateQueries = useInvalidateQueries();
   const invalidateInfiniteQueries = useInvalidateInfiniteQuery();
