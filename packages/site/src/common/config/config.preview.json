@@ -1,3 +1,12 @@
 {
-  "backendUrl": "http://localhost:3001"
+  "backendUrl": "http://localhost:3001",
+  "transak": {
+    "apiKey": "f2d9a722-cac0-4bea-bdfc-2560d65f1a1e",
+    "defaultCryptoCurrency": "XRP",
+    "networks": "mainnet",
+    "cryptoCurrencyList": "XRP",
+    "isFeeCalculationHidden": true,
+    "environment": "STAGING",
+    "containerId": "transak_widget"
+  }
 }

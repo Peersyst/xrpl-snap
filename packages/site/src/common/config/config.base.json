@@ -34,5 +34,14 @@
   "faucetUrls": {
     "testnet": "https://test.bithomp.com/faucet/",
     "devnet": "https://dev.bithomp.com/faucet/"
+  },
+  "transak": {
+    "apiKey": "4a3f3484-0df6-41af-b865-6da3bc82ccd9",
+    "defaultCryptoCurrency": "XRP",
+    "networks": "mainnet",
+    "cryptoCurrencyList": "XRP",
+    "isFeeCalculationHidden": true,
+    "environment": "STAGING",
+    "containerId": "transak_widget"
   }
 }

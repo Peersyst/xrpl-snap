@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 
 import ErrorHandler from './common/components/feedback/ErrorHandler/ErrorHandler';
 import { ConfigProvider } from './config';
+import TransakProvider from './fiat-orders/transak/context/TransakProvider';
 import QueryClientProvider from './query/QueryClientProvider';
 
 const Providers = ({ children }: PropsWithChildren): JSX.Element => (
@@ -11,7 +12,9 @@ const Providers = ({ children }: PropsWithChildren): JSX.Element => (
     <ConfigProvider>
       <ToastProvider>
         <ErrorHandler>
-          <QueryClientProvider>{children}</QueryClientProvider>
+          <QueryClientProvider>
+            <TransakProvider>{children}</TransakProvider>
+          </QueryClientProvider>
         </ErrorHandler>
       </ToastProvider>
     </ConfigProvider>

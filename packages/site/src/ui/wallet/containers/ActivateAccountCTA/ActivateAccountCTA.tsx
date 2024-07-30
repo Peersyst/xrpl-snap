@@ -1,7 +1,8 @@
-import { Typography, useConfig } from '@peersyst/react-components';
+import { Typography, useConfig, useModal } from '@peersyst/react-components';
 import { NetworkChainId } from 'common/models';
 import Button from 'ui/common/components/input/Button/Button';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
+import OnRampModal from 'ui/fiat-orders/transak/containers/OnRampModal';
 import { useTranslate } from 'ui/locale';
 import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 
@@ -15,6 +16,7 @@ function ActivateAccountCTA(): JSX.Element {
   const { data: network } = useGetActiveNetwork();
   const translate = useTranslate();
   const { testnet, devnet } = useConfig('faucetUrls');
+  const { showModal } = useModal();
 
   switch (network?.chainId) {
     case NetworkChainId.MAINNET:
@@ -23,9 +25,9 @@ function ActivateAccountCTA(): JSX.Element {
           <Typography variant="body1" light>
             {translate('inviteToBuyText')}
           </Typography>
-          <ExternalLink to="https://global.transak.com/">
-            <Button variant="primary">{translate('buyXRPCTAButton')}</Button>
-          </ExternalLink>
+          <Button variant="primary" onClick={() => showModal(OnRampModal)}>
+            {translate('buyXRPCTAButton')}
+          </Button>
         </>
       );
     case NetworkChainId.TESTNET:

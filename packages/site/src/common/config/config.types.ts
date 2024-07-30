@@ -1,3 +1,4 @@
+import { TransakConfig } from '@transak/transak-sdk';
 import type { NetworkReserve } from 'common/models';
 
 export type Config = {
@@ -34,4 +35,5 @@ export type Config = {
     testnet: string;
     devnet: string;
   };
+  transak: Omit<TransakConfig, 'environment' | 'containerId'> & { environment: string; containerId: string };
 };
