@@ -25,9 +25,6 @@ export class TrustSetDialogStrategy implements TransactionDialogStrategy<TrustSe
    * - Memos (Memo[])
    * - Fee (drops)
    *
-   * TODO: Add more fields
-   * - Flags
-   *
    * @description Builds the body of the dialog for a TrustSetDialogStrategy transaction.
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog

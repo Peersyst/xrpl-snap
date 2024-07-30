@@ -13,7 +13,7 @@ export type State = {
 /**
  * NetworkID: https://xrpl.org/docs/references/protocol/transactions/common-fields/#networkid-field
  */
-const DEFAULT_NETWORKS: Network[] = [
+export const DEFAULT_NETWORKS: Network[] = [
   {
     chainId: 0,
     name: 'XRPL Mainnet',
@@ -34,7 +34,7 @@ const DEFAULT_NETWORKS: Network[] = [
   },
 ];
 
-const DEFAULT_STATE: State = {
+export const DEFAULT_STATE: State = {
   networks: DEFAULT_NETWORKS,
   activeNetwork: DEFAULT_NETWORKS[0] as Network,
 };

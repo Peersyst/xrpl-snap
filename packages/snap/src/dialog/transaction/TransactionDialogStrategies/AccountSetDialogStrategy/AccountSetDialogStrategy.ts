@@ -34,10 +34,6 @@ export class AccountSetDialogStrategy implements TransactionDialogStrategy<Accou
    * - Memos (Memo[])
    * - Fee (drops)
    *
-   * TODO(jordi): Missing fields:
-   * - Flags
-   * - SetFlag
-   *
    * @param accountSet
    * @returns Components to render in the dialog
    */
