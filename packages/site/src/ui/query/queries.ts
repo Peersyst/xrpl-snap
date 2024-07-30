@@ -8,4 +8,5 @@ export enum Queries {
   GET_BALANCE_INFO = 'get-balance-info',
   GET_XRP_PRICE = 'get-xrp-price',
   GET_TOKEN_INFO = 'get-token-info',
+  GET_IS_ACCOUNT_ACTIVE = 'get-is-account-active',
 }

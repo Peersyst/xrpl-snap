@@ -11,7 +11,8 @@
   "refetchIntervals": {
     "balance": 10000,
     "transactions": 10000,
-    "coinPrice": 60000
+    "coinPrice": 60000,
+    "isAccountActive": 10000
   },
   "metamaskInstallationLink": "https://metamask.io/",
   "coinPrice": {
