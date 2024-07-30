@@ -76,5 +76,7 @@
   "activateAccountText2": "to your address, which you can obtain by copying it below or by scanning the QR code. ",
   "inviteToBuyText": "Also, you can buy 10 XRP right now",
   "buyXRPCTAButton": "Buy now 10 XRP with credit card",
-  "activateAccoutModalTitle": "Activate account"
+  "activateAccoutModalTitle": "Activate account",
+  "inviteToGoToFaucetText": "Also, you can get XRP for free from the faucet",
+  "goToFaucetCTAButton": "Go to faucet"
 }
