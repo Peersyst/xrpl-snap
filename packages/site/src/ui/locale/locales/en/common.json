@@ -65,5 +65,6 @@
   "knowMore": "Know more",
   "reviewTxTitle": "Review your transaction",
   "reviewTxSubtitle": "Before confirming your transaction, please double-check all the information listed. Once the transaction is signed and broadcasted, it cannot be undone. Ensuring accuracy now can prevent potential issues later.",
-  "visiteSite": "Visit {{name}}"
+  "visiteSite": "Visit {{name}}",
+  "transaction": "Transaction"
 }
