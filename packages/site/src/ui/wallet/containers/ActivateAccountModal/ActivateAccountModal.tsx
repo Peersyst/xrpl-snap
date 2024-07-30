@@ -5,12 +5,12 @@ import QrCode from 'ui/common/components/display/QrCode/QrCode';
 import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallout';
 import Modal from 'ui/common/components/feedback/Modal/Modal';
 import { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
-import Button from 'ui/common/components/input/Button/Button';
-import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import Card from 'ui/common/components/surface/Card/Card';
 import { useTranslate } from 'ui/locale';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
+
+import ActivateAccountCTA from '../ActivateAccountCTA/ActivateAccountCTA';
 
 export interface ActivateAccountModalProps extends Omit<ModalProps, 'title'> {}
 
@@ -43,9 +43,7 @@ function ActivateAccountModal({ className, children, ...rest }: ActivateAccountM
             </Typography>
             <AccountChip address={address} variant="filled" />
             <QrCode value={address} />
-            <ExternalLink to="https://global.transak.com/">
-              <Button variant="primary">{translate('buyXRPCTAButton')}</Button>
-            </ExternalLink>
+            <ActivateAccountCTA />
           </Col>
         </Card>
       </Col>
