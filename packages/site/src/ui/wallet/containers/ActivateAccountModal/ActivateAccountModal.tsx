@@ -38,7 +38,7 @@ function ActivateAccountModal({ className, children, ...rest }: ActivateAccountM
           <Col gap={spacing[4]} alignItems="center">
             <Typography variant="body1" light>
               {translate('activateAccountText')}
-              <span style={{ fontWeight: 'bold' }}>{baseReserveCostInXrp} XRP </span>
+              <span style={{ fontWeight: '600' }}>{baseReserveCostInXrp} XRP </span>
               {translate('activateAccountText2')}
             </Typography>
             <AccountChip address={address} variant="filled" />
