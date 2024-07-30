@@ -66,5 +66,17 @@
   "reviewTxTitle": "Review your transaction",
   "reviewTxSubtitle": "Before confirming your transaction, please double-check all the information listed. Once the transaction is signed and broadcasted, it cannot be undone. Ensuring accuracy now can prevent potential issues later.",
   "visiteSite": "Visit {{name}}",
-  "transaction": "Transaction"
+  "transaction": "Transaction",
+  "accountNotActiveTitle": "One more step... activate your account.",
+  "accountNotActiveText": "We need you to activate your account to start using the wallet. Deposit at least 10 XRP in your wallet and you will have the wallet full operative.",
+  "accountNotActiveCTA": "Active now",
+  "activateAccountAlertTitle": "Why is activation necessary?",
+  "activateAccountAlertText": "In the XRP Ledger (XRPL), a minimum of 10 XRP must be sent to a new account to activate it. This requirement is primarily for security and efficiency reasons.",
+  "activateAccountText": "You can activate it right now by sending at least ",
+  "activateAccountText2": "to your address, which you can obtain by copying it below or by scanning the QR code. ",
+  "inviteToBuyText": "Also, you can buy 10 XRP right now",
+  "buyXRPCTAButton": "Buy now 10 XRP with credit card",
+  "activateAccoutModalTitle": "Activate account",
+  "inviteToGoToFaucetText": "Also, you can get XRP for free from the faucet",
+  "goToFaucetCTAButton": "Go to faucet"
 }

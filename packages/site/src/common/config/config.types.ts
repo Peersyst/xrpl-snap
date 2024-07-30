@@ -30,4 +30,8 @@ export type Config = {
     enablePlayground: boolean;
   };
   reserveInfoLink: string;
+  faucetUrls: {
+    testnet: string;
+    devnet: string;
+  };
 };

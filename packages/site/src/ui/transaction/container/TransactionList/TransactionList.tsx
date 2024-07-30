@@ -14,13 +14,13 @@ export type TransactionListProps = {
   className?: string;
   style?: React.CSSProperties;
   container?: InfiniteScrollProps['container'];
+  nothingToShow?: React.ReactNode;
 };
 
 function TransactionList({ className, ...rest }: TransactionListProps) {
   const translate = useTranslate();
   const { spacing } = useTheme();
   const { address } = useWalletState();
-
   const { data, fetchNextPage, isLoading, isRefetching, isFetching, hasNextPage } = useGetTransactions();
 
   function handleEndReached() {

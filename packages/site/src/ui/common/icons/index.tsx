@@ -26,6 +26,7 @@ export { default as LightCrossIcon } from './LightCrossIcon';
 export { default as LightSuccessIcon } from './LightSuccessIcon';
 export { default as LinkIcon } from './LinkIcon';
 export { default as LoadingArrowIcon } from './LoadingArrowIcon';
+export { default as LockIcon } from './LockIcon';
 export { default as MoreIcon } from './MoreIcon';
 export { default as NFTIcon } from './NFTIcon';
 export { default as NotFoundIcon } from './NotFoundIcon';
