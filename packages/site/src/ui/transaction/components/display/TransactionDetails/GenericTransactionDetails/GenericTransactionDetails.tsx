@@ -24,9 +24,9 @@ function GenericTransactionDetails({ className, tx, ...rest }: GenericTransactio
   return (
     <BaseTransactionDetails className={clsx('GenericTransactionDetails', className)} tx={tx} {...rest}>
       <Card css={{ width: '100%' }}>
-        <Col flex={1} alignItems="center">
+        <Col flex={1} alignItems="center" gap="0.5rem">
           <Row justifyContent="center" alignItems="center" gap="0.5rem">
-            <TransactionIcon txType={tx.TransactionType} isReceiver={direction === 'in'} loading={false} />
+            <TransactionIcon size="md" txType={tx.TransactionType} isReceiver={direction === 'in'} loading={false} />
             <Typography variant="body1" fontWeight="500">
               {tx.TransactionType}
             </Typography>

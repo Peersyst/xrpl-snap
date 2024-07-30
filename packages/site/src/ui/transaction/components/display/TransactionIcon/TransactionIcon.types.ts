@@ -1,3 +1,4 @@
+import { ChipIconButtonProps } from 'ui/common/components/input/ChipIconButton/ChipIconButton';
 import { Transaction } from 'xrpl';
 
 export interface TransactionIconProps {
@@ -6,4 +7,5 @@ export interface TransactionIconProps {
   loading?: boolean;
   txType: Transaction['TransactionType'];
   isReceiver: boolean;
+  size?: ChipIconButtonProps['size'];
 }
