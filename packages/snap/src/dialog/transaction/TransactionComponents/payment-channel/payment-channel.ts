@@ -37,7 +37,6 @@ const SettleDelayComponent = (settleDelay: PaymentChannelCreate['SettleDelay'] |
   if (!isNumber(settleDelay)) {
     return [];
   }
-  // TODO(jordi): Improve settleDelay display
   return TransactionField('SettleDelay', String(settleDelay));
 };
 

@@ -27,8 +27,6 @@ export class OfferCreateDialogStrategy implements TransactionDialogStrategy<Offe
    * - TakerPays (Amount)
    * - Fee (drops)
    * - Memos (Memo[])
-   * TODO(jordi) Missing fields:
-   * - Flags
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog

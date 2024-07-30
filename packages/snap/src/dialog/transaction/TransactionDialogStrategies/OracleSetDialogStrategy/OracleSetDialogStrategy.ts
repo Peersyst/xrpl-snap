@@ -27,8 +27,6 @@ export class OracleSetDialogStrategy implements TransactionDialogStrategy<Oracle
    * - AssetClass
    * - Memos (Memo[])
    * - Fee (drops)
-   * TODO(jordi) Missing fields:
-   * - Flags
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog

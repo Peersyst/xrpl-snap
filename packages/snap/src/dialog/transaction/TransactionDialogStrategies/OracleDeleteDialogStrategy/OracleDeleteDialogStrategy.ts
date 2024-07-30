@@ -16,8 +16,6 @@ export class OracleDeleteDialogStrategy implements TransactionDialogStrategy<Ora
    * - OracleDocumentID (number)
    * - Memos (Memo[])
    * - Fee (drops)
-   * TODO(jordi) Missing fields:
-   * - Flags
    *
    * @param transaction - The transaction to build the dialog for
    * @returns Components to render in the dialog

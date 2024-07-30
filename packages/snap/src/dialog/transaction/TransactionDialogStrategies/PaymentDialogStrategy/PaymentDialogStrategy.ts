@@ -30,8 +30,6 @@ export class PaymentDialogStrategy implements TransactionDialogStrategy<Payment>
    * - SendMax (Amount)
    * - DeliverMin (Amount)
    * - Memos (Memo[])
-   * TODO(jordi) Missing fields:
-   * - Flags
    *
    * @param payment - Payment transaction
    * @returns Components to render in the dialog
