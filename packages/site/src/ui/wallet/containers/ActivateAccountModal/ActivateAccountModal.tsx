@@ -21,7 +21,7 @@ function ActivateAccountModal({ className, children, ...rest }: ActivateAccountM
   const address = useGetAddress() || '';
 
   return (
-    <Modal title="Activate account" className={clsx('ActivateAccountModal', className)} {...rest}>
+    <Modal title={translate('activateAccoutModalTitle')} className={clsx('ActivateAccountModal', className)} {...rest}>
       <Col gap={spacing['6']}>
         <AlertCallout
           type="info"

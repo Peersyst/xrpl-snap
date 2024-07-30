@@ -75,5 +75,6 @@
   "activateAccountText": "You can activate it right now by sending at least ",
   "activateAccountText2": "to your address, which you can obtain by copying it below or by scanning the QR code. ",
   "inviteToBuyText": "Also, you can buy 10 XRP right now",
-  "buyXRPCTAButton": "Buy now 10 XRP with credit card"
+  "buyXRPCTAButton": "Buy now 10 XRP with credit card",
+  "activateAccoutModalTitle": "Activate account"
 }
