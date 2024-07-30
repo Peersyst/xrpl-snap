@@ -11,7 +11,7 @@ export interface IconCardProps {
 
 function IconCard({ className, Icon, ...rest }: IconCardProps) {
   return (
-    <IconCardRoot className={clsx('', className)} {...rest}>
+    <IconCardRoot className={clsx('IconCard', className)} {...rest}>
       <Icon />
     </IconCardRoot>
   );
