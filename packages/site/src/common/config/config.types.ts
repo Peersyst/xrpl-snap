@@ -22,7 +22,6 @@ export type Config = {
     balance: number;
     transactions: number;
     coinPrice: number;
-    isAccountActive: number;
   };
   mockedAddress: string;
   fiatDecimals: number;
