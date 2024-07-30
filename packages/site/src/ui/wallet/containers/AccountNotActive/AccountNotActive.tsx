@@ -17,6 +17,7 @@ export interface AccountNotActiveProps {
 function AccountNotActive({ className, ...rest }: AccountNotActiveProps) {
   const translate = useTranslate();
   const [modalOpened, setModalOpened] = useState(false);
+
   return (
     <>
       <AccountNotActiveRoot alignItems="center" className={clsx('AccountNotActive', className)} {...rest}>
