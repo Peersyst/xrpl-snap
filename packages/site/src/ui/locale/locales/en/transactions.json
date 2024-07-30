@@ -7,5 +7,6 @@
   "AMMCreate": "AMM Create",
   "AMMDelete": "AMM Delete",
   "AMMBid": "AMM Bid",
-  "TrustSet": "Token added (TrustSet)"
+  "TrustSet": "Token added (TrustSet)",
+  "fee": "Fee"
 }

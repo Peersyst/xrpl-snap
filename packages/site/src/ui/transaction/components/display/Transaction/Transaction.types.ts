@@ -5,3 +5,7 @@ export type TransactionProps = {
   loading?: boolean;
   tx: XrplTx;
 };
+
+export type InnerTransactionProps = TransactionProps & {
+  onClick: () => void;
+};
