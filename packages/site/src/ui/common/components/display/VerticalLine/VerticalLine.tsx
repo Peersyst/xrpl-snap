@@ -10,7 +10,6 @@ export type VerticalLineProps = {
 const VerticalLineRoot = styled(Col)(
   ({ theme }) => `
     width: 1px;
-    height: 100%;
     background-color: ${theme.palette.primary};
 `,
 );

@@ -19,7 +19,6 @@ function TokenFiatBalance({ className, token, balance, loading, ...rest }: FiatB
   return (
     <Balance
       loading={loading}
-      action="round"
       balance={fiatBalance}
       currency={config.fiatCurrency}
       className={clsx('TokenFiatBalance', className)}
@@ -31,9 +30,7 @@ function TokenFiatBalance({ className, token, balance, loading, ...rest }: FiatB
 function XrpFiatBalance({ className, balance, ...rest }: FiatBalanceProps) {
   const { getXrpFiatPriceFromAmount } = useGetXrpFiatPriceFromAmount();
   const fiatBalance = getXrpFiatPriceFromAmount(Number(balance));
-  return (
-    <Balance action="round" currency={config.fiatCurrency} balance={fiatBalance} className={clsx('XrpFiatBalance', className)} {...rest} />
-  );
+  return <Balance currency={config.fiatCurrency} balance={fiatBalance} className={clsx('XrpFiatBalance', className)} {...rest} />;
 }
 
 function FiatBalance({ className, token, loading, ...rest }: FiatBalanceProps) {

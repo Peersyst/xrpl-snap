@@ -1,7 +1,7 @@
 import { TransactionMeta } from 'common/utils/xrpl/meta';
 import { ResponseOnlyTxInfo, Transaction } from 'xrpl';
 
-export type XrplTx = Transaction &
+export type XrplTx<T = Transaction> = T &
   ResponseOnlyTxInfo & {
     meta?: TransactionMeta;
   };
