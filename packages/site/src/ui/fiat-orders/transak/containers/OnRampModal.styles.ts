@@ -12,6 +12,7 @@ export const OnRampModalRoot = styled(Modal)(
     max-width: calc(100% - 4rem);
     width: 27.75rem;
     height: 80vh;
+    max-height: 50rem;
 
     background-color: ${theme.palette.background};
     border-radius: 16px;
