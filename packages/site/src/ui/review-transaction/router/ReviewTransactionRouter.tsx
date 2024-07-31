@@ -1,6 +1,6 @@
 import { Outlet, RouteObject } from 'react-router-dom';
 
-import ReviewTransactionPage from '../screen/page/ReviewTransactionPage';
+import ReviewTransactionPage from '../pages/ReviewTransactionPage';
 import { ReviewTransactionRoutes } from './ReviewTransactionRoutes.types';
 
 export const useReviewTransactionRoutes = (): RouteObject[] => {
