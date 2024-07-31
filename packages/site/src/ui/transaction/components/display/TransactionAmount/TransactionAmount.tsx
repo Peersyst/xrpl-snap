@@ -1,7 +1,8 @@
-import { Col, TypographyProps } from '@peersyst/react-components';
+import { Col } from '@peersyst/react-components';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
+import { BalanceProps } from 'ui/common/components/display/Balance/Balance.types';
 import { ThemeSpacingKeys } from 'ui/config/spacing';
 import FiatBalance from 'ui/wallet/containers/FiatBalance/FiatBalance';
 
@@ -14,8 +15,9 @@ export interface TransactionAmountProps {
   gap?: ThemeSpacingKeys;
   tx: XrplTx;
   loading?: boolean;
-  balanceProps?: TypographyProps;
-  fiatBalanceProps?: TypographyProps;
+  balanceProps?: Omit<BalanceProps, 'balance' | 'currency'>;
+  fiatBalanceProps?: Omit<BalanceProps, 'balance' | 'currency'>;
+  align?: 'start' | 'center' | 'end';
 }
 
 function TransactionAmount({
@@ -26,6 +28,7 @@ function TransactionAmount({
   loading,
   balanceProps,
   fiatBalanceProps,
+  align = 'end',
   ...rest
 }: TransactionAmountProps): JSX.Element {
   const { spacing } = useTheme();
@@ -37,7 +40,7 @@ function TransactionAmount({
   }
 
   return (
-    <Col gap={spacing[gap]} alignItems="end" {...rest}>
+    <Col gap={spacing[gap]} alignItems={align} {...rest}>
       <Balance balance={amount.formatAmount()} currency={token.currency} variant="body1" loading={loading} {...balanceProps} />
       {showFiat && (
         <FiatBalance balance={amount.formatAmount()} token={token} variant="body2" light loading={loading} {...fiatBalanceProps} />

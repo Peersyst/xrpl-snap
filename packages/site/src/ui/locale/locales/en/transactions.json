@@ -1,6 +1,8 @@
 {
   "sentTo": "Sent to {{address}}",
   "receivedFrom": "Received from {{address}}",
+  "sent": "Sent",
+  "received": "Received",
   "AMMWithdraw": "AMM Withdraw",
   "AMMDeposit": "AMM Deposit",
   "AMMVote": "AMM Vote",
@@ -8,5 +10,8 @@
   "AMMDelete": "AMM Delete",
   "AMMBid": "AMM Bid",
   "TrustSet": "Token added (TrustSet)",
-  "fee": "Fee"
+  "fee": "Fee",
+  "destination": "Destination",
+  "destinationTag": "Destination Tag",
+  "memo": "Memo"
 }
