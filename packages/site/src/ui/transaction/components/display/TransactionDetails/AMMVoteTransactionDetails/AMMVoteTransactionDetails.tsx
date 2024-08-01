@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import { AMMVote } from 'xrpl';
 
-import AMMAccountIDInfoDisplay from '../../AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
-import TradingFeeInfoDisplay from '../../TradingFeeInfoDisplay/TradingFeeInfoDisplay';
+import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
+import TradingFeeInfoDisplay from '../../TransactionInfoDisplay/TradingFeeInfoDisplay/TradingFeeInfoDisplay';
 import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
 import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
 import useAMMVoteTransactionDetails from './hooks/useAMMVoteTransactionDetails';

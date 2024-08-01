@@ -20,5 +20,6 @@
   "tradingFee": "Trading Fee",
   "minimumSlotPrice": "Minimum Slot Price",
   "maximumSlotPrice": "Maximum Slot Price",
-  "asset": "Asset {{n}}"
+  "asset": "Asset {{n}}",
+  "transactionHash": "Transaction hash"
 }

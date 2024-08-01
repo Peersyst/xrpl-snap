@@ -1,5 +1,6 @@
 import { XrplTx } from 'common/models/transaction/tx.types';
 
+import AccountDeleteTransactionDetails from './AccountDeleteTransactionDetails/AccountDeleteTransactionDetails';
 import AMMBidTransactionDetails from './AMMBidTransactionDetails/AMMBidTransactionDetails';
 import AMMCreateTransactionDetails from './AMMCreateTransactionDetails/AMMCreateTransactionDetails';
 import AMMDeleteTransactionDetails from './AMMDeleteTransactionDetails/AMMDeleteTransactionDetails';
@@ -17,6 +18,8 @@ export interface TransactionDetailsProps {
 
 function TransactionDetails({ tx, ...rest }: TransactionDetailsProps) {
   switch (tx.TransactionType) {
+    case 'AccountDelete':
+      return <AccountDeleteTransactionDetails tx={tx} {...rest} />;
     case 'AMMBid':
       return <AMMBidTransactionDetails tx={tx} {...rest} />;
     case 'AMMCreate':

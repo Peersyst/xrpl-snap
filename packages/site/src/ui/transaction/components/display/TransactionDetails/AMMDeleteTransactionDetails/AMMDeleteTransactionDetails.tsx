@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import { AMMDelete } from 'xrpl';
 
-import CurrencyInfoDisplay from '../../CurrencyInfoDisplay/CurrencyInfoDisplay';
+import CurrencyInfoDisplay from '../../TransactionInfoDisplay/CurrencyInfoDisplay/CurrencyInfoDisplay';
 import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
 import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
 

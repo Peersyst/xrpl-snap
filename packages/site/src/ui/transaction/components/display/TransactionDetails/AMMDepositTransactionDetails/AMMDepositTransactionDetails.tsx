@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import { AMMDeposit } from 'xrpl';
 
-import AMMAccountIDInfoDisplay from '../../AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
-import AssetInfoDisplay from '../../AssetInfoDisplay/AssetInfoDisplay';
+import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
+import AssetInfoDisplay from '../../TransactionInfoDisplay/AssetInfoDisplay/AssetInfoDisplay';
 import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
 import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
 import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';

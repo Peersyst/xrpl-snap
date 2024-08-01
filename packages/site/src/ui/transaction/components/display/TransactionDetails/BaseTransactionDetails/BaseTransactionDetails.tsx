@@ -6,8 +6,9 @@ import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalL
 import { useTranslate } from 'ui/locale';
 import { useBlockchainAddressUrl } from 'ui/network/hooks/useBlockchainAddressUrl';
 
-import FeeInfoDisplay from '../../FeeInfoDisplay/FeeInfoDisplay';
-import MemoInfoDisplay from '../../MemoInfoDisplay/MemoInfoDisplay';
+import FeeInfoDisplay from '../../TransactionInfoDisplay/FeeInfoDisplay/FeeInfoDisplay';
+import MemoInfoDisplay from '../../TransactionInfoDisplay/MemoInfoDisplay/MemoInfoDisplay';
+import TransactionHashInfoDisplay from '../../TransactionInfoDisplay/TransactionHashInfoDisplay/TransactionHashInfoDisplay';
 
 export interface BaseTransactionDetailsProps {
   className?: string;
@@ -27,6 +28,7 @@ function BaseTransactionDetails({ className, tx: { hash = '', Memos, Fee }, chil
         <MemoInfoDisplay key={index} memo={memo} />
       ))}
       {Fee && <FeeInfoDisplay fee={Fee} />}
+      <TransactionHashInfoDisplay hash={hash} />
       <ExternalLink to={url}>
         <Button fullWidth>{translate('viewOnExplorer')}</Button>
       </ExternalLink>
