@@ -21,5 +21,17 @@
   "minimumSlotPrice": "Minimum Slot Price",
   "maximumSlotPrice": "Maximum Slot Price",
   "asset": "Asset {{n}}",
-  "transactionHash": "Transaction hash"
+  "transactionHash": "Transaction hash",
+  "domain": "Domain",
+  "domainDeleted": "Domain deleted",
+  "emailHash": "Email hash",
+  "emailHashDeleted": "Email hash deleted",
+  "transferRate": "Transfer rate",
+  "messageKey": "Message key",
+  "messageKeyDeleted": "Message key deleted",
+  "nftTokenMinter": "NFToken Minter",
+  "removeNftTokenMinter": "Remove NFToken Minter",
+  "setFlag": "Set flag",
+  "clearFlag": "Clear flag",
+  "tickSize": "Tick size"
 }

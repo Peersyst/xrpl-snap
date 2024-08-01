@@ -1,0 +1,17 @@
+{
+  "asfRequireDest": "Require destination tag",
+  "asfRequireAuth": "Require authorization",
+  "asfDisallowXRP": "Disallow incoming XRP",
+  "asfDisableMaster": "Disable master key",
+  "asfAccountTxnID": "Account transaction ID",
+  "asfNoFreeze": "No freeze",
+  "asfGlobalFreeze": "Global freeze",
+  "asfDefaultRipple": "Default ripple",
+  "asfDepositAuth": "Enable deposit authorization",
+  "asfAuthorizedNFTokenMinter": "Authorized NFT minter",
+  "asfDisallowIncomingNFTokenOffer": "Disallow incoming NFT offer",
+  "asfDisallowIncomingCheck": "Disallow incoming check",
+  "asfDisallowIncomingPayChan": "Disallow incoming payment channel",
+  "asfDisallowIncomingTrustline": "Disallow incoming trustline",
+  "asfAllowTrustLineClawback": "Allow trustline clawback"
+}

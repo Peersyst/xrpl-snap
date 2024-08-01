@@ -41,6 +41,7 @@ function TransactionAmount({
   }
 
   const currency = token.currency === 'XRP' ? 'XRP' : parseCurrencyCode(token.currency);
+
   return (
     <Col gap={spacing[gap]} alignItems={align} {...rest}>
       <Balance balance={amount.formatAmount()} currency={currency} variant="body1" loading={loading} {...balanceProps} />
