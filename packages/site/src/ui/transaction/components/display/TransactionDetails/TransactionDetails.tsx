@@ -2,6 +2,7 @@ import { XrplTx } from 'common/models/transaction/tx.types';
 
 import AMMBidTransactionDetails from './AMMBidTransactionDetails/AMMBidTransactionDetails';
 import AMMCreateTransactionDetails from './AMMCreateTransactionDetails/AMMCreateTransactionDetails';
+import AMMDeleteTransactionDetails from './AMMDeleteTransactionDetails/AMMDeleteTransactionDetails';
 import AMMDepositTransactionDetails from './AMMDepositTransactionDetails/AMMDepositTransactionDetails';
 import AMMVoteTransactionDetails from './AMMVoteTransactionDetails/AMMVoteTransactionDetails';
 import AMMWithdrawTransactionDetails from './AMMWithdrawTransactionDetails/AMMWithdrawTransactionDetails';
@@ -20,6 +21,8 @@ function TransactionDetails({ tx, ...rest }: TransactionDetailsProps) {
       return <AMMBidTransactionDetails tx={tx} {...rest} />;
     case 'AMMCreate':
       return <AMMCreateTransactionDetails tx={tx} {...rest} />;
+    case 'AMMDelete':
+      return <AMMDeleteTransactionDetails tx={tx} {...rest} />;
     case 'AMMDeposit':
       return <AMMDepositTransactionDetails tx={tx} {...rest} />;
     case 'AMMVote':
