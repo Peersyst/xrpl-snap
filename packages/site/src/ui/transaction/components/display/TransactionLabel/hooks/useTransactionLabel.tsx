@@ -14,6 +14,8 @@ export default function useTransactionLabel(txType: Transaction['TransactionType
       return translate(txType, { ns: 'transactions' });
     case txType === 'TrustSet':
       return translate('TrustSet', { ns: 'transactions' });
+    case txType === 'AccountSet':
+      return translate('AccountSet', { ns: 'transactions' });
     default:
       return `${txType} ${translate(isReceiver ? 'from' : 'to').toLocaleLowerCase()} ${formattedAccount}`;
   }

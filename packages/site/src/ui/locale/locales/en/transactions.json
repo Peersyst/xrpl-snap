@@ -3,6 +3,7 @@
   "receivedFrom": "Received from {{address}}",
   "sent": "Sent",
   "received": "Received",
+  "AccountSet": "Account Settings",
   "AMMWithdraw": "AMM Withdraw",
   "AMMDeposit": "AMM Deposit",
   "AMMVote": "AMM Vote",
