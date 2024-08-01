@@ -19,3 +19,21 @@ export function isPartialPayment(flags: Payment['Flags']) {
   }
   return isFlagEnabled(flags, PaymentFlags.tfPartialPayment);
 }
+
+export const ACCOUNT_FLAGS: Record<number, string> = {
+  16: 'asfAllowTrustLineClawback',
+  15: 'asfDisallowIncomingTrustline',
+  14: 'asfDisallowIncomingPayChan',
+  13: 'asfDisallowIncomingCheck',
+  12: 'asfDisallowIncomingNFTokenOffer',
+  10: 'asfAuthorizedNFTokenMinter',
+  9: 'asfDepositAuth',
+  8: 'asfDefaultRipple',
+  7: 'asfGlobalFreeze',
+  6: 'asfNoFreeze',
+  5: 'asfAccountTxnID',
+  4: 'asfDisableMaster',
+  3: 'asfDisallowXRP',
+  2: 'asfRequireAuth',
+  1: 'asfRequireDest',
+} as const;

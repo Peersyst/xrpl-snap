@@ -11,7 +11,6 @@ export const TransactionSkeleton = (): JSX.Element => (
         issuer: 'rPzwM2JfCSDjhbesdTCqFjWWdK7eFtTwZz',
       },
       Destination: 'rPzwM2JfCSDjhbesdTCqFjWWdK7eFtTwZz',
-      Flags: 131072,
       Sequence: 21970996,
       Fee: '12',
       LastLedgerSequence: 21971016,
