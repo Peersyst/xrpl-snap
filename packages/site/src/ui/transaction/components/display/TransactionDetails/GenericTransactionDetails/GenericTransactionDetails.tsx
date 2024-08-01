@@ -13,7 +13,7 @@ export interface GenericTransactionDetailsProps {
 function GenericTransactionDetails({ className, tx, ...rest }: GenericTransactionDetailsProps) {
   return (
     <BaseTransactionDetails className={clsx('GenericTransactionDetails', className)} tx={tx} {...rest}>
-      <TransactionDetailsCard tx={tx}></TransactionDetailsCard>
+      <TransactionDetailsCard tx={tx} />
     </BaseTransactionDetails>
   );
 }

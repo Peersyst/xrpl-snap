@@ -15,7 +15,14 @@ export const TransactionSkeleton = (): JSX.Element => (
       Sequence: 21970996,
       Fee: '12',
       LastLedgerSequence: 21971016,
-      meta: { getLPTokenAmount: () => undefined, deliveredAmount: undefined, affectedNodes: [] },
+      meta: {
+        meta: {} as any,
+        getLPTokenAmount: () => undefined,
+        deliveredAmount: undefined,
+        affectedNodes: [],
+        getAMMAccountID: () => undefined,
+        findAssetsChanges: () => undefined,
+      },
     }}
     accountAddress="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"
     loading

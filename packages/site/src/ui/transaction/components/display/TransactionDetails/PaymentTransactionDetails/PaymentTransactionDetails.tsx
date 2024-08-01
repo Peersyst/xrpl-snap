@@ -6,8 +6,8 @@ import { Payment } from 'xrpl';
 import DestinationInfoDisplay from '../../DestinationInfoDisplay/DestinationInfoDisplay';
 import DestinationTagInfoDisplay from '../../DestinationTagInfoDisplay/DestinationTagInfoDisplay';
 import FromInfoDisplay from '../../FromInfoDisplay/FromInfoDisplay';
-import TransactionAmount from '../../TransactionAmount/TransactionAmount';
 import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
 import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
 
 export interface PaymentTransactionDetailsProps {
@@ -22,13 +22,7 @@ function PaymentTransactionDetails({ className, tx, ...rest }: PaymentTransactio
   return (
     <BaseTransactionDetails className={clsx('PaymentTransactionDetails', className)} tx={tx} {...rest}>
       <TransactionDetailsCard tx={tx}>
-        <TransactionAmount
-          align="center"
-          tx={tx}
-          gap={0}
-          balanceProps={{ variant: 'h3', fontWeight: '600' }}
-          fiatBalanceProps={{ variant: 'body2' }}
-        />
+        <TransactionDetailsAmount tx={tx} showFiat={false} />
       </TransactionDetailsCard>
       {direction === 'out' ? (
         <>
