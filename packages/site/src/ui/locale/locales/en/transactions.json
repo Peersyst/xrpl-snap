@@ -13,5 +13,13 @@
   "fee": "Fee",
   "destination": "Destination",
   "destinationTag": "Destination Tag",
-  "memo": "Memo"
+  "memo": "Memo",
+  "ammAccountID": "AMM Account ID",
+  "assetIn": "Asset {{n}} in",
+  "assetOut": "Asset {{n}} out",
+  "tradingFee": "Trading Fee",
+  "minimumSlotPrice": "Minimum Slot Price",
+  "maximumSlotPrice": "Maximum Slot Price",
+  "asset": "Asset {{n}}",
+  "transactionHash": "Transaction hash"
 }

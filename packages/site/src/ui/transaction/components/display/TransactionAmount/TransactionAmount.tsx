@@ -1,5 +1,6 @@
 import { Col } from '@peersyst/react-components';
 import { XrplTx } from 'common/models/transaction/tx.types';
+import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
 import { BalanceProps } from 'ui/common/components/display/Balance/Balance.types';
@@ -39,9 +40,10 @@ function TransactionAmount({
     return <></>;
   }
 
+  const currency = token.currency === 'XRP' ? 'XRP' : parseCurrencyCode(token.currency);
   return (
     <Col gap={spacing[gap]} alignItems={align} {...rest}>
-      <Balance balance={amount.formatAmount()} currency={token.currency} variant="body1" loading={loading} {...balanceProps} />
+      <Balance balance={amount.formatAmount()} currency={currency} variant="body1" loading={loading} {...balanceProps} />
       {showFiat && (
         <FiatBalance balance={amount.formatAmount()} token={token} variant="body2" light loading={loading} {...fiatBalanceProps} />
       )}

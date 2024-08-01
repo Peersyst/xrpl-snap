@@ -1,14 +1,12 @@
 import { Token } from 'common/models';
 import Amount from 'common/utils/Amount';
-import { Amount as XrplAmount } from 'xrpl';
+import { Currency, Amount as XrplAmount } from 'xrpl';
 
-import { parseCurrencyCode } from '../token/currencyCode';
-
-export function getTransactionToken(amount: XrplAmount): Token {
-  if (typeof amount === 'string') {
+export function getTransactionToken(amount: XrplAmount | Currency): Token {
+  if (typeof amount === 'string' || amount.currency === 'XRP') {
     return { currency: 'XRP', issuer: '', decimals: 6 };
   }
-  return { currency: parseCurrencyCode(amount.currency), issuer: amount.issuer, decimals: 15 };
+  return { currency: amount.currency, issuer: amount.issuer || '', decimals: 15 };
 }
 
 export function getTransactionAmount(amount: XrplAmount, token: Token): Amount {

@@ -8,6 +8,8 @@ export const IconCardRoot = styled(Card)(
     background-color: ${alpha(theme.palette.primary, 0.16)};
     justify-content: center;
     align-items: center;
+    width: 5.5rem;
+    height: 5.5rem;
     .Icon {
       font-size: 2.5rem;
       color: ${theme.palette.primary};

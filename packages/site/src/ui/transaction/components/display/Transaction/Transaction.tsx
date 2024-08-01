@@ -52,7 +52,7 @@ export function Transaction(props: TransactionProps): JSX.Element {
   return (
     <>
       <InnerTransaction onClick={handleOnClick} {...props} />
-      <TransactionDetailsModal open={open} onClose={() => setOpen(false)} {...props} />
+      {open && <TransactionDetailsModal open={open} onClose={() => setOpen(false)} {...props} />}
     </>
   );
 }

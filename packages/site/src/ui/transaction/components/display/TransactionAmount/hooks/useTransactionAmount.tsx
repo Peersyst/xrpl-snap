@@ -2,17 +2,18 @@
 import { Token } from 'common/models';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import Amount from 'common/utils/Amount';
+import { isPartialPayment } from 'common/utils/xrpl/flags';
 import { getTransactionTokenAndAmount } from 'common/utils/xrpl/transaction-amount';
-import { Payment } from 'xrpl';
 
 export default function useTransactionAmount(tx: XrplTx): [Token, Amount] | undefined {
   const { meta } = tx;
   switch (tx.TransactionType) {
     case 'Payment':
-      if (tx.Account === tx.Destination && meta?.deliveredAmount) {
-        return meta.deliveredAmount;
+      const partial = isPartialPayment(tx.Flags);
+      if (tx.Account === tx.Destination || partial) {
+        return meta?.deliveredAmount;
       }
-      return getTransactionTokenAndAmount((tx as Payment).Amount);
+      return getTransactionTokenAndAmount(tx.Amount);
     case 'AccountDelete':
       if (meta?.deliveredAmount) {
         return meta.deliveredAmount;
