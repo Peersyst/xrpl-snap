@@ -34,5 +34,10 @@
   "removeNftTokenMinter": "Remove NFToken Minter",
   "setFlag": "Set flag",
   "clearFlag": "Clear flag",
-  "tickSize": "Tick size"
+  "tickSize": "Tick size",
+  "checkID": "Check ID",
+  "addRegularKey": "Add regular key",
+  "deleteRegularKey": "Delete regular key",
+  "regularKey": "Regular key",
+  "emptyRegularKey": "Empty regular key"
 }

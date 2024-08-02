@@ -8,8 +8,10 @@ import AMMDeleteTransactionDetails from './AMMDeleteTransactionDetails/AMMDelete
 import AMMDepositTransactionDetails from './AMMDepositTransactionDetails/AMMDepositTransactionDetails';
 import AMMVoteTransactionDetails from './AMMVoteTransactionDetails/AMMVoteTransactionDetails';
 import AMMWithdrawTransactionDetails from './AMMWithdrawTransactionDetails/AMMWithdrawTransactionDetails';
+import CheckCancelTransactionDetails from './CheckCancelTransactionDetails/CheckCancelTransactionDetails';
 import GenericTransactionDetails from './GenericTransactionDetails/GenericTransactionDetails';
 import PaymentTransactionDetails from './PaymentTransactionDetails/PaymentTransactionDetails';
+import SetRegularKeyTransactionDetails from './SetRegularKeyTransacionDetails/SetRegularKeyTransacionDetails';
 
 export interface TransactionDetailsProps {
   className?: string;
@@ -35,8 +37,12 @@ function TransactionDetails({ tx, ...rest }: TransactionDetailsProps) {
       return <AMMVoteTransactionDetails tx={tx} {...rest} />;
     case 'AMMWithdraw':
       return <AMMWithdrawTransactionDetails tx={tx} {...rest} />;
+    case 'CheckCancel':
+      return <CheckCancelTransactionDetails tx={tx} {...rest} />;
     case 'Payment':
       return <PaymentTransactionDetails tx={tx} {...rest} />;
+    case 'SetRegularKey':
+      return <SetRegularKeyTransactionDetails tx={tx} {...rest} />;
     default:
       return <GenericTransactionDetails tx={tx} {...rest} />;
   }

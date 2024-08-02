@@ -32,7 +32,7 @@ const InnerTransaction = memo(({ loading = false, tx, accountAddress, onClick }:
       <Row justifyContent="space-between" flex={1}>
         <Col gap={spacing[1]}>
           <Skeleton loading={loading}>
-            <TransactionLabel variant="body1" address={account} isReceiver={isReceiver} txType={txType} />
+            <TransactionLabel variant="body1" address={account} isReceiver={isReceiver} tx={tx} />
           </Skeleton>
           <TransactionDate format={DateFormat.DATE_TIME} variant="body2" light tx={tx} loading={loading} />
         </Col>

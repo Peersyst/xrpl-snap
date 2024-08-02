@@ -19,7 +19,7 @@ export interface TransactionDetailsCardProps {
 const TransactionDetailsCard = ({ className, tx, style, children }: TransactionDetailsCardProps): JSX.Element => {
   const { direction } = useParseTransaction(tx);
   const isReceiver = direction === 'in';
-  const label = useTransactionDetailsLabel(tx.TransactionType, isReceiver);
+  const label = useTransactionDetailsLabel(tx, isReceiver);
 
   return (
     <Card css={{ width: '100%' }} className={clsx('TransactionDetailsCard', className)} style={style}>
