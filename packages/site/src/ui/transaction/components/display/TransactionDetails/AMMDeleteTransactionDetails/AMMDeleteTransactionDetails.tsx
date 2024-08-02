@@ -3,8 +3,8 @@ import { XrplTx } from 'common/models/transaction/tx.types';
 import { AMMDelete } from 'xrpl';
 
 import CurrencyInfoDisplay from '../../TransactionInfoDisplay/CurrencyInfoDisplay/CurrencyInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 
 export interface AMMDeleteTransactionDetailsProps {
   className?: string;

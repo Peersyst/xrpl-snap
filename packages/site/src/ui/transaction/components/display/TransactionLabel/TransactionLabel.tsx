@@ -5,12 +5,12 @@ import useTransactionLabel from './hooks/useTransactionLabel';
 
 export interface TransactionLabelProps extends Omit<TypographyProps, 'children'> {
   isReceiver: boolean;
-  txType: Transaction['TransactionType'];
+  tx: Transaction;
   address: string;
 }
 
-function TransactionLabel({ txType, isReceiver, address, ...rest }: TransactionLabelProps) {
-  const label = useTransactionLabel(txType, isReceiver, address);
+function TransactionLabel({ tx, isReceiver, address, ...rest }: TransactionLabelProps) {
+  const label = useTransactionLabel(tx, isReceiver, address);
 
   return <Typography {...rest}>{label}</Typography>;
 }

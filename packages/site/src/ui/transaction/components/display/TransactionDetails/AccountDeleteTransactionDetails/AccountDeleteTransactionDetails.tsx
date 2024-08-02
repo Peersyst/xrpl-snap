@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import { XrplTx } from 'common/models/transaction/tx.types';
 import { AccountDelete } from 'xrpl';
 
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsAmount from '../common/TransactionDetailsAmount/TransactionDetailsAmount';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 import SenderRecipientTransactionDetails from '../SenderRecipientTransactionDetails/SenderRecipientTransactionDetails';
-import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
 
 export interface AccountDeleteTransactionDetailsProps {
   className?: string;

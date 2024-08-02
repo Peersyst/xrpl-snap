@@ -6,8 +6,17 @@ import Amount from '../Amount';
 import { AffectedNode } from './node';
 import { getTransactionTokenAndAmount } from './transaction-amount';
 
+interface ParsedNftAcceptOffer {
+  nftTokenId: string | undefined;
+  amount: [Token, Amount] | undefined;
+  seller: string | undefined;
+  buyer: string | undefined;
+}
+
 export class TransactionMeta {
   meta: TransactionMetadata;
+
+  nftoken_id: string | undefined;
 
   affectedNodes: AffectedNode[] = [];
 
@@ -22,6 +31,8 @@ export class TransactionMeta {
     if (deliveredAmount) {
       this.deliveredAmount = getTransactionTokenAndAmount(deliveredAmount);
     }
+
+    this.nftoken_id = (this.meta as any).nftoken_id;
   }
 
   public getLPTokenAmount(): [Token, Amount] | undefined {
@@ -58,5 +69,29 @@ export class TransactionMeta {
         });
       });
     }
+  }
+
+  public parseNFTAcceptOffer(accepter: string): ParsedNftAcceptOffer {
+    let amount: [Token, Amount] | undefined;
+    let seller: string | undefined;
+    let buyer: string | undefined;
+
+    const acceptedOfferNodes = this.affectedNodes.filter((node) => node.entryType === 'NFTokenOffer');
+
+    if (acceptedOfferNodes.length > 1) {
+      const buyOfferNode = acceptedOfferNodes.find((node) => !node.isNFTSellOffer());
+      const sellOfferNode = acceptedOfferNodes.find((node) => node.isNFTSellOffer());
+      amount = buyOfferNode?.getNFTAcceptOfferAmount();
+      buyer = buyOfferNode?.getNFTAcceptOfferOwner();
+      seller = sellOfferNode?.getNFTAcceptOfferOwner();
+    } else if (acceptedOfferNodes.length === 1) {
+      const node = acceptedOfferNodes[0];
+      const isSellOffer = node.isNFTSellOffer();
+      const nodeOwner = node.getNFTAcceptOfferOwner();
+      seller = isSellOffer ? accepter : nodeOwner;
+      buyer = isSellOffer ? nodeOwner : accepter;
+    }
+
+    return { amount, nftTokenId: this.nftoken_id, seller, buyer };
   }
 }

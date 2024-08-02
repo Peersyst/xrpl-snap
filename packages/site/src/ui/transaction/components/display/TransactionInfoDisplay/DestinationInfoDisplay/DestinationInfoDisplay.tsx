@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useTranslate } from 'ui/locale';
 
-import BlockchainAddressInfoDisplay from '../BlockchainAddressInfoDisplay/BlockchainAddressInfoDisplay';
+import BlockchainAddressInfoDisplay from '../common/BlockchainAddressInfoDisplay/BlockchainAddressInfoDisplay';
 
 export interface DestinationInfoDisplayProps {
   className?: string;

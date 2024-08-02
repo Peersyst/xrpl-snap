@@ -4,9 +4,9 @@ import { AMMDeposit } from 'xrpl';
 
 import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
 import AssetInfoDisplay from '../../TransactionInfoDisplay/AssetInfoDisplay/AssetInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsAmount from '../common/TransactionDetailsAmount/TransactionDetailsAmount';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 import useAMMDepositTransactionDetails from './hooks/useAMMDepositTransactionDetails';
 
 export interface AMMDepositTransactionDetailsProps {

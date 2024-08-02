@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import Balance from 'ui/common/components/display/Balance/Balance';
-import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import { useTranslate } from 'ui/locale';
-import { dropsToXrp } from 'xrpl';
+
+import BalanceInfoDisplay from '../common/BalanceInfoDisplay/BalanceInfoDisplay';
 
 export interface FeeInfoDisplayProps {
   className?: string;
@@ -14,12 +13,7 @@ function FeeInfoDisplay({ className, fee, ...rest }: FeeInfoDisplayProps) {
   const translate = useTranslate('transactions');
 
   return (
-    <InfoDisplay
-      className={clsx('FeeInfoDisplay', className)}
-      title={translate('fee')}
-      content={<Balance balance={dropsToXrp(fee)} variant="body1" currency="XRP" fontWeight="500" />}
-      {...rest}
-    />
+    <BalanceInfoDisplay className={clsx('FeeInfoDisplay', className)} label={translate('fee')} currency="XRP" balance={fee} {...rest} />
   );
 }
 

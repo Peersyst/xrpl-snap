@@ -8,12 +8,6 @@ import { getTransactionTokenAndAmount } from 'common/utils/xrpl/transaction-amou
 export default function useTransactionAmount(tx: XrplTx): [Token, Amount] | undefined {
   const { meta } = tx;
   switch (tx.TransactionType) {
-    case 'Payment':
-      const partial = isPartialPayment(tx.Flags);
-      if (tx.Account === tx.Destination || partial) {
-        return meta?.deliveredAmount;
-      }
-      return getTransactionTokenAndAmount(tx.Amount);
     case 'AccountDelete':
       if (meta?.deliveredAmount) {
         return meta.deliveredAmount;
@@ -28,6 +22,20 @@ export default function useTransactionAmount(tx: XrplTx): [Token, Amount] | unde
         return lpTokenAmount;
       }
       break;
+    case 'CheckCash':
+      const checkCashAmount = tx.Amount || tx.DeliverMin;
+      if (checkCashAmount) {
+        return getTransactionTokenAndAmount(checkCashAmount);
+      }
+      break;
+    case 'NFTokenAcceptOffer':
+      return tx.meta?.parseNFTAcceptOffer(tx.Account).amount;
+    case 'Payment':
+      const partial = isPartialPayment(tx.Flags);
+      if (tx.Account === tx.Destination || partial) {
+        return meta?.deliveredAmount;
+      }
+      return getTransactionTokenAndAmount(tx.Amount);
     default:
   }
 }

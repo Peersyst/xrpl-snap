@@ -4,8 +4,8 @@ import { AMMVote } from 'xrpl';
 
 import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
 import TradingFeeInfoDisplay from '../../TransactionInfoDisplay/TradingFeeInfoDisplay/TradingFeeInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 import useAMMVoteTransactionDetails from './hooks/useAMMVoteTransactionDetails';
 
 export interface AMMVoteTransactionDetailsProps {
