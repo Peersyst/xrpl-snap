@@ -2,7 +2,7 @@ import useWalletState from 'ui/adapter/state/useWalletState';
 import { useTranslate } from 'ui/locale';
 import { Transaction } from 'xrpl';
 
-import useTransactionLabel from '../../../TransactionLabel/hooks/useTransactionLabel';
+import useTransactionLabel from '../../../../TransactionLabel/hooks/useTransactionLabel';
 
 export default function useTransactionDetailsLabel(tx: Transaction, isReceiver: boolean): string {
   const translate = useTranslate();

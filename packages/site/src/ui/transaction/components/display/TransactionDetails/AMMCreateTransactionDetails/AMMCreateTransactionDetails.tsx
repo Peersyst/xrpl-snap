@@ -5,9 +5,9 @@ import { AMMCreate } from 'xrpl';
 import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
 import AmountAssetInfoDisplay from '../../TransactionInfoDisplay/AmountAssetInfoDisplay/AmountAssetInfoDisplay';
 import TradingFeeInfoDisplay from '../../TransactionInfoDisplay/TradingFeeInfoDisplay/TradingFeeInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsAmount from '../common/TransactionDetailsAmount/TransactionDetailsAmount';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 import useAMMCreateTransactionDetails from './hooks/useAMMCreateTransactionDetails';
 
 export interface AMMCreateTransactionDetailsProps {

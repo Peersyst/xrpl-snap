@@ -16,11 +16,13 @@ export const TransactionSkeleton = (): JSX.Element => (
       LastLedgerSequence: 21971016,
       meta: {
         meta: {} as any,
+        nftoken_id: undefined,
         getLPTokenAmount: () => undefined,
         deliveredAmount: undefined,
         affectedNodes: [],
         getAMMAccountID: () => undefined,
         findAssetsChanges: () => undefined,
+        parseNFTAcceptOffer: () => ({ amount: undefined, nftTokenId: undefined, seller: undefined, buyer: undefined }),
       },
     }}
     accountAddress="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"

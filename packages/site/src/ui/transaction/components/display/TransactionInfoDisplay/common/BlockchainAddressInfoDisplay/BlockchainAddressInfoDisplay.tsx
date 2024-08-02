@@ -14,7 +14,7 @@ function BlockchainAddressInfoDisplay({ className, account, label, ...rest }: Bl
     <InfoDisplay
       className={clsx('BlockchainAddressInfoDisplay', className)}
       title={label}
-      content={<BlockchainAddress address={account} type="mainnetAddress" variant="body1" fontWeight="500" />}
+      content={<BlockchainAddress showCopyIcon address={account} type="mainnetAddress" variant="body1" fontWeight="500" />}
       {...rest}
     />
   );

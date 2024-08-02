@@ -2,7 +2,7 @@
 
 import { Token } from 'common/models';
 import Decimal from 'decimal.js';
-import { CreatedNode, DeletedNode, IssuedCurrencyAmount, ModifiedNode } from 'xrpl';
+import { IssuedCurrencyAmount, isCreatedNode, isModifiedNode, isDeletedNode } from 'xrpl';
 
 import Amount from '../Amount';
 import { getTransactionTokenAndAmount } from './transaction-amount';
@@ -14,27 +14,15 @@ export class AffectedNode {
     return this._node.LedgerEntryType;
   }
 
-  isCreatedNode(node: unknown): node is CreatedNode {
-    return typeof node === 'object' && !!node && 'CreatedNode' in node;
-  }
-
-  isModifiedNode(node: unknown): node is ModifiedNode {
-    return typeof node === 'object' && !!node && 'ModifiedNode' in node;
-  }
-
-  isDeletedNode(node: unknown): node is DeletedNode {
-    return typeof node === 'object' && !!node && 'DeletedNode' in node;
-  }
-
   constructor(node: any) {
     switch (true) {
-      case this.isCreatedNode(node):
+      case isCreatedNode(node):
         this._node = node.CreatedNode;
         break;
-      case this.isModifiedNode(node):
+      case isModifiedNode(node):
         this._node = node.ModifiedNode;
         break;
-      case this.isDeletedNode(node):
+      case isDeletedNode(node):
         this._node = node.DeletedNode;
         break;
       default:
@@ -70,5 +58,22 @@ export class AffectedNode {
     const finalAmount = new Decimal(this._node.FinalFields.Balance.value);
     const dif = finalAmount.minus(prevAmount).abs().toString();
     return getTransactionTokenAndAmount({ value: dif, currency: balance.currency, issuer: balance.issuer });
+  }
+
+  isNFTSellOffer(): boolean {
+    const flags = this._node?.FinalFields?.Flags;
+    // eslint-disable-next-line no-bitwise
+    return (flags & 1) !== 0;
+  }
+
+  getNFTAcceptOfferAmount(): [Token, Amount] | undefined {
+    const amount = this._node?.FinalFields?.Amount;
+    if (amount) {
+      return getTransactionTokenAndAmount(amount);
+    }
+  }
+
+  getNFTAcceptOfferOwner(): string | undefined {
+    return this._node?.FinalFields?.Owner;
   }
 }

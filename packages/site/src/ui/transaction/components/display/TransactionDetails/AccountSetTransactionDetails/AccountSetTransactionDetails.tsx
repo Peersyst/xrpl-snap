@@ -9,8 +9,8 @@ import MessageKeyInfoDisplay from '../../TransactionInfoDisplay/MessageKeyInfoDi
 import NFTokenMinterInfoDisplay from '../../TransactionInfoDisplay/NFTokenMinterInfoDisplay/NFTokenMinterInfoDisplay';
 import TickSizeInfoDisplay from '../../TransactionInfoDisplay/TickSizeInfoDisplay/TickSizeInfoDisplay';
 import TransferRateInfoDisplay from '../../TransactionInfoDisplay/TransferRateInfoDisplay/TransferRateInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 
 export interface AccountSetTransactionDetailsProps {
   className?: string;

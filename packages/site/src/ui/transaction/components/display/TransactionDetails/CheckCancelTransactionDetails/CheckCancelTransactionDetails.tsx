@@ -3,8 +3,8 @@ import { XrplTx } from 'common/models/transaction/tx.types';
 import { CheckCancel } from 'xrpl';
 
 import CheckIDInfoDisplay from '../../TransactionInfoDisplay/CheckIDInfoDisplay/CheckIDInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 
 export interface CheckCancelTransactionDetailsProps {
   className?: string;

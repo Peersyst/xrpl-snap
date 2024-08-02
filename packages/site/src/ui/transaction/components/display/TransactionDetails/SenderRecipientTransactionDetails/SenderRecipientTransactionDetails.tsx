@@ -22,7 +22,7 @@ function SenderRecipientTransactionDetails<T extends TransactionWithDestinationA
   return direction === 'out' ? (
     <>
       <DestinationInfoDisplay destination={tx.Destination} />
-      {tx.DestinationTag && <DestinationTagInfoDisplay destinationTag={tx.DestinationTag} />}
+      {typeof tx.DestinationTag === 'number' && <DestinationTagInfoDisplay destinationTag={tx.DestinationTag} />}
     </>
   ) : (
     <FromInfoDisplay from={tx.Account} />

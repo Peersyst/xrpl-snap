@@ -4,9 +4,9 @@ import { AMMBid } from 'xrpl';
 
 import AMMAccountIDInfoDisplay from '../../TransactionInfoDisplay/AMMAccountIDInfoDisplay/AMMAccountIDInfoDisplay';
 import BidInfoDisplay from '../../TransactionInfoDisplay/BidInfoDisplay/BidInfoDisplay';
-import BaseTransactionDetails from '../BaseTransactionDetails/BaseTransactionDetails';
-import TransactionDetailsAmount from '../TransactionDetailsAmount/TransactionDetailsAmount';
-import TransactionDetailsCard from '../TransactionDetailsCard/TransactionDetailsCard';
+import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
+import TransactionDetailsAmount from '../common/TransactionDetailsAmount/TransactionDetailsAmount';
+import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
 import useAMMBidTransactionDetails from './hooks/useAMMBidTransactionDetails';
 
 export interface AMMBidTransactionDetailsProps {

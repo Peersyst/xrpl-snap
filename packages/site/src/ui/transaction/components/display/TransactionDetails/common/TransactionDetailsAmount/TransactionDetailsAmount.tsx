@@ -1,6 +1,6 @@
 import { XrplTx } from 'common/models/transaction/tx.types';
 
-import TransactionAmount from '../../TransactionAmount/TransactionAmount';
+import TransactionAmount from '../../../TransactionAmount/TransactionAmount';
 
 export interface TransactionDetailsAmountProps {
   tx: XrplTx;

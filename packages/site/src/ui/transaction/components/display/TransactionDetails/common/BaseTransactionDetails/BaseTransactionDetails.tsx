@@ -6,9 +6,9 @@ import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalL
 import { useTranslate } from 'ui/locale';
 import { useBlockchainAddressUrl } from 'ui/network/hooks/useBlockchainAddressUrl';
 
-import FeeInfoDisplay from '../../TransactionInfoDisplay/FeeInfoDisplay/FeeInfoDisplay';
-import MemoInfoDisplay from '../../TransactionInfoDisplay/MemoInfoDisplay/MemoInfoDisplay';
-import TransactionHashInfoDisplay from '../../TransactionInfoDisplay/TransactionHashInfoDisplay/TransactionHashInfoDisplay';
+import FeeInfoDisplay from '../../../TransactionInfoDisplay/FeeInfoDisplay/FeeInfoDisplay';
+import MemoInfoDisplay from '../../../TransactionInfoDisplay/MemoInfoDisplay/MemoInfoDisplay';
+import TransactionHashInfoDisplay from '../../../TransactionInfoDisplay/TransactionHashInfoDisplay/TransactionHashInfoDisplay';
 
 export interface BaseTransactionDetailsProps {
   className?: string;
