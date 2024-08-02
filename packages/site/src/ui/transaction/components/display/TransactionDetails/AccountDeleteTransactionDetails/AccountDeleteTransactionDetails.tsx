@@ -3,9 +3,9 @@ import { XrplTx } from 'common/models/transaction/tx.types';
 import { AccountDelete } from 'xrpl';
 
 import BaseTransactionDetails from '../common/BaseTransactionDetails/BaseTransactionDetails';
-import SenderRecipientTransactionDetails from '../SenderRecipientTransactionDetails/SenderRecipientTransactionDetails';
 import TransactionDetailsAmount from '../common/TransactionDetailsAmount/TransactionDetailsAmount';
 import TransactionDetailsCard from '../common/TransactionDetailsCard/TransactionDetailsCard';
+import SenderRecipientTransactionDetails from '../SenderRecipientTransactionDetails/SenderRecipientTransactionDetails';
 
 export interface AccountDeleteTransactionDetailsProps {
   className?: string;

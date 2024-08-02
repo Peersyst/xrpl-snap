@@ -56,5 +56,8 @@
   "NFTokenID": "NFToken ID",
   "NFTokenBrokerFee": "NFToken Broker Fee",
   "offerID": "Offer ID",
-  "amount": "Amount"
+  "amount": "Amount",
+  "issuer": "Issuer",
+  "transferFee": "Transfer fee",
+  "uri": "URI"
 }
