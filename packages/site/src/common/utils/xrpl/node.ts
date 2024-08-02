@@ -1,6 +1,7 @@
 /* eslint-disable no-implicit-coercion*/
 
 import { Token } from 'common/models';
+import { NodeType } from 'common/models/transaction/node';
 import Decimal from 'decimal.js';
 import { IssuedCurrencyAmount, isCreatedNode, isModifiedNode, isDeletedNode } from 'xrpl';
 
@@ -10,6 +11,8 @@ import { getTransactionTokenAndAmount } from './transaction-amount';
 export class AffectedNode {
   private readonly _node: any;
 
+  public readonly nodeType: NodeType;
+
   get entryType(): string {
     return this._node.LedgerEntryType;
   }
@@ -18,12 +21,15 @@ export class AffectedNode {
     switch (true) {
       case isCreatedNode(node):
         this._node = node.CreatedNode;
+        this.nodeType = 'CreatedNode';
         break;
       case isModifiedNode(node):
         this._node = node.ModifiedNode;
+        this.nodeType = 'ModifiedNode';
         break;
       case isDeletedNode(node):
         this._node = node.DeletedNode;
+        this.nodeType = 'DeletedNode';
         break;
       default:
         throw new Error('Invalid node type');
@@ -75,5 +81,22 @@ export class AffectedNode {
 
   getNFTAcceptOfferOwner(): string | undefined {
     return this._node?.FinalFields?.Owner;
+  }
+
+  getEscrowFinishAmount(): [Token, Amount] | undefined {
+    const amount = this._node?.FinalFields?.Amount;
+    if (amount) {
+      return getTransactionTokenAndAmount(amount);
+    }
+  }
+
+  getEscrowDestination(): string | undefined {
+    const destination = this._node?.FinalFields?.Destination;
+    const account = this._node?.FinalFields?.Account;
+    return destination === account ? undefined : destination;
+  }
+
+  getEscrowPreviousTxHash(): string | undefined {
+    return this._node?.FinalFields?.PreviousTxnID;
   }
 }

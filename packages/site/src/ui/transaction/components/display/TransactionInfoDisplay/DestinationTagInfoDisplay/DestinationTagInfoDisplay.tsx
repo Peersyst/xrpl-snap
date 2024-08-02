@@ -1,7 +1,7 @@
-import { Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
-import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import { useTranslate } from 'ui/locale';
+
+import SimpleTextInfoDisplay from '../SimpleTextInfoDisplay/SimpleTextInfoDisplay';
 
 export interface DestinationTagInfoDisplayProps {
   className?: string;
@@ -13,14 +13,10 @@ function DestinationTagInfoDisplay({ className, destinationTag, ...rest }: Desti
   const translate = useTranslate('transactions');
 
   return (
-    <InfoDisplay
+    <SimpleTextInfoDisplay
       className={clsx('DestinationTagInfoDisplay', className)}
-      title={translate('destinationTag')}
-      content={
-        <Typography variant="body1" fontWeight="500">
-          {destinationTag}
-        </Typography>
-      }
+      label={translate('destinationTag')}
+      content={String(destinationTag)}
       {...rest}
     />
   );

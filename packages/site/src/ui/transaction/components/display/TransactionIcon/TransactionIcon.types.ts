@@ -6,6 +6,7 @@ export interface TransactionIconProps {
   style?: React.CSSProperties;
   loading?: boolean;
   txType: Transaction['TransactionType'];
+  border?: boolean;
   isReceiver: boolean;
   size?: ChipIconButtonProps['size'];
 }

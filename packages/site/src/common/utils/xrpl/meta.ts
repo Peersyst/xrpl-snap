@@ -94,4 +94,29 @@ export class TransactionMeta {
 
     return { amount, nftTokenId: this.nftoken_id, seller, buyer };
   }
+
+  public getEscrowNode(): AffectedNode | undefined {
+    return this.affectedNodes.find((node) => node.nodeType === 'DeletedNode' && node.entryType === 'Escrow');
+  }
+
+  public getEscrowDestination(): string | undefined {
+    const node = this.getEscrowNode();
+    if (node) {
+      return node.getEscrowDestination();
+    }
+  }
+
+  public getEscrowFinishAmount(): [Token, Amount] | undefined {
+    const node = this.getEscrowNode();
+    if (node) {
+      return node.getEscrowFinishAmount();
+    }
+  }
+
+  public getEscrowPreviousTxHash(): string | undefined {
+    const node = this.getEscrowNode();
+    if (node) {
+      return node.getEscrowPreviousTxHash();
+    }
+  }
 }

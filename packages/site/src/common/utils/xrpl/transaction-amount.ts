@@ -13,7 +13,7 @@ export function getTransactionAmount(amount: XrplAmount, token: Token): Amount {
   if (typeof amount === 'string') {
     return new Amount(amount, 6, 'XRP');
   }
-  return Amount.fromDecToken(amount.value, token);
+  return Amount.fromDecToken(new BigNumber(amount.value).toFixed(14), token);
 }
 
 export function getTransactionTokenAndAmount(amount: XrplAmount): [Token, Amount] {
