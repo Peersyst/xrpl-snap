@@ -22,10 +22,14 @@ export const TransactionSkeleton = (): JSX.Element => (
         affectedNodes: [],
         getAMMAccountID: () => undefined,
         findAssetsChanges: () => undefined,
+        getEscrowFinishAmount: () => undefined,
+        getEscrowDestination: () => undefined,
+        getEscrowNode: () => undefined,
+        getEscrowPreviousTxHash: () => undefined,
         parseNFTAcceptOffer: () => ({ amount: undefined, nftTokenId: undefined, seller: undefined, buyer: undefined }),
       },
     }}
     accountAddress="raQwCVAJVqjrVm1Nj5SFRcX8i22BhdC9WA"
-    loading
+    loading={true}
   />
 );

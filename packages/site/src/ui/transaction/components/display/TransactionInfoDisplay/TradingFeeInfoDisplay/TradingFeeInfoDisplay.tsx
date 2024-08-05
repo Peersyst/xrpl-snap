@@ -1,9 +1,9 @@
-import { Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import { formatTradingFee } from 'common/utils/xrpl/trading-fee';
-import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import { useTranslate } from 'ui/locale';
 import { AMMVote } from 'xrpl';
+
+import BalanceInfoDisplay from '../BalanceInfoDisplay/BalanceInfoDisplay';
 
 export interface TradingFeeInfoDisplayProps {
   className?: string;
@@ -15,14 +15,11 @@ function TradingFeeInfoDisplay({ className, tradingFee, ...rest }: TradingFeeInf
   const translate = useTranslate('transactions');
 
   return (
-    <InfoDisplay
+    <BalanceInfoDisplay
       className={clsx('TradingFeeInfoDisplay', className)}
-      title={translate('tradingFee')}
-      content={
-        <Typography variant="body1" fontWeight="500">
-          {`${formatTradingFee(tradingFee)} %`}
-        </Typography>
-      }
+      label={translate('tradingFee')}
+      balance={formatTradingFee(tradingFee)}
+      currency="%"
       {...rest}
     />
   );

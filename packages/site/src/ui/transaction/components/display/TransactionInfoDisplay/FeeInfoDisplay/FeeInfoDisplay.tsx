@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useTranslate } from 'ui/locale';
 
-import BalanceInfoDisplay from '../common/BalanceInfoDisplay/BalanceInfoDisplay';
+import BalanceInfoDisplay from '../BalanceInfoDisplay/BalanceInfoDisplay';
 
 export interface FeeInfoDisplayProps {
   className?: string;

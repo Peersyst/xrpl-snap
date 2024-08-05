@@ -1,4 +1,4 @@
-import { Typography } from '@peersyst/react-components';
+import { Hash, Typography } from '@peersyst/react-components';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
 import { useTranslate } from 'ui/locale';
 import { convertHexToString } from 'xrpl';
@@ -16,7 +16,11 @@ function DomainInfoDisplayContent({ domain }: Pick<DomainInfoDisplayProps, 'doma
     );
   }
   const parsedDomain = convertHexToString(domain);
-  return <ExternalLink to={parsedDomain}>{parsedDomain}</ExternalLink>;
+  return (
+    <ExternalLink to={parsedDomain}>
+      <Hash length={13} hash={parsedDomain} variant="body1" fontWeight="500" />
+    </ExternalLink>
+  );
 }
 
 export default DomainInfoDisplayContent;

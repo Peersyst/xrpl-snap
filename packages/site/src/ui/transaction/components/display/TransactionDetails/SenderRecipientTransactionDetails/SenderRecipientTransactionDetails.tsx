@@ -1,10 +1,11 @@
 import { XrplTx } from 'common/models/transaction/tx.types';
+import { useTranslate } from 'ui/locale';
 import useParseTransaction from 'ui/transaction/hooks/useParseTransaction';
 import { Transaction } from 'xrpl';
 
+import BlockchainAddressInfoDisplay from '../../TransactionInfoDisplay/BlockchainAddressInfoDisplay/BlockchainAddressInfoDisplay';
 import DestinationInfoDisplay from '../../TransactionInfoDisplay/DestinationInfoDisplay/DestinationInfoDisplay';
 import DestinationTagInfoDisplay from '../../TransactionInfoDisplay/DestinationTagInfoDisplay/DestinationTagInfoDisplay';
-import FromInfoDisplay from '../../TransactionInfoDisplay/FromInfoDisplay/FromInfoDisplay';
 
 export type TransactionWithDestinationAndDestinationTag = Transaction & {
   Destination: string;
@@ -18,6 +19,7 @@ export interface SenderRecipientTransactionDetailsProps<T extends TransactionWit
 function SenderRecipientTransactionDetails<T extends TransactionWithDestinationAndDestinationTag>({
   tx,
 }: SenderRecipientTransactionDetailsProps<T>) {
+  const translate = useTranslate('transactions');
   const { direction } = useParseTransaction(tx as Transaction);
   return direction === 'out' ? (
     <>
@@ -25,7 +27,7 @@ function SenderRecipientTransactionDetails<T extends TransactionWithDestinationA
       {typeof tx.DestinationTag === 'number' && <DestinationTagInfoDisplay destinationTag={tx.DestinationTag} />}
     </>
   ) : (
-    <FromInfoDisplay from={tx.Account} />
+    <BlockchainAddressInfoDisplay account={tx.Account} label={translate('from')} />
   );
 }
 

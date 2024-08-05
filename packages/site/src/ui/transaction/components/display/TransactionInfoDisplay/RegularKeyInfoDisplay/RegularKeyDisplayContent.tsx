@@ -12,7 +12,7 @@ function RegularKeyInfoDisplayContent({ regularKey }: Pick<RegularKeyInfoDisplay
       </Typography>
     );
   }
-  return <BlockchainAddress address={regularKey} type="mainnetAddress" variant="body1" fontWeight="500" />;
+  return <BlockchainAddress address={regularKey} showCopyIcon type="mainnetAddress" variant="body1" fontWeight="500" />;
 }
 
 export default RegularKeyInfoDisplayContent;

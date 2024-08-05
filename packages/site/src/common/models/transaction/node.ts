@@ -8,4 +8,8 @@ export enum LedgerEntryTypes {
   RIPPLE_STATE = 'RippleState',
   ACCOUNT_ROOT = 'AccountRoot',
   AMM = 'AMM',
+  DIRECTORY_NODE = 'DirectoryNode',
+  CHECK = 'Check',
+  ESCROW = 'Escrow',
+  OFFER = 'Offer',
 }

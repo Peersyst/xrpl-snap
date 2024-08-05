@@ -22,6 +22,10 @@ export default function useTransactionAmount(tx: XrplTx): [Token, Amount] | unde
         return lpTokenAmount;
       }
       break;
+    case 'EscrowCreate':
+      return getTransactionTokenAndAmount(tx.Amount);
+    case 'EscrowFinish':
+      return meta?.getEscrowFinishAmount();
     case 'CheckCash':
       const checkCashAmount = tx.Amount || tx.DeliverMin;
       if (checkCashAmount) {
@@ -30,6 +34,8 @@ export default function useTransactionAmount(tx: XrplTx): [Token, Amount] | unde
       break;
     case 'NFTokenAcceptOffer':
       return tx.meta?.parseNFTAcceptOffer(tx.Account).amount;
+    case 'OfferCreate':
+      return getTransactionTokenAndAmount(tx.TakerPays);
     case 'Payment':
       const partial = isPartialPayment(tx.Flags);
       if (tx.Account === tx.Destination || partial) {

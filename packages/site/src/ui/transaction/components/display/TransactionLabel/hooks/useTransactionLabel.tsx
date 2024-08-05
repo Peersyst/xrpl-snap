@@ -12,6 +12,11 @@ export default function useTransactionLabel(tx: Transaction, isReceiver: boolean
       return translate(isReceiver ? 'receivedFrom' : 'sentTo', { address: formattedAccount, ns: 'transactions' });
     case 'SetRegularKey':
       return translate(tx.RegularKey ? 'addRegularKey' : 'deleteRegularKey', { ns: 'transactions' });
+    case 'TrustSet':
+      if (tx.LimitAmount.value === '0') {
+        return translate(tx.LimitAmount.issuer === account ? 'removeIncomingTrustLine' : 'removeTrustLine', { ns: 'transactions' });
+      }
+      return translate(tx.LimitAmount.issuer === account ? 'addIcomingTrustLine' : 'addTrustLine', { ns: 'transactions' });
     default:
       return translate(txType, { ns: 'transactions' });
   }

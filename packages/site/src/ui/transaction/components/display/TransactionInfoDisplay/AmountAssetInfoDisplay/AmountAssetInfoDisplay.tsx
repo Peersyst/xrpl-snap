@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import Amount from 'common/utils/Amount';
 import { parseCurrencyCode } from 'common/utils/token/currencyCode';
-import Balance from 'ui/common/components/display/Balance/Balance';
-import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import { useTranslate } from 'ui/locale';
+
+import BalanceInfoDisplay from '../BalanceInfoDisplay/BalanceInfoDisplay';
 
 export interface AmountAssetInfoDisplayProps {
   className?: string;
@@ -18,10 +18,11 @@ function AmountAssetInfoDisplay({ className, asset, index, ...rest }: AmountAsse
   const currency = asset.currency === 'XRP' ? 'XRP' : parseCurrencyCode(asset.currency);
 
   return (
-    <InfoDisplay
+    <BalanceInfoDisplay
       className={clsx('AssetInfoDisplay', className)}
-      title={translate('asset', { n: index })}
-      content={<Balance balance={asset.formatAmount()} variant="body1" currency={currency} fontWeight="500" />}
+      label={translate('asset', { n: index })}
+      currency={currency}
+      balance={asset.formatAmount()}
       {...rest}
     />
   );

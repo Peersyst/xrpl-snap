@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useTranslate } from 'ui/locale';
 
-import HashInfoDisplay from '../common/HashInfoDisplay/HashInfoDisplay';
+import HashInfoDisplay from '../HashInfoDisplay/HashInfoDisplay';
 
 export interface NFTokenIDInfoDisplayProps {
   className?: string;

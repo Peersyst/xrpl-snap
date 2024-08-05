@@ -23,6 +23,10 @@ export const TransactionIconRoot = styled(ChipIconButton)(
         color: ${theme.palette.primary};
       }
     }
+    &.Border.Border.Border.Border:not(.Active) {
+      background-color: ${alpha(theme.palette.grey[400], 0.15)};
+    }
+
     &:hover {
       &.Active.Active.Active {
         border: 1px solid ${alpha(theme.palette.primary, 0.8)};
