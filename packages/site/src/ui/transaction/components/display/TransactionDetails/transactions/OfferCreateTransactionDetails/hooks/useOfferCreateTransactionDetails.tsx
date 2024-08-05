@@ -26,7 +26,8 @@ export default function useOfferCreateTransactionDetails(tx: XrplTx<OfferCreate>
       takerGetsAmount,
       takerPays,
       takerPaysAmount,
-      rate: `${rate.toFixed(6)} ${firstCurrency}/${secondCurrency}`,
+      rate: `${rate.toFixed(6)}`,
+      rateCurrency: `${firstCurrency}/${secondCurrency}`,
     };
   }, [tx]);
 }

@@ -6,9 +6,9 @@ import { useTranslate } from 'ui/locale';
 import { OfferCreate } from 'xrpl';
 
 import BalanceWithFiat from '../../../BalanceWithFiat/BalanceWithFiat';
+import BalanceInfoDisplay from '../../../TransactionInfoDisplay/BalanceInfoDisplay/BalanceInfoDisplay';
 import HashInfoDisplay from '../../../TransactionInfoDisplay/HashInfoDisplay/HashInfoDisplay';
 import RippleTimeInfoDisplay from '../../../TransactionInfoDisplay/RippleTimeInfoDisplay/RippleTimeInfoDisplay';
-import SimpleTextInfoDisplay from '../../../TransactionInfoDisplay/SimpleTextInfoDisplay/SimpleTextInfoDisplay';
 import BaseTransactionDetails from '../../BaseTransactionDetails/BaseTransactionDetails';
 import TransactionDetailsCard from '../../TransactionDetailsCard/TransactionDetailsCard';
 import useOfferCreateTransactionDetails from './hooks/useOfferCreateTransactionDetails';
@@ -21,7 +21,7 @@ export interface OfferCreateTransactionDetailsProps {
 
 function OfferCreateTransactionDetails({ className, tx, ...rest }: OfferCreateTransactionDetailsProps) {
   const translate = useTranslate('transactions');
-  const { takerGets, takerPays, takerGetsAmount, takerPaysAmount, rate } = useOfferCreateTransactionDetails(tx);
+  const { takerGets, takerPays, takerGetsAmount, takerPaysAmount, rate, rateCurrency } = useOfferCreateTransactionDetails(tx);
 
   return (
     <BaseTransactionDetails className={clsx('OfferCreateTransactionDetails', className)} tx={tx} {...rest}>
@@ -50,7 +50,7 @@ function OfferCreateTransactionDetails({ className, tx, ...rest }: OfferCreateTr
           />
         </Row>
       </TransactionDetailsCard>
-      <SimpleTextInfoDisplay label={translate('rate')} content={rate} />
+      <BalanceInfoDisplay label={translate('rate')} balance={rate} currency={rateCurrency} />
       {typeof tx.Expiration === 'number' && <RippleTimeInfoDisplay date={tx.Expiration} label={translate('expiration')} />}
       {typeof tx.OfferSequence === 'number' && <HashInfoDisplay label={translate('offerSequence')} hash={String(tx.OfferSequence)} />}
     </BaseTransactionDetails>

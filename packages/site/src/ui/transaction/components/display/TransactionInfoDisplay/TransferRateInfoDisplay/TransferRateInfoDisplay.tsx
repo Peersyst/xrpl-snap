@@ -1,8 +1,8 @@
-import { Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import { normalizeTransferRate } from 'common/utils/xrpl/transfer-rate';
-import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import { useTranslate } from 'ui/locale';
+
+import BalanceInfoDisplay from '../BalanceInfoDisplay/BalanceInfoDisplay';
 
 export interface TransferRateInfoDisplayProps {
   className?: string;
@@ -14,14 +14,10 @@ function TransferRateInfoDisplay({ className, transferRate, ...rest }: TransferR
   const translate = useTranslate('transactions');
 
   return (
-    <InfoDisplay
+    <BalanceInfoDisplay
       className={clsx('TransferRateInfoDisplay', className)}
-      title={translate('transferRate')}
-      content={
-        <Typography variant="body1" fontWeight="500">
-          {normalizeTransferRate(transferRate)}
-        </Typography>
-      }
+      label={translate('transferRate')}
+      balance={normalizeTransferRate(transferRate)}
       {...rest}
     />
   );
