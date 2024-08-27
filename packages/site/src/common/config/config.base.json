@@ -25,7 +25,7 @@
     "ownerReserveCostInXrpPerItem": "2"
   },
   "featureFlags": {
-    "enablePlayground": true
+    "enablePlayground": false
   },
   "tokenMetadata": {
     "apiUrl": "https://s1.xrplmeta.org/token/"

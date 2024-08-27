@@ -1,4 +1,7 @@
 {
   "backendUrl": "http://localhost:3001",
-  "snapOrigin": "local:http://localhost:8080"
+  "snapOrigin": "local:http://localhost:8080",
+  "featureFlags": {
+    "enablePlayground": true
+  }
 }

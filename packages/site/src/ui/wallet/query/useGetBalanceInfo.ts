@@ -11,7 +11,6 @@ import useWalletState from '../../adapter/state/useWalletState';
 
 export default function useGetBalanceInfo<T = BalanceInfo>({
   enabled = true,
-
   ...options
 }: Omit<
   QueryOptions<BalanceInfo, unknown, T, (Queries | number | undefined | string | undefined)[]>,
