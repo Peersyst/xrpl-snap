@@ -3,7 +3,7 @@ import { copyable, row, text } from '@metamask/snaps-sdk';
 import type { LocaleKey } from 'src/dialog/locale/translate';
 import type { Transaction } from 'xrpl';
 import { type IssuedCurrencyAmount } from 'xrpl';
-
+import { hexToString } from '@xrplf/isomorphic/utils';
 import { Label, TransactionCopyableField, TransactionField } from '../base/base';
 import { formatRippleTime, translateLabel } from '../utils';
 import { isNumber, isString } from '../utils/data-types-validator';
@@ -59,7 +59,7 @@ const URIComponent = (uri: string | undefined | null): Component[] => {
   if (!isString(uri)) {
     return [];
   }
-  return TransactionField('URI', uri);
+  return TransactionField('URI', hexToString(uri));
 };
 
 const OwnerComponent = (owner: string | undefined): Component[] => {

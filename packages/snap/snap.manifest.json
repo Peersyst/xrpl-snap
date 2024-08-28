@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Manage XRP Ledger accounts and assets with MetaMask.",
   "proposedName": "XRP Ledger",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/Peersyst/xrpl-snap.git"
   },
   "source": {
-    "shasum": "Z9CikSqzUb8qkl7d2Zw5GX0yXlC4xgvkjxGsWPFUfEc=",
+    "shasum": "0Tbt9a4yZ3t7U79XcmI93d5TbyDL3gat7oOoi7FREJk=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
