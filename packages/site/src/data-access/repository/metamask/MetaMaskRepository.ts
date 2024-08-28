@@ -9,8 +9,8 @@ import type { GetSnapsResponse } from '../../../common/models/snap';
 import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import RepositoryErrorCodes from '../error/RepositoryErrorCodes';
-import { MetamaskErrorCodes } from './MetamaskErrorCodes';
-import { withMetamaskError } from './utils/MetamaskError';
+import { MetaMaskErrorCodes } from './MetaMaskErrorCodes';
+import { withMetaMaskError } from './utils/MetaMaskError';
 
 export type Snap = {
   permissionName: string;
@@ -19,7 +19,7 @@ export type Snap = {
   initialPermissions: Record<string, unknown>;
 };
 
-export class MetamaskRepository {
+export class MetaMaskRepository {
   public provider?: MetaMaskInpageProvider | null;
 
   public async onInit() {
@@ -33,7 +33,7 @@ export class MetamaskRepository {
   }
 
   public async requestSnap(snapId: string) {
-    await withMetamaskError(async () => {
+    await withMetaMaskError(async () => {
       await this.request({
         method: 'wallet_requestSnaps',
         params: {
@@ -126,7 +126,7 @@ export class MetamaskRepository {
     amount: XrplAmount;
     destinationTag?: number;
   }): Promise<string> {
-    return await withMetamaskError(async () => {
+    return await withMetaMaskError(async () => {
       const { account } = await this.getWallet();
 
       const submittedTx = await this.invokeSnap({
@@ -159,7 +159,7 @@ export class MetamaskRepository {
   }
 
   public async changeNetwork(chainId: number): Promise<Network> {
-    return await withMetamaskError(async () => {
+    return await withMetaMaskError(async () => {
       return await this.invokeSnap({
         method: 'xrpl_changeNetwork',
         params: { chainId },
@@ -182,7 +182,7 @@ export class MetamaskRepository {
   }
 
   async exportPrivateKey(): Promise<void> {
-    await withMetamaskError(async () =>
+    await withMetaMaskError(async () =>
       this.invokeSnap({
         method: 'xrpl_extractPrivateKey',
         params: undefined,
@@ -296,7 +296,7 @@ export class MetamaskRepository {
 
   private async request({ method, params }: RequestArguments) {
     if (!this.provider) {
-      throw new RepositoryError(MetamaskErrorCodes.PROVIDER_NOT_INITIALIZED);
+      throw new RepositoryError(MetaMaskErrorCodes.PROVIDER_NOT_INITIALIZED);
     }
     return this.provider.request({ method, params });
   }

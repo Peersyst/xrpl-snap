@@ -2,11 +2,11 @@ import { BalanceInfo } from 'common/models/balance/balance';
 import Amount from 'common/utils/Amount';
 import { DomainEvents } from 'domain/events';
 import type NetworkController from 'domain/network/controller/NetworkController';
-import { withMetamaskRepositoryError } from 'domain/snap/errors/withMetamaskError';
+import { withMetaMaskRepositoryError } from 'domain/snap/errors/withMetaMaskError';
 import { xrpToDrops } from 'xrpl';
 
 import type { TokenWithBalance } from '../../../common/models/token';
-import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
+import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type State from '../../common/State';
 import { DomainError } from '../../error/DomainError';
 import type { IWalletState } from '../state/walletState';
@@ -16,7 +16,7 @@ export default class WalletController {
   constructor(
     public readonly walletState: State<IWalletState>,
     private readonly networkController: NetworkController,
-    private readonly metamaskRepository: MetamaskRepository,
+    private readonly metamaskRepository: MetaMaskRepository,
   ) {}
 
   onInit(): void {
@@ -109,7 +109,7 @@ export default class WalletController {
   }
 
   async exportPrivateKey(): Promise<void> {
-    await withMetamaskRepositoryError(async () => {
+    await withMetaMaskRepositoryError(async () => {
       await this.metamaskRepository.exportPrivateKey();
     });
   }

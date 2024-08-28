@@ -1,4 +1,4 @@
-export enum MetamaskErrorCodes {
+export enum MetaMaskErrorCodes {
   PROVIDER_NOT_INITIALIZED = 'PROVIDER_NOT_INITIALIZED',
   TRANSACTION_ERROR = 'TRANSACTION_ERROR',
   USER_DECLINED = 'USER_DECLINED',
