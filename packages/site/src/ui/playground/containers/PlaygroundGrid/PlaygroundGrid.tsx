@@ -29,6 +29,18 @@ const PLAYGROUNDS = [
     label: 'XRP Payment',
     path: PlaygroundRoutes.XRP_PAYMENT,
   },
+  {
+    label: 'Mint NFT',
+    path: PlaygroundRoutes.MINT_NFT,
+  },
+  {
+    label: 'CreateOffer NFT',
+    path: PlaygroundRoutes.NFT_CREATE_OFFER,
+  },
+  {
+    label: 'AcceptOffer NFT',
+    path: PlaygroundRoutes.NFT_ACCEPT_OFFER,
+  },
 ];
 
 function chunkArray(array: any[], size: number) {
