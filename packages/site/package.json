@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.3",
   "private": true,
   "scripts": {
     "allow-scripts": "yarn workspace root allow-scripts",

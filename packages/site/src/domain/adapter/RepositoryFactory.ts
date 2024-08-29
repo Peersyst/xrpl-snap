@@ -1,14 +1,14 @@
 import { TokenRepository } from 'data-access/repository/token/TokenRepository';
 
 import Factory from '../../common/utils/Factory';
-import { MetamaskRepository } from '../../data-access/repository/metamask/MetamaskRepository';
+import { MetaMaskRepository } from '../../data-access/repository/metamask/MetaMaskRepository';
 
 export type IRepositoryFactory = {
-  metamaskRepository: MetamaskRepository;
+  metamaskRepository: MetaMaskRepository;
   tokenRepository: TokenRepository;
 };
 
 export default Factory<IRepositoryFactory>({
-  metamaskRepository: () => new MetamaskRepository(),
+  metamaskRepository: () => new MetaMaskRepository(),
   tokenRepository: () => new TokenRepository(),
 });

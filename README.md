@@ -7,8 +7,8 @@
   </a>
 </p>
 <p align="center">
-  If you have a Metamask wallet now you have an XRPL one.<br>
-  Securely manage your XRP and interact with XRPL-based DApps directly from Metamask.
+  If you have a MetaMask wallet now you have an XRPL one.<br>
+  Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask.
 </p>
 
 <div align="center">
@@ -25,11 +25,11 @@
 
 ## Overview
 
-The XRPL Snap for Metamask is an extension that allows users to interact with the XRP Ledger (XRPL) directly from their Metamask wallet. This Snap introduces support for XRPL, enabling users to manage XRP and other tokens on the XRPL, perform transactions, and interact with XRPL-based decentralized applications (DApps).
+The XRP Ledger for MetaMask is an extension that allows users to interact with the XRP Ledger (XRPL) directly from their MetaMask wallet. This Snap introduces support for XRPL, enabling users to manage XRP and other tokens on the XRPL, perform transactions, and interact with XRPL-based decentralized applications (DApps).
 
 ## Features
 
-- **XRPL Integration**: Manage XRP and XRPL tokens within Metamask.
+- **XRPL Integration**: Manage XRP and XRPL tokens within MetaMask.
 - **Transaction Support**: Send and receive XRP and other XRPL tokens.
 - **DApp Interaction**: Use XRPL-based DApps seamlessly.
 - **Account Management**: View account balances, transaction history, and other details.
@@ -37,17 +37,17 @@ The XRPL Snap for Metamask is an extension that allows users to interact with th
 
 ## Usage
 
-To use the XRPL Snap, first install it by following these steps:
+To use the XRP Ledger, first install it by following these steps:
 
-1. **Open Metamask**: Ensure you have the latest version of the Metamask extension installed in your browser.
-2. **Navigate to Settings**: Click on the Metamask icon, go to settings, and look for the Snaps section.
-3. **Add XRPL Snap**: In the Snaps section, add the XRPL Snap by providing its URL or selecting it from the Snap store.
-4. **Install Snap**: Click on the XRPL Snap and follow the prompts to add it to your Metamask wallet.
+1. **Open MetaMask**: Ensure you have the latest version of the MetaMask extension installed in your browser.
+2. **Navigate to Settings**: Click on the MetaMask icon, go to settings, and look for the Snaps section.
+3. **Add XRP Ledger**: In the Snaps section, add the XRP Ledger by providing its URL or selecting it from the Snap store.
+4. **Install Snap**: Click on the XRP Ledger and follow the prompts to add it to your MetaMask wallet.
 5. **Enable Snap**: Once installed, enable the Snap and grant necessary permissions.
 
 ## Development
 
-Developers can create their own XRPL Snaps to extend Metamask's functionality further. Here’s a basic guide to get started:
+Here’s a basic guide to get started:
 
 ### Prerequisites
 
@@ -184,14 +184,14 @@ provider.request({
 For support and further information, refer to the following resources:
 
 - **XRPL Documentation**: [XRPL.org](https://xrpl.org/)
-- **Metamask Snaps Documentation**: [Metamask Snaps](https://docs.metamask.io/snaps/)
-- **Community Forums**: Join discussions on Metamask and XRPL community forums.
+- **MetaMask Snaps Documentation**: [MetaMask Snaps](https://docs.metamask.io/snaps/)
+- **Community Forums**: Join discussions on MetaMask and XRPL community forums.
 
 ## Contributing
 
-We welcome contributions to the XRPL Snap project. To contribute, please follow these steps:
+We welcome contributions to the XRP Ledger project. To contribute, please follow these steps:
 
-1. **Fork the Repository**: Fork the XRPL Snap repository on GitHub.
+1. **Fork the Repository**: Fork the XRP Ledger repository on GitHub.
 2. **Create a Branch**: Create a new branch for your feature or bugfix.
 3. **Submit a Pull Request**: Submit a pull request with a detailed description of your changes.
 

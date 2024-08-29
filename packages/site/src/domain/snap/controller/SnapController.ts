@@ -1,30 +1,30 @@
 import { DomainEvents } from 'domain/events';
 
 import { config } from '../../../common/config';
-import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
+import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type State from '../../common/State';
 import type { ISnapState } from '../state/snapState';
 
 export default class SnapController {
-  constructor(public readonly snapState: State<ISnapState>, private readonly metamaskRepository: MetamaskRepository) {}
+  constructor(public readonly snapState: State<ISnapState>, private readonly metamaskRepository: MetaMaskRepository) {}
 
   async onInit(): Promise<void> {
-    await this.recoverMetamaskState();
+    await this.recoverMetaMaskState();
   }
 
   async install() {
     await this.metamaskRepository.requestSnap(config.snapOrigin);
-    await this.recoverMetamaskState();
+    await this.recoverMetaMaskState();
   }
 
-  async recoverMetamaskState() {
+  async recoverMetaMaskState() {
     if (!this.metamaskRepository.provider) {
       return;
     }
     const installedSnaps = await this.metamaskRepository.getSnaps();
     const isSnapInstalled = installedSnaps[config.snapOrigin] !== undefined;
     this.snapState.setState({
-      isMetamaskInstalled: true,
+      isMetaMaskInstalled: true,
       isSnapInstalled,
     });
     if (isSnapInstalled) {
@@ -34,7 +34,7 @@ export default class SnapController {
 
   disconnect() {
     this.snapState.setState({
-      isMetamaskInstalled: true,
+      isMetaMaskInstalled: true,
       isSnapInstalled: false,
     });
     DomainEvents.snap.emit('onSnapDisconnected');

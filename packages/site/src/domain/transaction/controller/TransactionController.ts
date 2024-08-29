@@ -7,11 +7,11 @@ import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
 import { xrpToDrops } from 'xrpl';
 
-import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
+import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
 
 export default class TransactionController {
-  constructor(private readonly metamaskRepository: MetamaskRepository) {}
+  constructor(private readonly metamaskRepository: MetaMaskRepository) {}
 
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
     const res = await this.metamaskRepository.getAccountTransactions(address, marker);

@@ -5,22 +5,22 @@ import useRouteMatch from 'ui/router/hooks/useRouteMatch';
 import AccountInfoModal from 'ui/wallet/containers/AccountInfoModal/AccountInfoModal';
 
 import ConnectSnapModal from '../ConnectSnapModal/ConnectSnapModal';
-import InstallMetamaskModal from '../InstallMetamaskModal/InstallMetamaskModal';
+import InstallMetaMaskModal from '../InstallMetaMaskModal/InstallMetaMaskModal';
 
 const ROUTES_WITHOUT_SNAP = [ReviewTransactionRoutes.MAIN];
 
 function SnapModals() {
   const showSnapModals = useRouteMatch(ROUTES_WITHOUT_SNAP) === null;
-  const { isMetamaskInstalled, isSnapInstalled } = useSnapState();
+  const { isMetaMaskInstalled, isSnapInstalled } = useSnapState();
   const [showAccountModal, setShowAccountModal] = useState(false);
 
   return (
     <Fragment>
-      <InstallMetamaskModal closable={false} open={!isMetamaskInstalled && showSnapModals} />
+      <InstallMetaMaskModal closable={false} open={!isMetaMaskInstalled && showSnapModals} />
       <ConnectSnapModal
         onSnapInstalled={() => setShowAccountModal(true)}
         closable={false}
-        open={isMetamaskInstalled && !isSnapInstalled && showSnapModals}
+        open={isMetaMaskInstalled && !isSnapInstalled && showSnapModals}
       />
       <AccountInfoModal open={showAccountModal} onClose={() => setShowAccountModal(false)} />
     </Fragment>

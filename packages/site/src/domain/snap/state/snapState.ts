@@ -2,13 +2,13 @@ import { createStore } from 'zustand';
 
 export type ISnapState = {
   // If metamask or flask (if needed) is installed
-  isMetamaskInstalled: boolean;
+  isMetaMaskInstalled: boolean;
   // If snap is installed
   isSnapInstalled: boolean;
 };
 
 const snapState = createStore<ISnapState>(() => ({
-  isMetamaskInstalled: false,
+  isMetaMaskInstalled: false,
   isSnapInstalled: false,
 }));
 

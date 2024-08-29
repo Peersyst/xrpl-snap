@@ -2,7 +2,7 @@ import RepositoryError from 'data-access/repository/error/RepositoryError';
 import RepositoryErrorCodes from 'data-access/repository/error/RepositoryErrorCodes';
 import { DomainError } from 'domain/error/DomainError';
 
-export function handleMetamaskError(error: any) {
+export function handleMetaMaskError(error: any) {
   if (!(error instanceof DomainError)) {
     if (
       error instanceof RepositoryError &&
@@ -18,12 +18,12 @@ export function handleMetamaskError(error: any) {
   }
 }
 
-export async function withMetamaskRepositoryError<T>(action: () => T): Promise<T> {
+export async function withMetaMaskRepositoryError<T>(action: () => T): Promise<T> {
   async function handleAction() {
     try {
       return await action();
     } catch (error) {
-      handleMetamaskError(error);
+      handleMetaMaskError(error);
     }
   }
 

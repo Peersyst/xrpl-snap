@@ -27,7 +27,7 @@ function ConnectSnapModal({ onSnapInstalled, ...rest }: ModalProps & { onSnapIns
           }
         />
         <Button fullWidth variant="primary" onClick={() => mutate()}>
-          {translate('connectWithMetamask')}
+          {translate('connectWithMetaMask')}
         </Button>
       </Col>
     </Modal>
