@@ -68,7 +68,7 @@ export class MetaMaskRepository {
    */
   async getIOUTokens(account: string): Promise<TokenWithBalance[]> {
     try {
-      const res = (await this.invokeSnap({
+      let res = (await this.invokeSnap({
         method: 'xrpl_request',
         params: { command: 'account_lines', account },
       })) as AccountLinesResponse;
@@ -76,7 +76,7 @@ export class MetaMaskRepository {
       const { lines } = res.result;
 
       while (res.result.marker && res.result.lines.length > 0) {
-        (await this.invokeSnap({
+        res = (await this.invokeSnap({
           method: 'xrpl_request',
           params: {
             command: 'account_lines',
