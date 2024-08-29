@@ -78,5 +78,6 @@
   "buyXRPCTAButton": "Buy now 10 XRP with credit card",
   "activateAccoutModalTitle": "Activate account",
   "inviteToGoToFaucetText": "Also, you can get XRP for free from the faucet",
-  "goToFaucetCTAButton": "Go to faucet"
+  "goToFaucetCTAButton": "Go to faucet",
+  "buy": "Buy"
 }
