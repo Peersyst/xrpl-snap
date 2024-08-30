@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap">
+  <a href="https://www.npmjs.com/package/xrpl-snap">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset=".github/assets/icon.svg">
       <img src=".github/assets/icon.svg" height="150">
@@ -12,11 +12,11 @@
 </p>
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap" target="_blank">
-    <img src="https://img.shields.io/npm/v/@peersyst/xrpl-snap.svg" alt="NPM Version" />
+  <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
+    <img src="https://img.shields.io/npm/v/xrpl-snap.svg" alt="NPM Version" />
   </a>
-  <a href="https://www.npmjs.com/package/@peersyst/xrpl-snap" target="_blank">
-    <img src="https://img.shields.io/npm/l/@peersyst/xrpl-snap.svg" alt="Package License" />
+  <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
+    <img src="https://img.shields.io/npm/l/xrpl-snap.svg" alt="Package License" />
   </a>
   <a href="https://twitter.com/Peersyst">
     <img alt="Twitter Follow Peersyst" src="https://img.shields.io/twitter/follow/Peersyst"/>
@@ -80,7 +80,7 @@ Use the following request to install the Snap:
 provider.request({
   method: 'wallet_requestSnaps',
   params: {
-    ['npm:@peersyst/xrpl-snap']: {},
+    ['npm:xrpl-snap']: {},
   },
 });
 ```
@@ -101,7 +101,7 @@ To make requests using the RPC, use the following code:
 provider.request({
   method: 'wallet_invokeSnap',
   params: {
-    snapId: 'npm:@peersyst/xrpl-snap',
+    snapId: 'npm:xrpl-snap',
     request: {
       method: 'xrpl_request',
       params: { command: 'account_info', account: 'rBg...' },
@@ -118,7 +118,7 @@ provider.request({
 provider.request({
   method: 'wallet_invokeSnap',
   params: {
-    snapId: 'npm:@peersyst/xrpl-snap',
+    snapId: 'npm:xrpl-snap',
     request: {
       method: 'xrpl_getSupportedNetworks',
     },
@@ -132,7 +132,7 @@ provider.request({
 provider.request({
   method: 'wallet_invokeSnap',
   params: {
-    snapId: 'npm:@peersyst/xrpl-snap',
+    snapId: 'npm:xrpl-snap',
     request: {
       method: 'xrpl_getActiveNetwork',
     },
@@ -146,7 +146,7 @@ provider.request({
 provider.request({
   method: 'wallet_invokeSnap',
   params: {
-    snapId: 'npm:@peersyst/xrpl-snap',
+    snapId: 'npm:xrpl-snap',
     request: {
       method: 'xrpl_changeNetwork',
       params: { chainId: 1 }, // Example chainId
@@ -163,7 +163,7 @@ To sign and submit transactions
 provider.request({
   method: 'wallet_invokeSnap',
   params: {
-    snapId: 'npm:@peersyst/xrpl-snap',
+    snapId: 'npm:xrpl-snap',
     request: {
       method: 'xrpl_signAndSubmit',
       params: {

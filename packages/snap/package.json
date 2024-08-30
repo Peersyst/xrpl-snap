@@ -1,6 +1,6 @@
 {
-  "name": "@peersyst/xrpl-snap",
-  "version": "1.0.0-rc.3",
+  "name": "xrpl-snap",
+  "version": "1.0.0",
   "description": "XRP Ledger MetaMask Snap",
   "repository": {
     "type": "git",
