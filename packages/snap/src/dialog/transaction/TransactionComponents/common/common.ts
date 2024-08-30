@@ -1,5 +1,6 @@
 import type { Component } from '@metamask/snaps-sdk';
 import { copyable, row, text } from '@metamask/snaps-sdk';
+import { hexToString } from '@xrplf/isomorphic/utils';
 import type { LocaleKey } from 'src/dialog/locale/translate';
 import type { Transaction } from 'xrpl';
 import { type IssuedCurrencyAmount } from 'xrpl';
@@ -59,7 +60,7 @@ const URIComponent = (uri: string | undefined | null): Component[] => {
   if (!isString(uri)) {
     return [];
   }
-  return TransactionField('URI', uri);
+  return TransactionField('URI', hexToString(uri));
 };
 
 const OwnerComponent = (owner: string | undefined): Component[] => {

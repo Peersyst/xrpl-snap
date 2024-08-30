@@ -1,5 +1,5 @@
 {
-  "projectName": "XRP Snap",
+  "projectName": "XRP Ledger",
   "publicUrl": "/",
   "maxNumberDecimals": 15,
   "nativeToken": "nativeToken",
@@ -25,7 +25,7 @@
     "ownerReserveCostInXrpPerItem": "2"
   },
   "featureFlags": {
-    "enablePlayground": true
+    "enablePlayground": false
   },
   "tokenMetadata": {
     "apiUrl": "https://s1.xrplmeta.org/token/"

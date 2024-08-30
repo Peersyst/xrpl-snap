@@ -18,7 +18,7 @@
   "userDeclined": "User declined",
   "actionAlreadyPending": "Action already pending",
   "cantSendZero": "You can't send 0",
-  "metamaskTerminatedDuringExecution": "Metamask was terminated during execution",
+  "metamaskTerminatedDuringExecution": "MetaMask was terminated during execution",
   "canNotSendToYourself": "You can't send to yourself",
   "invalidTransaction": "Invalid transaction"
 }

@@ -1,19 +1,19 @@
 import RepositoryError from 'data-access/repository/error/RepositoryError';
 
-import { MetamaskErrorCodes } from '../MetamaskErrorCodes';
+import { MetaMaskErrorCodes } from '../MetaMaskErrorCodes';
 
-export function handleMetamaskError(error: any, errorCodeParam?: MetamaskErrorCodes) {
+export function handleMetaMaskError(error: any, errorCodeParam?: MetaMaskErrorCodes) {
   if (!(error instanceof RepositoryError)) {
     let errorCode = errorCodeParam;
     if (!errorCode) {
       if (error instanceof Object && 'message' in error && error.message.includes('user declined')) {
-        errorCode = MetamaskErrorCodes.USER_DECLINED;
+        errorCode = MetaMaskErrorCodes.USER_DECLINED;
       } else if (error.code === -32002) {
-        errorCode = MetamaskErrorCodes.ACTION_ALREADY_PENDING;
+        errorCode = MetaMaskErrorCodes.ACTION_ALREADY_PENDING;
       } else if (error.code === -32603) {
-        errorCode = MetamaskErrorCodes.METAMASK_TERMINATED_DURING_EXECUTION;
+        errorCode = MetaMaskErrorCodes.METAMASK_TERMINATED_DURING_EXECUTION;
       } else {
-        errorCode = MetamaskErrorCodes.UNKOWN_ERROR;
+        errorCode = MetaMaskErrorCodes.UNKOWN_ERROR;
       }
     }
     throw new RepositoryError(errorCode);
@@ -22,12 +22,12 @@ export function handleMetamaskError(error: any, errorCodeParam?: MetamaskErrorCo
   }
 }
 
-export async function withMetamaskError<T>(action: () => T): Promise<T> {
+export async function withMetaMaskError<T>(action: () => T): Promise<T> {
   async function handleAction() {
     try {
       return await action();
     } catch (error) {
-      handleMetamaskError(error);
+      handleMetaMaskError(error);
     }
   }
 

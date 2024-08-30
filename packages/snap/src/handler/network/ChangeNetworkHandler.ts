@@ -11,7 +11,11 @@ export class ChangeNetworkHandler implements IHandler<typeof ChangeNetworkMethod
   constructor(protected readonly context: Context) {}
 
   async handle(origin: string, params: { chainId: number }): Promise<Network> {
-    const { networks } = await this.context.stateManager.get();
+    const { networks, activeNetwork } = await this.context.stateManager.get();
+
+    if (activeNetwork.chainId === params.chainId) {
+      throw new InvalidParamsError(`The network with chainId ${params.chainId} is already the active network.`);
+    }
 
     const network = networks.find(({ chainId }) => chainId === params.chainId);
     if (!network) {

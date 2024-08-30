@@ -1,4 +1,4 @@
-import * as MetamaskKeyTree from '@metamask/key-tree';
+import * as MetaMaskKeyTree from '@metamask/key-tree';
 import type { BIP44AddressKeyDeriver } from '@metamask/key-tree';
 
 import { bip44CompressedPublicKeyToXRPPublicKey, bip44PrivateKeyToXRPPrivateKey } from '../../src/core/utils/wallet-utils';
@@ -18,7 +18,7 @@ describe('Wallet functions', () => {
 
   const mockedGetBIP44AddressKeyDeriver = jest.fn().mockResolvedValue(mockBip44Node) as unknown as BIP44AddressKeyDeriver;
 
-  jest.spyOn(MetamaskKeyTree, 'getBIP44AddressKeyDeriver').mockResolvedValue(mockedGetBIP44AddressKeyDeriver);
+  jest.spyOn(MetaMaskKeyTree, 'getBIP44AddressKeyDeriver').mockResolvedValue(mockedGetBIP44AddressKeyDeriver);
 
   describe('derive', () => {
     test('Creates wallet correctly', async () => {

@@ -1,12 +1,12 @@
 import { config } from 'common/config';
 import type { Network, NetworkReserve } from 'common/models/network/network.types';
 import { DomainEvents } from 'domain/events';
-import { handleMetamaskError } from 'domain/snap/errors/withMetamaskError';
+import { handleMetaMaskError } from 'domain/snap/errors/withMetaMaskError';
 
-import type { MetamaskRepository } from '../../../data-access/repository/metamask/MetamaskRepository';
+import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 
 export default class NetworkController {
-  constructor(private readonly metamaskRepository: MetamaskRepository) {}
+  constructor(private readonly metamaskRepository: MetaMaskRepository) {}
 
   getNetworkReserve(): NetworkReserve {
     return {
@@ -29,7 +29,7 @@ export default class NetworkController {
       await this.metamaskRepository.changeNetwork(network.chainId);
       DomainEvents.network.emit('onNetworkChanged', prevNetwork, network);
     } catch (error) {
-      handleMetamaskError(error);
+      handleMetaMaskError(error);
     }
   }
 }

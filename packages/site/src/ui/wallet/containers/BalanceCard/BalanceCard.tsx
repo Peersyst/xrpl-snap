@@ -1,6 +1,7 @@
-import { Col, Row, useConfig, useTheme } from '@peersyst/react-components';
+import { Col, Row, Skeleton, useConfig, useTheme } from '@peersyst/react-components';
 import clsx from 'clsx';
 import useWalletState from 'ui/adapter/state/useWalletState';
+import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import useGetXrpFiatPriceFromAmount from 'ui/wallet/hooks/useGetXrpFiatPriceFromAmount';
 import useGetBalance from 'ui/wallet/query/useGetBalance';
 
@@ -8,6 +9,7 @@ import { balance_card_left_border, balance_card_right_border } from '../../../as
 import Balance from '../../../common/components/display/Balance/Balance';
 import BalanceDetailsInfoIcon from '../BalanceDetailsInfoIcon/BalanceDetailsInfoIcon';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
+import BuyModalButton from './BuyModalButton';
 import ReceiveModalButton from './ReceiveModalButton';
 import SendModalButton from './SendModalButton';
 
@@ -22,6 +24,7 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const fiatCurrency = useConfig('fiatCurrency');
   const fiatDecimals = useConfig('fiatDecimals');
   const { address } = useWalletState();
+  const { data: network } = useGetActiveNetwork();
 
   const { data: balance, isLoading } = useGetBalance();
 
@@ -51,10 +54,13 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
             light
           />
         </Col>
-        <Row gap={spacing[3]} alignItems="center">
-          <SendModalButton />
-          <ReceiveModalButton />
-        </Row>
+        <Skeleton loading={!network}>
+          <Row gap={spacing[3]} alignItems="center">
+            <SendModalButton />
+            <ReceiveModalButton />
+            <BuyModalButton />
+          </Row>
+        </Skeleton>
       </Col>
       <BalanceCardImageBorder alt="bg-image" css={{ borderTopRightRadius: '1rem' }} src={balance_card_right_border} />
     </BalanceCardRoot>

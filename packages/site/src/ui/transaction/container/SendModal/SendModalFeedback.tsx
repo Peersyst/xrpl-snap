@@ -42,7 +42,7 @@ export function SendModalLoading() {
           <CircularProgress thickness={2} size={30} />
         </Col>
       ) : (
-        <AlertCallout type="info" content={<Typography variant="body1">{translate('goToYourMetamaskToSignTheTx')}</Typography>} />
+        <AlertCallout type="info" content={<Typography variant="body1">{translate('goToYourMetaMaskToSignTheTx')}</Typography>} />
       )}
     </BaseSendModalFeedback>
   );
@@ -74,14 +74,14 @@ export function SendModalSuccess({ onClose, txHash }: { onClose: () => void; txH
   );
 }
 
-function isMetamaskError(error: Error) {
+function isMetaMaskError(error: Error) {
   return error.message.includes('METAMASK');
 }
 
 export function SendModalError<E extends Error>({ onClose, error }: { onClose: () => void; error: E }) {
   const translate = useTranslate();
   const { spacing } = useTheme();
-  const metamaskError = error ? isMetamaskError(error) : false;
+  const metamaskError = error ? isMetaMaskError(error) : false;
   // @ts-ignore
   const reason = typeof error === 'object' && 'data' in error ? (error?.data as string) : undefined;
 
@@ -93,7 +93,7 @@ export function SendModalError<E extends Error>({ onClose, error }: { onClose: (
           <Col gap={spacing[2]}>
             <Typography variant="body1">{translate('transferFailed')}</Typography>
             <Typography variant="body1" light>
-              {translate('transferFailedText', { context: metamaskError ? 'Metamask' : 'error' })}
+              {translate('transferFailedText', { context: metamaskError ? 'MetaMask' : 'error' })}
             </Typography>
             {reason && (
               <Typography variant="body1" light>

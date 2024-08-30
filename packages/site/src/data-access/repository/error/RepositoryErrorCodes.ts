@@ -1,8 +1,8 @@
-import { MetamaskErrorCodes } from '../metamask/MetamaskErrorCodes';
+import { MetaMaskErrorCodes } from '../metamask/MetaMaskErrorCodes';
 
 // Merge all module error codes here
 const RepositoryErrorCodes = {
-  ...MetamaskErrorCodes,
+  ...MetaMaskErrorCodes,
 };
 
 export type RepositoryErrorCode = keyof typeof RepositoryErrorCodes;
