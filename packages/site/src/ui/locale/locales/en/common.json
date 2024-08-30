@@ -79,5 +79,7 @@
   "activateAccoutModalTitle": "Activate account",
   "inviteToGoToFaucetText": "Also, you can get XRP for free from the faucet",
   "goToFaucetCTAButton": "Go to faucet",
+  "snapOnlyAvailableInDesktop": "We are sorry. The XRP Ledger Snap is only available on desktop",
+  "snapOnlyAvailableInDesktopText": "You can access all the functionality of the XRP Snap from your desktop",
   "buy": "Buy"
 }

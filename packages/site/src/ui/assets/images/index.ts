@@ -6,6 +6,7 @@ export { default as bg_bottom } from './bg-bottom.png';
 export { default as bg_top } from './bg-top.png';
 export { default as metamask } from './metamask.png';
 export { default as metamask_invalid_network } from './metamask_invalid_network.png';
+export { default as nomobile } from './nomobile.png';
 export { default as processing } from './processing.gif';
 export { default as received } from './received.png';
 export { default as sent } from './sent.png';
