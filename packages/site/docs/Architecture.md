@@ -1,8 +1,8 @@
 # Architecture
 
-As introduced earlier the architecture of our frontend projects consists on four layers: UI, Domain, Data Access and Data.
+As introduced earlier the architecture of our frontend projects consists of four layers: UI, Domain, Data Access and Data.
 
-In this chapter we'll go though the UI, Domain and Data Access layers and see which objects are located in each layer and how that's translated into folders.
+In this chapter we'll go through the UI, Domain and Data Access layers and see which objects are located in each layer and how that's translated into folders.
 
 - [UI](#ui)
 - [Domain](#domain)
@@ -16,7 +16,7 @@ Every layer is divided into modules for better organization. Here are some examp
 - **Nft**: Module that contains files related with NFTs
 - **Config**: Module that contains files related with configuration
 
-On the other hand, to preserve the _Dependency Inversion Principle_ introduced on the _SOLID Principles_, every layer has an **Adapter** module that connects a layer with the layer bellow. That module is mainly formed by the following:
+On the other hand, to preserve the _Dependency Inversion Principle_ introduced on the _SOLID Principles_, every layer has an **Adapter** module that connects a layer with the layer below. That module is mainly formed by the following:
 
 - **Factory**: Class that creates and injects the dependencies of objects belonging to the foreign layer. The creation of objects is performed lazily to improve performance.
 - **Interfaces**: Abstractions that the local layer will depend on
@@ -39,7 +39,7 @@ The following objects will reside in the UI layer:
 
 ## Domain
 
-The domain layer contains de following objects:
+The domain layer contains the following objects:
 
 - **Controllers**: Classes that perform all the domain logic of the frontend application
 - **State**: Application state that other objects can subscribe to. In our case we will be using zustand for that
@@ -47,7 +47,7 @@ The domain layer contains de following objects:
 
 ## Data Access
 
-The data access layer contains de following objects:
+The data access layer contains the following objects:
 
 - **Api**: Classes that perform actions against the API of the project
 - **Repository**: Classes that interact with a local data source. For example: the local storage of the browser, or the secure storage of a phone.
