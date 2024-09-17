@@ -17,7 +17,7 @@ function HomeTransactions({ className, ...rest }: HomeTransactionsProps) {
   const refContainerRef = useRef<HTMLDivElement>(null);
   const { data: balance } = useGetBalance();
   const { data } = useGetTransactions();
-  const numberOfTransactions = data?.pages.length ?? 0;
+  const numberOfTransactions = data?.pages[0]?.transactions.length ?? 0;
   const accountNotActive = balance?.amount === '0' && numberOfTransactions === 0;
 
   return (

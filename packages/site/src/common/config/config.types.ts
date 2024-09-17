@@ -31,9 +31,10 @@ export type Config = {
     enablePlayground: boolean;
   };
   reserveInfoLink: string;
-  faucetUrls: {
-    testnet: string;
-    devnet: string;
+  faucet: {
+    testnetUrl: string;
+    devnetUrl: string;
+    xrpAmount: string;
   };
   transak: Omit<TransakConfig, 'environment' | 'containerId'> & { environment: string; containerId: string };
 };

@@ -3,10 +3,12 @@ import Amount from 'common/utils/Amount';
 import { DomainEvents } from 'domain/events';
 import type NetworkController from 'domain/network/controller/NetworkController';
 import { withMetaMaskRepositoryError } from 'domain/snap/errors/withMetaMaskError';
+import TransactionController from 'domain/transaction/controller/TransactionController';
 import { xrpToDrops } from 'xrpl';
 
 import type { TokenWithBalance } from '../../../common/models/token';
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
+import type { FundRepository } from '../../../data-access/repository/xrpl/FundRepository';
 import type State from '../../common/State';
 import { DomainError } from '../../error/DomainError';
 import type { IWalletState } from '../state/walletState';
@@ -16,7 +18,9 @@ export default class WalletController {
   constructor(
     public readonly walletState: State<IWalletState>,
     private readonly networkController: NetworkController,
+    private readonly transactionController: TransactionController,
     private readonly metamaskRepository: MetaMaskRepository,
+    private readonly fundRepository: FundRepository,
   ) {}
 
   onInit(): void {
@@ -66,11 +70,16 @@ export default class WalletController {
     return [xrpBalance, ...iouTokens];
   }
 
-  async getBalance(): Promise<BalanceInfo> {
+  getAddress(): string {
     const state = this.walletState.getState();
     if (!state.address) {
       throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
     }
+    return state.address;
+  }
+
+  async getBalance(): Promise<BalanceInfo> {
+    const address = this.getAddress();
 
     const networkReserve = this.networkController.getNetworkReserve();
 
@@ -79,7 +88,7 @@ export default class WalletController {
     let expendableBalance = new Amount('0', 6, 'XRP');
 
     try {
-      const { Balance, OwnerCount } = await this.metamaskRepository.getAccountInfo(state.address);
+      const { Balance, OwnerCount } = await this.metamaskRepository.getAccountInfo(address);
 
       // Set the available balance
       totalBalance = totalBalance.plus(Balance);
@@ -106,6 +115,20 @@ export default class WalletController {
       reserve: reserveBalance,
       total: totalBalance,
     };
+  }
+
+  async fundWallet(xrpAmount: string): Promise<void> {
+    const address = this.getAddress();
+
+    const network = await this.networkController.getActiveNetwork();
+
+    const txHash = await this.fundRepository.fundWallet({
+      destination: address,
+      xrpAmount,
+      chainId: network.chainId,
+    });
+
+    await this.transactionController.awaitTransactionValidation(txHash);
   }
 
   async exportPrivateKey(): Promise<void> {
