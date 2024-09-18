@@ -14,7 +14,7 @@ export interface HomeTransactionsProps {
 }
 
 function HomeTransactions({ className, ...rest }: HomeTransactionsProps) {
-  const refContainerRef = useRef<HTMLDivElement>(null);
+  const refContainer = useRef<HTMLDivElement>(null);
   const { data: balance } = useGetBalance();
   const { data } = useGetTransactions();
   const numberOfTransactions = data?.pages[0]?.transactions.length ?? 0;
@@ -22,8 +22,8 @@ function HomeTransactions({ className, ...rest }: HomeTransactionsProps) {
 
   return (
     <div className={clsx('HomeTransactions', className)} css={{ position: 'relative' }} {...rest}>
-      <HomePageTransactionListWrapper ref={refContainerRef} css={{ position: 'relative' }}>
-        {accountNotActive ? <AccountNotActive /> : <TransactionList container={refContainerRef} />}
+      <HomePageTransactionListWrapper ref={refContainer} css={{ position: 'relative' }}>
+        {accountNotActive ? <AccountNotActive /> : <TransactionList container={refContainer} />}
       </HomePageTransactionListWrapper>
       <HomeTransactionListShaddow />
     </div>

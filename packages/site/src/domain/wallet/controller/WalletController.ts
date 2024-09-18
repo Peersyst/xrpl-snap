@@ -1,4 +1,6 @@
+import { config } from 'common/config';
 import { BalanceInfo } from 'common/models/balance/balance';
+import { withRetries } from 'common/query';
 import Amount from 'common/utils/Amount';
 import { DomainEvents } from 'domain/events';
 import type NetworkController from 'domain/network/controller/NetworkController';
@@ -52,11 +54,8 @@ export default class WalletController {
   }
 
   async getTokens(): Promise<TokenWithBalance[]> {
-    const state = this.walletState.getState();
-    if (!state.address) {
-      throw new DomainError(WalletErrorCodes.WALLET_NOT_INITIALIZED);
-    }
-    const iouTokensPromise = this.metamaskRepository.getIOUTokens(state.address);
+    const address = this.getAddress();
+    const iouTokensPromise = withRetries(async () => this.metamaskRepository.getIOUTokens(address), config.retry.times, config.retry.delay);
 
     const xrpBalancePromise = this.getBalance().then(({ expendable: { decimals, amount } }) => ({
       balance: new Amount(amount, decimals, 'XRP'),
@@ -88,7 +87,11 @@ export default class WalletController {
     let expendableBalance = new Amount('0', 6, 'XRP');
 
     try {
-      const { Balance, OwnerCount } = await this.metamaskRepository.getAccountInfo(address);
+      const { Balance, OwnerCount } = await withRetries(
+        async () => this.metamaskRepository.getAccountInfo(address),
+        config.retry.times,
+        config.retry.delay,
+      );
 
       // Set the available balance
       totalBalance = totalBalance.plus(Balance);

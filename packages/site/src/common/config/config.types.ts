@@ -37,4 +37,8 @@ export type Config = {
     xrpAmount: string;
   };
   transak: Omit<TransakConfig, 'environment' | 'containerId'> & { environment: string; containerId: string };
+  retry: {
+    times: number;
+    delay: number;
+  };
 };

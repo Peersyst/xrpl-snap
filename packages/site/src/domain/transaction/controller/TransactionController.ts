@@ -1,6 +1,8 @@
 import { polling } from '@peersyst/react-utils';
+import { config } from 'common/config';
 import type { SendParams } from 'common/models/transaction/send.types';
 import { TransactionsWithMarker, XrplTx } from 'common/models/transaction/tx.types';
+import { withRetries } from 'common/query';
 import type Amount from 'common/utils/Amount';
 import { TransactionMeta } from 'common/utils/xrpl/meta';
 import { DomainError } from 'domain/error/DomainError';
@@ -14,21 +16,32 @@ export default class TransactionController {
   constructor(private readonly metamaskRepository: MetaMaskRepository) {}
 
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
-    const res = await this.metamaskRepository.getAccountTransactions(address, marker);
+    try {
+      const res = await withRetries(
+        async () => this.metamaskRepository.getAccountTransactions(address, marker),
+        config.retry.times,
+        config.retry.delay,
+      );
 
-    const payments = res.result.transactions.reduce<XrplTx[]>((acc, { tx, meta }) => {
-      // eslint-disable-next-line no-implicit-coercion
-      if (tx && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
-        acc.push({ ...tx, meta: new TransactionMeta(meta) });
-      }
+      const payments = res.result.transactions.reduce<XrplTx[]>((acc, { tx, meta }) => {
+        // eslint-disable-next-line no-implicit-coercion
+        if (tx && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
+          acc.push({ ...tx, meta: new TransactionMeta(meta) });
+        }
 
-      return acc;
-    }, []);
+        return acc;
+      }, []);
 
-    return {
-      marker: res.result.marker,
-      transactions: payments,
-    };
+      return {
+        marker: res.result.marker,
+        transactions: payments,
+      };
+    } catch (error) {
+      return {
+        marker: undefined,
+        transactions: [],
+      };
+    }
   }
 
   /**

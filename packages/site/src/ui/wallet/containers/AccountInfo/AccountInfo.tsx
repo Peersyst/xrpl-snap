@@ -14,9 +14,8 @@ export type AccountInfoProps = {
 
 const AccountInfoRoot = styled(Col)(
   ({ theme }) => css`
-    padding: ${theme.spacing[8]};
+    padding: ${theme.spacing.all(8)};
     row-gap: ${theme.spacing[4]};
-    border-bottom: 1px solid ${theme.palette.grey[200]};
   `,
 );
 

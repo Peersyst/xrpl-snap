@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { parseCurrencyCode } from 'common/utils/token/currencyCode';
 import { useTheme } from 'styled-components';
 import Balance from 'ui/common/components/display/Balance/Balance';
+import BaseCardListItem from 'ui/common/components/display/BaseCardListItem/BaseCardListItem';
 
 import TokenIcon from '../TokenIcon/TokenIcon';
-import { TokenCardRoot } from './TokenCard.styles';
 import type { TokenCardProps } from './TokenCard.types';
 
 export function TokenCard({ className, token, balance, loading = false }: TokenCardProps): JSX.Element {
@@ -13,7 +13,7 @@ export function TokenCard({ className, token, balance, loading = false }: TokenC
 
   const parsedCurrency = parseCurrencyCode(token.currency);
   return (
-    <TokenCardRoot className={clsx('Token', className)} gap={spacing[5]}>
+    <BaseCardListItem className={clsx('Token', className)} gap={spacing[5]}>
       <Col>
         <Skeleton shape="circular" loading={loading} css={{ width: '2.5rem', height: '2.5rem' }}>
           {!loading && <TokenIcon token={token} loading={loading} size="2.5rem" />}
@@ -28,7 +28,7 @@ export function TokenCard({ className, token, balance, loading = false }: TokenC
         </Skeleton>
         <Balance balance={balance} currency={parsedCurrency} variant="body2" fontWeight={400} loading={loading} light />
       </Col>
-    </TokenCardRoot>
+    </BaseCardListItem>
   );
 }
 

@@ -6,7 +6,7 @@
   "decimals": 6,
   "peersystUrl": "https://peersyst.com",
   "snapOrigin": "npm:xrpl-snap",
-  "snapAboutUrl": "https://peersyst.com",
+  "snapAboutUrl": "https://xrplsnap.com",
   "fiatCurrency": "usd",
   "refetchIntervals": {
     "balance": 10000,
@@ -42,7 +42,11 @@
   },
   "faucet": {
     "testnetUrl": "faucet.altnet.rippletest.net",
-    "devnetUrl": "'faucet.devnet.rippletest.net'",
+    "devnetUrl": "faucet.devnet.rippletest.net",
     "xrpAmount": "110"
+  },
+  "retry": {
+    "times": 3,
+    "delay": 500
   }
 }

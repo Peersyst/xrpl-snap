@@ -13,9 +13,3 @@ export const SideBarAccountRoot = styled(Col)(({ theme }) => ({
   height: '9.25rem',
   justifyContent: 'space-between',
 }));
-
-// eslint-disable-next-line no-empty-pattern
-export const SideBarAccountContent = styled(Col)(({}) => ({
-  overflowY: 'auto',
-  height: '33.75rem',
-}));

@@ -4,6 +4,7 @@ import SnapController from 'domain/snap/controller/SnapController';
 import { TokenController } from 'domain/token/TokenController';
 
 import RepositoryFactory from '../../domain/adapter/RepositoryFactory';
+import { NftController } from '../../domain/nft/controller/NftController';
 import snapState from '../../domain/snap/state/snapState';
 import TransactionController from '../../domain/transaction/controller/TransactionController';
 import WalletController from '../../domain/wallet/controller/WalletController';
@@ -15,6 +16,7 @@ export type IControllerFactory = {
   networkController: NetworkController;
   transactionController: TransactionController;
   tokenController: TokenController;
+  nftController: NftController;
 };
 
 export default Factory<IControllerFactory>({
@@ -30,4 +32,5 @@ export default Factory<IControllerFactory>({
   networkController: () => new NetworkController(RepositoryFactory.metamaskRepository),
   transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository),
   tokenController: () => new TokenController(RepositoryFactory.tokenRepository),
+  nftController: () => new NftController(RepositoryFactory.metamaskRepository),
 });
