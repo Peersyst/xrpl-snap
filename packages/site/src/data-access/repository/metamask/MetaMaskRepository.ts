@@ -2,7 +2,7 @@ import type { EIP6963AnnounceProviderEvent, MetaMaskInpageProvider, RequestArgum
 import { config } from 'common/config';
 import type { TokenWithBalance } from 'common/models/token';
 import type { HandlerMethod, HandlerParams, HandlerReturns } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type { AccountLinesResponse, AccountTxResponse, SubmitResponse, Amount as XrplAmount } from 'xrpl';
+import type { AccountLinesResponse, AccountNFTsResponse, AccountTxResponse, SubmitResponse, Amount as XrplAmount } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
@@ -60,6 +60,19 @@ export class MetaMaskRepository {
       return result.account_data;
     }
     throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
+  }
+
+  /**
+   * Gets all tokens of an account
+   * @param account - Address of the account
+   * @param marker - Marker for pagination
+   * @param limit - Limit of tokens to fetch
+   */
+  async getNfts(account: string, marker: unknown, limit = 5): Promise<AccountNFTsResponse> {
+    return (await this.invokeSnap({
+      method: 'xrpl_request',
+      params: { command: 'account_nfts', account, limit, marker },
+    })) as AccountNFTsResponse;
   }
 
   /**

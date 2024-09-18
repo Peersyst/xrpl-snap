@@ -1,16 +1,18 @@
+import { InfiniteScrollProps } from '@peersyst/react-components';
 import clsx from 'clsx';
 import type { TokenWithBalance } from 'common/models/token';
 import useWalletState from 'ui/adapter/state/useWalletState';
 import { InfiniteList } from 'ui/common/components/display/InfiniteList/InfiniteList';
 import NothingToShow from 'ui/common/components/feedback/NothingToShow/NothingToShow';
 import { useTranslate } from 'ui/locale';
-import TokenCard from 'ui/token/components/display/Token/TokenCard';
+import TokenCard from 'ui/token/components/display/TokenCard/TokenCard';
 
 import useGetTokens from '../../../wallet/query/useGetTokens';
 
 export type TokenListProps = {
   className?: string;
   style?: React.CSSProperties;
+  container?: InfiniteScrollProps['container'];
 };
 
 const TokenCardSkeleton = () => (
@@ -39,9 +41,10 @@ function TokenList({ className, ...rest }: TokenListProps) {
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}
-      end={false}
       nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
-      onEndReached={() => ''}
+      onEndReached={() => {
+        console.log('end reached');
+      }}
       {...rest}
     />
   );

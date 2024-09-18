@@ -20,7 +20,7 @@ export function InfiniteList<T>({
   const hasItems = isLoading || (data?.length ?? 0) > 0;
 
   return (
-    <InfiniteScroll end={!hasItems || end} loading={isLoading} callback={onEndReached} {...rest}>
+    <InfiniteScroll observerOffset="0" end={!hasItems || end} loading={isLoading} callback={onEndReached} {...rest}>
       <List
         data={data}
         isLoading={isLoading}
@@ -29,7 +29,6 @@ export function InfiniteList<T>({
         nothingToShow={nothingToShow}
         renderItem={renderItem}
         className={className}
-        style={style}
         gap={gap}
       />
     </InfiniteScroll>

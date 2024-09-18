@@ -11,6 +11,7 @@ import useWalletState from '../../adapter/state/useWalletState';
 
 export default function useGetBalanceInfo<T = BalanceInfo>({
   enabled = true,
+  retry = 3,
   ...options
 }: Omit<
   QueryOptions<BalanceInfo, unknown, T, (Queries | number | undefined | string | undefined)[]>,
@@ -25,6 +26,7 @@ export default function useGetBalanceInfo<T = BalanceInfo>({
     refetchInterval: configRefetchIntervals.balance,
     enabled: enabled && Boolean(address) && isSnapInstalled,
     queryKey: [Queries.GET_BALANCE, address, network?.chainId],
+    retry,
     queryFn: async () => ControllerFactory.walletController.getBalance(),
     ...options,
   });

@@ -3,6 +3,7 @@ export enum Queries {
   GET_STORED_NETWORKS = 'stored-networks',
   GET_ACTIVE_NETWORK = 'active-network',
   GET_TOKENS = 'get-tokens',
+  GET_NFTS = 'get-nfts',
   GET_TRANSACTIONS = 'get-tokens',
   GET_BALANCE = 'get-balance',
   GET_BALANCE_INFO = 'get-balance-info',

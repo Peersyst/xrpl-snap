@@ -5,13 +5,13 @@ export const TabsStyles = css(({ theme }) => ({
     rowGap: 0,
 
     '.TabsTab': {
-      fontWeight: 600,
-      fontSize: '1rem',
-      color: theme.palette.grey[500],
-      padding: '0.5rem 0',
+      fontWeight: 500,
+      fontSize: '0.875rem',
+      color: theme.palette.light,
 
       '&.Active': {
-        color: theme.palette.accent,
+        fontWeight: 600,
+        color: theme.palette.grey[600],
       },
     },
 
