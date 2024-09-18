@@ -42,9 +42,7 @@ function TokenList({ className, ...rest }: TokenListProps) {
       numberOfSkeletons={5}
       data={data}
       nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
-      onEndReached={() => {
-        console.log('end reached');
-      }}
+      onEndReached={() => ''}
       {...rest}
     />
   );

@@ -6,18 +6,10 @@ import { MetaMaskRepository } from 'data-access/repository/metamask/MetaMaskRepo
 import { AccountNFToken, convertHexToString } from 'xrpl';
 
 import { convertIpfsToGateway } from './utils/convertIpfsToGateway';
-/**
- * Controller class for handling NFT-related logic.
- */
+
 export class NftController {
   constructor(private readonly metamaskRepository: MetaMaskRepository) {}
 
-  /**
-   * Fetches NFTs for a given account and retrieves their metadata.
-   * @param account - The account address to fetch NFTs for.
-   * @param marker - The marker to fetch the next page of NFTs.
-   * @returns A promise that resolves to an array of NFTs.
-   */
   async getNfts(account: string, marker: unknown): Promise<NftsWithMarker> {
     try {
       const { result } = await withRetries(
@@ -65,12 +57,6 @@ export class NftController {
     return nft;
   }
 
-  /**
-   * Fetches metadata for a given NFT URI.
-   * Supports both IPFS and HTTP(S) URLs.
-   * @param nftUri - The URI of the NFT metadata.
-   * @returns A promise that resolves to the NFT metadata.
-   */
   private async getNftMetadata(nftUri: string): Promise<NftMetadata | undefined> {
     try {
       let response;
@@ -87,7 +73,6 @@ export class NftController {
         return this.parseNftMetadata(metadata);
       }
     } catch (error) {
-      console.warn('Failed to fetch NFT metadata:', error);
       return undefined;
     }
   }
