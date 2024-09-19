@@ -10,4 +10,5 @@ export const SideBarTabPanel = styled(TabPanel)(({ theme: { palette } }) => ({
   borderTop: `1px solid ${palette.grey[200]}`,
   maxHeight: '32rem',
   overflowY: 'auto',
+  paddingBottom: '2rem',
 }));
