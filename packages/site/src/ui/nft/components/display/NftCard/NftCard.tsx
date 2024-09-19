@@ -11,12 +11,11 @@ export function NftCard({ className, nft, loading = false }: NftCardProps): JSX.
   const image = nft.metadata?.image;
   const name = nft.metadata?.name || 'Unknown Name';
   const collection = nft.metadata?.collection?.name;
-  const family = nft.metadata?.collection?.family;
 
   return (
     <BaseCardListItem className={clsx('Nft', className)} gap={spacing[5]}>
       {image || loading ? <NftCardImage src={image || ''} alt="nft-image" /> : <NftCardImageDefault />}
-      <Col justifyContent="center">
+      <Col justifyContent="center" gap="0.1rem">
         <Skeleton loading={loading}>
           <Typography variant="body1" fontWeight={500} numberOfLines={2}>
             {name}
@@ -28,11 +27,6 @@ export function NftCard({ className, nft, loading = false }: NftCardProps): JSX.
               {collection}
             </Typography>
           </Skeleton>
-        )}
-        {family && (
-          <Typography variant="body2" light fontWeight={400} numberOfLines={1}>
-            {family}
-          </Typography>
         )}
       </Col>
     </BaseCardListItem>

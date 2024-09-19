@@ -47,6 +47,6 @@
   },
   "retry": {
     "times": 3,
-    "delay": 500
+    "delay": 750
   }
 }

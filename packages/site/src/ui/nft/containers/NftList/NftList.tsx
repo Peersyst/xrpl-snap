@@ -50,7 +50,7 @@ function NftList({ className, ...rest }: NftListProps) {
       Skeleton={NftCardSkeleton}
       numberOfSkeletons={5}
       data={data?.pages.flatMap((page) => page.nfts)}
-      nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
+      nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'nft' })} />}
       onEndReached={handleEndReached}
       end={!hasNextPage}
       {...rest}
