@@ -12,7 +12,7 @@ export const DesktopOnlyPageRoot = styled(Col)(
     width: 100%;
     justify-content: center;
     .SnapLogoNoMobile {
-      width: 85vw;
+      width: 50vw;
     }
     .RippleCircle {
       z-index: -1;

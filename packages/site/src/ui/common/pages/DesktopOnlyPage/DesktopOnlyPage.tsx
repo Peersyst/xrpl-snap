@@ -16,9 +16,9 @@ function DesktopOnlyPage({ className, ...rest }: DesktopOnlyPageProps) {
   return (
     <DesktopOnlyPageRoot className={clsx('DesktopOnlyPage', className)} {...rest}>
       <Ripple mobile />
-      <Col alignItems="center">
+      <Col gap="1.5rem" alignItems="center">
         <Image className="SnapLogoNoMobile" src={nomobile} alt="no-mobile" />
-        <Col css={{ maxWidth: '70vw', marginTop: '-2rem' }} gap="0.5rem">
+        <Col css={{ maxWidth: '70vw' }} gap="0.5rem">
           <Typography variant="h3" textAlign="center">
             {translate('snapOnlyAvailableInDesktop')}
           </Typography>

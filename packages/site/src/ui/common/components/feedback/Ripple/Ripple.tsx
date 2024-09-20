@@ -21,7 +21,7 @@ const RIPPLE_CONFIG = {
     mainCircleSize: 200,
     mainCircleOpacity: 0.24,
     numCircles: 6,
-    top: '46.5%',
+    top: '48.5%',
   },
 };
 
