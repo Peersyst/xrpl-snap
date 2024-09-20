@@ -1,5 +1,5 @@
 import { useTheme } from '@peersyst/react-components';
-import { xrpl_snap_fox_logo } from 'ui/assets/images';
+import { xrpl_snap_logo } from 'ui/assets/images';
 
 import { QrCodeRoot } from './QrCode.styles';
 import type { QrCodeProps } from './QrCode.types';
@@ -23,7 +23,7 @@ const QrCode = ({
       removeQrCodeBehindLogo
       fgColor={disabled ? palette.disabled : undefined}
       logoWidth={logoWidth}
-      logoImage={showLogo ? xrpl_snap_fox_logo : undefined}
+      logoImage={showLogo ? xrpl_snap_logo : undefined}
       logoPadding={logoPadding}
       logoPaddingStyle={logoPaddingStyle}
       quietZone={quietZone}

@@ -13,8 +13,8 @@ function LoadingPage({ className, ...rest }: LoadingPageProps) {
   const translate = useTranslate();
   return (
     <BasePage>
-      <Col flex={1} justifyContent="center" alignItems="center" className={clsx('LoadingPage', className)} {...rest}>
-        <SnapLogo width={200} height={200} />
+      <Col flex={1} gap={'1rem'} justifyContent="center" alignItems="center" className={clsx('LoadingPage', className)} {...rest}>
+        <SnapLogo width={120} height={120} />
         <Typography variant="h6" fontWeight={400}>
           {translate('loading')}
         </Typography>

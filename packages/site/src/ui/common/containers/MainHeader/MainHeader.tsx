@@ -25,10 +25,29 @@ const HeaderLogo = styled(SnapLogo)(
     position: absolute;
     left: 1.5rem;
     transform: translateY(0.65rem);
-    transition: transform 0.25s;
     z-index: 1;
+    animation: moveDown 0.3s ease-in-out forwards;
+
     &:hover {
-      transform: translateY(-0.5rem);
+      animation: moveUp 0.3s ease-in-out forwards;
+    }
+
+    @keyframes moveDown {
+      0% {
+        transform: translateY(-1rem);
+      }
+      100% {
+        transform: translateY(0.65rem);
+      }
+    }
+
+    @keyframes moveUp {
+      0% {
+        transform: translateY(0.65rem);
+      }
+      100% {
+        transform: translateY(-1rem);
+      }
     }
   `,
 );

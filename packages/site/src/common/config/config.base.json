@@ -46,7 +46,7 @@
     "xrpAmount": "110"
   },
   "retry": {
-    "times": 3,
+    "times": 5,
     "delay": 750
   }
 }
