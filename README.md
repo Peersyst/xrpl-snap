@@ -183,9 +183,10 @@ provider.request({
 
 For support and further information, refer to the following resources:
 
+- **Documentation**: https://docs.xrplsnap.com/
 - **XRPL Documentation**: [XRPL.org](https://xrpl.org/)
 - **MetaMask Snaps Documentation**: [MetaMask Snaps](https://docs.metamask.io/snaps/)
-- **Community Forums**: Join discussions on MetaMask and XRPL community forums.
+- **Community Forums**: [Join discussions](discord.gg/xrplevm) on MetaMask and XRPL community forums.
 
 ## Contributing
 
@@ -197,9 +198,9 @@ We welcome contributions to the XRP Ledger project. To contribute, please follow
 
 ## Stay in Touch
 
-- Author - [Peersyst](https://peersyst.com/)
+- Author - [Peersyst](https://github.com/Peersyst)
 - Website - [https://peersyst.com/](https://peersyst.com/)
-- X - [@peersyst](https://peersyst.com/)
+- X - [@peersyst](https://x.com/Peersyst)
 
 ## License
 
