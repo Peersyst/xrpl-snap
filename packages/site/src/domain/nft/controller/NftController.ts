@@ -2,21 +2,17 @@
 import { config } from 'common/config';
 import { Nft, NftCollection, NftMetadata, NftMetadataAttribute, NftsWithMarker } from 'common/models/nft/nft.types';
 import { withRetries } from 'common/query';
-import { MetaMaskRepository } from 'data-access/repository/metamask/MetaMaskRepository';
+import { XrplService } from 'data-access/repository/xrpl/XrplService';
 import { AccountNFToken, convertHexToString } from 'xrpl';
 
 import { convertIpfsToGateway } from './utils/convertIpfsToGateway';
 
 export class NftController {
-  constructor(private readonly metamaskRepository: MetaMaskRepository) {}
+  constructor(private readonly xrplService: XrplService) {}
 
   async getNfts(account: string, marker: unknown): Promise<NftsWithMarker> {
     try {
-      const { result } = await withRetries(
-        async () => this.metamaskRepository.getNfts(account, marker),
-        config.retry.times,
-        config.retry.delay,
-      );
+      const { result } = await withRetries(async () => this.xrplService.getNfts(account, marker), config.retry.times, config.retry.delay);
       const accountNfts = result?.account_nfts ?? [];
       const markers = result?.marker;
 

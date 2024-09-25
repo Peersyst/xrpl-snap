@@ -10,15 +10,16 @@ import { DomainEvents } from 'domain/events';
 import { xrpToDrops } from 'xrpl';
 
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
+import type { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
 
 export default class TransactionController {
-  constructor(private readonly metamaskRepository: MetaMaskRepository) {}
+  constructor(private readonly metamaskRepository: MetaMaskRepository, private readonly xrplService: XrplService) {}
 
   async getAccountTransactions(address: string, marker: unknown): Promise<TransactionsWithMarker> {
     try {
       const res = await withRetries(
-        async () => this.metamaskRepository.getAccountTransactions(address, marker),
+        async () => this.xrplService.getAccountTransactions(address, marker),
         config.retry.times,
         config.retry.delay,
       );
@@ -49,7 +50,7 @@ export default class TransactionController {
    * @param hash - Hash of the transaction
    */
   public async isTransactionValidated(hash: string): Promise<boolean> {
-    const tx = await this.metamaskRepository.getTransaction(hash);
+    const tx = await this.xrplService.getTransaction(hash);
     const { result } = tx;
     if ('validated' in result) {
       return Boolean(result.validated);

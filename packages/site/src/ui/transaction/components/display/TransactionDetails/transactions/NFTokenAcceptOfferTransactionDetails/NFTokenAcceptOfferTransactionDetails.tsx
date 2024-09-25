@@ -23,7 +23,7 @@ function NFTokenAcceptOfferTransactionDetails({ className, tx, ...rest }: NFToke
 
   return (
     <BaseTransactionDetails className={clsx('NFTokenAcceptOfferTransactionDetails', className)} tx={tx} {...rest}>
-      <TransactionDetailsCard tx={tx}>{amount?.[1].amount !== '0' && <TransactionDetailsAmount tx={tx} />}</TransactionDetailsCard>
+      <TransactionDetailsCard tx={tx}>{amount?.[1].amount && <TransactionDetailsAmount tx={tx} />}</TransactionDetailsCard>
       {acceptedOfferIds.map((offerId) => (
         <OfferIDInfoDisplay offerID={offerId} />
       ))}

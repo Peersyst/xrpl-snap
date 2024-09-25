@@ -48,5 +48,10 @@
   "retry": {
     "times": 5,
     "delay": 750
+  },
+  "nodeUrls": {
+    "mainnet": "wss://s1.ripple.com/",
+    "testnet": "wss://s.altnet.rippletest.net:51233/",
+    "devnet": "wss://s.devnet.rippletest.net:51233/"
   }
 }

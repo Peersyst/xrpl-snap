@@ -1,12 +1,10 @@
 import type { EIP6963AnnounceProviderEvent, MetaMaskInpageProvider, RequestArguments } from '@metamask/providers';
 import { config } from 'common/config';
-import type { TokenWithBalance } from 'common/models/token';
 import type { HandlerMethod, HandlerParams, HandlerReturns } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type { AccountLinesResponse, AccountNFTsResponse, AccountTxResponse, SubmitResponse, Amount as XrplAmount } from 'xrpl';
+import type { SubmitResponse, Amount as XrplAmount } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
-import Amount from '../../../common/utils/Amount';
 import RepositoryError from '../error/RepositoryError';
 import RepositoryErrorCodes from '../error/RepositoryErrorCodes';
 import { MetaMaskErrorCodes } from './MetaMaskErrorCodes';
@@ -48,74 +46,6 @@ export class MetaMaskRepository {
       method: 'xrpl_getAccount',
       params: undefined,
     });
-  }
-
-  public async getAccountInfo(account: string): Promise<any & { signer_lists?: any[] }> {
-    const { result } = await this.invokeSnap({
-      method: 'xrpl_request',
-      params: { command: 'account_info', account },
-    });
-
-    if ('account_data' in result) {
-      return result.account_data;
-    }
-    throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
-  }
-
-  /**
-   * Gets all tokens of an account
-   * @param account - Address of the account
-   * @param marker - Marker for pagination
-   * @param limit - Limit of tokens to fetch
-   */
-  async getNfts(account: string, marker: unknown, limit = 5): Promise<AccountNFTsResponse> {
-    return (await this.invokeSnap({
-      method: 'xrpl_request',
-      params: { command: 'account_nfts', account, limit, marker },
-    })) as AccountNFTsResponse;
-  }
-
-  /**
-   * Gets all tokens of an account
-   * @param account - Address of the account
-   */
-  async getIOUTokens(account: string): Promise<TokenWithBalance[]> {
-    try {
-      let res = (await this.invokeSnap({
-        method: 'xrpl_request',
-        params: { command: 'account_lines', account },
-      })) as AccountLinesResponse;
-
-      const { lines } = res.result;
-
-      while (res.result.marker && res.result.lines.length > 0) {
-        res = (await this.invokeSnap({
-          method: 'xrpl_request',
-          params: {
-            command: 'account_lines',
-            account,
-            marker: res.result.marker,
-          },
-        })) as AccountLinesResponse;
-        lines.push(...res.result.lines);
-      }
-
-      return lines.map((line) => {
-        const token = {
-          currency: line.currency,
-          issuer: line.account,
-          decimals: 15,
-        };
-        const [int, dec] = line.balance?.split('.') || [];
-
-        return {
-          ...token,
-          balance: Amount.fromDecToken(dec ? `${int}.${dec.slice(0, 14)}` : int, token),
-        };
-      });
-    } catch (e) {
-      return [];
-    }
   }
 
   private getTransactionHashFromTxResponse(submittedTx: SubmitResponse): string {
@@ -177,20 +107,6 @@ export class MetaMaskRepository {
         method: 'xrpl_changeNetwork',
         params: { chainId },
       });
-    });
-  }
-
-  public async getAccountTransactions(account: string, marker?: unknown, limit = 25): Promise<AccountTxResponse> {
-    return (await this.invokeSnap({
-      method: 'xrpl_request',
-      params: { command: 'account_tx', account, marker, limit },
-    })) as AccountTxResponse;
-  }
-
-  public async getTransaction(hash: string) {
-    return this.invokeSnap({
-      method: 'xrpl_request',
-      params: { command: 'tx', transaction: hash },
     });
   }
 

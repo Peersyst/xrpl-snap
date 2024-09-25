@@ -7,6 +7,9 @@ import { CID } from 'multiformats/cid';
  * @returns The corresponding gateway URL.
  */
 export function convertIpfsToGateway(ipfsUri: string): string {
+  if (ipfsUri.startsWith('https://')) {
+    return ipfsUri;
+  }
   const cleanedUri = ipfsUri.replace(/^ipfs:\/\/(ipfs\/)?/, '');
   // eslint-disable-next-line prefer-const
   let [cid, ...filePath] = cleanedUri.split('/');

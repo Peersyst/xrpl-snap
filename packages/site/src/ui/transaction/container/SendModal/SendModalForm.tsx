@@ -25,7 +25,13 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
   const translate = useTranslate();
   const { data: tokens = [] } = useGetTokens();
   const [token, setToken] = useState<TokenWithBalance | undefined>(tokens[0]);
+  const [balance, setBalance] = useState<string | undefined>();
   const address = useGetAddress();
+
+  function handleChangeToken(token: TokenWithBalance | undefined) {
+    setBalance('0');
+    setToken(token);
+  }
 
   const maxBalance = useMemo(() => {
     if (token?.balance) {
@@ -52,7 +58,7 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
       />
       <TokenSelect
         value={token}
-        onChange={setToken}
+        onChange={handleChangeToken}
         required
         name="token"
         label={translate('selectToken')}
@@ -62,6 +68,8 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
         maxDecimals={token?.decimals ?? 6}
         validators={{ gt: [0, translate('cantSendZero', { ns: 'error' })] }}
         balance={maxBalance}
+        value={balance}
+        onChange={setBalance}
         placeholder={translate('enterAmount')}
         name="amount"
         required

@@ -11,6 +11,7 @@ import { xrpToDrops } from 'xrpl';
 import type { TokenWithBalance } from '../../../common/models/token';
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { FundRepository } from '../../../data-access/repository/xrpl/FundRepository';
+import { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 import type State from '../../common/State';
 import { DomainError } from '../../error/DomainError';
 import type { IWalletState } from '../state/walletState';
@@ -22,6 +23,7 @@ export default class WalletController {
     private readonly networkController: NetworkController,
     private readonly transactionController: TransactionController,
     private readonly metamaskRepository: MetaMaskRepository,
+    private readonly xrplService: XrplService,
     private readonly fundRepository: FundRepository,
   ) {}
 
@@ -55,7 +57,7 @@ export default class WalletController {
 
   async getTokens(): Promise<TokenWithBalance[]> {
     const address = this.getAddress();
-    const iouTokensPromise = withRetries(async () => this.metamaskRepository.getIOUTokens(address), config.retry.times, config.retry.delay);
+    const iouTokensPromise = withRetries(async () => this.xrplService.getIOUTokens(address), config.retry.times, config.retry.delay);
 
     const xrpBalancePromise = this.getBalance().then(({ expendable: { decimals, amount } }) => ({
       balance: new Amount(amount, decimals, 'XRP'),
@@ -88,7 +90,7 @@ export default class WalletController {
 
     try {
       const { Balance, OwnerCount } = await withRetries(
-        async () => this.metamaskRepository.getAccountInfo(address),
+        async () => this.xrplService.getAccountInfo(address),
         config.retry.times,
         config.retry.delay,
       );

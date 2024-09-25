@@ -88,8 +88,9 @@ export class TransactionMeta {
       const node = acceptedOfferNodes[0];
       const isSellOffer = node.isNFTSellOffer();
       const nodeOwner = node.getNFTAcceptOfferOwner();
-      seller = isSellOffer ? accepter : nodeOwner;
-      buyer = isSellOffer ? nodeOwner : accepter;
+      amount = node.getNFTAcceptOfferAmount();
+      seller = isSellOffer ? nodeOwner : accepter;
+      buyer = isSellOffer ? accepter : nodeOwner;
     }
 
     return { amount, nftTokenId: this.nftoken_id, seller, buyer };

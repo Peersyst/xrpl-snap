@@ -20,17 +20,18 @@ export type IControllerFactory = {
 };
 
 export default Factory<IControllerFactory>({
-  snapController: () => new SnapController(snapState, RepositoryFactory.metamaskRepository),
+  snapController: (ressolve) => new SnapController(snapState, RepositoryFactory.metamaskRepository, ressolve.networkController),
   walletController: (resolve) =>
     new WalletController(
       walletState,
       resolve.networkController,
       resolve.transactionController,
       RepositoryFactory.metamaskRepository,
+      RepositoryFactory.xrplService,
       RepositoryFactory.fundRepository,
     ),
-  networkController: () => new NetworkController(RepositoryFactory.metamaskRepository),
-  transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository),
+  networkController: () => new NetworkController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
+  transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
   tokenController: () => new TokenController(RepositoryFactory.tokenRepository),
-  nftController: () => new NftController(RepositoryFactory.metamaskRepository),
+  nftController: () => new NftController(RepositoryFactory.xrplService),
 });

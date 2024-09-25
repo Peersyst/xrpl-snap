@@ -41,6 +41,7 @@ function TokenList({ className, ...rest }: TokenListProps) {
       Skeleton={TokenCardSkeleton}
       numberOfSkeletons={5}
       data={data}
+      end={true}
       nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
       onEndReached={() => ''}
       {...rest}

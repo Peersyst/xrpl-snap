@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const NftCardImage = styled(Image)(({ theme }) => ({
   width: theme.spacing[16],
+  minWidth: theme.spacing[16],
   height: theme.spacing[16],
   borderRadius: theme.borderRadius,
 }));

@@ -41,4 +41,9 @@ export type Config = {
     times: number;
     delay: number;
   };
+  nodeUrls: {
+    mainnet: string;
+    testnet: string;
+    devnet: string;
+  };
 };
