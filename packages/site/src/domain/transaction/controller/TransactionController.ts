@@ -50,12 +50,16 @@ export default class TransactionController {
    * @param hash - Hash of the transaction
    */
   public async isTransactionValidated(hash: string): Promise<boolean> {
-    const tx = await this.xrplService.getTransaction(hash);
-    const { result } = tx;
-    if ('validated' in result) {
-      return Boolean(result.validated);
+    try {
+      const tx = await this.xrplService.getTransaction(hash);
+      const { result } = tx;
+      if ('validated' in result) {
+        return Boolean(result.validated);
+      }
+      return false;
+    } catch (_) {
+      return false;
     }
-    return false;
   }
 
   /**
