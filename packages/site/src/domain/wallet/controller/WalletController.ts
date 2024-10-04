@@ -9,6 +9,8 @@ import TransactionController from 'domain/transaction/controller/TransactionCont
 import { xrpToDrops } from 'xrpl';
 
 import type { TokenWithBalance } from '../../../common/models/token';
+import RepositoryError from '../../../data-access/repository/error/RepositoryError';
+import RepositoryErrorCodes from '../../../data-access/repository/error/RepositoryErrorCodes';
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { FundRepository } from '../../../data-access/repository/xrpl/FundRepository';
 import { XrplService } from '../../../data-access/repository/xrpl/XrplService';
@@ -90,7 +92,16 @@ export default class WalletController {
 
     try {
       const { Balance, OwnerCount } = await withRetries(
-        async () => this.xrplService.getAccountInfo(address),
+        async () => {
+          try {
+            return await this.xrplService.getAccountInfo(address);
+          } catch (e) {
+            if (e instanceof RepositoryError && e.code === RepositoryErrorCodes.ACCOUNT_NOT_FOUND) {
+              return { Balance: '0', OwnerCount: 0 };
+            }
+            throw e;
+          }
+        },
         config.retry.times,
         config.retry.delay,
       );

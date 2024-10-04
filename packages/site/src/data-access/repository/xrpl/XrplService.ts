@@ -87,16 +87,23 @@ export class XrplService {
   }
 
   public async getAccountInfo(account: string): Promise<any & { signer_lists?: any[] }> {
-    const client = await this.getClient();
-    const { result } = await client.request({
-      command: 'account_info',
-      account,
-    });
+    try {
+      const client = await this.getClient();
+      const { result } = await client.request({
+        command: 'account_info',
+        account,
+      });
 
-    if ('account_data' in result) {
-      return result.account_data;
+      if ('account_data' in result) {
+        return result.account_data;
+      }
+      throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
+    } catch (e: unknown) {
+      if (e instanceof RepositoryError || (e instanceof Error && e.message.includes('Account not found'))) {
+        throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
+      }
+      throw e;
     }
-    throw new RepositoryError(RepositoryErrorCodes.ACCOUNT_NOT_FOUND);
   }
 
   /**
