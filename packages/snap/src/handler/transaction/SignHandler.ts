@@ -13,9 +13,18 @@ export class SignHandler implements IHandler<typeof SignMethod> {
   async handle(
     origin: string,
     params: SubmittableTransaction,
+    opts: {
+      // If true, autofill a transaction.
+      autofill?: boolean;
+    } = { autofill: true },
     // eslint-disable-next-line @typescript-eslint/naming-convention
   ): Promise<{ tx_blob: string; hash: string }> {
-    const autofilledTransaction = await this.context.provider.autofill(params);
+    let autofilledTransaction = params;
+
+    if (opts.autofill) {
+      // Autofill the transaction. If the transaction is invalid, an error will be thrown.
+      autofilledTransaction = await this.context.provider.autofill(params);
+    }
 
     try {
       validate(autofilledTransaction as unknown as Record<string, unknown>);

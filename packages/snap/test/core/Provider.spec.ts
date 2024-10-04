@@ -1,8 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import { InternalError } from '@metamask/snaps-sdk';
-import type { Transaction, Request as XrplRequest } from 'xrpl';
+import type { Request as XrplRequest, SubmittableTransaction } from 'xrpl';
 
 import { Provider } from '../../src/core/Provider';
+import { RPCClient } from '../../src/core/rpc-client/RpcClient';
 
 describe('Provider', () => {
   const uri = 'https://s.altnet.rippletest.net:51234';
@@ -25,25 +26,23 @@ describe('Provider', () => {
           },
         },
       };
-      jest.spyOn(global, 'fetch').mockResolvedValue({
-        json: jest.fn().mockResolvedValue(mockedResponse),
-      } as any);
+      const autoFillMock = jest.fn().mockResolvedValue(mockedResponse as unknown as SubmittableTransaction);
+      jest.spyOn(RPCClient.prototype, 'autofill').mockImplementation(autoFillMock);
 
       const mockedTransaction = {};
 
-      const res = await provider.autofill(mockedTransaction as Transaction);
-      expect(res).toEqual({
-        Fee: 12,
-        Sequence: 1,
-      });
+      const res = await provider.autofill(mockedTransaction as SubmittableTransaction);
+
+      expect(res).toEqual(mockedResponse);
+      expect(autoFillMock).toHaveBeenCalledWith(mockedTransaction);
     });
 
     test('Throws an error if the request fails', async () => {
-      jest.spyOn(global, 'fetch').mockResolvedValue({
-        json: jest.fn().mockResolvedValue({ result: { error: 'error' } }),
-      } as any);
+      jest.spyOn(RPCClient.prototype, 'autofill').mockImplementation(() => {
+        throw new Error('error');
+      });
 
-      await expect(provider.autofill({} as Transaction)).rejects.toThrow(InternalError);
+      await expect(provider.autofill({} as SubmittableTransaction)).rejects.toThrow(InternalError);
     });
   });
 
