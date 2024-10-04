@@ -1,3 +1,3 @@
 export const SNAP_CONFIG = {
-  reviewUrl: 'https://xrpl-snap.vercel.app/review-tx',
+  reviewUrl: 'https://wallet.xrplevm.org/review-tx',
 } as const;
