@@ -11,7 +11,7 @@ const QrCode = ({
   logoWidth = 34,
   logoPadding = 4,
   logoPaddingStyle = 'square',
-  size = 144,
+  size = 200,
   quietZone = 8,
   style,
   ...rest
