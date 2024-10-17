@@ -46,4 +46,6 @@ export type Config = {
     testnet: string;
     devnet: string;
   };
+  backendUrl: string;
+  surveyUrl: string;
 };

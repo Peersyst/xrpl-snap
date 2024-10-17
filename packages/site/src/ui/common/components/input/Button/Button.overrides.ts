@@ -7,10 +7,11 @@ declare module '@peersyst/react-components' {
     text: true;
     primary: true;
     secondary: true;
+    tertiary: true;
   }
 
   export interface ButtonSizeOverrides {
-    sm: false;
+    sm: true;
     md: false;
     lg: true;
   }
