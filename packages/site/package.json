@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@craco/craco": "^7.0.0",
-    "@metamask/providers": "^17.0.0",
+    "@metamask/providers": "^18.0.0",
     "@peersyst/react-components": "^3.9.31",
     "@peersyst/react-components-core": "^1.7.19",
     "@peersyst/react-hooks": "^2.2.15",
