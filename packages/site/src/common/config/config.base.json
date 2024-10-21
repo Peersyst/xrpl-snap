@@ -54,6 +54,6 @@
     "testnet": "wss://s.altnet.rippletest.net:51233/",
     "devnet": "wss://s.devnet.rippletest.net:51233/"
   },
-  "backendUrl": "http://localhost:3001",
+  "backendUrl": "https://xrpl-snap-giveaway.peersyst.tech",
   "surveyUrl": "https://gleam.io/4mkf3/xrpl-metamask-snap-10000-xrp-early-adopter-campaign"
 }
