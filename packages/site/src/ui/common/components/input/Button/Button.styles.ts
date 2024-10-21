@@ -13,8 +13,17 @@ const lgSize = css(
   `,
 );
 
+const smSize = css(
+  () => css`
+    height: 2rem;
+    padding: 0 0.875rem;
+    font-weight: 500;
+  `,
+);
+
 const buttonSizes: Record<ButtonSize, FlattenInterpolation<ThemeProps<DefaultTheme>>> = {
   lg: lgSize,
+  sm: smSize,
 };
 
 const primaryStyles = css(({ theme }) => ({
@@ -51,6 +60,26 @@ const secondaryStyles = css(({ theme }) => ({
   },
 }));
 
+const tertiaryStyles = css(({ theme }) => ({
+  color: theme.palette.primary,
+  border: '1px solid transparent',
+  backgroundColor: theme.palette.grey[100],
+  '&:hover': {
+    color: theme.palette.white,
+    borderColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary,
+  },
+  '&:active': {
+    color: theme.palette.white,
+    borderColor: theme.palette.primary,
+    backgroundColor: darken(theme.palette.primary, 0.2),
+  },
+  '&:disabled': {
+    borderColor: theme.palette.disabled,
+    color: theme.palette.disabled,
+  },
+}));
+
 const textStyles = css(({ theme }) => ({
   color: theme.palette.accent,
   backgroundColor: 'transparent',
@@ -69,15 +98,16 @@ const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
   primary: primaryStyles,
   secondary: secondaryStyles,
   text: textStyles,
+  tertiary: tertiaryStyles,
 };
 
 export const ButtonRoot = styled(Button)<ButtonProps>(({ size = 'lg', variant = 'primary', theme }) => {
   return css`
     font-size: 0.875rem;
-    ${buttonSizes[size]};
     border-radius: ${theme.roundedBorder};
     border: 0;
     font-weight: 600;
+    ${buttonSizes[size]};
     text-transform: none;
     transition: all 0.3s;
 

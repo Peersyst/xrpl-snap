@@ -1,5 +1,5 @@
 {
-  "backendUrl": "http://localhost:3001",
+  "backendUrl": "https://xrpl-snap-giveaway.peersyst.tech",
   "snapOrigin": "local:http://localhost:8080",
   "featureFlags": {
     "enablePlayground": true

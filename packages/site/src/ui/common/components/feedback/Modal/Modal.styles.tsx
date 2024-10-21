@@ -31,5 +31,6 @@ export const CloseModalButton = styled(IconButton).attrs({
     right: 1.375rem;
     font-size: 0.875rem;
     color: ${theme.palette.grey[400]};
+    z-index: 3;
   `,
 );

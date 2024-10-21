@@ -1,6 +1,7 @@
 import { TokenRepository } from 'data-access/repository/token/TokenRepository';
 
 import Factory from '../../common/utils/Factory';
+import { GiveAwayRepository } from '../../data-access/repository/give-away/GiveAwayRepository';
 import { MetaMaskRepository } from '../../data-access/repository/metamask/MetaMaskRepository';
 import { FundRepository } from '../../data-access/repository/xrpl/FundRepository';
 import { XrplService } from '../../data-access/repository/xrpl/XrplService';
@@ -10,6 +11,7 @@ export type IRepositoryFactory = {
   tokenRepository: TokenRepository;
   fundRepository: FundRepository;
   xrplService: XrplService;
+  giveAwayRepository: GiveAwayRepository;
 };
 
 export default Factory<IRepositoryFactory>({
@@ -17,4 +19,5 @@ export default Factory<IRepositoryFactory>({
   tokenRepository: () => new TokenRepository(),
   fundRepository: () => new FundRepository(),
   xrplService: () => new XrplService(),
+  giveAwayRepository: () => new GiveAwayRepository(),
 });

@@ -8,17 +8,17 @@ const Modal = ({
   title,
   alignTitle,
   children,
+  defaultOpen,
   elevation = 0,
   onClose,
   closable = true,
   subtitle,
   ...rest
 }: ModalProps): JSX.Element => {
-  const [open, setOpen] = useControlled(true, openProp);
+  const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
   const { spacing } = useTheme();
 
   const handleClose = () => {
-    onClose?.();
     setOpen(false);
   };
 

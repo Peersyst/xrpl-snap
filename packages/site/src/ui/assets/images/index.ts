@@ -4,9 +4,12 @@ export { default as balance_card_right_border } from './balance-card-right-borde
 export { default as bg_bottom_mobile } from './bg-bottom-mobile.png';
 export { default as bg_bottom } from './bg-bottom.png';
 export { default as bg_top } from './bg-top.png';
+export { default as giveawaybg } from './giveawaybg.png';
 export { default as metamask } from './metamask.png';
 export { default as metamask_invalid_network } from './metamask_invalid_network.png';
+export { default as nebula } from './nebula.png';
 export { default as nomobile } from './nomobile.png';
+export { default as present } from './present.png';
 export { default as processing } from './processing.gif';
 export { default as received } from './received.png';
 export { default as sent } from './sent.png';

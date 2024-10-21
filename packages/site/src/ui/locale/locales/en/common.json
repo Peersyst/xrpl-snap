@@ -82,5 +82,16 @@
   "goToFaucetCTAButton": "Go to faucet",
   "snapOnlyAvailableInDesktop": "We are sorry. The XRP Ledger Snap is only available on desktop",
   "snapOnlyAvailableInDesktopText": "You can access all the functionality of the XRP Snap from your desktop",
-  "buy": "Buy"
+  "buy": "Buy",
+  "more": "More",
+  "giveAwayCardTitle": "Early adopter campaign!",
+  "giveAwayCardText": "We are giving away up to 10,000 XRP for the early adopters.",
+  "giveAwayModalTitle": "Thanks for being an early adopter of the XRPL Metamask Snap!",
+  "giveAwayModalBodyTitle": "You can now get your hands on a share of 10,000 XRP in prizes from the early adopter campaign!",
+  "giveAwayModalBodyTitle1": "Hurry up, the campaign ends on November 8th! To participate, copy your unique code and fill out the form below. Complete the tasks to get additional points. The more points you get, the more chances you have to win.",
+  "giveAwayModalBodyTitle2": "Good luck!",
+  "promoCode": "Promo Code",
+  "giveAwayModalButton": "Apply now!",
+  "copyCode": "Copy code",
+  "promoCodeCopied": "Promo code copied!"
 }
