@@ -23,7 +23,7 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
   const translate = useTranslate();
   const { spacing } = useTheme();
   const { address } = useWalletState();
-  const { isLoading: isLoadingPromoCode } = useGetPromoCode();
+  const { isLoading: isLoadingPromoCode, data: promoCode } = useGetPromoCode();
   const { data, fetchNextPage, isLoading, isRefetching, isFetching, hasNextPage } = useGetTransactions();
 
   function handleEndReached() {
@@ -40,7 +40,7 @@ function TransactionList({ className, ...rest }: TransactionListProps) {
       renderItem={(tx, i) => {
         return (
           <Col key={i} gap={spacing[8]}>
-            {i === 0 && <GiveAwayCard />}
+            {i === 0 && Boolean(promoCode) && <GiveAwayCard />}
             <Transaction key={i} tx={tx} accountAddress={address!} />
           </Col>
         );
