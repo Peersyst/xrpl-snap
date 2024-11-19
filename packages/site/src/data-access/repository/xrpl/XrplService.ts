@@ -1,6 +1,7 @@
 import { TokenWithBalance } from 'common/models';
 import Amount from 'common/utils/Amount';
 import RepositoryErrorCodes from 'data-access/repository/error/RepositoryErrorCodes';
+import Decimal from 'decimal.js';
 import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse } from 'xrpl';
 
 import RepositoryError from '../error/RepositoryError';
@@ -126,19 +127,23 @@ export class XrplService {
         lines.push(...res.result.lines);
       }
 
-      return lines.map((line) => {
-        const token = {
-          currency: line.currency,
-          issuer: line.account,
-          decimals: 15,
-        };
-        const [int, dec] = line.balance?.split('.') || [];
+      const tokenWithBalances: TokenWithBalance[] = [];
 
-        return {
-          ...token,
-          balance: Amount.fromDecToken(dec ? `${int}.${dec.slice(0, 14)}` : int, token),
-        };
-      });
+      for (const line of lines) {
+        try {
+          const token = {
+            currency: line.currency,
+            issuer: line.account,
+            decimals: 15,
+          };
+          tokenWithBalances.push({
+            ...token,
+            balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
+          });
+        } catch {}
+      }
+
+      return tokenWithBalances;
     } catch (e) {
       return [];
     }

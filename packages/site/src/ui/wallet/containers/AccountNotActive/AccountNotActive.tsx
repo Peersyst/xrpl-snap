@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Button from 'ui/common/components/input/Button/Button';
 import IconCard from 'ui/common/components/surface/IconCard/IconCard';
 import { LockIcon } from 'ui/common/icons';
-import GiveAwayCard from 'ui/giveaway/containers/GiveAwayCard/GiveAwayCard';
-import useGetPromoCode from 'ui/giveaway/query/useGetPromoCode';
 import { useTranslate } from 'ui/locale';
 
 import ActivateAccountModal from '../ActivateAccountModal/ActivateAccountModal';
@@ -19,14 +17,11 @@ export interface AccountNotActiveProps {
 function AccountNotActive({ className, ...rest }: AccountNotActiveProps) {
   const translate = useTranslate();
   const [modalOpened, setModalOpened] = useState(false);
-  const { data: promoCode } = useGetPromoCode();
-  const showGiveAway = promoCode;
 
   return (
     <>
       <AccountNotActiveRoot alignItems="center" className={clsx('AccountNotActive', className)} {...rest}>
-        <Col alignItems="center" css={{ width: '100%', paddingTop: showGiveAway ? 'unset' : '1rem' }} gap="2rem">
-          {showGiveAway && <GiveAwayCard />}
+        <Col alignItems="center" css={{ width: '100%', paddingTop: '1rem' }} gap="2rem">
           <IconCard Icon={LockIcon} />
         </Col>
         <Col gap="1rem" css={{ padding: '0 3rem' }}>
