@@ -4,7 +4,6 @@ import SnapController from 'domain/snap/controller/SnapController';
 import { TokenController } from 'domain/token/TokenController';
 
 import RepositoryFactory from '../../domain/adapter/RepositoryFactory';
-import { GiveAwayController } from '../../domain/give-away/GiveAwayController';
 import { NftController } from '../../domain/nft/controller/NftController';
 import snapState from '../../domain/snap/state/snapState';
 import TransactionController from '../../domain/transaction/controller/TransactionController';
@@ -18,7 +17,6 @@ export type IControllerFactory = {
   transactionController: TransactionController;
   tokenController: TokenController;
   nftController: NftController;
-  giveAwayController: GiveAwayController;
 };
 
 export default Factory<IControllerFactory>({
@@ -36,5 +34,4 @@ export default Factory<IControllerFactory>({
   transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
   tokenController: () => new TokenController(RepositoryFactory.tokenRepository),
   nftController: () => new NftController(RepositoryFactory.xrplService),
-  giveAwayController: () => new GiveAwayController(RepositoryFactory.giveAwayRepository),
 });

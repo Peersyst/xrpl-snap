@@ -11817,13 +11817,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"canvas-confetti@npm:^1.9.3":
-  version: 1.9.3
-  resolution: "canvas-confetti@npm:1.9.3"
-  checksum: db044a9c9ca0e58eafd115f7dfc2f9ecc377be34d8a5dd75901dae0dafd4fb0b75fbbf8edd48bbefad2468653c5838348f0e768b79727a924259a9ada343ea30
-  languageName: node
-  linkType: hard
-
 "capture-exit@npm:^2.0.0":
   version: 2.0.0
   resolution: "capture-exit@npm:2.0.0"
@@ -26241,7 +26234,6 @@ __metadata:
     babel-jest: ^29.4.1
     babel-plugin-named-exports-order: ^0.0.2
     babel-plugin-styled-components: ^2.0.7
-    canvas-confetti: ^1.9.3
     clsx: ^1.2.1
     customize-cra: ^1.0.0
     customize-cra-react-refresh: ^1.1.0
