@@ -177,7 +177,7 @@ provider.request({
 });
 ```
 
-- If you only want to sing the transaction use `xrpl_sign`.
+- If you only want to sign the transaction use `xrpl_sign`.
 
 ## Support
 
