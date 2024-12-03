@@ -18,7 +18,7 @@ export interface AccountNotActiveProps {
 function AccountNotActive({ className, ...rest }: AccountNotActiveProps) {
   const translate = useTranslate();
   const [modalOpened, setModalOpened] = useState(false);
-  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
+  const { data: { baseReserveCostInXrp } = {} } = useNetworkReserve();
 
   return (
     <>

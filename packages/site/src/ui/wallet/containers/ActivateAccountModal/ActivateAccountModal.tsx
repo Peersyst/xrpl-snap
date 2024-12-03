@@ -19,7 +19,7 @@ function ActivateAccountModal({ className, children, ...rest }: ActivateAccountM
   const { spacing } = useTheme();
   const translate = useTranslate();
   const address = useGetAddress() || '';
-  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
+  const { data: { baseReserveCostInXrp } = {} } = useNetworkReserve();
 
   return (
     <Modal title={translate('activateAccoutModalTitle')} className={clsx('ActivateAccountModal', className)} {...rest}>

@@ -16,7 +16,7 @@ export interface ActivateAccountCTAProps {
 function ActivateAccountCTA(): JSX.Element {
   const { data: network } = useGetActiveNetwork();
   const translate = useTranslate();
-  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
+  const { data: { baseReserveCostInXrp } = {} } = useNetworkReserve();
   const { showModal } = useModal();
   const { mutate, isPending } = useFundWallet();
 
