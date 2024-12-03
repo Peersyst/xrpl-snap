@@ -17,9 +17,6 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
   const { data: { expendable, total, reserve } = {}, isLoading } = useGetBalanceInfo();
   const { data: { baseReserveCostInXrp, ownerReserveCostInXrpPerItem } = {} } = useNetworkReserve();
 
-  console.log('baseReserveCostInXrp:', baseReserveCostInXrp);
-  console.log('ownerReserveCostInXrpPerItem:', ownerReserveCostInXrpPerItem);
-
   return (
     <Modal title={translate('aboutYourBalance')} {...rest}>
       <Col gap="1.5rem">
