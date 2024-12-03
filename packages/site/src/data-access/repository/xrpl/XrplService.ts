@@ -87,6 +87,20 @@ export class XrplService {
     });
   }
 
+  public async getNetworkReserve(): Promise<{ baseReserve?: number; ownerReserve?: number }> {
+    try {
+      const client = await this.getClient();
+      const serverInfo = await client.request({ command: 'server_info' });
+
+      return {
+        baseReserve: serverInfo.result.info.validated_ledger?.reserve_base_xrp,
+        ownerReserve: serverInfo.result.info.validated_ledger?.reserve_inc_xrp,
+      };
+    } catch (e) {
+      return {};
+    }
+  }
+
   public async getAccountInfo(account: string): Promise<any & { signer_lists?: any[] }> {
     try {
       const client = await this.getClient();

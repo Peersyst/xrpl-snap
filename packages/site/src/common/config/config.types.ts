@@ -26,7 +26,7 @@ export type Config = {
   };
   mockedAddress: string;
   fiatDecimals: number;
-  xrplNetwork: NetworkReserve;
+  xrplNetwork: Record<'mainnet' | 'testnet' | 'devnet', NetworkReserve>;
   featureFlags: {
     enablePlayground: boolean;
   };

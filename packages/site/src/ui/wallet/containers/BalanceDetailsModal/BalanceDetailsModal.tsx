@@ -4,6 +4,7 @@ import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallout';
 import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
+import useNetworkReserve from 'ui/network/hooks/useNetworkReserve';
 import useGetBalanceInfo from 'ui/wallet/query/useGetBalanceInfo';
 
 import Modal from '../../../common/components/feedback/Modal/Modal';
@@ -14,6 +15,7 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
   const reserveInfoLink = useConfig('reserveInfoLink');
   const translate = useTranslate();
   const { data: { expendable, total, reserve } = {}, isLoading } = useGetBalanceInfo();
+  const { data: { baseReserveCostInXrp, ownerReserveCostInXrpPerItem } = {} } = useNetworkReserve();
 
   return (
     <Modal title={translate('aboutYourBalance')} {...rest}>
@@ -46,7 +48,7 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
           title={translate('reserve')}
           content={
             <Balance
-              balance={reserve?.formatAmount() ?? '0'}
+              balance={total?.amount !== '0' ? reserve?.formatAmount() ?? '0' : '0'}
               variant="body1"
               currency={total?.currency}
               loading={isLoading}
@@ -61,7 +63,8 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
               <Typography variant="body1">{translate('balanceInfoExplanationTitle')}</Typography>
               <Col>
                 <Typography variant="body1" light>
-                  {translate('balanceInfoExplanation')} <ExternalLink to={reserveInfoLink}>{`${translate('knowMore')}.`}</ExternalLink>
+                  {translate('balanceInfoExplanation', { baseReserveCostInXrp, ownerReserveCostInXrpPerItem })}{' '}
+                  <ExternalLink to={reserveInfoLink}>{`${translate('knowMore')}.`}</ExternalLink>
                 </Typography>
                 <Row>
                   <Typography variant="body1" light>
