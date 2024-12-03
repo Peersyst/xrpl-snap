@@ -20,20 +20,26 @@ export default class NetworkController {
     switch (chainId) {
       case NetworkChainId.DEVNET:
         node = config.nodeUrls.devnet;
+        this.baseReserveCostInXrp = config.xrplNetwork.devnet.baseReserveCostInXrp;
+        this.ownerReserveCostInXrpPerItem = config.xrplNetwork.devnet.ownerReserveCostInXrpPerItem;
         break;
       case NetworkChainId.TESTNET:
         node = config.nodeUrls.testnet;
+        this.baseReserveCostInXrp = config.xrplNetwork.testnet.baseReserveCostInXrp;
+        this.ownerReserveCostInXrpPerItem = config.xrplNetwork.testnet.ownerReserveCostInXrpPerItem;
         break;
       default:
         node = config.nodeUrls.mainnet;
+        this.baseReserveCostInXrp = config.xrplNetwork.mainnet.baseReserveCostInXrp;
+        this.ownerReserveCostInXrpPerItem = config.xrplNetwork.mainnet.ownerReserveCostInXrpPerItem;
         break;
     }
 
     await withRetries(async () => this.xrplService.load(node), config.retry.times, config.retry.delay);
 
     const { baseReserve, ownerReserve } = await this.xrplService.getNetworkReserve();
-    this.baseReserveCostInXrp = String(baseReserve);
-    this.ownerReserveCostInXrpPerItem = String(ownerReserve);
+    this.baseReserveCostInXrp = String(baseReserve || this.baseReserveCostInXrp);
+    this.ownerReserveCostInXrpPerItem = String(ownerReserve || this.ownerReserveCostInXrpPerItem);
   }
 
   getNetworkReserve(): NetworkReserve {
