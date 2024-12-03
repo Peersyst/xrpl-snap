@@ -10,4 +10,5 @@ export enum Queries {
   GET_XRP_PRICE = 'get-xrp-price',
   GET_TOKEN_INFO = 'get-token-info',
   GET_PROMO_CODE = 'get-promo-code',
+  GET_NETWORK_RESERVE = 'get-network-reserve',
 }

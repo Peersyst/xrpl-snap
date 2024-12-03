@@ -5,6 +5,7 @@ import Button from 'ui/common/components/input/Button/Button';
 import IconCard from 'ui/common/components/surface/IconCard/IconCard';
 import { LockIcon } from 'ui/common/icons';
 import { useTranslate } from 'ui/locale';
+import useNetworkReserve from 'ui/network/hooks/useNetworkReserve';
 
 import ActivateAccountModal from '../ActivateAccountModal/ActivateAccountModal';
 import { AccountNotActiveRoot } from './AccountNotActive.styles';
@@ -17,6 +18,7 @@ export interface AccountNotActiveProps {
 function AccountNotActive({ className, ...rest }: AccountNotActiveProps) {
   const translate = useTranslate();
   const [modalOpened, setModalOpened] = useState(false);
+  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
 
   return (
     <>
@@ -29,7 +31,7 @@ function AccountNotActive({ className, ...rest }: AccountNotActiveProps) {
             {translate('accountNotActiveTitle')}
           </Typography>
           <Typography variant="body1" light textAlign="center">
-            {translate('accountNotActiveText')}
+            {translate('accountNotActiveText', { baseReserveCostInXrp })}
           </Typography>
         </Col>
         <Button onClick={() => setModalOpened(true)} variant="primary">

@@ -8,6 +8,10 @@ import type { MetaMaskRepository } from '../../../data-access/repository/metamas
 import { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 
 export default class NetworkController {
+  private baseReserveCostInXrp: string;
+
+  private ownerReserveCostInXrpPerItem: string;
+
   constructor(private readonly metamaskRepository: MetaMaskRepository, private readonly xrplService: XrplService) {}
 
   async load(): Promise<void> {
@@ -26,12 +30,16 @@ export default class NetworkController {
     }
 
     await withRetries(async () => this.xrplService.load(node), config.retry.times, config.retry.delay);
+
+    const { baseReserve, ownerReserve } = await this.xrplService.getNetworkReserve();
+    this.baseReserveCostInXrp = String(baseReserve);
+    this.ownerReserveCostInXrpPerItem = String(ownerReserve);
   }
 
   getNetworkReserve(): NetworkReserve {
     return {
-      baseReserveCostInXrp: config.xrplNetwork.baseReserveCostInXrp,
-      ownerReserveCostInXrpPerItem: config.xrplNetwork.ownerReserveCostInXrpPerItem,
+      baseReserveCostInXrp: this.baseReserveCostInXrp,
+      ownerReserveCostInXrpPerItem: this.ownerReserveCostInXrpPerItem,
     } as const;
   }
 

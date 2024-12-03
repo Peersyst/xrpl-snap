@@ -3,6 +3,7 @@ import { NetworkChainId } from 'common/models';
 import Button from 'ui/common/components/input/Button/Button';
 import OnRampModal from 'ui/fiat-orders/transak/containers/OnRampModal';
 import { useTranslate } from 'ui/locale';
+import useNetworkReserve from 'ui/network/hooks/useNetworkReserve';
 import useGetActiveNetwork from 'ui/network/query/useGetActiveNetwork';
 import useFundWallet from 'ui/wallet/query/useFundWallet';
 
@@ -15,7 +16,7 @@ export interface ActivateAccountCTAProps {
 function ActivateAccountCTA(): JSX.Element {
   const { data: network } = useGetActiveNetwork();
   const translate = useTranslate();
-
+  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
   const { showModal } = useModal();
   const { mutate, isPending } = useFundWallet();
 
@@ -24,10 +25,10 @@ function ActivateAccountCTA(): JSX.Element {
       return (
         <>
           <Typography variant="body1" light>
-            {translate('inviteToBuyText')}
+            {translate('inviteToBuyText', { baseReserveCostInXrp })}
           </Typography>
           <Button variant="primary" onClick={() => showModal(OnRampModal)}>
-            {translate('buyXRPCTAButton')}
+            {translate('buyXRPCTAButton', { baseReserveCostInXrp })}
           </Button>
         </>
       );

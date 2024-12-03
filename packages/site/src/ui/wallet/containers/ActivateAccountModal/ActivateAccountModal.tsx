@@ -1,4 +1,4 @@
-import { Col, Typography, useConfig } from '@peersyst/react-components';
+import { Col, Typography } from '@peersyst/react-components';
 import clsx from 'clsx';
 import { useTheme } from 'styled-components';
 import QrCode from 'ui/common/components/display/QrCode/QrCode';
@@ -7,6 +7,7 @@ import Modal from 'ui/common/components/feedback/Modal/Modal';
 import { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 import Card from 'ui/common/components/surface/Card/Card';
 import { useTranslate } from 'ui/locale';
+import useNetworkReserve from 'ui/network/hooks/useNetworkReserve';
 import AccountChip from 'ui/wallet/components/display/AccountChip';
 import useGetAddress from 'ui/wallet/hooks/useGetAddress';
 
@@ -17,8 +18,8 @@ export interface ActivateAccountModalProps extends Omit<ModalProps, 'title'> {}
 function ActivateAccountModal({ className, children, ...rest }: ActivateAccountModalProps) {
   const { spacing } = useTheme();
   const translate = useTranslate();
-  const { baseReserveCostInXrp } = useConfig('xrplNetwork');
   const address = useGetAddress() || '';
+  const { data: { baseReserveCostInXrp } = { baseReserveCostInXrp: '1' } } = useNetworkReserve();
 
   return (
     <Modal title={translate('activateAccoutModalTitle')} className={clsx('ActivateAccountModal', className)} {...rest}>
@@ -29,7 +30,7 @@ function ActivateAccountModal({ className, children, ...rest }: ActivateAccountM
             <Col gap={spacing[2]}>
               <Typography variant="body1">{translate('activateAccountAlertTitle')}</Typography>
               <Typography variant="body1" light>
-                {translate('activateAccountAlertText')}
+                {translate('activateAccountAlertText', { baseReserveCostInXrp })}
               </Typography>
             </Col>
           }

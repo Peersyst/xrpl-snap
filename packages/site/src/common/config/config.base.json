@@ -21,8 +21,8 @@
   "mockedAddress": "rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   "fiatDecimals": 2,
   "xrplNetwork": {
-    "baseReserveCostInXrp": "10",
-    "ownerReserveCostInXrpPerItem": "2"
+    "baseReserveCostInXrp": "1",
+    "ownerReserveCostInXrpPerItem": "0.2"
   },
   "featureFlags": {
     "enablePlayground": false

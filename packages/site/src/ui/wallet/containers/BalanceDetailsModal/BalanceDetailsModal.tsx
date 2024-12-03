@@ -4,6 +4,7 @@ import InfoDisplay from 'ui/common/components/display/InfoDisplay/InfoDisplay';
 import AlertCallout from 'ui/common/components/feedback/AlertCallout/AlertCallout';
 import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
 import ExternalLink from 'ui/common/components/navigation/ExternalLink/ExternalLink';
+import useNetworkReserve from 'ui/network/hooks/useNetworkReserve';
 import useGetBalanceInfo from 'ui/wallet/query/useGetBalanceInfo';
 
 import Modal from '../../../common/components/feedback/Modal/Modal';
@@ -14,6 +15,7 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
   const reserveInfoLink = useConfig('reserveInfoLink');
   const translate = useTranslate();
   const { data: { expendable, total, reserve } = {}, isLoading } = useGetBalanceInfo();
+  const { data: { baseReserveCostInXrp, ownerReserveCostInXrpPerItem } = {} } = useNetworkReserve();
 
   return (
     <Modal title={translate('aboutYourBalance')} {...rest}>
@@ -58,7 +60,9 @@ function BalanceDetailsModal({ ...rest }: ModalProps) {
           type="info"
           content={
             <Col gap={spacing[2]}>
-              <Typography variant="body1">{translate('balanceInfoExplanationTitle')}</Typography>
+              <Typography variant="body1">
+                {translate('balanceInfoExplanationTitle', { baseReserveCostInXrp, ownerReserveCostInXrpPerItem })}
+              </Typography>
               <Col>
                 <Typography variant="body1" light>
                   {translate('balanceInfoExplanation')} <ExternalLink to={reserveInfoLink}>{`${translate('knowMore')}.`}</ExternalLink>
