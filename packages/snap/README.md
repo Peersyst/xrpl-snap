@@ -110,6 +110,22 @@ provider.request({
 });
 ```
 
+### Account
+
+Get current account:
+
+```javascript
+provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:xrpl-snap',
+    request: {
+      method: 'xrpl_getAccount',
+    },
+  },
+});
+```
+
 ### Network
 
 - Get supported networks:
@@ -120,7 +136,7 @@ provider.request({
   params: {
     snapId: 'npm:xrpl-snap',
     request: {
-      method: 'xrpl_getSupportedNetworks',
+      method: 'xrpl_getStoredNetworks',
     },
   },
 });
