@@ -14,6 +14,7 @@ import {
   setValidAddresses,
   txNeedsNetworkID,
 } from './utils/autofill';
+import { areAmountsEqual } from './utils/areAmountsEqual';
 
 const DEFAULT_FEE_CUSHION = 1.2;
 const DEFAULT_MAX_FEE_XRP = '2';
@@ -146,7 +147,7 @@ export class RPCClient {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- ignore type-assertions on the DeliverMax property
       // @ts-expect-error -- DeliverMax property exists only at the RPC level, not at the protocol level
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- This is a valid null check for Amount
-      if (tx.Amount != null && tx.Amount !== tx.DeliverMax) {
+      if (tx.Amount != null && !areAmountsEqual(tx.Amount, tx.DeliverMax)) {
         return Promise.reject(
           new ValidationError('PaymentTransaction: Amount and DeliverMax fields must be identical when both are provided'),
         );
