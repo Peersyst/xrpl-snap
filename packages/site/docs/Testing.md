@@ -9,7 +9,7 @@ In the last place, we test our code with unit tests using jest. In this chapter 
 
 ## Structure
 
-The structure consists on the following:
+The structure consists of the following:
 
 - **\_\_mocks\_\_**: Contains common mocks
 - **ui**: Contains UI tests
@@ -17,7 +17,7 @@ The structure consists on the following:
 - **data-access**: Contains Data Access tests
 - **utils**: Contains common utils
 
-As you can see, there is on folder for each layer in the application. In each layer we can find the following files and folders:
+As you can see, there is one folder for each layer in the application. In each layer we can find the following files and folders:
 
 - **\_\_mocks\_\_**: Layer mocks
 - **utils**: Layer utils
@@ -100,7 +100,7 @@ describe('CounterController', () => {
 
 To test the UI we use `@testing-library/react` and have a set of utilities at `test/ui/utils/test-utils`.
 
-Knowing that, testing a component is quite easy, as you can see in the `Counter.spec.tsx` test. We just have to use the render function from `test-utils`, the screen object from `@testing-library/react` and maybe som other utils like `userEvent` from `@testing-library/user-event`.
+Knowing that, testing a component is quite easy, as you can see in the `Counter.spec.tsx` test. We just have to use the render function from `test-utils`, the screen object from `@testing-library/react` and maybe some other utils like `userEvent` from `@testing-library/user-event`.
 
 ```ts
 import { screen } from '@testing-library/react';
