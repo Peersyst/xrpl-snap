@@ -1,5 +1,7 @@
+/* eslint-disable */
 import BigNumber from 'bignumber.js';
-import { Amount, IssuedCurrencyAmount, ValidationError } from 'xrpl';
+import { ValidationError } from 'xrpl';
+import type { Amount, IssuedCurrencyAmount } from 'xrpl';
 
 // TODO: Update this when new version of xrpl.js is released
 export interface MPTAmount {
