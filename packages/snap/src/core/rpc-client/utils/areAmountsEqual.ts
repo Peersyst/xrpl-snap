@@ -76,17 +76,20 @@ export function isMPTAmount(input: unknown): input is MPTAmount {
  * @throws When the amounts are not valid.
  */
 export function areAmountsEqual(amount1: unknown, amount2: unknown): boolean {
-  if (!isAmount(amount1) || !isAmount(amount2)) {
-    throw new ValidationError(`Amount: invalid field. Expected Amount but received ${!isAmount(amount1) ? amount1 : amount2}`);
+  const isAmount1Invalid = !isAmount(amount1);
+  if (isAmount1Invalid || !isAmount(amount2)) {
+    throw new ValidationError(
+      `Amount: invalid field. Expected Amount but received ${JSON.stringify(isAmount1Invalid ? amount1 : amount2)}`,
+    );
   }
 
-  if (isIssuedCurrency(amount1) && isIssuedCurrency(amount2)) {
-    return amount1.currency === amount2.currency && amount1.issuer === amount2.issuer && amount1.value === amount2.value;
+  if (isString(amount1) && isString(amount2)) {
+    return new BigNumber(amount1).eq(amount2);
   }
 
-  if (isMPTAmount(amount1) && isMPTAmount(amount2)) {
-    return amount1.value === amount2.value && amount1.mpt_issuance_id === amount2.mpt_issuance_id;
+  if (isRecord(amount1) && isRecord(amount2)) {
+    return Object.entries(amount1).every(([key, value]) => amount2[key] === value);
   }
 
-  return isString(amount1) && isString(amount2) && new BigNumber(amount1).eq(amount2);
+  return false;
 }
