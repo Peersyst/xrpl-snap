@@ -1,4 +1,4 @@
-import { Typography } from '@peersyst/react-components';
+import { TextField, Typography } from '@peersyst/react-components';
 import type { TokenWithBalance } from 'common/models/token';
 import Amount from 'common/utils/Amount';
 import { parseCurrencyCode } from 'common/utils/token/currencyCode';
@@ -55,6 +55,12 @@ export function SendModalForm({ onSubmit, onCancel }: SendModalFormProps) {
         label={`${translate('destinationTag')} (${translate('optional')})`}
         placeholder={translate('enterDestinationTag')}
         name="destinationTag"
+      />
+      <TextField
+        label={`${translate('memo')} (${translate('optional')})`}
+        placeholder={translate('enterMemo')}
+        name="memo"
+        maxLength={256}
       />
       <TokenSelect
         value={token}

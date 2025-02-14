@@ -5,9 +5,17 @@ export type Network = {
   explorerUrl?: string;
 };
 
+export type ImportedWallet = {
+  address: string;
+  publicKey: string;
+  encryptedSeed: string;
+};
+
 export type State = {
   networks: Network[];
   activeNetwork: Network;
+  importedWallets: ImportedWallet[];
+  activeImportedWallet?: string;
 };
 
 /**
@@ -37,6 +45,8 @@ export const DEFAULT_NETWORKS: Network[] = [
 export const DEFAULT_STATE: State = {
   networks: DEFAULT_NETWORKS,
   activeNetwork: DEFAULT_NETWORKS[0] as Network,
+  importedWallets: [],
+  activeImportedWallet: undefined,
 };
 
 export class StateManager {

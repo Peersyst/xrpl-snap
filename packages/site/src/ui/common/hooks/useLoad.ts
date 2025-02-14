@@ -12,10 +12,18 @@ export function useLoad(): boolean {
     }
     isInitializing.current = true;
     async function startUseLoad() {
-      await RepositoryFactory.init();
-      await ControllerFactory.init();
-      isInitializing.current = false;
-      setLoading(false);
+      try {
+        await RepositoryFactory.init();
+        await ControllerFactory.init();
+        // Initialize wallet state
+        await ControllerFactory.walletController.loadWallet();
+        isInitializing.current = false;
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to initialize:', error);
+        isInitializing.current = false;
+        setLoading(false);
+      }
     }
 
     startUseLoad();

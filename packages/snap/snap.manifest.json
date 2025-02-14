@@ -1,13 +1,13 @@
 {
   "version": "1.0.3",
-  "description": "Manage XRP Ledger accounts and assets with MetaMask.",
-  "proposedName": "XRP Ledger",
+  "description": "Manage The Warp accounts and assets with MetaMask.",
+  "proposedName": "The Warp",
   "repository": {
     "type": "git",
     "url": "https://github.com/Peersyst/xrpl-snap.git"
   },
   "source": {
-    "shasum": "oHKKiLgKAZ64wNLhrekTnDfhjKCEKDqcQ2Cu47u/GoU=",
+    "shasum": "zr0cRzJw87pARiKMFoY2vcRdck9EtH0Noh9fBymN2iw=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -25,11 +25,13 @@
         "coinType": 144
       }
     ],
+    "snap_getEntropy": {},
     "endowment:network-access": {},
     "endowment:rpc": {
       "dapps": true,
       "snaps": true
-    }
+    },
+    "endowment:ethereum-provider": {}
   },
   "manifestVersion": "0.1"
 }

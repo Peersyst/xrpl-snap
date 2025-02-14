@@ -30,21 +30,46 @@ export default class WalletController {
   ) {}
 
   onInit(): void {
-    DomainEvents.snap.on('onSpanInitialized', () => {
+    // Use a named function to handle the promise to fix the no-misused-promises error
+    const handleWalletLoad = () => {
       this.loadWallet().catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
       });
-    });
+
+      // Set up periodic refresh with proper Promise handling
+      const refreshInterval = setInterval(() => {
+        if (this.walletState.getState().address) {
+          // Handle the Promise result to satisfy TypeScript
+          this.loadWallet().catch((error) => {
+            console.error('Failed to refresh wallet:', error);
+          });
+          return undefined;
+        }
+      }, 30000); // Refresh every 30 seconds
+
+      // Clean up interval when snap is disconnected
+      DomainEvents.snap.on('onSnapDisconnected', () => {
+        clearInterval(refreshInterval);
+      });
+    };
+
+    DomainEvents.snap.on('onSpanInitialized', handleWalletLoad);
 
     DomainEvents.snap.on('onSnapDisconnected', () => {
       this.walletState.setState({
         address: undefined,
+        balance: null,
+        tokens: [],
+        lastUpdated: undefined,
       });
     });
 
     DomainEvents.network.on('onNetworkChanged', () => {
-      this.loadWallet();
+      this.loadWallet().catch((error) => {
+        console.error('Failed to load wallet on network change:', error);
+      });
+      return undefined;
     });
   }
 
@@ -53,8 +78,31 @@ export default class WalletController {
       return this.walletState.setState({});
     }
 
-    const wallet = await this.metamaskRepository.getWallet();
-    return this.walletState.setState({ address: wallet.account });
+    try {
+      const wallet = await this.metamaskRepository.getWallet();
+      // Load balances and tokens in parallel
+      const [tokens, balanceInfo] = await Promise.all([
+        this.getTokens().catch((error) => {
+          console.error('Failed to load tokens:', error);
+          return [];
+        }),
+        this.getBalance().catch((error) => {
+          console.error('Failed to load balance:', error);
+          return null;
+        }),
+      ]);
+
+      // Update wallet state with all data
+      return this.walletState.setState({
+        address: wallet.account,
+        tokens,
+        balance: balanceInfo,
+        lastUpdated: Date.now(),
+      });
+    } catch (error) {
+      console.error('Failed to load wallet:', error);
+      return this.walletState.setState({});
+    }
   }
 
   async getTokens(): Promise<TokenWithBalance[]> {

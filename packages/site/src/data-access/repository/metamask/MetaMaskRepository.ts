@@ -10,6 +10,11 @@ import RepositoryErrorCodes from '../error/RepositoryErrorCodes';
 import { MetaMaskErrorCodes } from './MetaMaskErrorCodes';
 import { withMetaMaskError } from './utils/MetaMaskError';
 
+// Helper function to convert string to hex
+function stringToHex(str: string): string {
+  return Buffer.from(str, 'utf8').toString('hex').toUpperCase();
+}
+
 export type Snap = {
   permissionName: string;
   id: string;
@@ -64,23 +69,37 @@ export class MetaMaskRepository {
     amount,
     destination,
     destinationTag,
+    memo,
   }: {
     destination: string;
     amount: XrplAmount;
     destinationTag?: number;
+    memo?: string;
   }): Promise<string> {
     return await withMetaMaskError(async () => {
       const { account } = await this.getWallet();
 
+      const tx: any = {
+        TransactionType: 'Payment',
+        Account: account,
+        Destination: destination,
+        DestinationTag: destinationTag,
+        Amount: amount,
+      };
+
+      if (memo) {
+        tx.Memos = [
+          {
+            Memo: {
+              MemoData: stringToHex(memo),
+            },
+          },
+        ];
+      }
+
       const submittedTx = await this.invokeSnap({
         method: 'xrpl_signAndSubmit',
-        params: {
-          TransactionType: 'Payment',
-          Account: account,
-          Destination: destination,
-          DestinationTag: destinationTag,
-          Amount: amount,
-        },
+        params: tx,
       });
 
       return this.getTransactionHashFromTxResponse(submittedTx);

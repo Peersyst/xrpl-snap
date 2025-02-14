@@ -29,7 +29,22 @@ function AccountInfoPopover({ className, ...rest }: AccountInfoPopoverProps) {
       <Popover position="bottom-start" offsetY={6} showOn="click" arrow={false} className={clsx('AccountInfoPopover', className)} {...rest}>
         <Popover.Popper>
           <Col>
-            <PopoverListItem Icon={QrIcon} onClick={() => setOpenAccountDetails(true)} text={translate('accountDetails')} />
+            <PopoverListItem
+              Icon={QrIcon}
+              onClick={() => {
+                setOpenAccountDetails(true);
+                const popoverElement = document.querySelector('.AccountInfoPopover');
+                if (popoverElement) {
+                  const closeEvent = new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window,
+                  });
+                  popoverElement.dispatchEvent(closeEvent);
+                }
+              }}
+              text={translate('accountDetails')}
+            />
             <ExternalLink to={url} css={{ color: 'unset' }}>
               <PopoverListItem Icon={LinkIcon} text={translate('viewOnExplorer')} />
             </ExternalLink>

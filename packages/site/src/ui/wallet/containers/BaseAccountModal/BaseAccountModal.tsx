@@ -6,10 +6,10 @@ import Card from '../../../common/components/surface/Card/Card';
 import AccountChip from '../../components/display/AccountChip';
 import type { BaseAccountModalProps } from './BaseAccountModal.types';
 
-function BaseAccountModal({ address, footer, ...rest }: BaseAccountModalProps) {
+function BaseAccountModal({ address, footer, children, title, ...rest }: BaseAccountModalProps) {
   const { spacing } = useTheme();
   return (
-    <Modal alignTitle="center" {...rest}>
+    <Modal alignTitle="center" title={title} {...rest}>
       <Col gap={spacing[6]}>
         <Card css={{ width: '100%' }}>
           <Col gap={spacing[4]} alignItems="center">
@@ -17,6 +17,7 @@ function BaseAccountModal({ address, footer, ...rest }: BaseAccountModalProps) {
             <AccountChip address={address} variant="filled" />
           </Col>
         </Card>
+        {children}
         {footer}
       </Col>
     </Modal>

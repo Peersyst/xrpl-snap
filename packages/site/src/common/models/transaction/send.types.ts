@@ -5,4 +5,5 @@ export type SendParams = {
   destination: string;
   destinationTag?: number;
   token: TokenWithBalance;
+  memo?: string;
 };

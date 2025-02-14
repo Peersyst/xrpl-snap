@@ -26,7 +26,18 @@ export function TokenCard({ className, token, balance, loading = false }: TokenC
             {parsedCurrency.toUpperCase()}
           </Typography>
         </Skeleton>
-        <Balance balance={balance} currency={parsedCurrency} variant="body2" fontWeight={400} loading={loading} light />
+        <Balance
+          balance={balance}
+          currency={parsedCurrency}
+          variant="body2"
+          fontWeight={400}
+          loading={loading}
+          light
+          options={{
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }}
+        />
       </Col>
     </BaseCardListItem>
   );

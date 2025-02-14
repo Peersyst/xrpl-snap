@@ -3,8 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { useTranslate } from 'ui/locale';
 
-import PeersystLogo from '../../display/PeersystLogo/PeersystLogo';
-
 export type FooterProps = {
   className?: string;
   style?: React.CSSProperties;
@@ -24,7 +22,6 @@ function Footer({ className, ...rest }: FooterProps) {
       <Typography light variant="body1">
         {translate('footerText')}
       </Typography>
-      <PeersystLogo />
     </FooterRoot>
   );
 }

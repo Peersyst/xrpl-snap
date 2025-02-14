@@ -1,17 +1,15 @@
 import { Fragment, useState } from 'react';
-import useWalletState from 'ui/adapter/state/useWalletState';
+import Button from 'ui/common/components/input/Button/Button';
+import { useTranslate } from 'ui/locale';
 import ReceiveModal from 'ui/transaction/container/ReceiveModal/ReceiveModal';
 
-import Button from '../../../common/components/input/Button/Button';
-import { useTranslate } from '../../../locale';
-
 export default function ReceiveModalButton() {
-  const translate = useTranslate();
   const [modalOpen, setModalOpen] = useState(false);
-  const { address } = useWalletState();
+  const translate = useTranslate();
+
   return (
     <Fragment>
-      <Button disabled={!address} variant="secondary" onClick={() => setModalOpen(true)}>
+      <Button onClick={() => setModalOpen(true)} variant="secondary" fullWidth>
         {translate('receive')}
       </Button>
       <ReceiveModal open={modalOpen} onClose={() => setModalOpen(false)} />

@@ -1,23 +1,22 @@
 import { useControlled } from '@peersyst/react-hooks';
 import type { SendParams } from 'common/models/transaction/send.types';
 import Modal from 'ui/common/components/feedback/Modal/Modal';
+import type { ModalProps } from 'ui/common/components/feedback/Modal/Modal.types';
+import { useTranslate } from 'ui/locale';
 import useSend from 'ui/transaction/query/useSend';
-import type { BaseAccountModalProps } from 'ui/wallet/containers/BaseAccountModal/BaseAccountModal.types';
 
-import { useTranslate } from '../../../locale';
 import { SendModalError, SendModalLoading, SendModalSuccess } from './SendModalFeedback';
 import { SendModalForm } from './SendModalForm';
 
-function SendModal({ defaultOpen, open: openProp, onClose, ...rest }: Omit<BaseAccountModalProps, 'address'>) {
+function SendModal({ defaultOpen, open: openProp, onClose, ...rest }: Omit<ModalProps, 'title'>) {
   const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
-
-  const { mutate, isPending, isSuccess, isError, error, data: txHash = '' } = useSend();
+  const translate = useTranslate();
+  const { mutate, isPending, isSuccess, isError, error, data: txHash = '', reset } = useSend();
 
   function closeModal() {
     setOpen(false);
+    reset();
   }
-
-  const translate = useTranslate();
 
   function handleSubmit({ destinationTag, ...rest }: SendParams) {
     const sendParams: SendParams = { ...rest };

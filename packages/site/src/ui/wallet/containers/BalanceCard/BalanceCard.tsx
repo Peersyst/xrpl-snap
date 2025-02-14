@@ -10,8 +10,8 @@ import Balance from '../../../common/components/display/Balance/Balance';
 import BalanceDetailsInfoIcon from '../BalanceDetailsInfoIcon/BalanceDetailsInfoIcon';
 import { BalanceCardImageBorder, BalanceCardRoot } from './BalanceCard.styles';
 import BuyModalButton from './BuyModalButton';
+import OpenConsoleButton from './OpenConsoleButton';
 import ReceiveModalButton from './ReceiveModalButton';
-import SendModalButton from './SendModalButton';
 
 export type BalanceCardProps = {
   className?: string;
@@ -22,7 +22,6 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
   const { spacing } = useTheme();
   const { getXrpFiatPriceFromAmount, isLoading: isPriceLoading } = useGetXrpFiatPriceFromAmount();
   const fiatCurrency = useConfig('fiatCurrency');
-  const fiatDecimals = useConfig('fiatDecimals');
   const { address } = useWalletState();
   const { data: network } = useGetActiveNetwork();
 
@@ -39,7 +38,17 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
       <Col flex={1} alignItems="center" justifyContent="center" gap={spacing[8]}>
         <Col gap={spacing[2]} alignItems="center">
           <Row alignItems="center" gap="0.5rem">
-            <Balance loading={loading} fontWeight="600" balance={formattedBalance} currency={balance?.currency ?? 'XRP'} variant="h2" />
+            <Balance
+              loading={loading}
+              fontWeight="600"
+              balance={formattedBalance}
+              currency={balance?.currency ?? 'XRP'}
+              variant="h2"
+              options={{
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }}
+            />
             <BalanceDetailsInfoIcon />
           </Row>
           <Balance
@@ -48,15 +57,17 @@ function BalanceCard({ className, ...rest }: BalanceCardProps) {
             currency={fiatCurrency}
             fontWeight="500"
             variant="body1"
+            currencyPosition="left"
             options={{
-              maximumFractionDigits: fiatDecimals,
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
             }}
             light
           />
         </Col>
         <Skeleton loading={!network}>
           <Row gap={spacing[3]} alignItems="center">
-            <SendModalButton />
+            <OpenConsoleButton />
             <ReceiveModalButton />
             <BuyModalButton />
           </Row>

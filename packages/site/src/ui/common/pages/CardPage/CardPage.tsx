@@ -2,6 +2,7 @@ import { Row } from '@peersyst/react-components';
 import clsx from 'clsx';
 import MainCard from 'ui/common/components/surface/MainCard/MainCard';
 import SideBar from 'ui/common/containers/SideBar/SideBar';
+import WalletConsole from 'ui/wallet/containers/WalletConsole/WalletConsole';
 
 import Footer from '../../components/navigation/Footer/Footer';
 import MainHeader from '../../containers/MainHeader/MainHeader';
@@ -26,6 +27,7 @@ function CardPage({ className, children, ...rest }: CardPageProps) {
         </MainCard>
         <Footer />
       </CardPageContentWrapper>
+      <WalletConsole />
     </CardPageRoot>
   );
 }
