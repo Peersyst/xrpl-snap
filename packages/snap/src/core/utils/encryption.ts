@@ -9,7 +9,6 @@ export class EncryptionManager {
    */
   static async encryptData(data: string): Promise<string> {
     try {
-      console.log('Encrypting data...', data.slice(0, 4) + '...');
       const entropy = await snap.request({
         method: 'snap_getEntropy',
         params: {
