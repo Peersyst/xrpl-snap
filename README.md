@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://www.thewarp.ai">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset=".github/packages/site/public/logo512.png">
-      <img src=".github/packages/site/public/logo512.png" height="150">
+      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/logo512.png">
+      <img src=".github/assets/logo512.png" height="150">
     </picture>
   </a>
 </p>
