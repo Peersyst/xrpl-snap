@@ -13,6 +13,12 @@
 </p>
 </div>
 
+## Roadmap
+
+1. The Warp is a www.postfiat.org community ecosystem project.
+2. Publish Snap to NPM.
+3. Get allowlisted for MetaMask users through Consensys.
+
 ## Overview
 
 The Warp is a modified version of XRPL Ledger for MetaMask originally created by Peersyst. 
