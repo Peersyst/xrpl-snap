@@ -13,11 +13,22 @@
 </p>
 </div>
 
+## Before Your Start
+
+<p>
+  The Warp is a www.postfiat.org community project.
+  The Warp is a fork for XRPL Ledger for MetaMask and is pending Consensys approval for the MetaMask Allowlist.
+  In the interim, users will need to use 
+  <a href="https://chromewebstore.google.com/detail/metamask-flask-developmen/ljfoeinjpaedjfecbmggjgodbgkmjkjk?hl=en" target="_blank" rel="noopener noreferrer">
+    MetaMask Flask
+  </a> 
+  to interact with The Warp snap and site.
+</p>
+
 ## Roadmap
 
-1. The Warp is a www.postfiat.org community ecosystem project.
-2. Publish Snap to NPM.
-3. Get allowlisted for MetaMask users through Consensys.
+1. Publish Snap to NPM.
+2. Get allowlisted for MetaMask users through Consensys.
 
 ## Overview
 
