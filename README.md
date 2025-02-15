@@ -17,7 +17,7 @@
 
 <p>
   The Warp is a postfiat.org community project.
-  The Warp is a fork for XRPL Ledger for MetaMask and is pending Consensys approval for the MetaMask Allowlist.
+  The Warp is a fork for XRPL Ledger for MetaMask. The Warp is pending approval from Consensys to be added to the MetaMask Allowlist.
   In the interim, users will need to use 
   <a href="https://chromewebstore.google.com/detail/metamask-flask-developmen/ljfoeinjpaedjfecbmggjgodbgkmjkjk?hl=en" target="_blank" rel="noopener noreferrer">
     MetaMask Flask
