@@ -1,4 +1,4 @@
-import { InfiniteScrollProps } from '@peersyst/react-components';
+import { Col, InfiniteScrollProps } from '@peersyst/react-components';
 import clsx from 'clsx';
 import type { TokenWithBalance } from 'common/models/token';
 import useWalletState from 'ui/adapter/state/useWalletState';
@@ -8,6 +8,7 @@ import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/TokenCard/TokenCard';
 
 import useGetTokens from '../../../wallet/query/useGetTokens';
+import TokenAdd from '../../components/display/TokenAdd/TokenAdd';
 
 export type TokenListProps = {
   className?: string;
@@ -34,18 +35,21 @@ function TokenList({ className, ...rest }: TokenListProps) {
   const { data, isLoading } = useGetTokens();
 
   return (
-    <InfiniteList<TokenWithBalance>
-      className={clsx('TokenList', className)}
-      renderItem={(token, i) => <TokenCard key={i} token={token} balance={token.balance.formatAmount()} />}
-      isLoading={isLoading || !address}
-      Skeleton={TokenCardSkeleton}
-      numberOfSkeletons={5}
-      data={data}
-      end={true}
-      nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
-      onEndReached={() => ''}
-      {...rest}
-    />
+    <Col style={{ height: '29rem', justifyContent: 'space-between' }}>
+      <InfiniteList<TokenWithBalance>
+        className={clsx('TokenList', className)}
+        renderItem={(token, i) => <TokenCard key={i} token={token} balance={token.balance.formatAmount()} />}
+        isLoading={isLoading || !address}
+        Skeleton={TokenCardSkeleton}
+        numberOfSkeletons={5}
+        data={data}
+        end={true}
+        nothingToShow={<NothingToShow css={{ paddingTop: '2rem' }} message={translate('nothingToShow', { context: 'token' })} />}
+        onEndReached={() => ''}
+        {...rest}
+      />
+      <TokenAdd />
+    </Col>
   );
 }
 
