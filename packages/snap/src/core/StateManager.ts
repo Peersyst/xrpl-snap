@@ -16,6 +16,7 @@ export type State = {
   activeNetwork: Network;
   importedWallets: ImportedWallet[];
   activeImportedWallet?: string;
+  derivedWalletAddress?: string;
 };
 
 /**
@@ -47,6 +48,7 @@ export const DEFAULT_STATE: State = {
   activeNetwork: DEFAULT_NETWORKS[0] as Network,
   importedWallets: [],
   activeImportedWallet: undefined,
+  derivedWalletAddress: undefined,
 };
 
 export class StateManager {

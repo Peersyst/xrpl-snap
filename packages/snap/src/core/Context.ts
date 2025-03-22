@@ -32,6 +32,11 @@ export class Context {
     const derivedWallet = await Wallet.derive();
 
     const context = new Context(stateManager, provider, derivedWallet);
+    
+    // Store the derived wallet address in state for consistent rehydration
+    if (!state.derivedWalletAddress || state.derivedWalletAddress !== derivedWallet.address) {
+      await stateManager.set({ derivedWalletAddress: derivedWallet.address });
+    }
 
     // If there's an active imported wallet, initialize it
     if (state.activeImportedWallet) {
@@ -49,7 +54,14 @@ export class Context {
         } catch (error) {
           console.error('Failed to initialize imported wallet:', error);
           // Don't throw, just log the error and continue without the imported wallet
+          
+          // Clear the active imported wallet reference in state since we couldn't load it
+          await stateManager.set({ activeImportedWallet: undefined });
         }
+      } else {
+        // If the imported wallet is not found, clear the reference
+        console.log('Active imported wallet not found in state, defaulting to derived wallet');
+        await stateManager.set({ activeImportedWallet: undefined });
       }
     }
 
@@ -60,6 +72,27 @@ export class Context {
     if (!address) {
       // Switch to derived wallet
       this._activeImportedWallet = undefined;
+      
+      // Update state to explicitly clear the active imported wallet reference
+      // and ensure we're tracking the derived wallet address
+      const derivedAddress = this.derivedWallet.address;
+      await this.stateManager.set({ 
+        activeImportedWallet: undefined,
+        derivedWalletAddress: derivedAddress 
+      });
+      console.log('Switched to derived wallet:', derivedAddress);
+      return;
+    }
+
+    // Check if this is the derived wallet address
+    if (address === this.derivedWallet.address) {
+      // Switch to derived wallet 
+      this._activeImportedWallet = undefined;
+      await this.stateManager.set({ 
+        activeImportedWallet: undefined,
+        derivedWalletAddress: address 
+      });
+      console.log('Switched to derived wallet:', address);
       return;
     }
 
