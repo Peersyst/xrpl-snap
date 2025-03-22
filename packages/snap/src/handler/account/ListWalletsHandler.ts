@@ -24,6 +24,11 @@ export class ListWalletsHandler implements IHandler<typeof ListWalletsMethod> {
       isActive: !state.activeImportedWallet, // Active if no imported wallet is selected
     };
 
+    // Ensure the derived wallet address is stored in state for future rehydration
+    if (!state.derivedWalletAddress || state.derivedWalletAddress !== derivedWallet.address) {
+      await this.context.stateManager.set({ derivedWalletAddress: derivedWallet.address });
+    }
+
     // Get imported wallets info
     const importedWallets: WalletInfo[] = state.importedWallets.map((w) => ({
       address: w.address,
