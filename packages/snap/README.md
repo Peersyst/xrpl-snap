@@ -1,39 +1,50 @@
 <p align="center">
-  <a href="https://www.npmjs.com/package/xrpl-snap">
+  <a href="https://www.thewarp.ai">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/icon.svg">
-      <img src=".github/assets/icon.svg" height="150">
+      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/logo512.png">
+      <img src=".github/assets/logo512.png" height="150">
     </picture>
   </a>
 </p>
 <p align="center">
   If you have a MetaMask wallet now you have an XRPL one.<br>
-  Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask.
+  Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask.<br>
+  The Warp expands on XRP Ledger for MetaMask by enabling support for multiple wallets which may be imported using Family Seeds.<br>
 </p>
-
-<div align="center">
-  <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
-    <img src="https://img.shields.io/npm/v/xrpl-snap.svg" alt="NPM Version" />
-  </a>
-  <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
-    <img src="https://img.shields.io/npm/l/xrpl-snap.svg" alt="Package License" />
-  </a>
-  <a href="https://twitter.com/Peersyst">
-    <img alt="Twitter Follow Peersyst" src="https://img.shields.io/twitter/follow/Peersyst"/>
-  </a>
 </div>
+
+## Before Your Start
+
+<p>
+  The Warp is a postfiat.org community project.<br>
+  The Warp is a fork for XRPL Ledger for MetaMask. The Warp is pending approval from Consensys to be added to the MetaMask Allowlist.<br>
+  In the interim, users will need to use 
+  <a href="https://chromewebstore.google.com/detail/metamask-flask-developmen/ljfoeinjpaedjfecbmggjgodbgkmjkjk?hl=en" target="_blank" rel="noopener noreferrer">
+    MetaMask Flask
+  </a> 
+  to interact with The Warp snap and site.
+</p>
 
 ## Overview
 
+The Warp is a modified version of XRPL Ledger for MetaMask originally created by Peersyst. 
+
 The XRP Ledger for MetaMask is an extension that allows users to interact with the XRP Ledger (XRPL) directly from their MetaMask wallet. This Snap introduces support for XRPL, enabling users to manage XRP and other tokens on the XRPL, perform transactions, and interact with XRPL-based decentralized applications (DApps).
 
-## Features
+## XRPL for MetaMask Original Features
 
-- **XRPL Integration**: Manage XRP and XRPL tokens within MetaMask.
+- **XRPL Integration**: Manage XRP and XRPL tokens within MetaMask. (limitted 
 - **Transaction Support**: Send and receive XRP and other XRPL tokens.
 - **DApp Interaction**: Use XRPL-based DApps seamlessly.
 - **Account Management**: View account balances, transaction history, and other details.
 - **Secure and User-Controlled**: Full control over your XRPL keys and permissions.
+
+- ## The Warp Expanded Features
+
+- **Multiple XRPL Wallet Support**: Import and manage mutltiple XRPL wallets from family seeds.
+
+- **Site Feature Expansion**: Memo transactions, Import Wallet, Switch Wallet, Trust Lines.
+
 
 ## Usage
 
@@ -193,7 +204,7 @@ provider.request({
 });
 ```
 
-- If you only want to sing the transaction use `xrpl_sign`.
+- If you only want to sign the transaction use `xrpl_sign`.
 
 ## Support
 
@@ -201,7 +212,6 @@ For support and further information, refer to the following resources:
 
 - **XRPL Documentation**: [XRPL.org](https://xrpl.org/)
 - **MetaMask Snaps Documentation**: [MetaMask Snaps](https://docs.metamask.io/snaps/)
-- **Community Forums**: Join discussions on MetaMask and XRPL community forums.
 
 ## Contributing
 
@@ -210,12 +220,6 @@ We welcome contributions to the XRP Ledger project. To contribute, please follow
 1. **Fork the Repository**: Fork the XRP Ledger repository on GitHub.
 2. **Create a Branch**: Create a new branch for your feature or bugfix.
 3. **Submit a Pull Request**: Submit a pull request with a detailed description of your changes.
-
-## Stay in Touch
-
-- Author - [Peersyst](https://peersyst.com/)
-- Website - [https://peersyst.com/](https://peersyst.com/)
-- X - [@peersyst](https://peersyst.com/)
 
 ## License
 

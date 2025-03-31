@@ -27,10 +27,8 @@ export class ImportWalletHandler implements IHandler<typeof ImportWalletMethod> 
 
     let wallet: Wallet;
     try {
-      console.log('Creating wallet from seed...');
       wallet = Wallet.fromSeed(formattedSeed);
     } catch (error) {
-      console.error('Failed to create wallet:', error);
       throw new InvalidParamsError('Invalid family seed format');
     }
 
@@ -48,7 +46,6 @@ export class ImportWalletHandler implements IHandler<typeof ImportWalletMethod> 
     }
 
     // Encrypt the seed before storing
-    console.log('Encrypting seed for storage...');
     const encryptedSeed = await EncryptionManager.encryptData(formattedSeed);
 
     // Add the new wallet to state

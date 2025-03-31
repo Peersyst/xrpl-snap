@@ -1,7 +1,6 @@
 {
   "name": "root",
   "version": "0.1.0",
-  "private": true,
   "description": "",
   "homepage": "https://github.com/MetaMask/template-snap-monorepo#readme",
   "bugs": {
