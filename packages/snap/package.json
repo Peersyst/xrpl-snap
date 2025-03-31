@@ -1,10 +1,14 @@
 {
-  "name": "xrpl-snap",
-  "version": "1.0.3",
-  "description": "XRP Ledger MetaMask Snap",
+  "name": "@thewarp/xrpl-snap",
+  "version": "1.0.7",
+  "description": "The Warp - MetaMask XRPL Snap - Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Peersyst/xrpl-snap.git"
+    "url": "https://github.com/prometheus88/the-warp.git"
+  },
+  "homepage": "https://www.thewarp.ai/",
+  "bugs": {
+    "url": "https://github.com/prometheus88/the-warp/issues"
   },
   "license": "MIT-0",
   "main": "./dist/bundle.js",

@@ -9,7 +9,6 @@ export class EncryptionManager {
    */
   static async encryptData(data: string): Promise<string> {
     try {
-      console.log('Encrypting data...', data.slice(0, 4) + '...');
       const entropy = await snap.request({
         method: 'snap_getEntropy',
         params: {
@@ -61,10 +60,8 @@ export class EncryptionManager {
       const result = Array.from(encryptedArray)
         .map(b => b.toString(16).padStart(2, '0'))
         .join('');
-      console.log('Encryption successful');
       return result;
     } catch (error) {
-      console.error('Encryption failed:', error);
       throw error;
     }
   }
@@ -76,7 +73,6 @@ export class EncryptionManager {
    */
   static async decryptData(encryptedHex: string): Promise<string> {
     try {
-      console.log('Decrypting data...');
       const entropy = await snap.request({
         method: 'snap_getEntropy',
         params: {
@@ -127,10 +123,8 @@ export class EncryptionManager {
       );
 
       const result = new TextDecoder().decode(decryptedContent);
-      console.log('Decryption successful, result:', result.slice(0, 4) + '...');
       return result;
     } catch (error) {
-      console.error('Decryption failed:', error);
       throw error;
     }
   }

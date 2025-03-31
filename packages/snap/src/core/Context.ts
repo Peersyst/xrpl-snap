@@ -17,7 +17,7 @@ export class Context {
 
   get wallet(): Wallet {
     // Return the active imported wallet if it exists, otherwise return the derived wallet
-    return this._activeImportedWallet || this._wallet;
+    return this._activeImportedWallet ?? this._wallet;
   }
 
   get derivedWallet(): Wallet {
@@ -45,22 +45,18 @@ export class Context {
       );
       if (importedWallet) {
         try {
-          console.log('Initializing active imported wallet...');
           const decryptedSeed = await EncryptionManager.decryptData(
             importedWallet.encryptedSeed
           );
           context._activeImportedWallet = Wallet.fromSeed(decryptedSeed);
-          console.log('Successfully initialized imported wallet');
         } catch (error) {
-          console.error('Failed to initialize imported wallet:', error);
-          // Don't throw, just log the error and continue without the imported wallet
+          // Don't throw, just continue without the imported wallet
           
           // Clear the active imported wallet reference in state since we couldn't load it
           await stateManager.set({ activeImportedWallet: undefined });
         }
       } else {
         // If the imported wallet is not found, clear the reference
-        console.log('Active imported wallet not found in state, defaulting to derived wallet');
         await stateManager.set({ activeImportedWallet: undefined });
       }
     }
@@ -80,7 +76,6 @@ export class Context {
         activeImportedWallet: undefined,
         derivedWalletAddress: derivedAddress 
       });
-      console.log('Switched to derived wallet:', derivedAddress);
       return;
     }
 
@@ -92,7 +87,6 @@ export class Context {
         activeImportedWallet: undefined,
         derivedWalletAddress: address 
       });
-      console.log('Switched to derived wallet:', address);
       return;
     }
 
@@ -103,7 +97,6 @@ export class Context {
         throw new Error(`Wallet not found for address: ${address}`);
       }
 
-      console.log('Found imported wallet, attempting to decrypt seed...');
       const decryptedSeed = await EncryptionManager.decryptData(
         importedWallet.encryptedSeed
       );
@@ -112,7 +105,6 @@ export class Context {
         throw new Error('Failed to decrypt seed');
       }
 
-      console.log('Successfully decrypted seed, creating wallet...');
       // Create wallet from the decrypted seed
       const newWallet = Wallet.fromSeed(decryptedSeed);
 
@@ -121,10 +113,8 @@ export class Context {
         throw new Error(`Address mismatch: expected ${address}, got ${newWallet.address}`);
       }
 
-      console.log('Successfully created and verified wallet');
       this._activeImportedWallet = newWallet;
     } catch (error) {
-      console.error('Failed to update active wallet:', error);
       if (error instanceof Error) {
         throw new Error(`Failed to activate wallet: ${error.message}`);
       } else {

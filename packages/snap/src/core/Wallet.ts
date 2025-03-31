@@ -64,40 +64,30 @@ export class Wallet {
 
   public static fromPrivateKey(privateKey: string): Wallet {
     try {
-      console.log('Attempting to create wallet from private key...', privateKey.slice(0, 4) + '...');
-      
       // If it starts with 's', treat it as a seed
       if (privateKey.startsWith('s')) {
-        console.log('Input appears to be a seed, using fromSeed method...');
         return this.fromSeed(privateKey);
       }
 
       // Remove any prefixes if present and ensure uppercase
       const cleanPrivateKey = privateKey.replace(/^00|s/, '').toUpperCase();
-      console.log('Cleaned private key format:', cleanPrivateKey.slice(0, 4) + '...');
       
       try {
         // First try to treat it as a seed without the 's' prefix
-        console.log('Attempting to derive keypair as seed...');
         const keypair = deriveKeypair(`s${cleanPrivateKey}`);
         const address = deriveAddress(keypair.publicKey);
-        console.log('Successfully derived keypair using seed format');
         return new Wallet(address, keypair.publicKey, keypair.privateKey);
       } catch (firstError) {
-        console.log('Failed to derive as seed, trying as raw private key...');
         try {
           // Try to derive keypair directly from the private key
           const keypair = deriveKeypair(cleanPrivateKey);
           const address = deriveAddress(keypair.publicKey);
-          console.log('Successfully derived keypair from private key');
           return new Wallet(address, keypair.publicKey, keypair.privateKey);
         } catch (secondError) {
-          console.error('Failed both seed and private key derivation attempts');
           throw new Error('Invalid private key or seed format');
         }
       }
     } catch (error) {
-      console.error('Failed to create wallet from private key:', error);
       if (error instanceof Error) {
         throw new Error(`Invalid private key format: ${error.message}`);
       } else {
@@ -108,7 +98,6 @@ export class Wallet {
 
   public static fromSeed(seed: string): Wallet {
     try {
-      console.log('Creating wallet from seed...');
       // Validate and clean the seed
       if (!seed.startsWith('s')) {
         seed = `s${seed}`;
@@ -117,11 +106,9 @@ export class Wallet {
       // Generate keypair from seed
       const keypair = deriveKeypair(seed);
       const address = deriveAddress(keypair.publicKey);
-      console.log('Successfully created wallet from seed');
 
       return new Wallet(address, keypair.publicKey, keypair.privateKey);
     } catch (error) {
-      console.error('Failed to create wallet from seed:', error);
       throw new Error('Invalid seed format');
     }
   }

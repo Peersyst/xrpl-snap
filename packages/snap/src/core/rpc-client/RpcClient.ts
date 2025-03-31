@@ -75,7 +75,8 @@ export class RPCClient {
       this.buildVersion = response.result.info.build_version;
       this.isConnected = true;
     } catch (error) {
-      console.error(error);
+      this.isConnected = false;
+      // Silent failure - connection status is tracked via isConnected flag
     }
   }
 
