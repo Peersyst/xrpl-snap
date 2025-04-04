@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Button from 'ui/common/components/input/Button/Button';
 import ChipIconButton from 'ui/common/components/input/ChipIconButton/ChipIconButton';
 
-export const TokenAddIcon = styled(ChipIconButton)(
+export const AddTokenButtonIcon = styled(ChipIconButton)(
   () => css`
     width: 2.5rem;
     .ChipLabel.ChipLabel.ChipLabel {
@@ -11,7 +11,7 @@ export const TokenAddIcon = styled(ChipIconButton)(
   `,
 );
 
-export const ButtonRoot = styled(Button)(
+export const AddTokenButtonRoot = styled(Button)(
   ({ theme }) => css`
     color: ${theme.palette.grey[600]};
     width: 13.5rem;

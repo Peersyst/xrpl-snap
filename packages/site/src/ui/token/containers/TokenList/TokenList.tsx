@@ -8,7 +8,7 @@ import { useTranslate } from 'ui/locale';
 import TokenCard from 'ui/token/components/display/TokenCard/TokenCard';
 
 import useGetTokens from '../../../wallet/query/useGetTokens';
-import TokenAdd from '../../components/display/TokenAdd/TokenAdd';
+import AddTokenButton from '../../components/input/AddTokenButton/AddTokenButton';
 
 export type TokenListProps = {
   className?: string;
@@ -48,7 +48,7 @@ function TokenList({ className, ...rest }: TokenListProps) {
         onEndReached={() => ''}
         {...rest}
       />
-      <TokenAdd />
+      <AddTokenButton />
     </Col>
   );
 }

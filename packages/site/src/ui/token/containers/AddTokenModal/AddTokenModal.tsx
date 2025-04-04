@@ -11,7 +11,7 @@ import { AddTokenModalForm } from './AddTokenModalForm';
 function AddTokenModal({ defaultOpen, open: openProp, onClose, ...rest }: Omit<BaseAccountModalProps, 'address'>) {
   const [open, setOpen] = useControlled(defaultOpen, openProp, onClose);
 
-  const { mutate, isPending, isSuccess, isError, error, data: txHash = '' } = useAddToken();
+  const { mutate, isPending, isSuccess, isError, error } = useAddToken();
 
   function closeModal() {
     setOpen(false);
@@ -22,9 +22,6 @@ function AddTokenModal({ defaultOpen, open: openProp, onClose, ...rest }: Omit<B
   function handleSubmit(addToken: AddTokenParams) {
     mutate(addToken);
   }
-  console.log('isSuccess', isSuccess);
-  console.log('txHash', txHash);
-  console.log("isSuccess && txHash !== ''", isSuccess && txHash !== '');
 
   return (
     <Modal closable={!isPending} open={open || !isSuccess} onClose={closeModal} title={translate('addToken')} {...rest}>
