@@ -51,12 +51,21 @@ function isMetaMaskError(error: Error) {
   return error.message.includes('METAMASK');
 }
 
+interface ErrorWithData extends Error {
+  data?: unknown;
+}
+
 export function AddTokenModalError<E extends Error>({ onClose, error }: { onClose: () => void; error: E }) {
   const translate = useTranslate();
   const { spacing } = useTheme();
   const metamaskError = error ? isMetaMaskError(error) : false;
-  // @ts-ignore
-  const reason = typeof error === 'object' && 'data' in error ? (error?.data as string) : undefined;
+
+  const reason =
+    typeof error === 'object' && 'data' in error
+      ? typeof (error as ErrorWithData).data === 'string'
+        ? ((error as ErrorWithData).data as string)
+        : JSON.stringify((error as ErrorWithData).data)
+      : undefined;
 
   return (
     <BaseSendModalFeedback>
