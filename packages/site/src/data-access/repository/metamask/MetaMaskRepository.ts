@@ -87,6 +87,26 @@ export class MetaMaskRepository {
     });
   }
 
+  async addToken({ issuer, currency }: { issuer: string; currency: XrplAmount; value?: number }): Promise<string> {
+    return await withMetaMaskError(async () => {
+      const { account } = await this.getWallet();
+
+      const submittedTx = await this.invokeSnap({
+        method: 'xrpl_signAndSubmit',
+        params: {
+          TransactionType: 'TrustSet',
+          Account: account,
+          LimitAmount: {
+            currency,
+            issuer,
+            value: '1', // MAX UINT
+          },
+        },
+      });
+      return this.getTransactionHashFromTxResponse(submittedTx);
+    });
+  }
+
   public async getStoredNetworks(): Promise<Network[]> {
     return this.invokeSnap({
       method: 'xrpl_getStoredNetworks',

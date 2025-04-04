@@ -31,6 +31,7 @@ export { default as MoreIcon } from './MoreIcon';
 export { default as NFTIcon } from './NFTIcon';
 export { default as NotFoundIcon } from './NotFoundIcon';
 export { default as PencilIcon } from './PencilIcon';
+export { default as PlusIcon } from './PlusIcon';
 export { default as QrIcon } from './QrIcon';
 export { default as SignatureIcon } from './SignatureIcon';
 export { default as SuccessIcon } from './SuccessIcon';

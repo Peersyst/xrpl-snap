@@ -32,6 +32,6 @@ export default Factory<IControllerFactory>({
     ),
   networkController: () => new NetworkController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
   transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
-  tokenController: () => new TokenController(RepositoryFactory.tokenRepository),
+  tokenController: () => new TokenController(RepositoryFactory.tokenRepository, RepositoryFactory.metamaskRepository),
   nftController: () => new NftController(RepositoryFactory.xrplService),
 });
