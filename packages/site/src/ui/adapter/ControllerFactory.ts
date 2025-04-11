@@ -29,6 +29,7 @@ export default Factory<IControllerFactory>({
       RepositoryFactory.metamaskRepository,
       RepositoryFactory.xrplService,
       RepositoryFactory.fundRepository,
+      RepositoryFactory.giveawayRepository,
     ),
   networkController: () => new NetworkController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),
   transactionController: () => new TransactionController(RepositoryFactory.metamaskRepository, RepositoryFactory.xrplService),

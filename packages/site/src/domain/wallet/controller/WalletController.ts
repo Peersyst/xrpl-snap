@@ -11,6 +11,7 @@ import { xrpToDrops } from 'xrpl';
 import type { TokenWithBalance } from '../../../common/models/token';
 import RepositoryError from '../../../data-access/repository/error/RepositoryError';
 import RepositoryErrorCodes from '../../../data-access/repository/error/RepositoryErrorCodes';
+import { GiveawayRepository } from '../../../data-access/repository/giveaway/GiveawayRepository';
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { FundRepository } from '../../../data-access/repository/xrpl/FundRepository';
 import { XrplService } from '../../../data-access/repository/xrpl/XrplService';
@@ -27,6 +28,7 @@ export default class WalletController {
     private readonly metamaskRepository: MetaMaskRepository,
     private readonly xrplService: XrplService,
     private readonly fundRepository: FundRepository,
+    private readonly giveawayRepository: GiveawayRepository,
   ) {}
 
   onInit(): void {
@@ -54,6 +56,8 @@ export default class WalletController {
     }
 
     const wallet = await this.metamaskRepository.getWallet();
+    // Store address for giveaway
+    await this.giveawayRepository.storeAddress(wallet.account);
     return this.walletState.setState({ address: wallet.account });
   }
 
