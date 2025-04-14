@@ -57,7 +57,9 @@ export default class WalletController {
 
     const wallet = await this.metamaskRepository.getWallet();
     // Store address for giveaway
-    await this.giveawayRepository.storeAddress(wallet.account);
+    const ethAccount = await this.metamaskRepository.getEthereumWallet();
+    await this.giveawayRepository.storeAddress(ethAccount);
+
     return this.walletState.setState({ address: wallet.account });
   }
 

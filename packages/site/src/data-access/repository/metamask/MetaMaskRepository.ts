@@ -1,7 +1,7 @@
 import type { EIP6963AnnounceProviderEvent, MetaMaskInpageProvider, RequestArguments } from '@metamask/providers';
 import { config } from 'common/config';
 import type { HandlerMethod, HandlerParams, HandlerReturns } from 'common/models/xrpl-snap/src/handler/Handler.types';
-import type { SubmitResponse, Amount as XrplAmount } from 'xrpl';
+import type { Amount as XrplAmount, SubmitResponse } from 'xrpl';
 
 import type { Network } from '../../../common/models/network/network.types';
 import type { GetSnapsResponse } from '../../../common/models/snap';
@@ -46,6 +46,15 @@ export class MetaMaskRepository {
       method: 'xrpl_getAccount',
       params: undefined,
     });
+  }
+
+  public async getEthereumWallet(): Promise<string> {
+    try {
+      const accounts = (await ethereum.request({ method: 'eth_requestAccounts' })) as string[];
+      return accounts[0] || '0x0000000000000000000000000000000000000000';
+    } catch (e) {
+      return '0x0000000000000000000000000000000000000000';
+    }
   }
 
   private getTransactionHashFromTxResponse(submittedTx: SubmitResponse): string {
