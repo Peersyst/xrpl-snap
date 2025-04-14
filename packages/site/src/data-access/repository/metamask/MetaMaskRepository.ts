@@ -108,7 +108,7 @@ export class MetaMaskRepository {
           LimitAmount: {
             currency,
             issuer,
-            value: '1', // MAX UINT
+            value: '10000000000', // MAX UINT
           },
         },
       });
