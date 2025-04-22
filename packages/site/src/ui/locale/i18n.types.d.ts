@@ -1,6 +1,7 @@
 import 'i18next';
 import type { resources, defaultNS } from './i18n';
 
+// eslint-disable-next-line prettier/prettier
 export type LocaleResource = (typeof resources)['en'];
 export type LocaleNamespace = keyof LocaleResource;
 export type LocaleErrorResource = keyof LocaleResource['error'];
