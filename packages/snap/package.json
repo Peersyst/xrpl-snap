@@ -1,6 +1,6 @@
 {
   "name": "@thewarp/xrpl-snap",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "The Warp - MetaMask XRPL Snap - Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask",
   "repository": {
     "type": "git",

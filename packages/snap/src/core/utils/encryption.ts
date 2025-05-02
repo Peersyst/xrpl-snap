@@ -3,6 +3,19 @@
  */
 export class EncryptionManager {
   /**
+   * Converts a hex string to a Uint8Array
+   * @param hexString - The hex string to convert
+   * @returns A Uint8Array containing the decoded bytes
+   */
+  private static hexToBytes(hexString: string): Uint8Array {
+    const bytes = new Uint8Array(hexString.length / 2);
+    for (let i = 0; i < hexString.length; i += 2) {
+      bytes[i / 2] = parseInt(hexString.substring(i, i + 2), 16);
+    }
+    return bytes;
+  }
+
+  /**
    * Encrypts sensitive data using the snap's entropy as encryption key
    * @param data - The data to encrypt
    * @returns The encrypted data as a hex string
@@ -16,11 +29,11 @@ export class EncryptionManager {
         },
       });
 
-      // Convert entropy to a proper key
-      const encoder = new TextEncoder();
+      // Convert entropy to a proper key using hex decoding
+      const entropyBytes = this.hexToBytes(entropy);
       const keyMaterial = await crypto.subtle.importKey(
         'raw',
-        encoder.encode(entropy),
+        entropyBytes,
         { name: 'PBKDF2' },
         false,
         ['deriveKey']
@@ -41,6 +54,7 @@ export class EncryptionManager {
       );
 
       const iv = crypto.getRandomValues(new Uint8Array(12));
+      const encoder = new TextEncoder();
       const encryptedContent = await crypto.subtle.encrypt(
         {
           name: 'AES-GCM',
@@ -90,11 +104,11 @@ export class EncryptionManager {
       const iv = encryptedArray.slice(16, 28);
       const encryptedContent = encryptedArray.slice(28);
 
-      // Recreate the key
-      const encoder = new TextEncoder();
+      // Recreate the key using hex decoding
+      const entropyBytes = this.hexToBytes(entropy);
       const keyMaterial = await crypto.subtle.importKey(
         'raw',
-        encoder.encode(entropy),
+        entropyBytes,
         { name: 'PBKDF2' },
         false,
         ['deriveKey']
