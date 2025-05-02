@@ -1,5 +1,5 @@
 {
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "The Warp - MetaMask XRPL Snap - Securely manage your XRP and interact with XRPL-based DApps directly from MetaMask",
   "proposedName": "The Warp",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/prometheus88/the-warp.git"
   },
   "source": {
-    "shasum": "T/lRjvoZ8Q0IuhLAbCR7+XW3ouzk+byGbsLZutOS3Gk=",
+    "shasum": "AhH3rJWrStQNbFaSNDgd0pl4uMPjyzdquXLXjZNXZgw=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
