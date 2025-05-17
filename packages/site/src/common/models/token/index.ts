@@ -4,6 +4,7 @@ export type Token = {
   decimals: number;
   issuer: string;
   currency: string;
+  transferRate?: number;
 };
 
 export type TokenWithBalance = Token & {

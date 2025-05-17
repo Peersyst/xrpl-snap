@@ -5,13 +5,16 @@ import { TransactionsWithMarker, XrplTx } from 'common/models/transaction/tx.typ
 import { withRetries } from 'common/query';
 import type Amount from 'common/utils/Amount';
 import { TransactionMeta } from 'common/utils/xrpl/meta';
+import Decimal from 'decimal.js';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
-import { xrpToDrops } from 'xrpl';
+import { xrpToDrops, transferRateToDecimal } from 'xrpl';
 
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
+
+const PARTIAL_PAYMENT_FLAG = 131072;
 
 export default class TransactionController {
   constructor(private readonly metamaskRepository: MetaMaskRepository, private readonly xrplService: XrplService) {}
@@ -25,11 +28,9 @@ export default class TransactionController {
       );
 
       const payments = res.result.transactions.reduce<XrplTx[]>((acc, { tx, meta }) => {
-        // eslint-disable-next-line no-implicit-coercion
         if (tx && typeof meta === 'object' && meta.TransactionResult === 'tesSUCCESS') {
           acc.push({ ...tx, meta: new TransactionMeta(meta) });
         }
-
         return acc;
       }, []);
 
@@ -45,10 +46,6 @@ export default class TransactionController {
     }
   }
 
-  /**
-   * Checks if a transaction is validated
-   * @param hash - Hash of the transaction
-   */
   public async isTransactionValidated(hash: string): Promise<boolean> {
     try {
       const tx = await this.xrplService.getTransaction(hash);
@@ -62,10 +59,6 @@ export default class TransactionController {
     }
   }
 
-  /**
-   * Await for a transaction to be validated
-   * @param hash - Hash of the transaction
-   */
   public async awaitTransactionValidation(hash: string): Promise<void> {
     await polling(
       async () => this.isTransactionValidated(hash),
@@ -81,7 +74,7 @@ export default class TransactionController {
     const availableAmount: Amount = token.balance;
 
     if (!availableAmount.canPay(amount)) {
-      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+      throw new DomainError(TransactionErrorCodes.INSUFFICIENT_BALANCE);
     }
 
     return await this.metamaskRepository.send({
@@ -94,7 +87,28 @@ export default class TransactionController {
     const availableAmount: Amount = token.balance;
 
     if (!availableAmount.canPay(amount)) {
-      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+      throw new DomainError(TransactionErrorCodes.INSUFFICIENT_BALANCE);
+    }
+
+    if (token.transferRate !== undefined && token.transferRate !== 0 && token.transferRate !== 1000000000) {
+      const feeDecimal = new Decimal(transferRateToDecimal(token.transferRate));
+      const fullRateDecimal = feeDecimal.plus(1);
+      const sendMaxValue = new Decimal(amount).mul(fullRateDecimal).toString(); // keep all significant decimals
+
+      return await this.metamaskRepository.send({
+        ...rest,
+        amount: {
+          currency: token.currency,
+          value: amount,
+          issuer: token.issuer,
+        },
+        sendMax: {
+          currency: token.currency,
+          value: sendMaxValue,
+          issuer: token.issuer,
+        },
+        flags: PARTIAL_PAYMENT_FLAG,
+      });
     }
 
     return await this.metamaskRepository.send({

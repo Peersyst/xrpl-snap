@@ -71,12 +71,16 @@ export class MetaMaskRepository {
 
   async send({
     amount,
+    sendMax,
     destination,
     destinationTag,
+    flags,
   }: {
     destination: string;
     amount: XrplAmount;
+    sendMax?: XrplAmount;
     destinationTag?: number;
+    flags?: number;
   }): Promise<string> {
     return await withMetaMaskError(async () => {
       const { account } = await this.getWallet();
@@ -89,6 +93,8 @@ export class MetaMaskRepository {
           Destination: destination,
           DestinationTag: destinationTag,
           Amount: amount,
+          SendMax: sendMax,
+          Flags: flags,
         },
       });
 
