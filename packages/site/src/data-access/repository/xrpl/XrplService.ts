@@ -9,11 +9,7 @@ import { XrplErrorCodes } from './XrplErrorCodes';
 
 function isValidTransferRate(rate?: number): boolean {
   // 0 and undefined are "no fee", otherwise must be in [1000000000, 2000000000]
-  return (
-    rate === undefined ||
-    rate === 0 ||
-    (typeof rate === 'number' && rate >= 1000000000 && rate <= 2000000000)
-  );
+  return rate === undefined || rate === 0 || (typeof rate === 'number' && rate >= 1000000000 && rate <= 2000000000);
 }
 
 export class XrplService {
@@ -184,8 +180,7 @@ export class XrplService {
             balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
           });
         } catch (err) {
-          // Log error for debugging, but skip this token
-          // console.warn(`Failed to fetch transfer rate for issuer ${line.account}:`, err);
+          // Optionally log error
         }
       }
 
