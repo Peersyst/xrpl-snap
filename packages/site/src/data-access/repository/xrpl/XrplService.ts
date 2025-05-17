@@ -2,10 +2,19 @@ import { TokenWithBalance } from 'common/models';
 import Amount from 'common/utils/Amount';
 import RepositoryErrorCodes from 'data-access/repository/error/RepositoryErrorCodes';
 import Decimal from 'decimal.js';
-import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse } from 'xrpl';
+import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse, AccountInfoResponse } from 'xrpl';
 
 import RepositoryError from '../error/RepositoryError';
 import { XrplErrorCodes } from './XrplErrorCodes';
+
+function isValidTransferRate(rate?: number): boolean {
+  // 0 and undefined are "no fee", otherwise must be in [1000000000, 2000000000]
+  return (
+    rate === undefined ||
+    rate === 0 ||
+    (typeof rate === 'number' && rate >= 1000000000 && rate <= 2000000000)
+  );
+}
 
 export class XrplService {
   private nodeUrl: string;
@@ -129,7 +138,6 @@ export class XrplService {
     const client = await this.getClient();
     try {
       let res = await client.request({ command: 'account_lines', account });
-
       const { lines } = res.result;
 
       while (res.result.marker && res.result.lines.length > 0) {
@@ -142,23 +150,48 @@ export class XrplService {
       }
 
       const tokenWithBalances: TokenWithBalance[] = [];
+      // Cache issuer transfer rates to avoid duplicate requests
+      const issuerTransferRates: Record<string, number | undefined> = {};
 
       for (const line of lines) {
         try {
+          const issuer = line.account;
+          let transferRate: number | undefined = issuerTransferRates[issuer];
+
+          if (transferRate === undefined) {
+            // Fetch issuer's transfer rate
+            const info: AccountInfoResponse = await client.request({
+              command: 'account_info',
+              account: issuer,
+            });
+            transferRate = info.result.account_data.TransferRate;
+            // Validate transfer rate
+            if (!isValidTransferRate(transferRate)) {
+              // Optionally: log a warning or skip this token
+              transferRate = undefined;
+            }
+            issuerTransferRates[issuer] = transferRate;
+          }
+
           const token = {
             currency: line.currency,
-            issuer: line.account,
+            issuer,
             decimals: 15,
+            transferRate, // Add transferRate to token (undefined means "no fee")
           };
           tokenWithBalances.push({
             ...token,
             balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
           });
-        } catch {}
+        } catch (err) {
+          // Log error for debugging, but skip this token
+          // console.warn(`Failed to fetch transfer rate for issuer ${line.account}:`, err);
+        }
       }
 
       return tokenWithBalances;
     } catch (e) {
+      // Optionally log error
       return [];
     }
   }

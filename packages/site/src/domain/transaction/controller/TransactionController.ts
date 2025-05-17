@@ -7,11 +7,14 @@ import type Amount from 'common/utils/Amount';
 import { TransactionMeta } from 'common/utils/xrpl/meta';
 import { DomainError } from 'domain/error/DomainError';
 import { DomainEvents } from 'domain/events';
-import { xrpToDrops } from 'xrpl';
+import { xrpToDrops, transferRateToDecimal } from 'xrpl';
+import Decimal from 'decimal.js';
 
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
+
+const PARTIAL_PAYMENT_FLAG = 0x00020000;
 
 export default class TransactionController {
   constructor(private readonly metamaskRepository: MetaMaskRepository, private readonly xrplService: XrplService) {}
@@ -81,7 +84,7 @@ export default class TransactionController {
     const availableAmount: Amount = token.balance;
 
     if (!availableAmount.canPay(amount)) {
-      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
+      throw new DomainError(TransactionErrorCodes.INSUFFICIENT_BALANCE);
     }
 
     return await this.metamaskRepository.send({
@@ -91,21 +94,42 @@ export default class TransactionController {
   }
 
   async sendIOUTransaction({ amount, token, ...rest }: SendParams): Promise<string> {
-    const availableAmount: Amount = token.balance;
+  const availableAmount: Amount = token.balance;
 
-    if (!availableAmount.canPay(amount)) {
-      throw new DomainError(TransactionErrorCodes.INSUCCICIENT_BALANCE);
-    }
-
-    return await this.metamaskRepository.send({
-      ...rest,
-      amount: {
-        currency: token.currency,
-        value: amount,
-        issuer: token.issuer,
-      },
-    });
+  if (!availableAmount.canPay(amount)) {
+    throw new DomainError(TransactionErrorCodes.INSUFFICIENT_BALANCE);
   }
+
+  let sendMax;
+  let flags;
+  // Only apply SendMax if transferRate is set and not default (no fee)
+  if (
+    token.transferRate !== undefined &&
+    token.transferRate !== 0 &&
+    token.transferRate !== 1000000000
+  ) {
+    // Use xrpl.transferRateToDecimal for accurate conversion
+    const multiplier = new Decimal(transferRateToDecimal(token.transferRate));
+    const sendMaxValue = new Decimal(amount).mul(multiplier).toFixed(15);
+    sendMax = {
+      currency: token.currency,
+      value: sendMaxValue,
+      issuer: token.issuer,
+    };
+    flags = PARTIAL_PAYMENT_FLAG;
+  }
+
+  return await this.metamaskRepository.send({
+    ...rest,
+    amount: {
+      currency: token.currency,
+      value: amount,
+      issuer: token.issuer,
+    },
+    ...(sendMax && { SendMax: sendMax }),
+    ...(flags && { Flags: flags }),
+  });
+}
 
   async sendTransaction(params: SendParams): Promise<string> {
     const { token } = params;
