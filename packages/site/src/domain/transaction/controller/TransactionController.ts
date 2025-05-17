@@ -93,7 +93,7 @@ export default class TransactionController {
     if (token.transferRate !== undefined && token.transferRate !== 0 && token.transferRate !== 1000000000) {
       const feeDecimal = new Decimal(transferRateToDecimal(token.transferRate));
       const fullRateDecimal = feeDecimal.plus(1);
-      const sendMaxValue = new Decimal(amount).mul(fullRateDecimal).toFixed();
+      const sendMaxValue = new Decimal(amount).mul(fullRateDecimal).toString(); // keep all significant decimals
 
       return await this.metamaskRepository.send({
         ...rest,
