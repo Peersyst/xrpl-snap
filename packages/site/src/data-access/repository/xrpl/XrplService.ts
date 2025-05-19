@@ -6,11 +6,7 @@ import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse, AccountInfo
 
 import RepositoryError from '../error/RepositoryError';
 import { XrplErrorCodes } from './XrplErrorCodes';
-
-function isValidTransferRate(rate?: number): boolean {
-  // 0 and undefined are "no fee", otherwise must be in [1000000000, 2000000000]
-  return rate === undefined || rate === 0 || (typeof rate === 'number' && rate >= 1000000000 && rate <= 2000000000);
-}
+import { isValidTransferRate } from 'common/utils/xrpl/transfer-rate';
 
 export class XrplService {
   private nodeUrl: string;
