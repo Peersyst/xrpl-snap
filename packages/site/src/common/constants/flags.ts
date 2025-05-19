@@ -1,3 +1,1 @@
-
-
 export const PARTIAL_PAYMENT_FLAG = 131072;
