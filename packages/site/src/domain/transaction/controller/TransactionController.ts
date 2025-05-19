@@ -89,10 +89,11 @@ export default class TransactionController {
       throw new DomainError(TransactionErrorCodes.INSUFFICIENT_BALANCE);
     }
 
+    // When a transfer rate is set by the issuer, the sender must pay an extra fee.
+    // This is required to ensure the recipient receives the intended amount after the transfer fee is deducted.
+    // See: https://xrpl.org/transfer-rate.html and https://github.com/XRPLF/xrpl.js/issues/2122
     if (token.transferRate !== undefined && token.transferRate !== 0 && token.transferRate !== 1000000000) {
-      const feeDecimal = new Decimal(transferRateToDecimal(token.transferRate));
-      const fullRateDecimal = feeDecimal.plus(1);
-      const sendMaxValue = new Decimal(amount).mul(fullRateDecimal).toString(); // keep all significant decimals
+      const sendMaxValue = this.computeTransferRate(amount, token.transferRate);
 
       return await this.metamaskRepository.send({
         ...rest,
@@ -118,6 +119,17 @@ export default class TransactionController {
         issuer: token.issuer,
       },
     });
+  }
+
+  /**
+   * Computes the sendMax value required to cover the issuer's transfer rate fee.
+   * This ensures the recipient receives the intended amount after the transfer fee is deducted.
+   * See: https://xrpl.org/transfer-rate.html and https://github.com/XRPLF/xrpl.js/issues/2122
+   */
+  private computeTransferRate(amount: string, transferRate: number): string {
+    const feeDecimal = new Decimal(transferRateToDecimal(transferRate));
+    const fullRateDecimal = feeDecimal.plus(1);
+    return new Decimal(amount).mul(fullRateDecimal).toString(); // keep all significant decimals
   }
 
   async sendTransaction(params: SendParams): Promise<string> {
