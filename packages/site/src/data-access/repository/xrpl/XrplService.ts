@@ -2,11 +2,10 @@ import { TokenWithBalance } from 'common/models';
 import Amount from 'common/utils/Amount';
 import RepositoryErrorCodes from 'data-access/repository/error/RepositoryErrorCodes';
 import Decimal from 'decimal.js';
-import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse, AccountInfoResponse } from 'xrpl';
+import { AccountNFTsResponse, AccountTxResponse, Client, TxResponse } from 'xrpl';
 
 import RepositoryError from '../error/RepositoryError';
 import { XrplErrorCodes } from './XrplErrorCodes';
-import { isValidTransferRate } from 'common/utils/xrpl/transfer-rate';
 
 export class XrplService {
   private nodeUrl: string;
@@ -142,38 +141,19 @@ export class XrplService {
       }
 
       const tokenWithBalances: TokenWithBalance[] = [];
-      const issuerTransferRates: Record<string, number | undefined> = {};
-
       for (const line of lines) {
         try {
           const issuer = line.account;
-          let transferRate: number | undefined = issuerTransferRates[issuer];
-
-          if (transferRate === undefined) {
-            const info: AccountInfoResponse = await client.request({
-              command: 'account_info',
-              account: issuer,
-            });
-            transferRate = info.result.account_data.TransferRate;
-            if (!isValidTransferRate(transferRate)) {
-              transferRate = undefined;
-            }
-            issuerTransferRates[issuer] = transferRate;
-          }
-
           const token = {
             currency: line.currency,
             issuer,
             decimals: 15,
-            transferRate,
           };
           tokenWithBalances.push({
             ...token,
             balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
           });
-        } catch (err) {
-
-        }
+        } catch (err) {}
       }
 
       return tokenWithBalances;
