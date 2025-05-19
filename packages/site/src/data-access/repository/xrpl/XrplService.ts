@@ -142,7 +142,6 @@ export class XrplService {
       }
 
       const tokenWithBalances: TokenWithBalance[] = [];
-      // Cache issuer transfer rates to avoid duplicate requests
       const issuerTransferRates: Record<string, number | undefined> = {};
 
       for (const line of lines) {
@@ -151,15 +150,12 @@ export class XrplService {
           let transferRate: number | undefined = issuerTransferRates[issuer];
 
           if (transferRate === undefined) {
-            // Fetch issuer's transfer rate
             const info: AccountInfoResponse = await client.request({
               command: 'account_info',
               account: issuer,
             });
             transferRate = info.result.account_data.TransferRate;
-            // Validate transfer rate
             if (!isValidTransferRate(transferRate)) {
-              // Optionally: log a warning or skip this token
               transferRate = undefined;
             }
             issuerTransferRates[issuer] = transferRate;
@@ -169,20 +165,19 @@ export class XrplService {
             currency: line.currency,
             issuer,
             decimals: 15,
-            transferRate, // Add transferRate to token (undefined means "no fee")
+            transferRate,
           };
           tokenWithBalances.push({
             ...token,
             balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
           });
         } catch (err) {
-          // Optionally log error
+
         }
       }
 
       return tokenWithBalances;
     } catch (e) {
-      // Optionally log error
       return [];
     }
   }
