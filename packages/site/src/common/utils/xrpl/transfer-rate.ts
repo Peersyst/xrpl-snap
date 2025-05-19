@@ -17,6 +17,7 @@ export function normalizeTransferRate(transferFee: number): number {
 /**
  * Checks if a transfer rate is valid according to XRPL rules.
  * 0 and undefined are "no fee", otherwise must be in [1000000000, 2000000000]
+ * @param [rate] - The transfer rate to validate.
  */
 export function isValidTransferRate(rate?: number): boolean {
   return rate === undefined || rate === 0 || (typeof rate === 'number' && rate >= 1000000000 && rate <= 2000000000);
