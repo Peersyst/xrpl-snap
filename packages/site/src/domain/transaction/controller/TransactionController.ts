@@ -13,8 +13,7 @@ import { xrpToDrops, transferRateToDecimal } from 'xrpl';
 import type { MetaMaskRepository } from '../../../data-access/repository/metamask/MetaMaskRepository';
 import type { XrplService } from '../../../data-access/repository/xrpl/XrplService';
 import { TransactionErrorCodes } from '../error/TransactionErrorCodes';
-
-const PARTIAL_PAYMENT_FLAG = 131072;
+import { PARTIAL_PAYMENT_FLAG } from 'common/constants/flags';
 
 export default class TransactionController {
   constructor(private readonly metamaskRepository: MetaMaskRepository, private readonly xrplService: XrplService) {}
