@@ -129,7 +129,6 @@ export class XrplService {
     const client = await this.getClient();
     try {
       let res = await client.request({ command: 'account_lines', account });
-
       const { lines } = res.result;
 
       while (res.result.marker && res.result.lines.length > 0) {
@@ -142,19 +141,19 @@ export class XrplService {
       }
 
       const tokenWithBalances: TokenWithBalance[] = [];
-
       for (const line of lines) {
         try {
+          const issuer = line.account;
           const token = {
             currency: line.currency,
-            issuer: line.account,
+            issuer,
             decimals: 15,
           };
           tokenWithBalances.push({
             ...token,
             balance: Amount.fromDecToken(new Decimal(line.balance).toFixed(14), token),
           });
-        } catch {}
+        } catch (err) {}
       }
 
       return tokenWithBalances;
