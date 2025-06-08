@@ -20,7 +20,7 @@ export type IControllerFactory = {
 };
 
 export default Factory<IControllerFactory>({
-  snapController: (ressolve) => new SnapController(snapState, RepositoryFactory.metamaskRepository, ressolve.networkController),
+  snapController: (resolve) => new SnapController(snapState, RepositoryFactory.metamaskRepository, resolve.networkController),
   walletController: (resolve) =>
     new WalletController(
       walletState,
