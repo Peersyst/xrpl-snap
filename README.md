@@ -15,7 +15,7 @@
   <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
     <img src="https://img.shields.io/npm/v/xrpl-snap.svg" alt="NPM Version" />
   </a>
-  <a href="https://www.npmjs.com/package/xrpl-snap" target="_blank">
+  <a href="https://github.com/Peersyst/xrpl-snap/blob/main/LICENSE" target="_blank">
     <img src="https://img.shields.io/npm/l/xrpl-snap.svg" alt="Package License" />
   </a>
   <a href="https://twitter.com/Peersyst">
