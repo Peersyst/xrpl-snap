@@ -18,7 +18,17 @@ export class TransactionDialog {
     return [text(translate('TransactionFooter')), ...ReviewTransactionComponent(transaction)];
   }
 
-  static async prompt(origin: string, transaction: Transaction): Promise<boolean> {
+  /**
+   * Show the transaction for confirmation.
+   *
+   * @param origin - The requesting origin.
+   * @param transaction - The transaction to review.
+   * @param opts - Options.
+   * @param opts.signingFor - Set when multisigning: the account being signed
+   * for, shown above the transaction so the user knows they are co-signing.
+   * @returns Whether the user confirmed.
+   */
+  static async prompt(origin: string, transaction: Transaction, opts: { signingFor?: string } = {}): Promise<boolean> {
     const strategy = this.strategiesFactory[transaction.TransactionType as keyof ITransactionDialogStrategiesFactory];
 
     if (!strategy) {
@@ -27,6 +37,7 @@ export class TransactionDialog {
 
     const content = [
       ...(strategy?.buildHeader ? strategy.buildHeader(origin) : this.buildHeader(origin)),
+      ...(opts.signingFor ? [text(translate('SignForNotice', { account: opts.signingFor }))] : []),
       divider(),
       ...strategy.buildBody(transaction),
       divider(),

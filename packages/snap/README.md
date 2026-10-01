@@ -195,6 +195,39 @@ provider.request({
 
 - If you only want to sing the transaction use `xrpl_sign`.
 
+### Multisigning (`xrpl_signFor`)
+
+To add the snap account's signature to a multisigned transaction, send the fully prepared,
+unsigned transaction to `xrpl_signFor`. It returns a `tx_blob` containing a single `Signers`
+entry for the snap account. Combine it with the other signers' blobs (for example with
+xrpl.js `multisign()`) and submit the result.
+
+```javascript
+const { tx_blob } = await provider.request({
+  method: 'wallet_invokeSnap',
+  params: {
+    snapId: 'npm:xrpl-snap',
+    request: {
+      method: 'xrpl_signFor',
+      params: {
+        TransactionType: 'Payment',
+        Account: 'rMultisig...', // the multisigning account, not the snap account
+        Destination: 'rPT...',
+        Amount: '1000000',
+        Fee: '36', // base fee × (1 + number of signers)
+        Sequence: 0,
+        TicketSequence: 12, // or a regular Sequence
+        SigningPubKey: '',
+      },
+    },
+  },
+});
+```
+
+The snap never autofills an `xrpl_signFor` request, because every signer has to sign identical
+fields. The request is rejected unless `Fee` and `Sequence` are set, `SigningPubKey` is empty or
+omitted, and there's no `TxnSignature` or `Signers`.
+
 ## Support
 
 For support and further information, refer to the following resources:

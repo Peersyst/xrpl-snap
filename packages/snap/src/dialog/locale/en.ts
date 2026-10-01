@@ -6,6 +6,8 @@ export default {
   TransactionHeader: 'Sign XRPL Transaction',
   TransactionSubHeader: 'Got a request from %origin% to sign the following transaction',
   TransactionFooter: '⚠️ Please check that all of the above fields are correct.',
+  SignForNotice:
+    '**Multisigning:** you are adding your signature as one signer for account %account%. It only takes effect once enough signers have signed and it is submitted.',
   VerifyCompleteTx: 'Verify the [complete transaction here](%uriTransaction%)',
   // Transaction fields
   TransactionType: 'TransactionType',

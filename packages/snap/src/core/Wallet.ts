@@ -25,8 +25,17 @@ export class Wallet {
     return this._privateKey;
   }
 
-  public sign(transaction: Transaction): { tx_blob: string; hash: string } {
-    return this._wallet.sign(transaction);
+  /**
+   * Sign a transaction.
+   *
+   * @param transaction - The transaction to sign.
+   * @param multisign - If true, produce a multisignature contribution: the
+   * returned blob has an empty `SigningPubKey` and a single `Signers` entry
+   * for this wallet's address, ready to be combined with other signers'.
+   * @returns The signed transaction blob and its hash.
+   */
+  public sign(transaction: Transaction, multisign = false): { tx_blob: string; hash: string } {
+    return this._wallet.sign(transaction, multisign);
   }
 
   public signMessage(message: string): string {
